@@ -1,0 +1,22 @@
+# OS & Editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Build & Dependency artifacts (Node, Python, Mobile)
+node_modules/
+dist/
+build/
+.env
+.env.local
+.env.*.local
+*.log
+
+# Large media archives & video recordings
+*.zip
+*.mp4
+# Keep reference screenshot folders intact if needed for design analysis, but ignore temp frames
+# extracted_frames/
