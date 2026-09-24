@@ -1,0 +1,27 @@
+[
+  {
+    "conflict_id": "CONF-HL-ORIGIN-001",
+    "feature_target": "lines.head_line.origin_relation_to_life",
+    "feature_value": "WIDE_SEPARATION",
+    "conflict_type": "TRADITION_PERSPECTIVE_DIVERGENCE",
+    "traditions_involved": ["CLASSICAL_INDIAN", "WESTERN_HISTORICAL"],
+    "perspectives": [
+      {
+        "tradition": "CLASSICAL_INDIAN",
+        "source_id": "SRC-IND-001",
+        "textual_basis": "Pāṇilekhā (Zysk ed.) & Bṛhat Saṃhitā",
+        "stance": "Interprets separation at origin as hasty impetuousness and disregard for elder or traditional counsel.",
+        "thematic_valence": "CAUTIONARY_TEMPERAMENT"
+      },
+      {
+        "tradition": "WESTERN_HISTORICAL",
+        "source_id": "SRC-WST-002",
+        "textual_basis": "Cheiro, Palmistry for All (Chapter V)",
+        "stance": "Interprets separation as fearless autonomy, pioneering spirit, and self-confidence.",
+        "thematic_valence": "POSITIVE_EMPOWERING"
+      }
+    ],
+    "mediation_strategy": "PERSPECTIVAL_SYNTHESIS",
+    "narration_guideline": "Explain that historical Indian masters noted the risk of hasty over-confidence, whereas Western traditions celebrated this sign as the hallmark of a self-reliant pioneer. Prompt the user on how they balance autonomy with patient reflection."
+  }
+]

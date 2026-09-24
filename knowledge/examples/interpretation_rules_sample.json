@@ -1,0 +1,101 @@
+[
+  {
+    "rule_id": "RULE-LIFE-001",
+    "name": "Wide Arc Life Line with Full Venus Pad",
+    "tradition": "CLASSICAL_INDIAN",
+    "sources": [
+      {
+        "source_id": "SRC-IND-001",
+        "author": "Pāṇilekhā (Zysk ed.)",
+        "chapter": "Pitri-rekha Chapter",
+        "page_reference": "vv. 12-16",
+        "authority_level": "LEVEL_1"
+      },
+      {
+        "source_id": "SRC-IND-101",
+        "author": "Dr. N.D. Shrimali",
+        "chapter": "Jeevan Rekha aur Shukra Parvata",
+        "page_reference": "pp. 52-56",
+        "authority_level": "LEVEL_4"
+      }
+    ],
+    "consensus_status": "MULTI_SOURCE_AGREEMENT",
+    "conditions": {
+      "all_of": [
+        {
+          "feature_path": "lines.life_line.presence",
+          "operator": "EQUALS",
+          "target_value": true
+        },
+        {
+          "feature_path": "lines.life_line.curvature_profile",
+          "operator": "EQUALS",
+          "target_value": "WIDE_ARC"
+        },
+        {
+          "feature_path": "lines.life_line.continuity",
+          "operator": "EQUALS",
+          "target_value": "CONTINUOUS"
+        }
+      ]
+    },
+    "interpretation": {
+      "primary_domain": "VITALITY_AND_LIFESTYLE",
+      "secondary_domains": ["PERSONALITY_AND_TEMPERAMENT"],
+      "traditional_archetype": "The Vital Anchor",
+      "traditional_terms": ["Purna Ayu Lakshana", "Vistrita Pitri Rekha"],
+      "reflective_synthesis": "Your palm displays a sweeping, continuous Life Line embracing a generous Mount of Venus. In classical Indian Samudrika, this formation signifies abundant constitutional stamina, openhearted hospitality, and strong recuperative reserves.",
+      "character_strengths": ["Grounded vitality", "Warm empathy", "Enduring resilience"],
+      "mindfulness_cautions": ["Be mindful of setting healthy energetic boundaries so your natural generosity does not deplete your reserves."]
+    },
+    "confidence_profile": {
+      "source_authority_score": 0.95,
+      "traditional_consensus_score": 1.00,
+      "rule_robustness": 0.95
+    }
+  },
+  {
+    "rule_id": "RULE-HEAD-002",
+    "name": "Head Line Gentle Slope Towards Mount of Moon",
+    "tradition": "WESTERN_HISTORICAL",
+    "sources": [
+      {
+        "source_id": "SRC-WST-001",
+        "author": "William G. Benham",
+        "work": "The Laws of Scientific Hand Reading",
+        "chapter": "The Head Line",
+        "page_reference": "pp. 230-234",
+        "authority_level": "LEVEL_3"
+      }
+    ],
+    "consensus_status": "SINGLE_SOURCE",
+    "conditions": {
+      "all_of": [
+        {
+          "feature_path": "lines.head_line.presence",
+          "operator": "EQUALS",
+          "target_value": true
+        },
+        {
+          "feature_path": "lines.head_line.curvature_profile",
+          "operator": "EQUALS",
+          "target_value": "GENTLE_SLOPE"
+        }
+      ]
+    },
+    "interpretation": {
+      "primary_domain": "INTELLECT_AND_COMMUNICATION",
+      "secondary_domains": ["CREATIVITY_AND_RADIANCE"],
+      "traditional_archetype": "The Imaginative Realist",
+      "traditional_terms": ["Sloping Head Line", "Luna Deflection"],
+      "reflective_synthesis": "Your Head Line slopes gently downward toward the Mount of the Moon. This traditional marker denotes an intellect that bridges empirical logic with creative imagination, thriving in creative problem-solving.",
+      "character_strengths": ["Lateral thinking", "Intuitive synthesis", "Expressive articulation"],
+      "mindfulness_cautions": ["Avoid over-analyzing abstract possibilities when swift, pragmatic action is required."]
+    },
+    "confidence_profile": {
+      "source_authority_score": 0.90,
+      "traditional_consensus_score": 0.85,
+      "rule_robustness": 0.88
+    }
+  }
+]

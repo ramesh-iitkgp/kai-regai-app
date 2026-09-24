@@ -1,0 +1,45 @@
+[
+  {
+    "pattern_id": "PAT-LEAD-001",
+    "name": "Executive Stature Configuration (Jupiter Mount + Balanced Thumb + Straight Head)",
+    "category": "VOCATION_AND_PURPOSE",
+    "sources": [
+      {
+        "source_id": "SRC-WST-001",
+        "author": "William G. Benham",
+        "chapter": "Mount of Jupiter with Head Line Combinations",
+        "page_reference": "pp. 156-160"
+      },
+      {
+        "source_id": "SRC-IND-101",
+        "author": "Dr. N.D. Shrimali",
+        "chapter": "Guru Parvata aur Mastak Rekha",
+        "page_reference": "pp. 82-85"
+      }
+    ],
+    "provenance_type": "MULTI_SOURCE_DOCUMENTED",
+    "component_features": [
+      {
+        "feature_path": "mounts.jupiter.prominence",
+        "condition": "IN",
+        "value": ["WELL_DEVELOPED", "APEX_HIGH"]
+      },
+      {
+        "feature_path": "thumb.phalanx_ratio",
+        "condition": "EQUALS",
+        "value": "EQUAL_BALANCE"
+      },
+      {
+        "feature_path": "lines.head_line.curvature_profile",
+        "condition": "IN",
+        "value": ["STRAIGHT_LINEAR", "GENTLE_SLOPE"]
+      }
+    ],
+    "emergent_synthesis": {
+      "archetype_title": "The Strategic Executive",
+      "thematic_domain": "VOCATION_AND_PURPOSE",
+      "synthesized_narrative": "When a prominent Mount of Jupiter is backed by a balanced thumb and a clear Head Line, natural administrative authority is grounded by prudent reasoning. Ambition does not veer into hubris, and logical discipline guides execution.",
+      "modifier_effect": "SUPPRESS_ISOLATED_JUPITER_AND_THUMB_RULES"
+    }
+  }
+]

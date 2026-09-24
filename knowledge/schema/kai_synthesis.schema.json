@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KaiRegAISynthesisRecord",
+  "description": "Schema for Kai RegAI independent modern synthesis rules.",
+  "type": "object",
+  "properties": {
+    "synthesis_id": {
+      "type": "string",
+      "pattern": "^SYNTH-KAI-[0-9]{3}$"
+    },
+    "version": { "type": "string" },
+    "creation_date": { "type": "string", "format": "date" },
+    "reviewer": { "type": "string" },
+    "input_features": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "source_rules_considered": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "traditions_considered": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "synthesis_rationale": { "type": "string" },
+    "final_interpretation": {
+      "type": "object",
+      "properties": {
+        "archetype_title": { "type": "string" },
+        "domain": { "type": "string" },
+        "narrative_text": { "type": "string" },
+        "reflective_guidance": { "type": "string" }
+      },
+      "required": ["archetype_title", "domain", "narrative_text", "reflective_guidance"]
+    },
+    "transparency_notice": { "type": "string" }
+  },
+  "required": [
+    "synthesis_id",
+    "version",
+    "creation_date",
+    "reviewer",
+    "input_features",
+    "synthesis_rationale",
+    "final_interpretation",
+    "transparency_notice"
+  ]
+}

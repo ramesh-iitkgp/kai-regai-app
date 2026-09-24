@@ -1,0 +1,28 @@
+[
+  {
+    "synthesis_id": "SYNTH-KAI-001",
+    "version": "1.0.0",
+    "creation_date": "2026-09-24",
+    "reviewer": "Kai RegAI Core Knowledge Board",
+    "input_features": [
+      "markings.fish_sign_on_ketu",
+      "lines.fate_line.presence"
+    ],
+    "source_rules_considered": [
+      "RULE-VEDIC-MATSYA-001",
+      "RULE-WST-FATE-004"
+    ],
+    "traditions_considered": [
+      "CLASSICAL_INDIAN",
+      "WESTERN_HISTORICAL"
+    ],
+    "synthesis_rationale": "Reconciles classical Hasta Samudrika 'Matsya' marking interpretation (spiritual preservation and oceanic/foreign travel prosperity) with modern vocational reflection on purpose-driven careers.",
+    "final_interpretation": {
+      "archetype_title": "The Purpose-Driven Navigator",
+      "domain": "VOCATION_AND_PURPOSE",
+      "narrative_text": "The appearance of the traditional fish-tail sign near the base of your palm, converging toward the Fate Line, suggests that your vocational path is strongly anchored by an inner intuitive compass. Rather than pursuing prestige for its own sake, you find fulfillment in endeavors that bridge cultures or provide meaningful guidance to others.",
+      "reflective_guidance": "Reflect on how your career choices align with your deeper sense of service and personal values."
+    },
+    "transparency_notice": "This compound insight is an original synthesis formulated by Kai RegAI, respectfully inspired by classical Hasta Samudrika concepts and framed for modern contemplative life."
+  }
+]

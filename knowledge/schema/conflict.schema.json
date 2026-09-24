@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KaiRegAITraditionConflict",
+  "description": "Schema for capturing and mediating disagreements between palmistry traditions.",
+  "type": "object",
+  "properties": {
+    "conflict_id": {
+      "type": "string",
+      "pattern": "^CONF-[A-Z0-9_]+-[0-9]{3}$"
+    },
+    "feature_target": { "type": "string" },
+    "feature_value": {},
+    "conflict_type": {
+      "type": "string",
+      "enum": ["TRADITION_PERSPECTIVE_DIVERGENCE", "INTERPRETATION_VALENCE_CONFLICT", "STRUCTURAL_TAXONOMY_DISCREPANCY"]
+    },
+    "traditions_involved": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 2
+    },
+    "perspectives": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "tradition": { "type": "string" },
+          "source_id": { "type": "string" },
+          "textual_basis": { "type": "string" },
+          "stance": { "type": "string" },
+          "thematic_valence": { "type": "string" }
+        },
+        "required": ["tradition", "source_id", "stance"]
+      },
+      "minItems": 2
+    },
+    "mediation_strategy": {
+      "type": "string",
+      "enum": ["PERSPECTIVAL_SYNTHESIS", "HIERARCHICAL_OVERRIDE", "DUAL_PRESENTATION", "CONTEXT_CONDITIONAL"]
+    },
+    "narration_guideline": { "type": "string" }
+  },
+  "required": ["conflict_id", "feature_target", "conflict_type", "traditions_involved", "perspectives", "mediation_strategy", "narration_guideline"]
+}

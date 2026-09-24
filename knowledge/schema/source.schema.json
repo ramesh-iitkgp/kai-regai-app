@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KaiRegAISourceRecord",
+  "description": "Schema for source literature and authorities in the Kai RegAI Knowledge Base.",
+  "type": "object",
+  "properties": {
+    "source_id": {
+      "type": "string",
+      "pattern": "^SRC-[A-Z]{3}-[0-9]{3}$"
+    },
+    "title": { "type": "string" },
+    "author": { "type": "string" },
+    "publication_year": { "type": ["integer", "null"] },
+    "language": { "type": "string" },
+    "tradition": {
+      "type": "string",
+      "enum": ["CLASSICAL_INDIAN", "MODERN_INDIAN", "WESTERN_HISTORICAL", "MODERN_WESTERN", "COMPARATIVE"]
+    },
+    "source_type": {
+      "type": "string",
+      "enum": ["PRIMARY_HISTORICAL_TEXT", "SCHOLARLY_CRITICAL_EDITION", "HISTORICAL_BOOK", "MODERN_REFERENCE", "PRACTITIONER_MONOGRAPH"]
+    },
+    "authority_level": {
+      "type": "string",
+      "enum": ["LEVEL_1", "LEVEL_2", "LEVEL_3", "LEVEL_4", "LEVEL_5", "LEVEL_6", "LEVEL_7"]
+    },
+    "license": { "type": "string" },
+    "rights_status": { "type": "string" },
+    "url": { "type": "string", "format": "uri" },
+    "edition": { "type": "string" },
+    "notes": { "type": "string" }
+  },
+  "required": ["source_id", "title", "author", "tradition", "authority_level", "rights_status"]
+}

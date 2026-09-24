@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KaiRegAIInterpretationRule",
+  "description": "Schema for literature-attributed palmistry interpretation rules.",
+  "type": "object",
+  "properties": {
+    "rule_id": {
+      "type": "string",
+      "pattern": "^RULE-[A-Z0-9_]+-[0-9]{3,4}$"
+    },
+    "name": { "type": "string" },
+    "tradition": {
+      "type": "string",
+      "enum": ["CLASSICAL_INDIAN", "MODERN_INDIAN", "WESTERN_HISTORICAL", "MODERN_WESTERN"]
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source_id": { "type": "string" },
+          "author": { "type": "string" },
+          "work": { "type": "string" },
+          "chapter": { "type": "string" },
+          "page_reference": { "type": "string" },
+          "authority_level": { "type": "string" }
+        },
+        "required": ["source_id", "author"]
+      },
+      "minItems": 1
+    },
+    "consensus_status": {
+      "type": "string",
+      "enum": ["MULTI_SOURCE_AGREEMENT", "SINGLE_SOURCE", "TRADITION_SPECIFIC", "TRADITION_CONFLICT"]
+    },
+    "conditions": {
+      "type": "object",
+      "properties": {
+        "all_of": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "feature_path": { "type": "string" },
+              "operator": { "type": "string", "enum": ["EQUALS", "IN", "GREATER_THAN", "LESS_THAN"] },
+              "target_value": {}
+            },
+            "required": ["feature_path", "operator", "target_value"]
+          }
+        }
+      },
+      "required": ["all_of"]
+    },
+    "interpretation": {
+      "type": "object",
+      "properties": {
+        "primary_domain": { "type": "string" },
+        "secondary_domains": { "type": "array", "items": { "type": "string" } },
+        "traditional_archetype": { "type": "string" },
+        "traditional_terms": { "type": "array", "items": { "type": "string" } },
+        "reflective_synthesis": { "type": "string" },
+        "character_strengths": { "type": "array", "items": { "type": "string" } },
+        "mindfulness_cautions": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["primary_domain", "traditional_archetype", "reflective_synthesis"]
+    },
+    "confidence_profile": {
+      "type": "object",
+      "properties": {
+        "source_authority_score": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "traditional_consensus_score": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "rule_robustness": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+      },
+      "required": ["source_authority_score", "traditional_consensus_score", "rule_robustness"]
+    }
+  },
+  "required": ["rule_id", "name", "tradition", "sources", "conditions", "interpretation", "confidence_profile"]
+}

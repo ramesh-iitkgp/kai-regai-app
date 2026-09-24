@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KaiRegAIPatternRule",
+  "description": "Schema for multi-feature compound pattern rules in Kai RegAI.",
+  "type": "object",
+  "properties": {
+    "pattern_id": {
+      "type": "string",
+      "pattern": "^PAT-[A-Z0-9_]+-[0-9]{3}$"
+    },
+    "name": { "type": "string" },
+    "category": { "type": "string" },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source_id": { "type": "string" },
+          "author": { "type": "string" },
+          "chapter": { "type": "string" },
+          "page_reference": { "type": "string" }
+        }
+      }
+    },
+    "provenance_type": {
+      "type": "string",
+      "enum": ["MULTI_SOURCE_DOCUMENTED", "SINGLE_SOURCE_DOCUMENTED", "KAI_REGAI_SYNTHESIS"]
+    },
+    "component_features": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "feature_path": { "type": "string" },
+          "condition": { "type": "string", "enum": ["EQUALS", "IN", "GREATER_THAN", "LESS_THAN"] },
+          "value": {}
+        },
+        "required": ["feature_path", "condition", "value"]
+      },
+      "minItems": 2
+    },
+    "emergent_synthesis": {
+      "type": "object",
+      "properties": {
+        "archetype_title": { "type": "string" },
+        "thematic_domain": { "type": "string" },
+        "synthesized_narrative": { "type": "string" },
+        "modifier_effect": { "type": "string" }
+      },
+      "required": ["archetype_title", "thematic_domain", "synthesized_narrative"]
+    }
+  },
+  "required": ["pattern_id", "name", "provenance_type", "component_features", "emergent_synthesis"]
+}

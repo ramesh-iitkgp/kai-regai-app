@@ -1,0 +1,46 @@
+[
+  {
+    "feature_id": "lines.life_line",
+    "observation_type": "COMPUTER_VISION",
+    "timestamp": 1774395010,
+    "hand_side": "RIGHT",
+    "physical_metrics": {
+      "presence": true,
+      "continuity": "CONTINUOUS",
+      "curvature_profile": "WIDE_ARC",
+      "origin_anchor": "MCP_5_THUMB_INTERSPACE",
+      "termination_anchor": "BASE_OF_VENUS",
+      "length_ratio": 0.88,
+      "detected_branches": 1
+    },
+    "detection_confidence": 0.94
+  },
+  {
+    "feature_id": "lines.head_line",
+    "observation_type": "COMPUTER_VISION",
+    "timestamp": 1774395010,
+    "hand_side": "RIGHT",
+    "physical_metrics": {
+      "presence": true,
+      "continuity": "CONTINUOUS",
+      "curvature_profile": "GENTLE_SLOPE",
+      "origin_anchor": "TOUCHING_LIFE_LINE",
+      "termination_anchor": "UPPER_LUNA",
+      "length_ratio": 0.79,
+      "detected_branches": 0
+    },
+    "detection_confidence": 0.92
+  },
+  {
+    "feature_id": "thumb.distal_flexibility",
+    "observation_type": "USER_QUESTIONNAIRE",
+    "timestamp": 1774395045,
+    "hand_side": "RIGHT",
+    "physical_metrics": {
+      "presence": true,
+      "curvature_profile": "SUPPLE_BACKWARD_CURVE",
+      "aspect_ratio": 1.45
+    },
+    "detection_confidence": 1.00
+  }
+]
