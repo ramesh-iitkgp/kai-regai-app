@@ -14,9 +14,13 @@
       "type": "object",
       "properties": {
         "original_text_composition": { "type": "string" },
+        "redaction_date": { "type": ["string", "null"] },
         "manuscript_witness": { "type": ["string", "null"] },
+        "earlier_scholarly_research": { "type": ["string", "null"] },
         "first_printed_edition": { "type": ["string", "null"] },
         "critical_edition_or_translation": { "type": ["string", "null"] },
+        "journal_publication_date": { "type": ["string", "null"] },
+        "online_publication_date": { "type": ["string", "null"] },
         "reference_publication_year": { "type": ["integer", "null"] }
       },
       "required": ["original_text_composition"]
@@ -61,6 +65,7 @@
           "type": "string",
           "enum": [
             "PUBLIC_DOMAIN_QUALIFIED",
+            "OPEN_ACCESS_CC_BY_4_0",
             "COPYRIGHTED_SCHOLARLY_WORK",
             "COPYRIGHTED_COMMERCIAL_WORK",
             "MIXED_RIGHTS_REGIME",

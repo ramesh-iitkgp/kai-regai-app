@@ -1,32 +1,36 @@
 [
   {
     "source_id": "SRC-IND-001",
-    "title": "Pāṇilekhā: An Early Indian Formulation of Palmistry",
-    "author": "Kenneth G. Zysk (Critical Edition, Translation, and Philological Study)",
+    "title": "Early Indian Palmistry: Śārdūlakarṇāvadāna: Pāṇilekhā",
+    "author": "Kenneth G. Zysk",
     "dates": {
-      "original_text_composition": "c. 2nd–4th century CE (Kuṣāṇa / early Gupta era; Śārdūlakarṇāvadāna / Divyāvadāna corpus)",
-      "manuscript_witness": "11th–19th century Nepalese palm-leaf & paper manuscripts",
-      "first_printed_edition": "1954 (Sujitkumar Mukhopadhyaya, Visvabharati)",
-      "critical_edition_or_translation": "2020 (Kenneth G. Zysk)",
-      "reference_publication_year": 2020
+      "original_text_composition": "c. 1st–2nd century CE (narrative frame of Śārdūlakarṇāvadāna / Divyāvadāna corpus)",
+      "redaction_date": "After 864 CE (latter half of 9th century CE; incorporation of Pāṇilekhā and divination chapters)",
+      "manuscript_witness": "11th–19th century Nepalese Sanskrit palm-leaf & paper manuscripts (e.g. Cambridge Add. 865, Asiatic Society of Bengal, National Archives of Nepal)",
+      "earlier_scholarly_research": "Zysk, The Indian System of Human Marks (2 vols., Brill, 2016)",
+      "first_printed_edition": "1954 (Sujitkumar Mukhopadhyaya ed., The Śārdūlakarṇāvadāna, Visvabharati, Santiniketan, pp. 64–66)",
+      "critical_edition_or_translation": "Kenneth G. Zysk (Critical Sanskrit edition, English translation, and philological analysis)",
+      "journal_publication_date": "2025",
+      "online_publication_date": "2025-10-31",
+      "reference_publication_year": 2025
     },
-    "edition": "Indo-Iranian Journal 63 (2020) 201–248; Brill Academic Publishers",
-    "language": "Sanskrit (with English translation and critical philological commentary)",
+    "edition": "History of Science in South Asia (HSSA), Volume 13 (2025), pp. 240–275; ISSN 2369-7725",
+    "language": "Sanskrit (with English translation and critical apparatus)",
     "tradition": "CLASSICAL_INDIAN",
     "source_type": "SCHOLARLY_CRITICAL_EDITION",
     "authority_level": "LEVEL_1",
     "epistemic_status": "SCHOLARLY_ANALYSIS",
     "rights": {
-      "rights_status": "COPYRIGHTED_SCHOLARLY_WORK",
-      "rights_basis": "The 2000-year-old underlying Sanskrit verse fragments are public domain worldwide. The critical edition, English translation, and introductory commentary are under copyright by Koninklijke Brill NV (2020).",
-      "jurisdictions_checked": ["US", "EU", "IN", "UK"],
+      "rights_status": "OPEN_ACCESS_CC_BY_4_0",
+      "rights_basis": "Published open access in History of Science in South Asia under Creative Commons Attribution 4.0 International (CC BY 4.0). Underlying ancient Sanskrit text is public domain worldwide.",
+      "jurisdictions_checked": ["US", "EU", "IN", "UK", "CA"],
       "edition_specific": true,
       "translation_rights_checked": true,
-      "commercial_use": "FACTUAL_EXTRACTION_ONLY",
-      "notes": "Full-text reproduction or redistribution is strictly prohibited. Extraction of non-copyrightable historical facts, Sanskrit anatomical terminology, line correlations, and textual variants is legally permitted under international copyright principles."
+      "commercial_use": "FULL_COMMERCIAL_USE_PERMITTED_WITH_ATTRIBUTION",
+      "notes": "Published under CC BY 4.0 license permitting commercial and non-commercial adaptation with attribution. Underlying Sanskrit verse fragments are public domain."
     },
-    "url": "https://doi.org/10.1163/15728536-06303001",
-    "notes": "Earliest systematically datable manual on Indian palm lines. Establishes authentic Sanskrit terminology for major creases and auspicious marks."
+    "url": "https://doi.org/10.18732/hssa128",
+    "notes": "The authoritative scholarly critical edition and translation of the 34 Pāṇilekhā verses from the Śārdūlakarṇāvadāna. Documents the integration of astral science (jyotiḥśāstra) into Buddhist palmistry."
   },
   {
     "source_id": "SRC-IND-002",

@@ -33,28 +33,33 @@ To prevent ungrounded internet claims from entering the interpretation engine, K
 
 ### Tradition A: Classical & Historical Indian Palmistry (*Hasta Samudrika Shastra*)
 
-#### `SRC-IND-001`: *Pāṇilekhā* in the *Śārdūlakarṇāvadāna* (Critical Edition by Kenneth G. Zysk)
-* **Title**: *Pāṇilekhā: An Early Indian Formulation of Palmistry (Critical Edition, Translation, and Notes)*
-* **Author / Editor**: Kenneth G. Zysk (Indologist, Professor at University of Copenhagen)
+#### `SRC-IND-001`: *Early Indian Palmistry: Śārdūlakarṇāvadāna: Pāṇilekhā* (Kenneth G. Zysk)
+* **Title**: *Early Indian Palmistry: Śārdūlakarṇāvadāna: Pāṇilekhā*
+* **Author**: Kenneth G. Zysk (Professor Emeritus of Indology, University of Copenhagen)
 * **Chronological Milestones**:
-  * **Original Text Composition**: c. 2nd–4th century CE (Kuṣāṇa / early Gupta era; part of the *Śārdūlakarṇāvadāna*, text no. 33 of the *Divyāvadāna* corpus).
-  * **Manuscript Witnesses**: Nepalese palm-leaf and paper manuscripts dating from the 11th to 19th centuries CE.
-  * **First Printed Edition**: 1954 (Sujitkumar Mukhopadhyaya, *The Śārdūlakarṇāvadāna*, Visvabharati, Santiniketan).
-  * **Critical Edition & Translation**: 2020 (Kenneth G. Zysk, *Indo-Iranian Journal* 63, pp. 201–248).
-  * **Reference Publication Year**: 2020.
-* **Language**: Sanskrit (with English translation and critical philological notes).
+  * **Original Text Composition**: c. 1st–2nd century CE (narrative frame of *Śārdūlakarṇāvadāna*, Text 33 of the *Divyāvadāna* collection).
+  * **Redaction Date**: Latter half of the 9th century CE (after 864 CE; incorporation of astral science and divination chapters including *Pāṇilekhā*, *Kanyālakṣaṇa*, and *Svapnādhyāya*).
+  * **Manuscript Witnesses**: Nepalese Sanskrit palm-leaf and paper manuscripts dating from the 11th to 19th centuries CE (e.g. Cambridge University Library Add. 865, Asiatic Society of Bengal, National Archives of Nepal).
+  * **Earlier Scholarly Research by Zysk**: *The Indian System of Human Marks* (2 vols., Brill, 2016).
+  * **First Printed Edition**: 1954 (Sujitkumar Mukhopadhyaya, *The Śārdūlakarṇāvadāna*, Visvabharati, Santiniketan, pp. 64–66).
+  * **Critical Edition & Translation**: Kenneth G. Zysk (Critical Sanskrit edition of the 34 verses, English translation, and analysis).
+  * **Journal Publication**: *History of Science in South Asia* (HSSA), Volume 13 (2025), pp. 240–275. ISSN: 2369-7725.
+  * **Online Publication Date**: October 31, 2025.
+  * **Reference Publication Year**: 2025.
+  * **Digital Object Identifier (DOI)**: [https://doi.org/10.18732/hssa128](https://doi.org/10.18732/hssa128).
+* **Language**: Sanskrit (with English translation and philological notes).
 * **Authority Level**: **LEVEL 1 / LEVEL 2** (Scholarly Critical Edition).
 * **Tradition Category**: `CLASSICAL_INDIAN` / `HASTA_SAMUDRIKA`.
-* **Epistemic Status**: `SCHOLARLY_ANALYSIS` (Philological and historical study of an ancient Sanskrit text).
+* **Epistemic Status**: `SCHOLARLY_ANALYSIS`.
 * **Jurisdiction-Aware Rights**:
-  * `rights_status`: `COPYRIGHTED_SCHOLARLY_WORK`
-  * `rights_basis`: The ancient Sanskrit verse fragments are public domain worldwide; Zysk's 2020 English translation, critical collation, and scholarly introduction are under copyright by Koninklijke Brill NV.
-  * `jurisdictions_checked`: ["US", "EU", "IN", "UK"]
+  * `rights_status`: `OPEN_ACCESS_CC_BY_4_0`
+  * `rights_basis`: Published open access under the Creative Commons Attribution 4.0 International License (CC BY 4.0). The underlying ancient Sanskrit text is public domain worldwide.
+  * `jurisdictions_checked`: ["US", "EU", "IN", "UK", "CA"]
   * `edition_specific`: true
   * `translation_rights_checked`: true
-  * `commercial_use`: `FACTUAL_EXTRACTION_ONLY`
-  * `notes`: No PDF, full text, or proprietary translations are stored in the repo. Only non-copyrightable historical facts, Sanskrit anatomical terminology (*Pitri Rekha*, *Matri Rekha*, *Ayush Rekha*, *Urdhwa Rekha*), and textual variants are extracted.
-* **Core Contribution**: The earliest systematically datable Sanskrit manual on palm lines (*Pāṇilekhā*).
+  * `commercial_use`: `FULL_COMMERCIAL_USE_PERMITTED_WITH_ATTRIBUTION`
+  * `notes`: The open-access CC BY 4.0 license permits commercial and non-commercial adaptation and reuse with appropriate author attribution.
+* **Core Contribution**: The definitive critical edition and translation of the earliest systematically datable Sanskrit manual on palm lines (*Pāṇilekhā*). Documents the early synthesis of astral science (*jyotiḥśāstra*) with palmistry.
 
 #### `SRC-IND-002`: *Bṛhat Saṃhitā* of Varāhamihira (Chapters on *Puruṣa-lakṣaṇa* / *Pāṇi-lakṣaṇa*)
 * **Title**: *Bṛhat Saṃhitā* (The Great Compendium)

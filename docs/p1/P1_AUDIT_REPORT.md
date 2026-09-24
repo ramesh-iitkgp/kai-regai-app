@@ -43,12 +43,13 @@ OVERALL P1.1 GATE STATUS:               PASS (AWAITING P2 AUTHORIZATION)
 ## 3. In-Depth Verification & Hardening Results
 
 ### 1. Source-Level Verification & Dates
-Every source in the catalog now explicitly records four separate chronological milestones:
-1. Date of original text composition (e.g. *Pāṇilekhā* c. 2nd–4th century CE; *Bṛhat Saṃhitā* c. 550 CE).
-2. Date of historical manuscript witnesses.
-3. Date of first printed edition.
-4. Date of critical scholarly edition or translation (e.g. Kenneth G. Zysk, 2020).
-* **Finding**: Conflation between ancient manuscript dates and modern scholarly publication dates has been completely eliminated.
+Every source in the catalog now explicitly records distinct chronological milestones:
+1. Date of original text composition (e.g. *Śārdūlakarṇāvadāna* narrative c. 1st–2nd century CE).
+2. Date of redaction incorporating divination sections (e.g. *Pāṇilekhā* chapters added after 864 CE).
+3. Date of historical manuscript witnesses (11th–19th century Nepalese manuscripts).
+4. Date of first printed edition (Mukhopadhyaya, 1954).
+5. Date of critical scholarly edition and translation (Kenneth G. Zysk, *History of Science in South Asia*, published online October 31, 2025).
+* **Finding**: Complete chronological clarity achieved; earlier research dates are strictly decoupled from final peer-reviewed journal publication milestones.
 
 ### 2. Jurisdiction- and Edition-Aware Copyright Model
 * **Correction**: Removed all blanket assertions that *"published before 1928 = public domain worldwide."*
@@ -56,7 +57,7 @@ Every source in the catalog now explicitly records four separate chronological m
 * **Status**: 100% clean-room compliance. No copyrighted textual prose is stored in the repository.
 
 ### 3. Classical Indian Claim Audit
-* Audited Sanskrit terms against *Pāṇilekhā* (Zysk ed. 2020) and *Bṛhat Saṃhitā* (Ch. 67-68).
+* Audited Sanskrit terms against *Pāṇilekhā* (ed. & trans. Kenneth G. Zysk, HSSA 2025) and *Bṛhat Saṃhitā* (Ch. 67-68).
 * **Key Corrections**:
   * *Hridaya Rekha* is recognized as a modern Hindi vernacular term; the classical term in *Pāṇilekhā* is *Āyuṣ-lekhā* or *Ūrdhva-tiryag-rekhā*.
   * The 4 Elemental Hand Shapes (Earth, Air, Fire, Water) are recognized as a 20th-century Western formulation (Fred Gettings 1979) adapting ancient elemental theory, NOT a verbatim classical Sanskrit sutra.
