@@ -20,28 +20,28 @@ graph TD
 
 ## 2. Domain 1: Hand Morphology & Structure
 
-| Feature Key | Sanskrit Term | Western Equivalent | Valid Categorical Values / Units | Detection Method |
-|---|---|---|---|---|
-| `hand.shape_elemental` | *Pancha Mahabhuta Kara* | 4 Elemental Types (Fred Gettings) | `EARTH`, `AIR`, `FIRE`, `WATER` | `CV_DETECTABLE` |
-| `hand.shape_classical` | *Samudrika Varga* | 7 Hand Types (Cheiro / D'Arpentigny) | `ELEMENTARY`, `SQUARE`, `SPATULATE`, `PHILOSOPHIC`, `CONIC`, `PSYCHIC`, `MIXED` | `HYBRID` |
-| `hand.palm_aspect_ratio` | *Kara-tala Pramana* | Palm Width / Palm Length Ratio | Numeric ($0.80$ to $1.30$) | `CV_DETECTABLE` |
-| `hand.finger_to_palm_ratio`| *Anguli-Kara Anupata* | Middle Finger Length / Palm Length | Numeric ($0.65$ to $1.05$) | `CV_DETECTABLE` |
-| `hand.texture` | *Sparsha / Tvak* | Skin Grain Texture | `VERY_FINE`, `FINE`, `MEDIUM`, `COARSE`, `ROUGH` | `USER_INPUT_REQUIRED` |
-| `hand.firmness` | *Mrdutva / Kathinatva*| Palmar Pad Firmness | `SOFT_FLACCID`, `ELASTIC_SPRINGY`, `FIRM_RESILIENT`, `HARD_UNYIELDING` | `USER_INPUT_REQUIRED` |
-| `hand.flexibility` | *Kara-Namrata* | Dorsal Bending Range | `STIFF` ($<10^\circ$), `STRAIGHT` ($\approx 0^\circ$), `FLEXIBLE` ($>25^\circ$), `HYPEREXTENSIBLE` | `USER_INPUT_REQUIRED` |
+| Feature Key | Sanskrit Term | Western Equivalent | Valid Categorical Values / Units | Detection Method | Classification & Epistemic Status |
+|---|---|---|---|---|---|
+| `hand.shape_elemental` | *Modern Synthesis* | 4 Elemental Types (Fred Gettings 1979) | `EARTH`, `AIR`, `FIRE`, `WATER` | `CV_DETECTABLE` | `MODERN_SYNTHESIS` (Western 20th c. geometric taxonomy) |
+| `hand.shape_classical` | *Samudrika Varga* | 7 Hand Types (Cheiro / D'Arpentigny) | `ELEMENTARY`, `SQUARE`, `SPATULATE`, `PHILOSOPHIC`, `CONIC`, `PSYCHIC`, `MIXED` | `HYBRID` | `HISTORICAL_TEXT` |
+| `hand.palm_aspect_ratio` | *Kara-tala Pramana* | Palm Width / Palm Length Ratio | Numeric ($0.80$ to $1.30$) | `CV_DETECTABLE` | Geometric measurement only (no inherent predictive claim) |
+| `hand.finger_to_palm_ratio`| *Anguli-Kara Anupata* | Middle Finger Length / Palm Length | Numeric ($0.65$ to $1.05$) | `CV_DETECTABLE` | Geometric measurement only |
+| `hand.texture` | *Sparsha / Tvak* | Skin Grain Texture | `VERY_FINE`, `FINE`, `MEDIUM`, `COARSE`, `ROUGH` | `USER_INPUT_REQUIRED` | Tactile observation |
+| `hand.firmness` | *Mrdutva / Kathinatva*| Palmar Pad Firmness | `SOFT_FLACCID`, `ELASTIC_SPRINGY`, `FIRM_RESILIENT`, `HARD_UNYIELDING` | `USER_INPUT_REQUIRED` | Tactile observation |
+| `hand.flexibility` | *Kara-Namrata* | Dorsal Bending Range | `STIFF` ($<10^\circ$), `STRAIGHT` ($\approx 0^\circ$), `FLEXIBLE` ($>25^\circ$), `HYPEREXTENSIBLE` | `USER_INPUT_REQUIRED` | Physical resistance measurement |
 
 ---
 
 ## 3. Domain 2: Fingers & Phalanges (*Anguli*)
 
-| Feature Key | Finger Identity | Astrological / Sanskrit Ruler | Evaluated Properties |
-|---|---|---|---|
-| `fingers.index` | Index Finger | Jupiter (*Guru / Bṛhaspati / Tarjanī*) | Length relative to Ring finger, upright straightness, apex shape (`SQUARE`, `CONIC`, `SPATULATE`, `POINTED`). |
-| `fingers.middle` | Middle Finger | Saturn (*Shani / Madhyamā*) | Dominant hand axis, phalanx knot symmetry, vertical alignment. |
-| `fingers.ring` | Ring Finger | Sun / Apollo (*Surya / Anāmikā*) | Length compared to index finger (Digit Ratio 2D:4D indicator). |
-| `fingers.little` | Little Finger | Mercury (*Budha / Kaniṣṭhikā*) | Tip reach relative to ring finger distal joint (High, Equal, Short); curvature. |
-| `fingers.spacing` | Interdigital Gaps | *Chidra / Vivara* | Webbing depth, gap at base when fingers closed (Independent thought vs Conventionality). |
-| `fingers.joints` | Phalange Nodes | Knotty vs Smooth (*Sandhi*) | Smooth (Intuitive, rapid synthesis) vs Knotty (Analytical, systematic). |
+| Feature Key | Finger Identity | Astrological / Sanskrit Ruler | Evaluated Properties | Measurement & Epistemic Nature |
+|---|---|---|---|---|
+| `fingers.index` | Index Finger | Jupiter (*Guru / Bṛhaspati / Tarjanī*) | Length relative to Ring finger, upright straightness, apex shape (`SQUARE`, `CONIC`, `SPATULATE`, `POINTED`). | Geometric ratio + traditional symbolic association |
+| `fingers.middle` | Middle Finger | Saturn (*Shani / Madhyamā*) | Dominant hand axis, phalanx knot symmetry, vertical alignment. | Geometric coordinate axis |
+| `fingers.ring` | Ring Finger | Sun / Apollo (*Surya / Anāmikā*) | Length compared to index finger (Digit Ratio 2D:4D). | **Pure geometric observation**. Traditional palmistry associates long Apollo with risk/radiance; no empirical scientific personality claims are asserted. |
+| `fingers.little` | Little Finger | Mercury (*Budha / Kaniṣṭhikā*) | Tip reach relative to ring finger distal joint (High, Equal, Short); curvature. | Geometric length alignment |
+| `fingers.spacing` | Interdigital Gaps | *Chidra / Vivara* | Webbing depth, gap at base when fingers extended. | Geometric boundary polygon |
+| `fingers.joints` | Phalange Nodes | Knotty vs Smooth (*Sandhi*) | Smooth vs Knotty nodes. | Anatomical joint contour |
 
 ---
 

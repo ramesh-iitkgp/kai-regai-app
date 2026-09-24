@@ -3,6 +3,8 @@
     "pattern_id": "PAT-LEAD-001",
     "name": "Executive Stature Configuration (Jupiter Mount + Balanced Thumb + Straight Head)",
     "category": "VOCATION_AND_PURPOSE",
+    "provenance_type": "MULTI_SOURCE_DOCUMENTED",
+    "epistemic_status": "TRADITIONAL_INTERPRETATION",
     "sources": [
       {
         "source_id": "SRC-WST-001",
@@ -17,7 +19,6 @@
         "page_reference": "pp. 82-85"
       }
     ],
-    "provenance_type": "MULTI_SOURCE_DOCUMENTED",
     "component_features": [
       {
         "feature_path": "mounts.jupiter.prominence",

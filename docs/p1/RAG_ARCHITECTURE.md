@@ -93,9 +93,15 @@ Rather than passing raw book prose, the retrieval engine packages matched rules 
 }
 ```
 
-* **Token Efficiency**: By injecting curated rule abstractions instead of raw pages, the entire prompt context remains strictly under **1,200 tokens**, ensuring deterministic latency ($< 1.8\text{ seconds}$), zero truncation, and rock-solid factual grounding.
+* **Token Efficiency & Latency Governance**:
+  * By injecting curated rule abstractions instead of raw pages, the prompt context is designed to remain under **1,200 tokens**.
+  * **Latency Performance Specification**:
+    * **TARGET**: Sub-2-second end-to-end prompt assembly and retrieval.
+    * **MEASUREMENT METHOD**: Server-side request timestamp to assembled context payload generation metric (excluding external LLM inference roundtrip).
+    * **BENCHMARK DATASET**: 500 synthetic canonical `PalmFeatureModel` profiles covering edge-case feature counts (1 to 25 features).
+    * **ACCEPTANCE THRESHOLD**: $p95 \le 2.0\text{ seconds}$ on standard backend node instances.
+    * **ACTUAL RESULT**: `STATUS = TARGET_NOT_YET_BENCHMARKED` (Benchmarking scheduled for Phase P9 / P13).
 
----
 
 ## 4. Internal Provenance & Audit Retention
 

@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "KaiRegAISourceRecord",
-  "description": "Schema for source literature and authorities in the Kai RegAI Knowledge Base.",
+  "description": "Schema for source literature and authorities in the Kai RegAI Knowledge Base with edition- and jurisdiction-aware rights management.",
   "type": "object",
   "properties": {
     "source_id": {
@@ -10,7 +10,18 @@
     },
     "title": { "type": "string" },
     "author": { "type": "string" },
-    "publication_year": { "type": ["integer", "null"] },
+    "dates": {
+      "type": "object",
+      "properties": {
+        "original_text_composition": { "type": "string" },
+        "manuscript_witness": { "type": ["string", "null"] },
+        "first_printed_edition": { "type": ["string", "null"] },
+        "critical_edition_or_translation": { "type": ["string", "null"] },
+        "reference_publication_year": { "type": ["integer", "null"] }
+      },
+      "required": ["original_text_composition"]
+    },
+    "edition": { "type": "string" },
     "language": { "type": "string" },
     "tradition": {
       "type": "string",
@@ -18,17 +29,83 @@
     },
     "source_type": {
       "type": "string",
-      "enum": ["PRIMARY_HISTORICAL_TEXT", "SCHOLARLY_CRITICAL_EDITION", "HISTORICAL_BOOK", "MODERN_REFERENCE", "PRACTITIONER_MONOGRAPH"]
+      "enum": [
+        "PRIMARY_HISTORICAL_TEXT",
+        "SCHOLARLY_CRITICAL_EDITION",
+        "SCHOLARLY_SECONDARY_STUDY",
+        "HISTORICAL_PRACTITIONER_BOOK",
+        "MODERN_PRACTITIONER_REFERENCE",
+        "PRACTITIONER_MONOGRAPH",
+        "UNVERIFIED"
+      ]
     },
     "authority_level": {
       "type": "string",
       "enum": ["LEVEL_1", "LEVEL_2", "LEVEL_3", "LEVEL_4", "LEVEL_5", "LEVEL_6", "LEVEL_7"]
     },
-    "license": { "type": "string" },
-    "rights_status": { "type": "string" },
-    "url": { "type": "string", "format": "uri" },
-    "edition": { "type": "string" },
+    "epistemic_status": {
+      "type": "string",
+      "enum": [
+        "HISTORICAL_TEXT",
+        "SCHOLARLY_ANALYSIS",
+        "TRADITIONAL_INTERPRETATION",
+        "MODERN_PRACTITIONER",
+        "SCIENTIFIC_EVIDENCE",
+        "MODERN_SYNTHESIS"
+      ]
+    },
+    "rights": {
+      "type": "object",
+      "properties": {
+        "rights_status": {
+          "type": "string",
+          "enum": [
+            "PUBLIC_DOMAIN_QUALIFIED",
+            "COPYRIGHTED_SCHOLARLY_WORK",
+            "COPYRIGHTED_COMMERCIAL_WORK",
+            "MIXED_RIGHTS_REGIME",
+            "UNVERIFIED"
+          ]
+        },
+        "rights_basis": { "type": "string" },
+        "jurisdictions_checked": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "edition_specific": { "type": "boolean" },
+        "translation_rights_checked": { "type": "boolean" },
+        "commercial_use": {
+          "type": "string",
+          "enum": [
+            "FULL_COMMERCIAL_USE_PERMITTED",
+            "FACTUAL_EXTRACTION_ONLY",
+            "PROHIBITED_PENDING_LICENSE",
+            "UNVERIFIED"
+          ]
+        },
+        "notes": { "type": "string" }
+      },
+      "required": [
+        "rights_status",
+        "rights_basis",
+        "jurisdictions_checked",
+        "edition_specific",
+        "translation_rights_checked",
+        "commercial_use"
+      ]
+    },
+    "url": { "type": "string" },
     "notes": { "type": "string" }
   },
-  "required": ["source_id", "title", "author", "tradition", "authority_level", "rights_status"]
+  "required": [
+    "source_id",
+    "title",
+    "author",
+    "dates",
+    "tradition",
+    "source_type",
+    "authority_level",
+    "epistemic_status",
+    "rights"
+  ]
 }

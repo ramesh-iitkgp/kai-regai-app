@@ -1,4 +1,4 @@
-# Kai RegAI — Source Registry & Provenance Catalog
+# Kai RegAI — Source Registry & Provenance Catalog (Hardened v1.1)
 
 ## 1. Source Hierarchy & Authority Classification
 
@@ -29,59 +29,116 @@ To prevent ungrounded internet claims from entering the interpretation engine, K
 
 ---
 
-## 2. Master Source Registry Catalog
+## 2. Hardened Source Registry Catalog
 
 ### Tradition A: Classical & Historical Indian Palmistry (*Hasta Samudrika Shastra*)
 
-#### `SRC-IND-001`: *Pāṇilekhā* in the *Śārdūlakarṇāvadāna* (ed. Kenneth G. Zysk)
+#### `SRC-IND-001`: *Pāṇilekhā* in the *Śārdūlakarṇāvadāna* (Critical Edition by Kenneth G. Zysk)
 * **Title**: *Pāṇilekhā: An Early Indian Formulation of Palmistry (Critical Edition, Translation, and Notes)*
-* **Author / Editor**: Kenneth G. Zysk (Philologist and Professor of Indology)
-* **Historical Period / Date**: Original text c. 2nd–4th century CE; critical edition published in *Indo-Iranian Journal* (2020).
-* **Language**: Sanskrit (with English translation and critical commentary).
+* **Author / Editor**: Kenneth G. Zysk (Indologist, Professor at University of Copenhagen)
+* **Chronological Milestones**:
+  * **Original Text Composition**: c. 2nd–4th century CE (Kuṣāṇa / early Gupta era; part of the *Śārdūlakarṇāvadāna*, text no. 33 of the *Divyāvadāna* corpus).
+  * **Manuscript Witnesses**: Nepalese palm-leaf and paper manuscripts dating from the 11th to 19th centuries CE.
+  * **First Printed Edition**: 1954 (Sujitkumar Mukhopadhyaya, *The Śārdūlakarṇāvadāna*, Visvabharati, Santiniketan).
+  * **Critical Edition & Translation**: 2020 (Kenneth G. Zysk, *Indo-Iranian Journal* 63, pp. 201–248).
+  * **Reference Publication Year**: 2020.
+* **Language**: Sanskrit (with English translation and critical philological notes).
 * **Authority Level**: **LEVEL 1 / LEVEL 2** (Scholarly Critical Edition).
 * **Tradition Category**: `CLASSICAL_INDIAN` / `HASTA_SAMUDRIKA`.
-* **License & Rights Status**: Scholarly article under academic copyright; extracted knowledge consists of non-copyrightable historical facts, textual variants, and philological line descriptions.
-* **Core Contribution**: Provides the earliest systematically datable Sanskrit manual on palm lines (*Pāṇilekhā*), establishing ancient nomenclature for major lines (*Pitri*, *Matri*, *Ayush*) and auspicious signs (*Lakshana*).
+* **Epistemic Status**: `SCHOLARLY_ANALYSIS` (Philological and historical study of an ancient Sanskrit text).
+* **Jurisdiction-Aware Rights**:
+  * `rights_status`: `COPYRIGHTED_SCHOLARLY_WORK`
+  * `rights_basis`: The ancient Sanskrit verse fragments are public domain worldwide; Zysk's 2020 English translation, critical collation, and scholarly introduction are under copyright by Koninklijke Brill NV.
+  * `jurisdictions_checked`: ["US", "EU", "IN", "UK"]
+  * `edition_specific`: true
+  * `translation_rights_checked`: true
+  * `commercial_use`: `FACTUAL_EXTRACTION_ONLY`
+  * `notes`: No PDF, full text, or proprietary translations are stored in the repo. Only non-copyrightable historical facts, Sanskrit anatomical terminology (*Pitri Rekha*, *Matri Rekha*, *Ayush Rekha*, *Urdhwa Rekha*), and textual variants are extracted.
+* **Core Contribution**: The earliest systematically datable Sanskrit manual on palm lines (*Pāṇilekhā*).
 
 #### `SRC-IND-002`: *Bṛhat Saṃhitā* of Varāhamihira (Chapters on *Puruṣa-lakṣaṇa* / *Pāṇi-lakṣaṇa*)
-* **Title**: *Bṛhat Saṃhitā* (Great Compendium)
-* **Author**: Varāhamihira (Astronomer and Polymath of Ujjain)
-* **Historical Period / Date**: c. 6th century CE (c. 505–587 CE).
-* **Language**: Sanskrit (Historical classical verse).
-* **Authority Level**: **LEVEL 1** (Primary Classical Treatise).
+* **Title**: *Bṛhat Saṃhitā* (The Great Compendium)
+* **Author**: Varāhamihira (Polymath of Ujjain, c. 505–587 CE)
+* **Chronological Milestones**:
+  * **Original Text Composition**: c. mid-6th century CE (c. 550 CE).
+  * **Manuscript Witnesses**: Hundreds of palm-leaf and paper manuscripts across India.
+  * **First Printed Edition**: 1864–1865 (ed. Hendrik Kern, Bibliotheca Indica, Calcutta).
+  * **Scholarly Translations**: 1870–1874 (H. Kern); 1981 (Prof. M. Ramakrishna Bhat, Motilal Banarsidass).
+  * **Reference Publication Year**: 550 CE.
+* **Language**: Sanskrit.
+* **Authority Level**: **LEVEL 1** (Primary Classical Sanskrit Treatise).
 * **Tradition Category**: `CLASSICAL_INDIAN` / `SAMUDRIKA_SHASTRA`.
-* **License & Rights Status**: Public Domain (Classical work). Translations by Prof. M. Ramakrishna Bhat (1981) referenced for historical verification.
-* **Core Contribution**: Foundational descriptions of hand shapes, skin texture, finger lengths, natural coloring of the palm, and auspicious markings (*Chakra*, *Trishula*, *Matsya*, *Padma*).
+* **Epistemic Status**: `HISTORICAL_TEXT`.
+* **Jurisdiction-Aware Rights**:
+  * `rights_status`: `PUBLIC_DOMAIN_QUALIFIED`
+  * `rights_basis`: Original Sanskrit text is public domain worldwide. M. Ramakrishna Bhat's 1981 English translation is copyrighted in India through 2042.
+  * `jurisdictions_checked`: ["IN", "US", "UK", "EU"]
+  * `edition_specific`: true
+  * `translation_rights_checked`: true
+  * `commercial_use`: `FACTUAL_EXTRACTION_ONLY`
+  * `notes`: Direct citations refer exclusively to the public domain Sanskrit verse contents and independent Kai RegAI English translations.
+* **Core Contribution**: Foundational classical descriptions of hand shapes, skin texture, finger proportions, and royal signs (*Maha-Lakshanas* like *Matsya*, *Padma*, *Trishula*).
 
 #### `SRC-IND-003`: *Hastasañjīvana*
-* **Title**: *Hastasañjīvana* (Animation/Revival of the Hand)
-* **Author**: Meghavijaya Gaṇi (Jain scholar-monk)
-* **Historical Period / Date**: c. 17th century CE (1680 CE).
-* **Language**: Sanskrit and Western Indian vernacular.
-* **Authority Level**: **LEVEL 1 / LEVEL 2** (Historical Indian Palmistry Manual).
+* **Title**: *Hastasañjīvana* (Revival of the Hand)
+* **Author**: Meghavijaya Gaṇi (Jain scholar-monk of the Tapā Gaccha)
+* **Chronological Milestones**:
+  * **Original Text Composition**: 1680 CE (Vikrama Samvat 1737).
+  * **Manuscript Witnesses**: Western Indian Jain monastic collections (Patan, Cambay, Ahmedabad).
+  * **First Printed Edition**: 1928 (ed. Yashovijaya Jaina Granthamala, Bhavnagar/Bombay).
+  * **Reference Publication Year**: 1680 CE.
+* **Language**: Sanskrit with Old Gujarati glosses.
+* **Authority Level**: **LEVEL 1** (Historical Classical Monograph).
 * **Tradition Category**: `CLASSICAL_INDIAN` / `HASTA_SAMUDRIKA`.
-* **License & Rights Status**: Public Domain (Historical manuscript).
+* **Epistemic Status**: `HISTORICAL_TEXT`.
+* **Jurisdiction-Aware Rights**:
+  * `rights_status`: `PUBLIC_DOMAIN_QUALIFIED`
+  * `rights_basis`: 1680 CE composition; 1928 printed text is public domain in the US and India.
+  * `jurisdictions_checked`: ["IN", "US", "UK"]
+  * `edition_specific`: true
+  * `translation_rights_checked`: false
+  * `commercial_use`: `FACTUAL_EXTRACTION_ONLY`
 * **Core Contribution**: Dedicated medieval monograph detailing line variations, intersection effects, and planetary mount associations in western Indian traditions.
 
 #### `SRC-IND-004`: *Samudrikatilaka* of Durlabharāja
 * **Title**: *Samudrikatilaka* (The Ornament of Samudrika)
-* **Author**: Durlabharāja and his son Jagaddeva
-* **Historical Period / Date**: c. 12th century CE.
+* **Author**: Durlabharāja (completed by his son Jagaddeva)
+* **Chronological Milestones**:
+  * **Original Text Composition**: c. 1160–1180 CE (reign of Chaulukya King Kumārapāla).
+  * **First Printed Edition**: Gaekwad's Oriental Series, Baroda.
+  * **Reference Publication Year**: 1170 CE.
 * **Language**: Sanskrit.
 * **Authority Level**: **LEVEL 1 / LEVEL 2** (Classical Synthesis).
 * **Tradition Category**: `CLASSICAL_INDIAN` / `SAMUDRIKA_SHASTRA`.
-* **License & Rights Status**: Public Domain (Classical treatise).
+* **Epistemic Status**: `HISTORICAL_TEXT`.
+* **Jurisdiction-Aware Rights**:
+  * `rights_status`: `PUBLIC_DOMAIN_QUALIFIED`
+  * `rights_basis`: Root 12th-century Sanskrit verses are public domain worldwide.
+  * `jurisdictions_checked`: ["IN", "US"]
+  * `edition_specific`: true
+  * `translation_rights_checked`: false
+  * `commercial_use`: `FACTUAL_EXTRACTION_ONLY`
 * **Core Contribution**: Codification of physical hand signs, finger spacing, and the constitutional balance between body and palm morphology.
 
 #### `SRC-IND-005`: *Gārgīya-jyotiṣa* (*Aṅga-vidyā* Sections)
-* **Title**: *Gārgīya-jyotiṣa* (The Astronomical and Divinatory Treatise of Garga)
+* **Title**: *Gārgīya-jyotiṣa* (The Divinatory Treatise of Sage Garga)
 * **Author**: Sage Garga (Attributed)
-* **Historical Period / Date**: c. 1st century BCE – 1st century CE.
+* **Chronological Milestones**:
+  * **Original Text Composition**: c. 1st century BCE to 1st century CE.
+  * **Manuscript Witnesses**: Fragmentary Sanskrit manuscripts.
+  * **Reference Publication Year**: c. 50 CE.
 * **Language**: Sanskrit.
 * **Authority Level**: **LEVEL 1** (Archaic Sanskrit Treatise).
 * **Tradition Category**: `CLASSICAL_INDIAN` / `ANGA_VIDYA`.
-* **License & Rights Status**: Public Domain.
-* **Core Contribution**: Earliest archaic strata of Indian body and hand omens, establishing the cosmic connection between bodily marks and planetary archetypes.
+* **Epistemic Status**: `HISTORICAL_TEXT`.
+* **Jurisdiction-Aware Rights**:
+  * `rights_status`: `PUBLIC_DOMAIN_QUALIFIED`
+  * `rights_basis`: Ancient text in the public domain worldwide.
+  * `jurisdictions_checked`: ["IN", "US"]
+  * `edition_specific`: false
+  * `translation_rights_checked`: false
+  * `commercial_use`: `FACTUAL_EXTRACTION_ONLY`
+* **Core Contribution**: Earliest archaic strata connecting bodily and palmar marks to cosmic archetypes.
 
 ---
 
@@ -89,88 +146,88 @@ To prevent ungrounded internet claims from entering the interpretation engine, K
 
 #### `SRC-IND-101`: *Practical Palmistry* by Dr. Narayan Dutt Shrimali
 * **Title**: *Practical Palmistry* (*Hastarekha Vigyan*)
-* **Author**: Dr. Narayan Dutt Shrimali
-* **Historical Period / Date**: 1985 (Revised editions through 2002).
+* **Author**: Dr. Narayan Dutt Shrimali (1933–1998)
+* **Chronological Milestones**:
+  * **Original Text Composition**: 1985.
+  * **First Printed Edition**: 1985 (Pustak Mahal, Delhi).
+  * **English Translation**: Published 1989 / Rev. 2002.
+  * **Reference Publication Year**: 1985.
 * **Language**: Hindi / English translation.
-* **Authority Level**: **LEVEL 4** (Established Modern Indian Reference).
+* **Authority Level**: **LEVEL 4** (Established Modern Indian Practitioner Reference).
 * **Tradition Category**: `MODERN_INDIAN`.
-* **License & Rights Status**: Copyrighted text; only extracted ontological relationships, rule conditions, and traditional attributions are preserved (fair fact extraction). No textual replication.
-* **Core Contribution**: Modern synthesis of classical *Hasta Samudrika* with 20th-century life themes (vocational careers, engineering/technology careers, modern marital dynamics, travel lines).
+* **Epistemic Status**: `TRADITIONAL_INTERPRETATION` (Modern practitioner synthesis).
+* **Jurisdiction-Aware Rights**:
+  * `rights_status`: `COPYRIGHTED_COMMERCIAL_WORK`
+  * `rights_basis`: Protected under the Indian Copyright Act 1957 (life of author + 60 years; author died in 1998, protected through 2058) and the Berne Convention.
+  * `jurisdictions_checked`: ["IN", "US", "UK"]
+  * `edition_specific`: true
+  * `translation_rights_checked`: true
+  * `commercial_use`: `FACTUAL_EXTRACTION_ONLY`
+  * `notes`: Strictly limited to the extraction of uncopyrightable factual correspondences and traditional Sanskrit rule conditions. Verbatim prose replication is prohibited.
+* **Core Contribution**: Modern synthesis of classical *Hasta Samudrika* with contemporary professional life themes (corporate careers, modern marital dynamics, travel lines).
 
-#### `SRC-IND-102`: *Palmistry for All* / *Hastarekha Shastra* by Gopesh Kumar Ojha
+#### `SRC-IND-102`: *Palmistry for All* by Gopesh Kumar Ojha
 * **Title**: *Palmistry for All: Based on Indian and Western Systems*
-* **Author**: Pandit Gopesh Kumar Ojha & Ashutosh Ojha
-* **Historical Period / Date**: 1972 (Reprinted Motilal Banarsidass).
-* **Language**: English / Sanskrit citations.
+* **Author**: Pandit Gopesh Kumar Ojha (1907–1983) and Ashutosh Ojha
+* **Chronological Milestones**:
+  * **Original Text Composition**: 1972.
+  * **First Printed Edition**: 1972 (Motilal Banarsidass, Delhi).
+  * **Reference Publication Year**: 1972.
+* **Language**: English with Sanskrit citations.
 * **Authority Level**: **LEVEL 4** (Authoritative Comparative Indian Monograph).
 * **Tradition Category**: `MODERN_INDIAN` (Comparative).
-* **License & Rights Status**: Copyrighted published monograph. Structured facts only.
-* **Core Contribution**: Rigorous comparative mapping reconciling Sanskrit *slokas* from *Bhaviṣyapurāṇa* and *Garuda Purāṇa* with modern Western line nomenclature.
-
-#### `SRC-IND-103`: *Palmistry for Pleasure and Profit* by V.A.K. Ayer
-* **Title**: *Palmistry for Pleasure and Profit*
-* **Author**: V.A.K. Ayer
-* **Historical Period / Date**: 1962 (D.B. Taraporevala Sons & Co.).
-* **Language**: English.
-* **Authority Level**: **LEVEL 4** (Mid-century Indian Classic).
-* **Tradition Category**: `MODERN_INDIAN`.
-* **License & Rights Status**: Copyrighted historical print.
-* **Core Contribution**: Clear practical delineations of the Indian concept of the thumb, mount prominence, and health indications.
+* **Epistemic Status**: `TRADITIONAL_INTERPRETATION`.
+* **Jurisdiction-Aware Rights**:
+  * `rights_status`: `COPYRIGHTED_COMMERCIAL_WORK`
+  * `rights_basis`: Protected under the Indian Copyright Act 1957 through 2043.
+  * `jurisdictions_checked`: ["IN", "US", "UK"]
+  * `edition_specific`: true
+  * `translation_rights_checked`: true
+  * `commercial_use`: `FACTUAL_EXTRACTION_ONLY`
+* **Core Contribution**: Rigorous comparative mapping reconciling Sanskrit *slokas* from *Bhaviṣyapurāṇa* and *Gāruḍapurāṇa* with Western line terminology.
 
 ---
 
-### Tradition C: Historical & Modern Western Palmistry
+### Tradition C: Historical Western Palmistry
 
 #### `SRC-WST-001`: *The Laws of Scientific Hand Reading* by William G. Benham
 * **Title**: *The Laws of Scientific Hand Reading: A Practical Treatise on the Art Commonly Called Palmistry*
-* **Author**: William G. Benham
-* **Historical Period / Date**: 1901 (G.P. Putnam's Sons, New York / London, 635 pages).
+* **Author**: William G. Benham (1866–1944)
+* **Chronological Milestones**:
+  * **Original Text Composition**: 1898–1900.
+  * **First Printed Edition**: 1900 / 1901 (G.P. Putnam's Sons, New York and London, 635 pages).
+  * **Reference Publication Year**: 1901.
 * **Language**: English.
-* **Authority Level**: **LEVEL 3** (Foundational Historical Western Reference).
+* **Authority Level**: **LEVEL 3** (Foundational Historical Western Treatise).
 * **Tradition Category**: `WESTERN_HISTORICAL`.
-* **License & Rights Status**: **Public Domain** (Published prior to 1928).
-* **Core Contribution**: The definitive encyclopedic standard for 20th-century Western palmistry. Meticulous physical descriptions of mounts, line defects (islands, chains, splits), finger phalange ratios, and psychological character types.
+* **Epistemic Status**: `HISTORICAL_TEXT` (Historical practitioner manual; the word "Scientific" in the title is historical chirognomic nomenclature, NOT modern empirical science).
+* **Jurisdiction-Aware Rights**:
+  * `rights_status`: `PUBLIC_DOMAIN_QUALIFIED`
+  * `rights_basis`: Published in the US in 1901 (pre-1929 US public domain). In the UK/EU, author passed away in 1944 (1944 + 70 years = entered UK/EU public domain January 1, 2015).
+  * `jurisdictions_checked`: ["US", "UK", "EU"]
+  * `edition_specific`: true
+  * `translation_rights_checked`: false
+  * `commercial_use`: `FULL_COMMERCIAL_USE_PERMITTED`
+  * `notes`: The 1901 original edition is in the public domain in the US and UK/EU. Modern reprint introductions or new content remain under separate copyright.
+* **Core Contribution**: Meticulous physical descriptions of mounts, line defects (islands, chains, splits), and finger phalange ratios.
 
 #### `SRC-WST-002`: *Palmistry for All* by Cheiro (Count Louis Hamon)
 * **Title**: *Palmistry for All: Containing New Information on the Study of the Hand Never Before Published*
-* **Author**: Cheiro (Count Louis Hamon)
-* **Historical Period / Date**: 1916 (Herbert Jenkins Ltd., London).
+* **Author**: Cheiro (Count Louis Hamon, 1866–1936)
+* **Chronological Milestones**:
+  * **Original Text Composition**: 1915.
+  * **First Printed Edition**: 1916 (Herbert Jenkins Ltd., London; G.P. Putnam's Sons, New York).
+  * **Reference Publication Year**: 1916.
 * **Language**: English.
-* **Authority Level**: **LEVEL 3** (Canonical Historical Western Reference).
+* **Authority Level**: **LEVEL 3** (Canonical Historical Western Practitioner Reference).
 * **Tradition Category**: `WESTERN_HISTORICAL`.
-* **License & Rights Status**: **Public Domain** (Published prior to 1928).
-* **Core Contribution**: Highly accessible, systematic taxonomy of the 7 types of hands, the shape of the fingers, the thumb, the major lines (Life, Head, Heart, Fate, Sun), the line of Health, and marriage markings.
-
-#### `SRC-WST-003`: *Les Mystères de la Main* by Adolphe Desbarrolles
-* **Title**: *Les Mystères de la Main Révélés et Expliqués* (The Mysteries of the Hand)
-* **Author**: Adolphe Desbarrolles
-* **Historical Period / Date**: 1859 (Paris).
-* **Language**: French (Historical 19th-century).
-* **Authority Level**: **LEVEL 3** (Foundational Western Chirognomy).
-* **Tradition Category**: `WESTERN_HISTORICAL`.
-* **License & Rights Status**: **Public Domain**.
-* **Core Contribution**: Introduced the modern Western spatial system of planetary mounts on the palmar surface, later adapted across European and American schools.
-
----
-
-## 3. Machine-Readable Source Registry (`knowledge/sources/sources.json`)
-
-All source entities in Kai RegAI are stored as JSON records adhering to `knowledge/schema/source.schema.json`.
-
-```json
-{
-  "source_id": "SRC-WST-001",
-  "title": "The Laws of Scientific Hand Reading",
-  "author": "William G. Benham",
-  "publication_year": 1901,
-  "language": "en",
-  "tradition": "WESTERN_HISTORICAL",
-  "source_type": "HISTORICAL_BOOK",
-  "authority_level": "LEVEL_3",
-  "license": "PUBLIC_DOMAIN",
-  "rights_status": "PUBLIC_DOMAIN_WORLDWIDE",
-  "url": "https://archive.org/details/lawsofscientifi00benh",
-  "edition": "First Edition, G.P. Putnam's Sons, 635 pp.",
-  "notes": "Encyclopedic source for line morphology, mount defects, and finger phalanxes."
-}
-```
+* **Epistemic Status**: `HISTORICAL_TEXT`.
+* **Jurisdiction-Aware Rights**:
+  * `rights_status`: `PUBLIC_DOMAIN_QUALIFIED`
+  * `rights_basis`: Published in 1916 (pre-1929 US public domain). In UK/EU, author passed away in 1936 (1936 + 70 years = entered UK/EU public domain January 1, 2007).
+  * `jurisdictions_checked`: ["US", "UK", "EU"]
+  * `edition_specific`: true
+  * `translation_rights_checked`: false
+  * `commercial_use`: `FULL_COMMERCIAL_USE_PERMITTED`
+  * `notes`: The 1916 original print edition is in the public domain in the US and Europe.
+* **Core Contribution**: Systematic taxonomy of the 7 types of hands, the fingers, the thumb, and the major and minor lines.

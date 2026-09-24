@@ -1,0 +1,97 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KaiRegAIPalmFeature",
+  "description": "Comprehensive schema for palm features enforcing complete separation of physical observation, measurement, and traditional interpretation.",
+  "type": "object",
+  "properties": {
+    "feature_id": {
+      "type": "string",
+      "description": "Unique hierarchical feature key (e.g. lines.head_line, fingers.index)"
+    },
+    "canonical_name": { "type": "string" },
+    "domain": {
+      "type": "string",
+      "enum": [
+        "HAND_MORPHOLOGY",
+        "FINGERS",
+        "THUMB",
+        "MAJOR_CREASES",
+        "MINOR_LINES",
+        "MOUNTS",
+        "SPECIAL_MARKINGS"
+      ]
+    },
+    "traditional_names": {
+      "type": "object",
+      "properties": {
+        "sanskrit_vedic": { "type": "string" },
+        "hindi_modern": { "type": "string" },
+        "western_classical": { "type": "string" }
+      }
+    },
+    "aliases": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "cv_detectability": {
+      "type": "string",
+      "enum": [
+        "CV_DETECTABLE",
+        "CV_PARTIALLY_DETECTABLE",
+        "USER_INPUT_REQUIRED",
+        "HYBRID"
+      ]
+    },
+    "physical_observation_contract": {
+      "type": "object",
+      "properties": {
+        "observable_properties": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "measurement_units": { "type": "string" },
+        "valid_discrete_classes": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "required": ["observable_properties"]
+    },
+    "epistemic_status": {
+      "type": "string",
+      "enum": [
+        "HISTORICAL_TEXT",
+        "SCHOLARLY_ANALYSIS",
+        "TRADITIONAL_INTERPRETATION",
+        "MODERN_PRACTITIONER",
+        "SCIENTIFIC_EVIDENCE",
+        "MODERN_SYNTHESIS"
+      ]
+    },
+    "traditions_represented": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "associated_rule_ids": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "associated_source_ids": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "associated_conflict_ids": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "required": [
+    "feature_id",
+    "canonical_name",
+    "domain",
+    "cv_detectability",
+    "physical_observation_contract",
+    "epistemic_status",
+    "traditions_represented"
+  ]
+}

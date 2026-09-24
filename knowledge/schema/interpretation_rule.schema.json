@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "KaiRegAIInterpretationRule",
-  "description": "Schema for literature-attributed palmistry interpretation rules.",
+  "description": "Schema for literature-attributed palmistry interpretation rules with strict epistemic status and provenance traceability.",
   "type": "object",
   "properties": {
     "rule_id": {
@@ -11,7 +11,29 @@
     "name": { "type": "string" },
     "tradition": {
       "type": "string",
-      "enum": ["CLASSICAL_INDIAN", "MODERN_INDIAN", "WESTERN_HISTORICAL", "MODERN_WESTERN"]
+      "enum": ["CLASSICAL_INDIAN", "MODERN_INDIAN", "WESTERN_HISTORICAL", "MODERN_WESTERN", "COMPARATIVE"]
+    },
+    "claim_classification": {
+      "type": "string",
+      "enum": [
+        "VERIFIED_CLASSICAL",
+        "SCHOLARLY_INTERPRETATION",
+        "MODERN_INDIAN",
+        "WESTERN",
+        "MODERN_SYNTHESIS",
+        "UNVERIFIED"
+      ]
+    },
+    "epistemic_status": {
+      "type": "string",
+      "enum": [
+        "HISTORICAL_TEXT",
+        "SCHOLARLY_ANALYSIS",
+        "TRADITIONAL_INTERPRETATION",
+        "MODERN_PRACTITIONER",
+        "SCIENTIFIC_EVIDENCE",
+        "MODERN_SYNTHESIS"
+      ]
     },
     "sources": {
       "type": "array",
@@ -21,11 +43,11 @@
           "source_id": { "type": "string" },
           "author": { "type": "string" },
           "work": { "type": "string" },
-          "chapter": { "type": "string" },
-          "page_reference": { "type": "string" },
+          "exact_text_location": { "type": "string" },
+          "translation_used": { "type": "string" },
           "authority_level": { "type": "string" }
         },
-        "required": ["source_id", "author"]
+        "required": ["source_id", "author", "work", "exact_text_location"]
       },
       "minItems": 1
     },
@@ -74,5 +96,15 @@
       "required": ["source_authority_score", "traditional_consensus_score", "rule_robustness"]
     }
   },
-  "required": ["rule_id", "name", "tradition", "sources", "conditions", "interpretation", "confidence_profile"]
+  "required": [
+    "rule_id",
+    "name",
+    "tradition",
+    "claim_classification",
+    "epistemic_status",
+    "sources",
+    "conditions",
+    "interpretation",
+    "confidence_profile"
+  ]
 }

@@ -2,91 +2,175 @@
   {
     "source_id": "SRC-IND-001",
     "title": "Pāṇilekhā: An Early Indian Formulation of Palmistry",
-    "author": "Kenneth G. Zysk (Ed. and Trans.)",
-    "publication_year": 2020,
-    "language": "sa/en",
+    "author": "Kenneth G. Zysk (Critical Edition, Translation, and Philological Study)",
+    "dates": {
+      "original_text_composition": "c. 2nd–4th century CE (Kuṣāṇa / early Gupta era; Śārdūlakarṇāvadāna / Divyāvadāna corpus)",
+      "manuscript_witness": "11th–19th century Nepalese palm-leaf & paper manuscripts",
+      "first_printed_edition": "1954 (Sujitkumar Mukhopadhyaya, Visvabharati)",
+      "critical_edition_or_translation": "2020 (Kenneth G. Zysk)",
+      "reference_publication_year": 2020
+    },
+    "edition": "Indo-Iranian Journal 63 (2020) 201–248; Brill Academic Publishers",
+    "language": "Sanskrit (with English translation and critical philological commentary)",
     "tradition": "CLASSICAL_INDIAN",
     "source_type": "SCHOLARLY_CRITICAL_EDITION",
     "authority_level": "LEVEL_1",
-    "license": "ACADEMIC_COPYRIGHT",
-    "rights_status": "STRUCTURED_FACT_EXTRACTION_PERMITTED",
+    "epistemic_status": "SCHOLARLY_ANALYSIS",
+    "rights": {
+      "rights_status": "COPYRIGHTED_SCHOLARLY_WORK",
+      "rights_basis": "The 2000-year-old underlying Sanskrit verse fragments are public domain worldwide. The critical edition, English translation, and introductory commentary are under copyright by Koninklijke Brill NV (2020).",
+      "jurisdictions_checked": ["US", "EU", "IN", "UK"],
+      "edition_specific": true,
+      "translation_rights_checked": true,
+      "commercial_use": "FACTUAL_EXTRACTION_ONLY",
+      "notes": "Full-text reproduction or redistribution is strictly prohibited. Extraction of non-copyrightable historical facts, Sanskrit anatomical terminology, line correlations, and textual variants is legally permitted under international copyright principles."
+    },
     "url": "https://doi.org/10.1163/15728536-06303001",
-    "edition": "Indo-Iranian Journal 63 (2020) 201–248",
-    "notes": "Critical edition and study of the Pāṇilekhā chapter of the Śārdūlakarṇāvadāna."
+    "notes": "Earliest systematically datable manual on Indian palm lines. Establishes authentic Sanskrit terminology for major creases and auspicious marks."
   },
   {
     "source_id": "SRC-IND-002",
     "title": "Bṛhat Saṃhitā",
     "author": "Varāhamihira",
-    "publication_year": 550,
-    "language": "sa",
+    "dates": {
+      "original_text_composition": "c. mid-6th century CE (c. 505–587 CE)",
+      "manuscript_witness": "Multiple Sanskrit manuscripts throughout Indian subcontinent",
+      "first_printed_edition": "1865 (ed. H. Kern, Bibliotheca Indica, Calcutta)",
+      "critical_edition_or_translation": "1981 (English translation by M. Ramakrishna Bhat, Motilal Banarsidass)",
+      "reference_publication_year": 550
+    },
+    "edition": "Chapters 67 & 68: Puruṣa-lakṣaṇa and Pāṇi-lakṣaṇa",
+    "language": "Sanskrit",
     "tradition": "CLASSICAL_INDIAN",
     "source_type": "PRIMARY_HISTORICAL_TEXT",
     "authority_level": "LEVEL_1",
-    "license": "PUBLIC_DOMAIN",
-    "rights_status": "PUBLIC_DOMAIN_WORLDWIDE",
+    "epistemic_status": "HISTORICAL_TEXT",
+    "rights": {
+      "rights_status": "PUBLIC_DOMAIN_QUALIFIED",
+      "rights_basis": "The original 6th-century Sanskrit root text is in the public domain worldwide. Later 20th-century translations (such as M.R. Bhat 1981) remain under copyright in India and international jurisdictions.",
+      "jurisdictions_checked": ["IN", "US", "UK", "EU"],
+      "edition_specific": true,
+      "translation_rights_checked": true,
+      "commercial_use": "FACTUAL_EXTRACTION_ONLY",
+      "notes": "All rule definitions cite the public domain Sanskrit verse contents and independent Kai RegAI English translations. No proprietary modern commentary text is reproduced."
+    },
     "url": "https://archive.org/details/brihatsamhita00varauoft",
-    "edition": "Chapters on Puruṣa-lakṣaṇa and Pāṇi-lakṣaṇa",
-    "notes": "Primary classical compendium detailing bodily marks and hand signs."
+    "notes": "Encyclopedic Sanskrit treatise covering physical palm contours, finger proportions, and royal bodily marks (Maha-Lakshanas)."
   },
   {
     "source_id": "SRC-IND-003",
     "title": "Hastasañjīvana",
     "author": "Meghavijaya Gaṇi",
-    "publication_year": 1680,
-    "language": "sa",
+    "dates": {
+      "original_text_composition": "1680 CE (Vikrama Samvat 1737)",
+      "manuscript_witness": "Western Indian Jain library manuscripts (Patan, Ahmedabad)",
+      "first_printed_edition": "1928 (ed. Yashovijaya Jaina Granthamala, Bhavnagar/Bombay)",
+      "critical_edition_or_translation": "1928",
+      "reference_publication_year": 1680
+    },
+    "edition": "Historical Western Indian Monograph",
+    "language": "Sanskrit with Old Gujarati glosses",
     "tradition": "CLASSICAL_INDIAN",
     "source_type": "PRIMARY_HISTORICAL_TEXT",
     "authority_level": "LEVEL_1",
-    "license": "PUBLIC_DOMAIN",
-    "rights_status": "PUBLIC_DOMAIN_WORLDWIDE",
-    "url": "https://archive.org/details/hastasañjivana",
-    "edition": "Western Indian Classical Palmistry Treatise",
-    "notes": "Medieval Sanskrit manual detailing line intersections and planetary mount traits."
+    "epistemic_status": "HISTORICAL_TEXT",
+    "rights": {
+      "rights_status": "PUBLIC_DOMAIN_QUALIFIED",
+      "rights_basis": "Authored in 1680 CE; printed editions published prior to 1929 are in the public domain in the US and worldwide under rule of shorter term.",
+      "jurisdictions_checked": ["IN", "US", "UK"],
+      "edition_specific": true,
+      "translation_rights_checked": false,
+      "commercial_use": "FACTUAL_EXTRACTION_ONLY",
+      "notes": "Original manuscript verses and 1928 edition text are in the public domain."
+    },
+    "url": "https://archive.org/details/hastasanjivana",
+    "notes": "Comprehensive medieval monograph detailing line variations and intersection effects."
   },
   {
     "source_id": "SRC-IND-101",
     "title": "Practical Palmistry (Hastarekha Vigyan)",
     "author": "Dr. Narayan Dutt Shrimali",
-    "publication_year": 1985,
-    "language": "hi/en",
+    "dates": {
+      "original_text_composition": "1985",
+      "manuscript_witness": null,
+      "first_printed_edition": "1985 (Pustak Mahal, Delhi)",
+      "critical_edition_or_translation": "English translation published 1989 / Rev. 2002",
+      "reference_publication_year": 1985
+    },
+    "edition": "Pustak Mahal, Delhi (ISBN 978-8122300482)",
+    "language": "Hindi / English translation",
     "tradition": "MODERN_INDIAN",
-    "source_type": "MODERN_REFERENCE",
+    "source_type": "MODERN_PRACTITIONER_REFERENCE",
     "authority_level": "LEVEL_4",
-    "license": "COPYRIGHTED",
-    "rights_status": "FACTUAL_EXTRACTION_ONLY",
+    "epistemic_status": "TRADITIONAL_INTERPRETATION",
+    "rights": {
+      "rights_status": "COPYRIGHTED_COMMERCIAL_WORK",
+      "rights_basis": "Protected under the Indian Copyright Act 1957 (life of author + 60 years; author deceased 1998, protected through 2058) and the Berne Convention.",
+      "jurisdictions_checked": ["IN", "US", "UK"],
+      "edition_specific": true,
+      "translation_rights_checked": true,
+      "commercial_use": "FACTUAL_EXTRACTION_ONLY",
+      "notes": "Strictly limited to the extraction of uncopyrightable factual correspondences, feature correlations, and traditional Sanskrit rule conditions. Verbatim prose replication is prohibited."
+    },
     "url": "https://pustakmahal.com",
-    "edition": "Pustak Mahal (Revised 2002)",
-    "notes": "Modern Indian manual applying traditional Samudrika to modern vocational topics."
+    "notes": "Influential 20th-century Indian work adapting classical Samudrika to modern professional careers."
   },
   {
     "source_id": "SRC-WST-001",
-    "title": "The Laws of Scientific Hand Reading",
+    "title": "The Laws of Scientific Hand Reading: A Practical Treatise on the Art Commonly Called Palmistry",
     "author": "William G. Benham",
-    "publication_year": 1901,
-    "language": "en",
+    "dates": {
+      "original_text_composition": "1898–1900",
+      "manuscript_witness": null,
+      "first_printed_edition": "1900 / 1901 (G.P. Putnam's Sons, New York and London)",
+      "critical_edition_or_translation": null,
+      "reference_publication_year": 1901
+    },
+    "edition": "First Edition, G.P. Putnam's Sons, 1901, 635 pp.",
+    "language": "English",
     "tradition": "WESTERN_HISTORICAL",
-    "source_type": "HISTORICAL_BOOK",
+    "source_type": "HISTORICAL_PRACTITIONER_BOOK",
     "authority_level": "LEVEL_3",
-    "license": "PUBLIC_DOMAIN",
-    "rights_status": "PUBLIC_DOMAIN_WORLDWIDE",
+    "epistemic_status": "HISTORICAL_TEXT",
+    "rights": {
+      "rights_status": "PUBLIC_DOMAIN_QUALIFIED",
+      "rights_basis": "Published in the United States in 1901 (prior to January 1, 1929), placing it in the US public domain. In the UK/EU, author William G. Benham passed away in 1944 (1944 + 70 years = entered UK/EU public domain on January 1, 2015).",
+      "jurisdictions_checked": ["US", "UK", "EU"],
+      "edition_specific": true,
+      "translation_rights_checked": false,
+      "commercial_use": "FULL_COMMERCIAL_USE_PERMITTED",
+      "notes": "The 1901 original edition is in the public domain in the US and UK/EU. Later modern editorial introductions or reprints with new content maintain copyright over those additions only."
+    },
     "url": "https://archive.org/details/lawsofscientifi00benh",
-    "edition": "G.P. Putnam's Sons, New York / London, 635 pp.",
-    "notes": "Definitive 20th-century historical treatise on hand morphology, mounts, and lines."
+    "notes": "Historical Western palmistry manual. Note: The word 'Scientific' in the title reflects 1900-era chirognomic terminology and does NOT denote modern empirical scientific validation."
   },
   {
     "source_id": "SRC-WST-002",
-    "title": "Palmistry for All",
+    "title": "Palmistry for All: Containing New Information on the Study of the Hand Never Before Published",
     "author": "Cheiro (Count Louis Hamon)",
-    "publication_year": 1916,
-    "language": "en",
+    "dates": {
+      "original_text_composition": "1915",
+      "manuscript_witness": null,
+      "first_printed_edition": "1916 (Herbert Jenkins Ltd., London; G.P. Putnam's Sons, New York)",
+      "critical_edition_or_translation": null,
+      "reference_publication_year": 1916
+    },
+    "edition": "Herbert Jenkins Ltd., London, 1916",
+    "language": "English",
     "tradition": "WESTERN_HISTORICAL",
-    "source_type": "HISTORICAL_BOOK",
+    "source_type": "HISTORICAL_PRACTITIONER_BOOK",
     "authority_level": "LEVEL_3",
-    "license": "PUBLIC_DOMAIN",
-    "rights_status": "PUBLIC_DOMAIN_WORLDWIDE",
+    "epistemic_status": "HISTORICAL_TEXT",
+    "rights": {
+      "rights_status": "PUBLIC_DOMAIN_QUALIFIED",
+      "rights_basis": "Published in 1916 (pre-1929 US public domain). In UK/EU, author Louis Hamon died in 1936 (1936 + 70 years = entered UK/EU public domain on January 1, 2007).",
+      "jurisdictions_checked": ["US", "UK", "EU"],
+      "edition_specific": true,
+      "translation_rights_checked": false,
+      "commercial_use": "FULL_COMMERCIAL_USE_PERMITTED",
+      "notes": "The 1916 original print edition is in the public domain in the US and Europe."
+    },
     "url": "https://archive.org/details/palmistryforall00chei",
-    "edition": "Herbert Jenkins Ltd., London",
-    "notes": "Concise historical guide to the major lines, hand shapes, and mounts."
+    "notes": "Classic historical work on hand types, major lines, and mounts."
   }
 ]

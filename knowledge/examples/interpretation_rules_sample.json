@@ -3,19 +3,23 @@
     "rule_id": "RULE-LIFE-001",
     "name": "Wide Arc Life Line with Full Venus Pad",
     "tradition": "CLASSICAL_INDIAN",
+    "claim_classification": "VERIFIED_CLASSICAL",
+    "epistemic_status": "TRADITIONAL_INTERPRETATION",
     "sources": [
       {
         "source_id": "SRC-IND-001",
-        "author": "Pāṇilekhā (Zysk ed.)",
-        "chapter": "Pitri-rekha Chapter",
-        "page_reference": "vv. 12-16",
+        "author": "Pāṇilekhā in Śārdūlakarṇāvadāna (Zysk ed. 2020)",
+        "work": "Pāṇilekhā",
+        "exact_text_location": "vv. 12-16 (Mukhopadhyaya 1954 ed., pp. 64-66)",
+        "translation_used": "Kenneth G. Zysk (2020), p. 224",
         "authority_level": "LEVEL_1"
       },
       {
         "source_id": "SRC-IND-101",
         "author": "Dr. N.D. Shrimali",
-        "chapter": "Jeevan Rekha aur Shukra Parvata",
-        "page_reference": "pp. 52-56",
+        "work": "Practical Palmistry (Hastarekha Vigyan)",
+        "exact_text_location": "Chapter 4, pp. 52-56",
+        "translation_used": "English Edition (2002)",
         "authority_level": "LEVEL_4"
       }
     ],
@@ -58,13 +62,15 @@
     "rule_id": "RULE-HEAD-002",
     "name": "Head Line Gentle Slope Towards Mount of Moon",
     "tradition": "WESTERN_HISTORICAL",
+    "claim_classification": "WESTERN",
+    "epistemic_status": "TRADITIONAL_INTERPRETATION",
     "sources": [
       {
         "source_id": "SRC-WST-001",
         "author": "William G. Benham",
         "work": "The Laws of Scientific Hand Reading",
-        "chapter": "The Head Line",
-        "page_reference": "pp. 230-234",
+        "exact_text_location": "The Head Line, pp. 230-234",
+        "translation_used": "Original English (1901)",
         "authority_level": "LEVEL_3"
       }
     ],
@@ -88,7 +94,7 @@
       "secondary_domains": ["CREATIVITY_AND_RADIANCE"],
       "traditional_archetype": "The Imaginative Realist",
       "traditional_terms": ["Sloping Head Line", "Luna Deflection"],
-      "reflective_synthesis": "Your Head Line slopes gently downward toward the Mount of the Moon. This traditional marker denotes an intellect that bridges empirical logic with creative imagination, thriving in creative problem-solving.",
+      "reflective_synthesis": "Your Head Line slopes gently downward toward the Mount of the Moon. In historical Western hand reading, this configuration denotes an intellect that bridges empirical logic with creative imagination, thriving in creative problem-solving.",
       "character_strengths": ["Lateral thinking", "Intuitive synthesis", "Expressive articulation"],
       "mindfulness_cautions": ["Avoid over-analyzing abstract possibilities when swift, pragmatic action is required."]
     },
