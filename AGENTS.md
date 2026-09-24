@@ -59,13 +59,14 @@ Every agent MUST read and adhere strictly to these instructions before making an
 When resolving conflicts, follow this strict hierarchy:
 
 1. **Product Requirements & Roadmap**: [docs/MASTER_ROADMAP.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/MASTER_ROADMAP.md)
-2. **UX & Product Flow**: [docs/PRODUCT_SPEC.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/PRODUCT_SPEC.md)
-3. **Visual Design & Aesthetics**: Approved Stitch/Figma Designs + [docs/UI_SPEC.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/UI_SPEC.md)
-4. **Technical Architecture & Module Boundaries**: [docs/ARCHITECTURE.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/ARCHITECTURE.md)
-5. **Palmistry Knowledge**: [docs/KNOWLEDGE_ARCHITECTURE.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/KNOWLEDGE_ARCHITECTURE.md) + Knowledge Base Source Records
-6. **Computer Vision Specifications**: [docs/CV_SPEC.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/CV_SPEC.md)
-7. **AI & Narration Behavior**: [docs/AI_SPEC.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/AI_SPEC.md)
-8. **Deployment & Release**: [docs/DEPLOYMENT.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/DEPLOYMENT.md)
+2. **Product & UX Architecture (P2)**: [docs/p2/P2_PRODUCT_UX_ARCHITECTURE.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/p2/P2_PRODUCT_UX_ARCHITECTURE.md) and related specifications under `docs/p2/`
+3. **UX & Product Flow**: [docs/PRODUCT_SPEC.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/PRODUCT_SPEC.md)
+4. **Visual Design & Aesthetics**: Approved Stitch/Figma Designs + [docs/UI_SPEC.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/UI_SPEC.md) + [docs/p2/STITCH_HANDOFF_SPEC.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/p2/STITCH_HANDOFF_SPEC.md)
+5. **Technical Architecture & Module Boundaries**: [docs/ARCHITECTURE.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/ARCHITECTURE.md)
+6. **Palmistry Knowledge**: [docs/KNOWLEDGE_ARCHITECTURE.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/KNOWLEDGE_ARCHITECTURE.md) + Knowledge Base Source Records ([docs/p1/](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/p1/))
+7. **Computer Vision Specifications**: [docs/CV_SPEC.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/CV_SPEC.md)
+8. **AI & Narration Behavior**: [docs/AI_SPEC.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/AI_SPEC.md)
+9. **Deployment & Release**: [docs/DEPLOYMENT.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/DEPLOYMENT.md)
 
 Never silently overwrite these specifications without explicit user authorization.
 
@@ -112,3 +113,22 @@ Before completing any assigned task, verify:
 - [ ] Are all newly introduced files and code symbols linked and documented?
 - [ ] Did I avoid fabricating palmistry knowledge or ungrounded claims?
 - [ ] Is documentation updated to reflect any approved architectural changes?
+
+---
+
+## 7. Phase P2 Governance & Operating Rules
+
+Any agent operating in or building upon Phase P2 must strictly adhere to the following 10 operating rules:
+
+1. **Mandatory Documentation Review**: Read [AGENTS.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/AGENTS.md), [docs/MASTER_ROADMAP.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/MASTER_ROADMAP.md), and all relevant documents under `docs/p2/` prior to proposing code or design changes.
+2. **Phase Boundary Discipline**: Never jump ahead to Phase P3 (visual asset generation/Stitch UI) or Phase P4+ (app code implementation) without explicit authorization.
+3. **P1 Knowledge Lock**: Never modify P1 knowledge structures, sources, or rules silently. Any discovered gap or dependency must be recorded in `docs/p2/P1_DEPENDENCY_NOTES.md`.
+4. **No Hallucinated Product Behavior**: All user-facing behavior, navigation paths, and report layouts must strictly conform to [SCREEN_INVENTORY.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/p2/SCREEN_INVENTORY.md) and [SCREEN_SPECIFICATIONS.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/p2/SCREEN_SPECIFICATIONS.md).
+5. **Canonical Data Invariance**: Never introduce separate, conflicting feature models for Mode 1 and Mode 2. Both modes must map exclusively into the canonical `PalmFeatureModel` defined in [docs/p2/DATA_FLOW.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/p2/DATA_FLOW.md).
+6. **Central Architectural Invariant**: Maintain the strict unidirectional pipeline:
+   $$\text{User Experience} \longrightarrow \text{Reading Session} \longrightarrow \text{PalmFeatureModel} \longrightarrow \text{Knowledge + Rules} \longrightarrow \text{Interpretation} \longrightarrow \text{AI Narration} \longrightarrow \text{Report}$$
+   The UI, CV engine, or LLM must never become independent sources of palmistry truth.
+7. **Consolidated Screen Policy**: Do not create fragmented standalone screens for transient camera warnings or questionnaire steps. Use the 18 consolidated screens with dynamic state overlays specified in [SCREEN_INVENTORY.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/p2/SCREEN_INVENTORY.md).
+8. **Accessibility & Multi-modal Feedback**: Color must never be the sole differentiator for major palm lines. Always pair line colors (Violet, Blue, Rose, Gold, Amber) with dedicated glyphs, stroke dash patterns, and textual labels per [ACCESSIBILITY_SPEC.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/p2/ACCESSIBILITY_SPEC.md).
+9. **Decision Logging**: Every non-trivial product, architectural, or technical decision must be logged with alternatives and rationale in [docs/p2/P2_DECISION_LOG.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/p2/P2_DECISION_LOG.md).
+10. **Pre-Completion Validation**: Run full validation against [docs/p2/P2_AUDIT_REPORT.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/p2/P2_AUDIT_REPORT.md) quality gates before marking any phase-related task complete.
