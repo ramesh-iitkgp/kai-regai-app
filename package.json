@@ -9,8 +9,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "test": "node --test tests/ui_integration.test.js"
+    "test": "node --test tests/ui_integration.test.js tests/cv/*.test.js",
+    "test:cv": "node --test tests/cv/*.test.js"
   },
   "keywords": [
     "kai-regai",

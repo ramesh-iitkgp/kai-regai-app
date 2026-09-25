@@ -5,6 +5,7 @@
  */
 
 export function renderPalmLineOverlay({
+  lines = null,
   highlightedLine = null,
   showLabels = true,
   animateGlow = true
@@ -14,6 +15,19 @@ export function renderPalmLineOverlay({
   const isHeartActive = !highlightedLine || highlightedLine === 'HEART';
   const isFateActive = !highlightedLine || highlightedLine === 'FATE';
   const isSunActive = !highlightedLine || highlightedLine === 'SUN';
+
+  // Support dynamic CV polylines or fallback to canonical mock paths
+  const lifeD = lines?.life?.path || 'M 128 178 Q 146 220 148 290 Q 148 340 185 372';
+  const headD = lines?.head?.path || 'M 128 180 Q 185 190 236 215 Q 260 228 274 250';
+  const heartD = lines?.heart?.path || 'M 285 158 Q 230 148 185 142 Q 160 138 145 118';
+  const fateD = lines?.fate?.path || 'M 190 380 L 188 235 L 185 132';
+  const sunD = lines?.sun?.path || 'M 224 235 L 222 135';
+
+  const isLifeVisible = lines ? (lines.life?.detected !== false && lines.life?.status !== 'NOT_DETECTED') : true;
+  const isHeadVisible = lines ? (lines.head?.detected !== false && lines.head?.status !== 'NOT_DETECTED') : true;
+  const isHeartVisible = lines ? (lines.heart?.detected !== false && lines.heart?.status !== 'NOT_DETECTED') : true;
+  const isFateVisible = lines ? (lines.fate?.detected !== false && lines.fate?.status !== 'NOT_DETECTED') : true;
+  const isSunVisible = lines ? (lines.sun?.detected !== false && lines.sun?.status !== 'NOT_DETECTED') : true;
 
   return `
     <svg class="palm-lines-svg" viewBox="0 0 360 450" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 15;" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -57,8 +71,8 @@ export function renderPalmLineOverlay({
       </defs>
 
       <!-- 1. Life Line (Ayur Rekha) — Violet (#A855F7), Solid continuous stroke -->
-      <g opacity="${isLifeActive ? 1 : 0.2}" style="transition: opacity 0.3s ease;">
-        <path d="M 128 178 Q 146 220 148 290 Q 148 340 185 372" 
+      <g opacity="${!isLifeVisible ? 0 : (isLifeActive ? 1 : 0.2)}" style="transition: opacity 0.3s ease; ${!isLifeVisible ? 'display: none;' : ''}">
+        <path d="${lifeD}" 
               stroke="#A855F7" 
               stroke-width="${highlightedLine === 'LIFE' ? 4 : 2.5}" 
               stroke-linecap="round"
@@ -69,8 +83,8 @@ export function renderPalmLineOverlay({
       </g>
 
       <!-- 2. Head Line (Matru Rekha) — Blue (#00D2FF), Dashed pattern (8 2) -->
-      <g opacity="${isHeadActive ? 1 : 0.2}" style="transition: opacity 0.3s ease;">
-        <path d="M 128 180 Q 185 190 236 215 Q 260 228 274 250" 
+      <g opacity="${!isHeadVisible ? 0 : (isHeadActive ? 1 : 0.2)}" style="transition: opacity 0.3s ease; ${!isHeadVisible ? 'display: none;' : ''}">
+        <path d="${headD}" 
               stroke="#00D2FF" 
               stroke-width="${highlightedLine === 'HEAD' ? 4 : 2.5}" 
               stroke-linecap="round"
@@ -82,8 +96,8 @@ export function renderPalmLineOverlay({
       </g>
 
       <!-- 3. Heart Line (Pitri/Hridaya Rekha) — Rose (#F43F5E), Dashed pattern (12 3) -->
-      <g opacity="${isHeartActive ? 1 : 0.2}" style="transition: opacity 0.3s ease;">
-        <path d="M 285 158 Q 230 148 185 142 Q 160 138 145 118" 
+      <g opacity="${!isHeartVisible ? 0 : (isHeartActive ? 1 : 0.2)}" style="transition: opacity 0.3s ease; ${!isHeartVisible ? 'display: none;' : ''}">
+        <path d="${heartD}" 
               stroke="#F43F5E" 
               stroke-width="${highlightedLine === 'HEART' ? 4 : 2.5}" 
               stroke-linecap="round"
@@ -95,8 +109,8 @@ export function renderPalmLineOverlay({
       </g>
 
       <!-- 4. Fate Line (Urdhva/Karma Rekha) — Gold (#FBBF24), Dotted pattern (4 2) -->
-      <g opacity="${isFateActive ? 1 : 0.2}" style="transition: opacity 0.3s ease;">
-        <path d="M 190 380 L 188 235 L 185 132" 
+      <g opacity="${!isFateVisible ? 0 : (isFateActive ? 1 : 0.2)}" style="transition: opacity 0.3s ease; ${!isFateVisible ? 'display: none;' : ''}">
+        <path d="${fateD}" 
               stroke="#FBBF24" 
               stroke-width="${highlightedLine === 'FATE' ? 3.5 : 2}" 
               stroke-linecap="round"
@@ -107,8 +121,8 @@ export function renderPalmLineOverlay({
       </g>
 
       <!-- 5. Sun Line (Surya Rekha) — Amber (#F59E0B), Long-short dash (6 3) -->
-      <g opacity="${isSunActive ? 1 : 0.2}" style="transition: opacity 0.3s ease;">
-        <path d="M 224 235 L 222 135" 
+      <g opacity="${!isSunVisible ? 0 : (isSunActive ? 1 : 0.2)}" style="transition: opacity 0.3s ease; ${!isSunVisible ? 'display: none;' : ''}">
+        <path d="${sunD}" 
               stroke="#F59E0B" 
               stroke-width="${highlightedLine === 'SUN' ? 3.5 : 1.8}" 
               stroke-linecap="round"

@@ -96,7 +96,7 @@ export class PalmFeatureModel {
     this.quality_score = data.quality_score ?? 0.94;
     this.provenance = {
       mode: data.provenance?.mode || 'MODE_1_SCANNER',
-      cv_version: '0.4.0-mock',
+      cv_version: data.provenance?.cv_version || '0.4.0-mock',
       knowledge_version: '1.1.0'
     };
   }
