@@ -9,6 +9,7 @@ import { renderAppHeader } from './components/AppHeader.js';
 import { renderBottomNav } from './components/BottomNavigation.js';
 import { renderPdfExportModal } from './components/PdfExportModal.js';
 import { renderErrorCalibrationModal } from './components/ErrorCalibrationModal.js';
+import { createReport, ReportExport, ReportShare, reportTelemetry, TELEMETRY_EVENTS } from './report/index.js';
 
 // Screens
 import { renderSplashScreen } from './screens/SplashScreen.js';
@@ -117,11 +118,15 @@ export class App {
     }
 
     if (activeModal.id === 'pdf_export') {
+      const dossier = activeModal.payload?.dossier || activeModal.payload || mockReadings[1];
+      const report = createReport({ dossier, tier: 'PREMIUM' });
+
       this.modalContainer.innerHTML = renderPdfExportModal({
-        readingTitle: activeModal.payload?.title || 'Illuminated Hastarekha Dossier',
+        readingTitle: report.summary.title,
         onClose: () => router.closeModal(),
         onDownload: () => {
-          alert('Exporting high-resolution PDF...');
+          ReportExport.triggerBrowserPdfPrint(report);
+          reportTelemetry.logEvent(TELEMETRY_EVENTS.PDF_EXPORTED, { reportTier: 'PREMIUM' });
           router.closeModal();
         }
       });
@@ -131,16 +136,14 @@ export class App {
       });
 
       this.modalContainer.querySelector('#modal-download-pdf-btn')?.addEventListener('click', () => {
-        alert('High-resolution PDF generated and saved to your device downloads.');
+        ReportExport.triggerBrowserPdfPrint(report);
+        reportTelemetry.logEvent(TELEMETRY_EVENTS.PDF_EXPORTED, { reportTier: 'PREMIUM' });
         router.closeModal();
       });
 
-      this.modalContainer.querySelector('#modal-share-pdf-btn')?.addEventListener('click', () => {
-        if (navigator.share) {
-          navigator.share({ title: 'Kai RegAI Reading', text: 'My Vedic Palm Reading' }).catch(() => {});
-        } else {
-          alert('Sharing link copied to clipboard.');
-        }
+      this.modalContainer.querySelector('#modal-share-pdf-btn')?.addEventListener('click', async () => {
+        await ReportShare.shareCard({ report, format: '1:1' });
+        reportTelemetry.logEvent(TELEMETRY_EVENTS.REPORT_SHARED, { reportTier: 'PREMIUM', format: '1:1' });
         router.closeModal();
       });
 
