@@ -33,11 +33,11 @@ export function renderAppHeader(container) {
           </div>
         </div>
 
-        <!-- Right Side: Moon Phase & User Avatar -->
+        <!-- Right Side: System Status & User Avatar -->
         <div style="display: flex; align-items: center; gap: 10px;">
-          <div class="kai-badge kai-badge-secondary" style="font-size: 10px; padding: 3px 8px;" title="Current Lunar Transit">
-            <span class="material-symbols-outlined" style="font-size: 12px; color: var(--color-primary);">nights_stay</span>
-            <span>Waxing Gibbous</span>
+          <div class="kai-badge kai-badge-secondary" style="font-size: 10px; padding: 3px 8px;" title="Optical Sensor Status">
+            <span class="material-symbols-outlined" style="font-size: 12px; color: var(--color-primary);">sensors</span>
+            <span>Optical Sensor Ready</span>
           </div>
           <div id="profile-avatar-btn" role="button" tabindex="0" aria-label="Open Profile" style="cursor: pointer; position: relative;">
             <img src="${mockUserProfile.avatar_url}" alt="Maya Avatar" style="width: 32px; height: 32px; border-radius: 9999px; object-fit: cover; border: 1.5px solid var(--color-primary); box-shadow: 0 0 10px rgba(147,125,255,0.3);">

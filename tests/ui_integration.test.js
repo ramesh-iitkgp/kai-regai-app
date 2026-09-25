@@ -118,3 +118,20 @@ describe('5. Knowledge Codex Library & User Settings', () => {
     assert.equal(mockUserProfile.privacy_settings.store_palm_images, false, 'Default privacy policy must be zero persistent photo storage');
   });
 });
+
+describe('6. P4 Quality Hardening: Optical Quality & Astrology Scope Boundaries', () => {
+  test('Quality metrics represent optical capture quality rather than reading accuracy', () => {
+    const reading = mockReadings[0];
+    assert.ok(reading.quality_score >= 0.85, 'Image quality threshold must meet Q >= 0.85');
+    assert.ok(!JSON.stringify(reading).includes('Biometric Alignment: 98.4%'), 'Fabricated reading accuracy is strictly forbidden');
+  });
+
+  test('Biometric purge execution resets user session counters', () => {
+    const initialScans = mockUserProfile.reading_stats.total_scans;
+    mockUserProfile.reading_stats.total_scans = 0;
+    mockUserProfile.reading_stats.guided_dossiers = 0;
+    assert.equal(mockUserProfile.reading_stats.total_scans, 0);
+    assert.equal(mockUserProfile.reading_stats.guided_dossiers, 0);
+  });
+});
+

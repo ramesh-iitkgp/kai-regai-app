@@ -25,8 +25,8 @@ export function renderHomeScreen(container) {
             </span>
           </div>
           <div class="kai-badge kai-badge-secondary" style="font-size: 10px; padding: 2px 8px;">
-            <span class="material-symbols-outlined" style="font-size: 12px; color: var(--color-primary);">nights_stay</span>
-            <span>Waxing Gibbous</span>
+            <span class="material-symbols-outlined" style="font-size: 12px; color: var(--color-primary);">back_hand</span>
+            <span>Dominant: ${mockUserProfile.dominant_hand}</span>
           </div>
         </div>
 
@@ -64,10 +64,10 @@ export function renderHomeScreen(container) {
           <div style="position: absolute; bottom: 10px; left: 12px; right: 12px; display: flex; justify-content: space-between; align-items: center;">
             <span style="font-size: 11px; font-weight: 700; color: var(--color-tertiary); display: flex; align-items: center; gap: 4px;">
               <span class="material-symbols-outlined" style="font-size: 13px;">check_circle</span>
-              Biometric Alignment: 98.4%
+              Image Quality: Optimal
             </span>
             <span style="font-family: monospace; font-size: 10px; color: var(--color-on-surface-variant);">
-              10s TELEMETRY
+              OPTICAL FRAME
             </span>
           </div>
         </div>

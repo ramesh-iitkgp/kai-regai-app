@@ -37,8 +37,8 @@ export function renderQuickReportScreen(container) {
               Right Hand • Dominant
             </span>
           </div>
-          <span style="font-family: monospace; font-size: 11px; color: var(--color-secondary);">
-            QUALITY 94%
+          <span style="font-family: monospace; font-size: 11px; color: var(--color-secondary);" title="Optical image quality (illumination, sharpness, framing)">
+            IMAGE QUALITY: 94%
           </span>
         </div>
 

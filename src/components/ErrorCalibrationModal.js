@@ -19,7 +19,7 @@ export function renderErrorCalibrationModal({
     DISTANCE: {
       icon: 'pan_tool',
       title: 'Adjust Palm Distance',
-      desc: 'Align your open palm inside the gold astronomical quadrant brackets until the frame glows cyan.',
+      desc: 'Align your open palm inside the gold framing alignment brackets until the frame glows cyan.',
       tip: 'Hold the camera approximately 20–30 cm from your palm.'
     },
     MOTION: {

@@ -105,7 +105,13 @@ export function renderProfileScreen(container) {
 
     document.getElementById('erase-data-btn')?.addEventListener('click', () => {
       if (confirm('Are you sure you want to purge all saved readings and feature models from this device?')) {
-        alert('All biometric session data erased.');
+        mockUserProfile.reading_stats.total_scans = 0;
+        mockUserProfile.reading_stats.guided_dossiers = 0;
+        if (typeof window !== 'undefined' && window.localStorage) {
+          window.localStorage.clear();
+        }
+        alert('All biometric session data and local feature models have been permanently erased from RAM/storage.');
+        render();
       }
     });
   }

@@ -97,7 +97,7 @@ export function renderQuestionnaireScreen(container) {
     container.innerHTML = `
       <div style="position: relative; width: 100%; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; text-align: center; background: var(--color-background); overflow: hidden;">
         
-        <!-- Sacred Geometry Constellation (Rotating Mandala) -->
+        <!-- Geometric Analysis Matrix (Feature Correlation) -->
         <div style="position: relative; width: 220px; height: 220px; display: flex; align-items: center; justify-content: center;">
           <svg viewBox="0 0 200 200" style="width: 100%; height: 100%; animation: spin 12s linear infinite;" fill="none">
             <circle cx="100" cy="100" r="90" stroke="#e4c276" stroke-width="1.5" stroke-dasharray="4 6"/>
@@ -111,10 +111,10 @@ export function renderQuestionnaireScreen(container) {
         </div>
 
         <h2 style="font-family: var(--font-display); font-size: 24px; font-weight: 600; color: var(--color-text-high); margin-top: 32px;">
-          Synthesizing Sacred Dossier
+          Synthesizing Palm Dossier
         </h2>
         <p style="font-size: 13px; color: var(--color-on-surface-variant); margin-top: 8px; max-width: 300px;">
-          Correlating optical biometric creases with classic Hasta Samudrika rules and modern chiromancy...
+          Correlating optical biometric creases with documented Hasta Samudrika traditions and modern chiromancy...
         </p>
 
         <div style="margin-top: 24px; display: flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: var(--radius-full); background: var(--color-surface-container); border: 1px solid var(--color-border-subtle);">

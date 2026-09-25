@@ -51,7 +51,7 @@ export function renderScannerHUD({
         <!-- Scrim gradient -->
         <div style="position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, transparent 40%, rgba(10, 14, 26, 0.85) 100%); pointer-events: none;"></div>
 
-        <!-- Sacred Vedic Reticle (SVG Quadrants & Rings) -->
+        <!-- Optical Palm Alignment Reticle (Framing Guides & Mount Zones) -->
         <svg viewBox="0 0 360 450" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10;" fill="none">
           <circle cx="180" cy="225" r="95" fill="rgba(202, 190, 255, 0.08)"/>
           <circle cx="180" cy="225" r="130" stroke="#e4c276" stroke-dasharray="2 6" stroke-opacity="0.25" stroke-width="1"/>
@@ -74,10 +74,10 @@ export function renderScannerHUD({
         <div style="position: absolute; bottom: 12px; left: 14px; right: 14px; display: flex; align-items: center; justify-content: space-between; z-index: 20; font-size: 11px; pointer-events: none;">
           <div style="display: flex; align-items: center; gap: 4px; color: var(--color-tertiary); font-weight: 700; text-shadow: 0 0 8px rgba(71,214,255,0.7);">
             <span class="material-symbols-outlined" style="font-size: 14px;">check_circle</span>
-            <span>Biometric Alignment: 98.4%</span>
+            <span>Image Quality: Optimal</span>
           </div>
           <span style="font-family: monospace; font-size: 10px; color: var(--color-on-surface-variant); letter-spacing: 0.08em;">
-            10s TELEMETRY
+            OPTICAL FRAME
           </span>
         </div>
       </div>
