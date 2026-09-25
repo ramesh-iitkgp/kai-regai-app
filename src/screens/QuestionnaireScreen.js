@@ -1,71 +1,141 @@
 /**
  * QuestionnaireScreen Component — Mode 2 Guided Visual Questions & Synthesis
- * Matches Stitch: design/stitch/kai_regai_questionnaire_thumb_flexibility/
- * Source of truth: docs/p2/QUESTIONNAIRE_FLOW.md
+ * Phase: P7 — Palm Reading Questionnaire Engine
+ * Source of truth: docs/p2/QUESTIONNAIRE_FLOW.md & docs/p7/
  */
 
 import { router } from '../navigation/router.js';
 import { ROUTES } from '../navigation/routes.js';
-import { renderQuestionnaireStep, questionnaireModules } from '../components/QuestionnaireWidget.js';
+import { QuestionnaireEngine } from '../questionnaire/QuestionnaireEngine.js';
+import { QUESTIONNAIRE_STATES } from '../questionnaire/QuestionnaireStateMachine.js';
+import { QuestionnaireFeatureAdapter } from '../questionnaire/QuestionnaireFeatureAdapter.js';
+import { PalmInterpretationEngine } from '../services/PalmInterpretationEngine.js';
+import { QuestionnaireHUD } from '../components/QuestionnaireHUD.js';
+import { QUESTION_TYPES } from '../questionnaire/QuestionnaireSchema.js';
 
-export function renderQuestionnaireScreen(container) {
-  let currentStepIdx = 0;
-  const userAnswers = {};
-  let isSynthesizing = false;
+export function renderQuestionnaireScreen(container, params = {}) {
+  const initialAnswers = {
+    hand_side: params?.hand || 'RIGHT'
+  };
+
+  const engine = new QuestionnaireEngine({ initialAnswers });
+  engine.start();
 
   function render() {
-    if (isSynthesizing) {
-      renderSynthesisTransition();
+    const currentState = engine.getState();
+
+    // 1. Dossier Synthesis State
+    if (currentState === QUESTIONNAIRE_STATES.SUBMITTING) {
+      container.innerHTML = QuestionnaireHUD.renderSynthesisScreen();
       return;
     }
 
-    const currentModule = questionnaireModules[currentStepIdx];
-    const currentAnswer = userAnswers[currentModule.id] || null;
+    // 2. Review & Verification State
+    if (currentState === QUESTIONNAIRE_STATES.REVIEW) {
+      container.innerHTML = `
+        <div style="padding: 16px 16px calc(var(--bottom-nav-height) + 24px); display: flex; flex-direction: column; gap: 20px;">
+          <!-- Top Action Bar -->
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <button id="quest-review-top-back-btn" class="kai-btn-icon" aria-label="Return to questions">
+              <span class="material-symbols-outlined">arrow_back</span>
+            </button>
+            <span class="kai-badge kai-badge-secondary" style="font-size: 10px;">
+              Guided Chiromancy • Review
+            </span>
+            <button id="quest-close-btn" class="kai-btn-icon" aria-label="Cancel">
+              <span class="material-symbols-outlined">close</span>
+            </button>
+          </div>
+
+          <!-- Review Summary Content -->
+          ${QuestionnaireHUD.renderReview(engine.getReviewSummary())}
+        </div>
+      `;
+
+      // Wire Review Screen Event Listeners
+      container.querySelectorAll('.edit-question-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const editId = btn.getAttribute('data-edit-id');
+          if (editId) {
+            engine.goToQuestion(editId);
+            render();
+          }
+        });
+      });
+
+      container.querySelector('#quest-review-top-back-btn')?.addEventListener('click', () => {
+        engine.prev();
+        render();
+      });
+
+      container.querySelector('#quest-review-back-btn')?.addEventListener('click', () => {
+        engine.prev();
+        render();
+      });
+
+      container.querySelector('#quest-close-btn')?.addEventListener('click', () => {
+        router.navigate(ROUTES.HOME);
+      });
+
+      container.querySelector('#quest-submit-btn')?.addEventListener('click', handleSubmit);
+      return;
+    }
+
+    // 3. Active In-Progress Question State
+    const currentQ = engine.getCurrentQuestion();
+    if (!currentQ) {
+      engine.prev();
+      render();
+      return;
+    }
+
+    const currentAns = engine.getAnswer(currentQ.id);
+    const context = engine.getContext();
 
     container.innerHTML = `
       <div style="padding: 16px 16px calc(var(--bottom-nav-height) + 24px); display: flex; flex-direction: column; gap: 20px;">
         
-        <!-- Header -->
+        <!-- Top Action Bar -->
         <div style="display: flex; align-items: center; justify-content: space-between;">
           <button id="quest-back-btn" class="kai-btn-icon" aria-label="Previous step">
             <span class="material-symbols-outlined">arrow_back</span>
           </button>
           <span class="kai-badge kai-badge-secondary" style="font-size: 10px;">
-            Guided Chiromancy
+            Guided Chiromancy • Mode 2
           </span>
           <button id="quest-close-btn" class="kai-btn-icon" aria-label="Cancel">
             <span class="material-symbols-outlined">close</span>
           </button>
         </div>
 
-        <!-- Render Current Module Widget -->
-        <div id="quest-widget-container">
-          ${renderQuestionnaireStep(currentStepIdx, currentAnswer)}
-        </div>
-
-        <!-- Navigation Buttons -->
-        <div style="display: flex; gap: 10px; margin-top: 10px;">
-          <button id="quest-prev-btn" class="kai-btn kai-btn-secondary" style="flex: 1;" ${currentStepIdx === 0 ? 'disabled style="opacity: 0.5;"' : ''}>
-            <span>Back</span>
-          </button>
-          <button id="quest-next-btn" class="kai-btn kai-btn-primary" style="flex: 2;" ${!currentAnswer ? 'disabled style="opacity: 0.5;"' : ''}>
-            <span>${currentStepIdx === questionnaireModules.length - 1 ? 'Synthesize Dossier' : 'Next Step'}</span>
-            <span class="material-symbols-outlined">arrow_forward</span>
-          </button>
+        <!-- Render Current Question via HUD -->
+        <div id="quest-hud-viewport">
+          ${QuestionnaireHUD.renderQuestion(currentQ, currentAns, context)}
         </div>
 
       </div>
     `;
 
-    // Handle Option Selection
-    container.querySelectorAll('[data-opt-id]').forEach(el => {
+    // Wire Option Selection
+    container.querySelectorAll('[data-option-id]').forEach(el => {
       el.addEventListener('click', () => {
-        const optId = el.getAttribute('data-opt-id');
-        userAnswers[currentModule.id] = optId;
+        const optId = el.getAttribute('data-option-id');
+        engine.setAnswer(currentQ.id, optId);
         render();
+      });
+
+      // Keyboard Accessibility
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const optId = el.getAttribute('data-option-id');
+          engine.setAnswer(currentQ.id, optId);
+          render();
+        }
       });
     });
 
+    // Navigation Buttons
     container.querySelector('#quest-back-btn')?.addEventListener('click', handleBack);
     container.querySelector('#quest-prev-btn')?.addEventListener('click', handleBack);
 
@@ -74,63 +144,46 @@ export function renderQuestionnaireScreen(container) {
     });
 
     container.querySelector('#quest-next-btn')?.addEventListener('click', () => {
-      if (currentStepIdx < questionnaireModules.length - 1) {
-        currentStepIdx++;
-        render();
-      } else {
-        isSynthesizing = true;
+      if (engine.isCurrentQuestionValid()) {
+        engine.next();
         render();
       }
     });
   }
 
   function handleBack() {
-    if (currentStepIdx > 0) {
-      currentStepIdx--;
+    if (contextHasHistory()) {
+      engine.prev();
       render();
     } else {
       router.navigate(ROUTES.GUIDED_READING);
     }
   }
 
-  function renderSynthesisTransition() {
-    container.innerHTML = `
-      <div style="position: relative; width: 100%; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; text-align: center; background: var(--color-background); overflow: hidden;">
-        
-        <!-- Geometric Analysis Matrix (Feature Correlation) -->
-        <div style="position: relative; width: 220px; height: 220px; display: flex; align-items: center; justify-content: center;">
-          <svg viewBox="0 0 200 200" style="width: 100%; height: 100%; animation: spin 12s linear infinite;" fill="none">
-            <circle cx="100" cy="100" r="90" stroke="#e4c276" stroke-width="1.5" stroke-dasharray="4 6"/>
-            <circle cx="100" cy="100" r="70" stroke="#cabeff" stroke-width="1.2" stroke-dasharray="2 4"/>
-            <circle cx="100" cy="100" r="50" stroke="#47d6ff" stroke-width="1"/>
-            <polygon points="100,20 180,150 20,150" stroke="#e4c276" stroke-width="1" opacity="0.6"/>
-            <polygon points="100,180 180,50 20,50" stroke="#cabeff" stroke-width="1" opacity="0.6"/>
-          </svg>
-          <div style="position: absolute; width: 80px; height: 80px; border-radius: 9999px; background: rgba(147,125,255,0.2); filter: blur(16px);" class="glow-pulsing"></div>
-          <span class="material-symbols-outlined" style="position: absolute; font-size: 36px; color: var(--color-secondary);">auto_awesome</span>
-        </div>
+  function contextHasHistory() {
+    return engine.currentActiveIndex > 0;
+  }
 
-        <h2 style="font-family: var(--font-display); font-size: 24px; font-weight: 600; color: var(--color-text-high); margin-top: 32px;">
-          Synthesizing Palm Dossier
-        </h2>
-        <p style="font-size: 13px; color: var(--color-on-surface-variant); margin-top: 8px; max-width: 300px;">
-          Correlating optical biometric creases with documented Hasta Samudrika traditions and modern chiromancy...
-        </p>
+  function handleSubmit() {
+    // Transition to submitting state
+    engine.stateMachine.transition(QUESTIONNAIRE_STATES.SUBMITTING);
+    render();
 
-        <div style="margin-top: 24px; display: flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: var(--radius-full); background: var(--color-surface-container); border: 1px solid var(--color-border-subtle);">
-          <span style="width: 8px; height: 8px; border-radius: 9999px; background: var(--color-secondary);" class="glow-pulsing"></span>
-          <span style="font-size: 11px; font-weight: 700; color: var(--color-secondary); letter-spacing: 0.08em; text-transform: uppercase;">
-            Constructing 7 Chapters
-          </span>
-        </div>
+    // Convert questionnaire answers to canonical PalmFeatureModel
+    const featureModel = QuestionnaireFeatureAdapter.toPalmFeatureModel(engine.answers);
 
-      </div>
-    `;
+    // Synthesize structured reading dossier across 4 epistemic tiers
+    const dossier = PalmInterpretationEngine.synthesize(featureModel);
 
-    // Simulate 2.5 second synthesis then transition to Detailed Report
+    // Transition smoothly to Quick Report after brief synthesis celebration
     setTimeout(() => {
-      router.navigate(ROUTES.DETAILED_REPORT, { id: 'RDG-2026-0922-002' });
-    }, 2500);
+      engine.stateMachine.transition(QUESTIONNAIRE_STATES.COMPLETE);
+      router.navigate(ROUTES.QUICK_REPORT, {
+        featureModel,
+        dossier,
+        readingMethod: 'GUIDED_QUESTIONNAIRE'
+      });
+    }, 1800);
   }
 
   render();

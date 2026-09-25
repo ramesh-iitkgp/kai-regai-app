@@ -65,21 +65,33 @@ function getLinePresentation(lineKey, lineData) {
 }
 
 export function renderQuickReportScreen(container, params = {}) {
-  const { visionResult, featureModel, capturedImage } = params;
-  const reading = mockReadings[0];
+  const { visionResult, featureModel, capturedImage, dossier } = params;
+  const isQuestionnaire = featureModel?.provenance?.reading_method === 'GUIDED_QUESTIONNAIRE' || 
+                          featureModel?.provenance?.mode === 'MODE_2_QUESTIONNAIRE' ||
+                          dossier?.reading_method === 'GUIDED_QUESTIONNAIRE';
+  const reading = dossier || mockReadings[0];
 
-  // Derive display values from real feature model if available
-  const hasRealScan = Boolean(featureModel || visionResult);
-  const handSide = featureModel?.hand?.side || visionResult?.hand?.handedness || 'RIGHT';
+  // Derive display values from real feature model or dossier if available
+  const hasRealScan = Boolean(featureModel || visionResult || dossier);
+  const handSide = featureModel?.hand?.side || visionResult?.hand?.handedness || dossier?.hand_side || 'RIGHT';
   const qualityScorePct = Math.round(
-    (featureModel?.quality_score ?? visionResult?.imageQuality?.score ?? 0.94) * 100
+    (featureModel?.quality_score ?? visionResult?.imageQuality?.score ?? dossier?.quality_score ?? 0.94) * 100
   );
 
   // Build SVG paths for detected lines
   let dynamicLines = null;
   let lineItems = [];
 
-  if (featureModel?.major_lines) {
+  if (dossier?.major_lines) {
+    lineItems = dossier.major_lines.map(l => ({
+      name: l.name,
+      color: l.color,
+      status: l.status,
+      badgeText: l.status === 'DETECTED' ? 'Observed' : (l.status === 'PARTIAL' ? 'Partial' : (l.status === 'OUT_OF_FRAME' ? 'Out of Frame' : 'Not Clear')),
+      badgeClass: l.status === 'DETECTED' ? 'kai-badge-tertiary' : 'kai-badge-secondary',
+      observation: l.observation
+    }));
+  } else if (featureModel?.major_lines) {
     const ml = featureModel.major_lines;
     dynamicLines = {
       life: {
@@ -137,11 +149,11 @@ export function renderQuickReportScreen(container, params = {}) {
       
       <!-- Top Action Bar -->
       <div style="display: flex; align-items: center; justify-content: space-between;">
-        <button id="quick-back-btn" class="kai-btn-icon" aria-label="Back to Scanner">
+        <button id="quick-back-btn" class="kai-btn-icon" aria-label="Back">
           <span class="material-symbols-outlined">arrow_back</span>
         </button>
         <span class="kai-badge kai-badge-secondary" style="font-size: 10px;">
-          ${hasRealScan ? 'Live Biometric Scan • Mode 1' : 'Rapid Scan • Mode 1'}
+          ${isQuestionnaire ? 'Guided Observations • Mode 2' : (hasRealScan ? 'Live Biometric Scan • Mode 1' : 'Rapid Scan • Mode 1')}
         </span>
         <button id="quick-share-btn" class="kai-btn-icon" aria-label="Share Reading">
           <span class="material-symbols-outlined">share</span>
@@ -157,8 +169,8 @@ export function renderQuickReportScreen(container, params = {}) {
               ${handSide} Hand • Dominant
             </span>
           </div>
-          <span style="font-family: monospace; font-size: 11px; color: var(--color-secondary);" title="Optical image quality (illumination, sharpness, framing)">
-            IMAGE QUALITY: ${qualityScorePct}%
+          <span style="font-family: monospace; font-size: 11px; color: var(--color-secondary);" title="${isQuestionnaire ? 'Observation completeness & consistency' : 'Optical image quality (illumination, sharpness, framing)'}">
+            ${isQuestionnaire ? 'OBSERVATION CONFIDENCE' : 'IMAGE QUALITY'}: ${qualityScorePct}%
           </span>
         </div>
 
@@ -230,7 +242,11 @@ export function renderQuickReportScreen(container, params = {}) {
   `;
 
   document.getElementById('quick-back-btn')?.addEventListener('click', () => {
-    router.navigate(ROUTES.SCANNER);
+    if (isQuestionnaire) {
+      router.navigate(ROUTES.GUIDED_READING);
+    } else {
+      router.navigate(ROUTES.SCANNER);
+    }
   });
   document.getElementById('quick-done-btn')?.addEventListener('click', () => {
     router.navigate(ROUTES.HOME);
@@ -239,7 +255,8 @@ export function renderQuickReportScreen(container, params = {}) {
     router.navigate(ROUTES.DETAILED_REPORT, { 
       id: reading.id,
       featureModel,
-      visionResult
+      visionResult,
+      dossier
     });
   });
   document.getElementById('quick-share-btn')?.addEventListener('click', () => {

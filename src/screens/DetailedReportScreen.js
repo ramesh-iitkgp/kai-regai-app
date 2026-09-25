@@ -10,7 +10,12 @@ import { mockReadings } from '../mock/mockReadings.js';
 import { renderPalmLineOverlay } from '../components/PalmLineOverlay.js';
 
 export function renderDetailedReportScreen(container, params = {}) {
-  const reading = mockReadings.find(r => r.id === params.id) || mockReadings[1];
+  const reading = params.dossier || mockReadings.find(r => r.id === params.id) || mockReadings[1];
+  const isQuestionnaire = reading.reading_method === 'GUIDED_QUESTIONNAIRE' ||
+                          params.featureModel?.provenance?.reading_method === 'GUIDED_QUESTIONNAIRE' ||
+                          params.featureModel?.provenance?.mode === 'MODE_2_QUESTIONNAIRE';
+  const handSide = params.featureModel?.hand?.side || reading.hand_side || 'Right';
+  const methodLabel = reading.reading_method_label || (isQuestionnaire ? 'Guided Palm Reading' : 'Vedic Synthesis');
 
   let activeTab = router.preservedState.detailedReportTab || 'OVERVIEW';
   let activeLine = router.preservedState.detailedReportLine || 'LIFE';
@@ -26,7 +31,7 @@ export function renderDetailedReportScreen(container, params = {}) {
             <span class="material-symbols-outlined">arrow_back</span>
           </button>
           <span class="kai-badge kai-badge-secondary" style="font-size: 10px;">
-            Hastarekha Dossier
+            ${isQuestionnaire ? 'Guided Dossier • Mode 2' : 'Hastarekha Dossier'}
           </span>
           <button id="detail-export-btn" class="kai-btn-icon" aria-label="Export PDF">
             <span class="material-symbols-outlined">picture_as_pdf</span>
@@ -37,7 +42,7 @@ export function renderDetailedReportScreen(container, params = {}) {
         <div style="border-bottom: 1px solid var(--color-border-subtle); padding-bottom: 14px;">
           <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
             <span style="font-size: 11px; font-weight: 700; color: var(--color-secondary); letter-spacing: 0.1em; text-transform: uppercase;">
-              Vedic Synthesis • Right Hand
+              ${methodLabel} • ${handSide} Hand
             </span>
           </div>
           <h1 style="font-family: var(--font-display); font-size: 26px; font-weight: 600; color: var(--color-text-high);">
@@ -84,7 +89,11 @@ export function renderDetailedReportScreen(container, params = {}) {
 
     // Action Listeners
     container.querySelector('#detail-back-btn')?.addEventListener('click', () => {
-      router.navigate(ROUTES.READINGS);
+      if (params.dossier || params.featureModel) {
+        router.navigate(ROUTES.QUICK_REPORT, params);
+      } else {
+        router.navigate(ROUTES.READINGS);
+      }
     });
 
     container.querySelector('#detail-export-btn')?.addEventListener('click', () => {

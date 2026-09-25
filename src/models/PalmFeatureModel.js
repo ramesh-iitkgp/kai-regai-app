@@ -24,47 +24,52 @@ export class PalmFeatureModel {
     // Major palm crease lines (with semantic colors & geometry)
     this.major_lines = {
       life_line: {
+        ...data.major_lines?.life_line,
         detected: data.major_lines?.life_line?.detected ?? true,
         length: data.major_lines?.life_line?.length || 'LONG_SWEEPING',
         curvature: data.major_lines?.life_line?.curvature || 'WIDE_ARC',
         depth: data.major_lines?.life_line?.depth || 'DEEP_CLEAR',
         confidence: data.major_lines?.life_line?.confidence ?? 0.94,
-        semantic_color: '#A855F7', // Violet
-        glyph: 'vitality'
+        semantic_color: data.major_lines?.life_line?.semantic_color || '#A855F7', // Violet
+        glyph: data.major_lines?.life_line?.glyph || 'vitality'
       },
       head_line: {
+        ...data.major_lines?.head_line,
         detected: data.major_lines?.head_line?.detected ?? true,
         length: data.major_lines?.head_line?.length || 'LONG',
         slope: data.major_lines?.head_line?.slope || 'GENTLE_SLOPE_TO_LUNA',
         clarity: data.major_lines?.head_line?.clarity || 'UNBROKEN',
         confidence: data.major_lines?.head_line?.confidence ?? 0.96,
-        semantic_color: '#00D2FF', // Blue / Cyan
-        glyph: 'intellect'
+        semantic_color: data.major_lines?.head_line?.semantic_color || '#00D2FF', // Blue / Cyan
+        glyph: data.major_lines?.head_line?.glyph || 'intellect'
       },
       heart_line: {
+        ...data.major_lines?.heart_line,
         detected: data.major_lines?.heart_line?.detected ?? true,
         curvature: data.major_lines?.heart_line?.curvature || 'CURVED_TO_JUPITER',
         forking: data.major_lines?.heart_line?.forking || 'TRIDENT_TERMINATION',
         confidence: data.major_lines?.heart_line?.confidence ?? 0.92,
-        semantic_color: '#F43F5E', // Rose
-        glyph: 'emotion'
+        semantic_color: data.major_lines?.heart_line?.semantic_color || '#F43F5E', // Rose
+        glyph: data.major_lines?.heart_line?.glyph || 'emotion'
       },
       fate_line: {
+        ...data.major_lines?.fate_line,
         detected: data.major_lines?.fate_line?.detected ?? true,
         origin: data.major_lines?.fate_line?.origin || 'BASE_OF_PALM',
         destination: data.major_lines?.fate_line?.destination || 'MOUNT_OF_SATURN',
         continuity: data.major_lines?.fate_line?.continuity || 'STRONG_CENTRAL',
         confidence: data.major_lines?.fate_line?.confidence ?? 0.88,
-        semantic_color: '#FBBF24', // Gold
-        glyph: 'destiny'
+        semantic_color: data.major_lines?.fate_line?.semantic_color || '#FBBF24', // Gold
+        glyph: data.major_lines?.fate_line?.glyph || 'destiny'
       },
       sun_line: {
+        ...data.major_lines?.sun_line,
         detected: data.major_lines?.sun_line?.detected ?? true,
         strength: data.major_lines?.sun_line?.strength || 'PROMINENT_UPPER',
         destination: data.major_lines?.sun_line?.destination || 'MOUNT_OF_APOLLO',
         confidence: data.major_lines?.sun_line?.confidence ?? 0.85,
-        semantic_color: '#F59E0B', // Amber
-        glyph: 'radiance'
+        semantic_color: data.major_lines?.sun_line?.semantic_color || '#F59E0B', // Amber
+        glyph: data.major_lines?.sun_line?.glyph || 'radiance'
       }
     };
 
@@ -95,9 +100,10 @@ export class PalmFeatureModel {
     // Provenance & Quality
     this.quality_score = data.quality_score ?? 0.94;
     this.provenance = {
+      ...data.provenance,
       mode: data.provenance?.mode || 'MODE_1_SCANNER',
       cv_version: data.provenance?.cv_version || '0.4.0-mock',
-      knowledge_version: '1.1.0'
+      knowledge_version: data.provenance?.knowledge_version || '1.1.0'
     };
   }
 }
