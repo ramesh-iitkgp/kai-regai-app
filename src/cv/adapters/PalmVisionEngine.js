@@ -80,6 +80,7 @@ export class PalmVisionEngine {
       const palm = PalmSegmentation.extractPalmROI(image, hand);
       palm.usability = usability;
       palm.qualityScore = imageQuality.score;
+      palm.handedness = hand.handedness || options.handednessHint || 'RIGHT';
       stageTimingsMs.segmentation = Number((performance.now() - t3).toFixed(2));
 
       // 5. Multi-Scale Crease Enhancement (CLAHE + Hessian ridge filter)

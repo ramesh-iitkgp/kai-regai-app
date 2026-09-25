@@ -29,7 +29,7 @@ export class MajorLineClassifier {
    */
   static classify(candidates, size, palmROI, customConfig = {}) {
     const config = { ...PalmCVConfig.classification, ...customConfig };
-    const priors = config.searchPriors;
+    const priors = this.resolvePriors(config.searchPriors, palmROI);
 
     const result = {
       life: this.createEmptyLine('LIFE'),
@@ -60,12 +60,38 @@ export class MajorLineClassifier {
   }
 
   /**
+   * Resolve anatomically accurate search sectors based on hand side
+   */
+  static resolvePriors(basePriors, palmROI) {
+    if (!palmROI || palmROI.handedness !== 'LEFT') {
+      return basePriors;
+    }
+    // Horizontally mirror search sectors for left hand (radial thumb on right, ulnar on left)
+    const mirrored = {};
+    for (const [key, prior] of Object.entries(basePriors)) {
+      mirrored[key] = {
+        ...prior,
+        startZone: {
+          x: [Number((1 - prior.startZone.x[1]).toFixed(3)), Number((1 - prior.startZone.x[0]).toFixed(3))],
+          y: [...prior.startZone.y]
+        },
+        endZone: {
+          x: [Number((1 - prior.endZone.x[1]).toFixed(3)), Number((1 - prior.endZone.x[0]).toFixed(3))],
+          y: [...prior.endZone.y]
+        }
+      };
+    }
+    return mirrored;
+  }
+
+  /**
    * Evaluate candidates against anatomical prior boundaries
    */
   static matchBestCandidate(lineType, candidates, prior, config, palmROI = null) {
     let bestCandidate = null;
     let bestScore = -1;
     let bestEvidence = null;
+    const isLeft = palmROI?.handedness === 'LEFT';
 
     for (const cand of candidates) {
       const pts = cand.normPolyline;
@@ -75,8 +101,8 @@ export class MajorLineClassifier {
       const end = pts[pts.length - 1];
 
       // Test both orientations of the polyline
-      const forwardScore = this.scoreAlignment(start, end, pts, prior);
-      const reverseScore = this.scoreAlignment(end, start, pts, prior);
+      const forwardScore = this.scoreAlignment(start, end, pts, prior, isLeft);
+      const reverseScore = this.scoreAlignment(end, start, pts, prior, isLeft);
 
       const alignmentScore = Math.max(forwardScore, reverseScore);
       const isReversed = reverseScore > forwardScore;
@@ -154,23 +180,25 @@ export class MajorLineClassifier {
   /**
    * Spatial scoring between start/end points and prior bounding sectors
    */
-  static scoreAlignment(start, end, pts, prior) {
+  static scoreAlignment(start, end, pts, prior, isLeft = false) {
     // Trajectory orientation & minimum span verification
     const dx = Math.abs(end.x - start.x);
     const dy = Math.abs(end.y - start.y);
     if (prior.trajectoryArc === 'VERTICAL_APOLLO') {
-      if (dy < 0.22 || dy < dx * 0.90) {
+      if (dy < 0.20 || dy < dx * 0.85) {
         // Line is too short vertically or predominantly transverse; cannot be vertical Sun line!
         return 0;
       }
-      // Sun line must remain in the Apollo corridor under ring finger (x between 0.50 and 0.76)
+      // Sun line must remain in the Apollo corridor under ring finger
+      const minApolloX = isLeft ? 0.24 : 0.50;
+      const maxApolloX = isLeft ? 0.50 : 0.76;
       for (const p of pts) {
-        if (p.x > 0.76 || p.x < 0.50) return 0;
+        if (p.x > maxApolloX || p.x < minApolloX) return 0;
       }
       // Must reach upper palm under Apollo mount
       if (Math.min(start.y, end.y) > 0.48) return 0;
     } else if (prior.trajectoryArc === 'VERTICAL_ASCENDING') {
-      if (dy < 0.25 || dy < dx * 0.90) {
+      if (dy < 0.22 || dy < dx * 0.85) {
         // Line is too short vertically or predominantly transverse; cannot be vertical Fate line!
         return 0;
       }
@@ -181,7 +209,7 @@ export class MajorLineClassifier {
       // Must span between lower palm and upper palm
       if (Math.max(start.y, end.y) < 0.55 || Math.min(start.y, end.y) > 0.48) return 0;
     } else if (prior.trajectoryArc === 'TRANSVERSE_DESCENDING' || prior.trajectoryArc === 'TRANSVERSE_ASCENDING') {
-      if (dx < 0.18 || dx < dy * 0.70) {
+      if (dx < 0.12 || dx < dy * 0.55) {
         // Line is too short horizontally or predominantly vertical; cannot be transverse Head/Heart line!
         return 0;
       }

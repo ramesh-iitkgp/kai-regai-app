@@ -1,0 +1,3661 @@
+{
+  "datasetVersion": "1.0.0",
+  "evaluationVersion": "1.0.0",
+  "evaluatedAt": "2026-09-25T12:12:31.624Z",
+  "gitCommit": "ac0c0e53887cb5bd55874c00c340a6c5a5a3733f",
+  "engineVersion": "p5.2.0",
+  "totalPalms": 32,
+  "splits": {
+    "developmentCount": 5,
+    "calibrationCount": 11,
+    "finalTestCount": 16
+  },
+  "experiments": [
+    {
+      "id": "P15-E001",
+      "hypothesis": "Left-hand search priors in MajorLineClassifier are horizontally mirrored compared to right-hand priors, causing severe recall degradation on left palms.",
+      "change": "Added handedness propagation to palm object in PalmVisionEngine and implemented resolvePriors in MajorLineClassifier with sector reflection (x -> 1-x) and Apollo corridor adjustment.",
+      "decision": "ACCEPT"
+    },
+    {
+      "id": "P15-E002",
+      "hypothesis": "PalmUsabilityValidator clips top edge based on bounding box, incorrectly penalizing close-ups where fingertips graze the border but the MCP palm creases are completely intact.",
+      "change": "Refined top clipping check to evaluate middle MCP joint landmark (landmark 9) y-coordinate against top margin rather than bounding box top.",
+      "decision": "ACCEPT"
+    },
+    {
+      "id": "P15-E003",
+      "hypothesis": "Rigid transverse span threshold (dx < 0.18) drops genuine Head/Heart segments exhibiting subtle curvature or partial fragmentation.",
+      "change": "Calibrated search priors sector ranges and relaxed transverse span threshold from 0.18 to 0.12, maintaining curvature and angle guards.",
+      "decision": "ACCEPT"
+    }
+  ],
+  "acceptedChanges": [
+    "Left-hand search prior mirroring (resolvePriors with handedness reflection)",
+    "MCP-aware top-clipping usability validation in PalmUsabilityValidator",
+    "Transverse crease span calibration (dx < 0.12 with sector bounds)"
+  ],
+  "rejectedChanges": [
+    "Global lowering of furrow contrast verification thresholds (rejected: increased false positives on micro-wrinkles)",
+    "Arbitrary curve extension / polynomial extrapolation beyond visible crease endpoints (rejected: violates P15 anti-fabrication mandate)"
+  ],
+  "lineMetrics": {
+    "life": {
+      "totalSamples": 32,
+      "tp": 27,
+      "fp": 0,
+      "tn": 0,
+      "fn": 5,
+      "precision": 1,
+      "recall": 0.8438,
+      "f1": 0.9153,
+      "specificity": 1,
+      "falsePositiveRate": 0,
+      "falseNegativeRate": 0.1563,
+      "meanLocalizationError": 0.14,
+      "medianLocalizationError": 0.13,
+      "p95LocalizationError": 0.16,
+      "hausdorffDistance": 0.26,
+      "meanContinuity": 0.91,
+      "meanConfidence": 0.88,
+      "localizationErrors": [
+        0,
+        0.1129,
+        0.1226,
+        0.1307,
+        0.1255,
+        0.1073,
+        0.1493,
+        0.1285,
+        0.1517,
+        0.129,
+        0.143,
+        0.1314,
+        0.1445,
+        0.1335,
+        0.1304,
+        0.1151,
+        0.0647,
+        0.3293,
+        0.1642,
+        0.1546,
+        0.1642,
+        0.1642,
+        0.1271,
+        0.1642,
+        0.09,
+        0.1287,
+        0.1463
+      ],
+      "medianErrors": [
+        0,
+        0.0991,
+        0.1107,
+        0.1249,
+        0.1224,
+        0.0786,
+        0.1609,
+        0.1249,
+        0.1596,
+        0.1346,
+        0.1544,
+        0.1381,
+        0.1538,
+        0.1348,
+        0.1255,
+        0.1214,
+        0.0677,
+        0.327,
+        0.1702,
+        0.17,
+        0.1702,
+        0.1702,
+        0.1237,
+        0.1702,
+        0.1001,
+        0.1249,
+        0.1603
+      ],
+      "hausdorffDistances": [
+        0,
+        0.2103,
+        0.2091,
+        0.1811,
+        0.1811,
+        0.2371,
+        0.3434,
+        0.1811,
+        0.3476,
+        0.2358,
+        0.3173,
+        0.2364,
+        0.34,
+        0.3123,
+        0.1813,
+        0.2355,
+        0.1317,
+        0.4409,
+        0.3514,
+        0.3368,
+        0.3514,
+        0.3514,
+        0.1813,
+        0.3514,
+        0.1955,
+        0.1811,
+        0.3476
+      ],
+      "endpointErrors": [
+        0,
+        0.1885,
+        0.1608,
+        0.1692,
+        0.1692,
+        0.175,
+        0.3313,
+        0.1692,
+        0.3334,
+        0.1814,
+        0.3183,
+        0.1835,
+        0.3267,
+        0.272,
+        0.1693,
+        0.2508,
+        0.121,
+        0.3859,
+        0.3353,
+        0.328,
+        0.3353,
+        0.3353,
+        0.1707,
+        0.3353,
+        0.1568,
+        0.1692,
+        0.3334
+      ],
+      "continuityScores": [
+        0.723,
+        0.982,
+        0.831,
+        0.995,
+        1,
+        0.866,
+        0.85,
+        0.998,
+        0.851,
+        0.98,
+        0.874,
+        0.984,
+        0.845,
+        0.898,
+        0.997,
+        0.882,
+        0.989,
+        0.976,
+        0.848,
+        0.851,
+        0.848,
+        0.848,
+        1,
+        0.848,
+        0.975,
+        0.998,
+        0.85
+      ],
+      "confidenceScores": [
+        0.788,
+        0.882,
+        0.827,
+        0.946,
+        0.928,
+        0.827,
+        0.853,
+        0.948,
+        0.853,
+        0.881,
+        0.855,
+        0.9,
+        0.859,
+        0.905,
+        0.946,
+        0.963,
+        0.898,
+        0.904,
+        0.843,
+        0.844,
+        0.843,
+        0.843,
+        0.945,
+        0.843,
+        0.936,
+        0.949,
+        0.851
+      ]
+    },
+    "head": {
+      "totalSamples": 32,
+      "tp": 26,
+      "fp": 1,
+      "tn": 0,
+      "fn": 5,
+      "precision": 0.963,
+      "recall": 0.8387,
+      "f1": 0.8966,
+      "specificity": 0,
+      "falsePositiveRate": 1,
+      "falseNegativeRate": 0.1613,
+      "meanLocalizationError": 0.16,
+      "medianLocalizationError": 0.17,
+      "p95LocalizationError": 0.19,
+      "hausdorffDistance": 0.32,
+      "meanContinuity": 0.84,
+      "meanConfidence": 0.86,
+      "localizationErrors": [
+        0,
+        0,
+        0.1905,
+        0.1822,
+        0.1885,
+        0.1613,
+        0.1633,
+        0.1629,
+        0.1851,
+        0.1556,
+        0.186,
+        0.1571,
+        0.1507,
+        0.1834,
+        0.1186,
+        0.1617,
+        0.1034,
+        0.1754,
+        0.1667,
+        0.1754,
+        0.1754,
+        0.1817,
+        0.1754,
+        0.2717,
+        0.1851,
+        0.1585
+      ],
+      "medianErrors": [
+        0,
+        0,
+        0.1973,
+        0.194,
+        0.1989,
+        0.1577,
+        0.1262,
+        0.1566,
+        0.193,
+        0.1509,
+        0.2033,
+        0.1497,
+        0.1218,
+        0.197,
+        0.0859,
+        0.1677,
+        0.0825,
+        0.1676,
+        0.1594,
+        0.1676,
+        0.1676,
+        0.1936,
+        0.1676,
+        0.2558,
+        0.1925,
+        0.1594
+      ],
+      "hausdorffDistances": [
+        0,
+        0,
+        0.3466,
+        0.3439,
+        0.3401,
+        0.3401,
+        0.3407,
+        0.3444,
+        0.3396,
+        0.3121,
+        0.3521,
+        0.337,
+        0.3087,
+        0.3396,
+        0.2834,
+        0.3275,
+        0.4391,
+        0.3482,
+        0.3334,
+        0.3482,
+        0.3482,
+        0.3462,
+        0.3482,
+        0.3585,
+        0.343,
+        0.3444
+      ],
+      "endpointErrors": [
+        0,
+        0,
+        0.3443,
+        0.236,
+        0.2207,
+        0.3205,
+        0.3197,
+        0.3227,
+        0.2286,
+        0.3065,
+        0.2325,
+        0.3168,
+        0.3006,
+        0.2298,
+        0.2493,
+        0.2969,
+        0.311,
+        0.3245,
+        0.3171,
+        0.3245,
+        0.3245,
+        0.2811,
+        0.3245,
+        0.3096,
+        0.2315,
+        0.3227
+      ],
+      "continuityScores": [
+        0.621,
+        0.625,
+        0.761,
+        0.851,
+        0.874,
+        0.85,
+        0.899,
+        0.851,
+        0.858,
+        0.874,
+        0.842,
+        0.845,
+        0.898,
+        0.856,
+        0.882,
+        0.905,
+        0.838,
+        0.848,
+        0.851,
+        0.848,
+        0.848,
+        0.831,
+        0.848,
+        0.95,
+        0.854,
+        0.85
+      ],
+      "confidenceScores": [
+        0.844,
+        0.875,
+        0.8,
+        0.814,
+        0.817,
+        0.881,
+        0.885,
+        0.881,
+        0.815,
+        0.877,
+        0.808,
+        0.89,
+        0.925,
+        0.817,
+        0.963,
+        0.896,
+        0.813,
+        0.87,
+        0.873,
+        0.87,
+        0.87,
+        0.875,
+        0.87,
+        0.922,
+        0.813,
+        0.879
+      ]
+    },
+    "heart": {
+      "totalSamples": 32,
+      "tp": 20,
+      "fp": 2,
+      "tn": 0,
+      "fn": 10,
+      "precision": 0.9091,
+      "recall": 0.6667,
+      "f1": 0.7693,
+      "specificity": 0,
+      "falsePositiveRate": 1,
+      "falseNegativeRate": 0.3333,
+      "meanLocalizationError": 0.21,
+      "medianLocalizationError": 0.24,
+      "p95LocalizationError": 0.32,
+      "hausdorffDistance": 0.33,
+      "meanContinuity": 0.87,
+      "meanConfidence": 0.79,
+      "localizationErrors": [
+        0,
+        0,
+        0.2419,
+        0.2427,
+        0.2427,
+        0.2443,
+        0.2426,
+        0.2485,
+        0.2377,
+        0.2319,
+        0.2154,
+        0.1638,
+        0.3152,
+        0.2484,
+        0.1938,
+        0.2484,
+        0.2334,
+        0.2484,
+        0.1334,
+        0.2425
+      ],
+      "medianErrors": [
+        0,
+        0,
+        0.2499,
+        0.2072,
+        0.2444,
+        0.2111,
+        0.2478,
+        0.2223,
+        0.237,
+        0.2469,
+        0.2145,
+        0.1894,
+        0.2963,
+        0.2223,
+        0.1951,
+        0.2223,
+        0.2407,
+        0.2223,
+        0.1128,
+        0.2444
+      ],
+      "hausdorffDistances": [
+        0,
+        0,
+        0.3693,
+        0.4014,
+        0.3699,
+        0.4147,
+        0.3696,
+        0.4275,
+        0.3679,
+        0.3731,
+        0.374,
+        0.2628,
+        0.4611,
+        0.4275,
+        0.3262,
+        0.4275,
+        0.2712,
+        0.4275,
+        0.2052,
+        0.3696
+      ],
+      "endpointErrors": [
+        0,
+        0,
+        0.3113,
+        0.3273,
+        0.3113,
+        0.3328,
+        0.3115,
+        0.3404,
+        0.3068,
+        0.3032,
+        0.2477,
+        0.1535,
+        0.3525,
+        0.3401,
+        0.2301,
+        0.3401,
+        0.2579,
+        0.3401,
+        0.1571,
+        0.3111
+      ],
+      "continuityScores": [
+        0.621,
+        0.625,
+        0.761,
+        0.984,
+        0.759,
+        0.986,
+        0.754,
+        0.988,
+        0.746,
+        0.768,
+        0.87,
+        1,
+        0.982,
+        0.989,
+        1,
+        0.989,
+        0.831,
+        0.989,
+        0.948,
+        0.76
+      ],
+      "confidenceScores": [
+        0.844,
+        0.875,
+        0.77,
+        0.747,
+        0.771,
+        0.747,
+        0.768,
+        0.739,
+        0.784,
+        0.769,
+        0.782,
+        0.953,
+        0.753,
+        0.737,
+        0.907,
+        0.737,
+        0.792,
+        0.737,
+        0.915,
+        0.771
+      ]
+    },
+    "fate": {
+      "totalSamples": 32,
+      "tp": 0,
+      "fp": 0,
+      "tn": 25,
+      "fn": 7,
+      "precision": 1,
+      "recall": 0,
+      "f1": 0,
+      "specificity": 1,
+      "falsePositiveRate": 0,
+      "falseNegativeRate": 1,
+      "meanLocalizationError": 0,
+      "medianLocalizationError": 0,
+      "p95LocalizationError": 0,
+      "hausdorffDistance": 0,
+      "meanContinuity": 0,
+      "meanConfidence": 0,
+      "localizationErrors": [],
+      "medianErrors": [],
+      "hausdorffDistances": [],
+      "endpointErrors": [],
+      "continuityScores": [],
+      "confidenceScores": []
+    },
+    "sun": {
+      "totalSamples": 32,
+      "tp": 0,
+      "fp": 0,
+      "tn": 28,
+      "fn": 4,
+      "precision": 1,
+      "recall": 0,
+      "f1": 0,
+      "specificity": 1,
+      "falsePositiveRate": 0,
+      "falseNegativeRate": 1,
+      "meanLocalizationError": 0,
+      "medianLocalizationError": 0,
+      "p95LocalizationError": 0,
+      "hausdorffDistance": 0,
+      "meanContinuity": 0,
+      "meanConfidence": 0,
+      "localizationErrors": [],
+      "medianErrors": [],
+      "hausdorffDistances": [],
+      "endpointErrors": [],
+      "continuityScores": [],
+      "confidenceScores": []
+    }
+  },
+  "splitLineMetrics": {
+    "DEVELOPMENT": {
+      "life": {
+        "totalSamples": 5,
+        "tp": 5,
+        "fp": 0,
+        "tn": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "specificity": 1,
+        "falsePositiveRate": 0,
+        "falseNegativeRate": 0,
+        "meanLocalizationError": 0.1,
+        "medianLocalizationError": 0.12,
+        "p95LocalizationError": 0.13,
+        "hausdorffDistance": 0.16,
+        "meanContinuity": 0.91,
+        "meanConfidence": 0.87,
+        "localizationErrors": [
+          0,
+          0.1129,
+          0.1226,
+          0.1307,
+          0.1255
+        ],
+        "medianErrors": [
+          0,
+          0.0991,
+          0.1107,
+          0.1249,
+          0.1224
+        ],
+        "hausdorffDistances": [
+          0,
+          0.2103,
+          0.2091,
+          0.1811,
+          0.1811
+        ],
+        "endpointErrors": [
+          0,
+          0.1885,
+          0.1608,
+          0.1692,
+          0.1692
+        ],
+        "continuityScores": [
+          0.723,
+          0.982,
+          0.831,
+          0.995,
+          1
+        ],
+        "confidenceScores": [
+          0.788,
+          0.882,
+          0.827,
+          0.946,
+          0.928
+        ]
+      },
+      "head": {
+        "totalSamples": 5,
+        "tp": 4,
+        "fp": 1,
+        "tn": 0,
+        "fn": 0,
+        "precision": 0.8,
+        "recall": 1,
+        "f1": 0.8889,
+        "specificity": 0,
+        "falsePositiveRate": 1,
+        "falseNegativeRate": 0,
+        "meanLocalizationError": 0.09,
+        "medianLocalizationError": 0.09,
+        "p95LocalizationError": 0.19,
+        "hausdorffDistance": 0.17,
+        "meanContinuity": 0.71,
+        "meanConfidence": 0.83,
+        "localizationErrors": [
+          0,
+          0,
+          0.1905,
+          0.1822
+        ],
+        "medianErrors": [
+          0,
+          0,
+          0.1973,
+          0.194
+        ],
+        "hausdorffDistances": [
+          0,
+          0,
+          0.3466,
+          0.3439
+        ],
+        "endpointErrors": [
+          0,
+          0,
+          0.3443,
+          0.236
+        ],
+        "continuityScores": [
+          0.621,
+          0.625,
+          0.761,
+          0.851
+        ],
+        "confidenceScores": [
+          0.844,
+          0.875,
+          0.8,
+          0.814
+        ]
+      },
+      "heart": {
+        "totalSamples": 5,
+        "tp": 3,
+        "fp": 1,
+        "tn": 0,
+        "fn": 1,
+        "precision": 0.75,
+        "recall": 0.75,
+        "f1": 0.75,
+        "specificity": 0,
+        "falsePositiveRate": 1,
+        "falseNegativeRate": 0.25,
+        "meanLocalizationError": 0.08,
+        "medianLocalizationError": 0,
+        "p95LocalizationError": 0.24,
+        "hausdorffDistance": 0.12,
+        "meanContinuity": 0.67,
+        "meanConfidence": 0.83,
+        "localizationErrors": [
+          0,
+          0,
+          0.2419
+        ],
+        "medianErrors": [
+          0,
+          0,
+          0.2499
+        ],
+        "hausdorffDistances": [
+          0,
+          0,
+          0.3693
+        ],
+        "endpointErrors": [
+          0,
+          0,
+          0.3113
+        ],
+        "continuityScores": [
+          0.621,
+          0.625,
+          0.761
+        ],
+        "confidenceScores": [
+          0.844,
+          0.875,
+          0.77
+        ]
+      },
+      "fate": {
+        "totalSamples": 5,
+        "tp": 0,
+        "fp": 0,
+        "tn": 3,
+        "fn": 2,
+        "precision": 1,
+        "recall": 0,
+        "f1": 0,
+        "specificity": 1,
+        "falsePositiveRate": 0,
+        "falseNegativeRate": 1,
+        "meanLocalizationError": 0,
+        "medianLocalizationError": 0,
+        "p95LocalizationError": 0,
+        "hausdorffDistance": 0,
+        "meanContinuity": 0,
+        "meanConfidence": 0,
+        "localizationErrors": [],
+        "medianErrors": [],
+        "hausdorffDistances": [],
+        "endpointErrors": [],
+        "continuityScores": [],
+        "confidenceScores": []
+      },
+      "sun": {
+        "totalSamples": 5,
+        "tp": 0,
+        "fp": 0,
+        "tn": 4,
+        "fn": 1,
+        "precision": 1,
+        "recall": 0,
+        "f1": 0,
+        "specificity": 1,
+        "falsePositiveRate": 0,
+        "falseNegativeRate": 1,
+        "meanLocalizationError": 0,
+        "medianLocalizationError": 0,
+        "p95LocalizationError": 0,
+        "hausdorffDistance": 0,
+        "meanContinuity": 0,
+        "meanConfidence": 0,
+        "localizationErrors": [],
+        "medianErrors": [],
+        "hausdorffDistances": [],
+        "endpointErrors": [],
+        "continuityScores": [],
+        "confidenceScores": []
+      }
+    },
+    "CALIBRATION": {
+      "life": {
+        "totalSamples": 11,
+        "tp": 9,
+        "fp": 0,
+        "tn": 0,
+        "fn": 2,
+        "precision": 1,
+        "recall": 0.8182,
+        "f1": 0.9,
+        "specificity": 1,
+        "falsePositiveRate": 0,
+        "falseNegativeRate": 0.1818,
+        "meanLocalizationError": 0.14,
+        "medianLocalizationError": 0.13,
+        "p95LocalizationError": 0.15,
+        "hausdorffDistance": 0.28,
+        "meanContinuity": 0.91,
+        "meanConfidence": 0.88,
+        "localizationErrors": [
+          0.1073,
+          0.1493,
+          0.1285,
+          0.1517,
+          0.129,
+          0.143,
+          0.1314,
+          0.1445,
+          0.1335
+        ],
+        "medianErrors": [
+          0.0786,
+          0.1609,
+          0.1249,
+          0.1596,
+          0.1346,
+          0.1544,
+          0.1381,
+          0.1538,
+          0.1348
+        ],
+        "hausdorffDistances": [
+          0.2371,
+          0.3434,
+          0.1811,
+          0.3476,
+          0.2358,
+          0.3173,
+          0.2364,
+          0.34,
+          0.3123
+        ],
+        "endpointErrors": [
+          0.175,
+          0.3313,
+          0.1692,
+          0.3334,
+          0.1814,
+          0.3183,
+          0.1835,
+          0.3267,
+          0.272
+        ],
+        "continuityScores": [
+          0.866,
+          0.85,
+          0.998,
+          0.851,
+          0.98,
+          0.874,
+          0.984,
+          0.845,
+          0.898
+        ],
+        "confidenceScores": [
+          0.827,
+          0.853,
+          0.948,
+          0.853,
+          0.881,
+          0.855,
+          0.9,
+          0.859,
+          0.905
+        ]
+      },
+      "head": {
+        "totalSamples": 11,
+        "tp": 9,
+        "fp": 0,
+        "tn": 0,
+        "fn": 2,
+        "precision": 1,
+        "recall": 0.8182,
+        "f1": 0.9,
+        "specificity": 1,
+        "falsePositiveRate": 0,
+        "falseNegativeRate": 0.1818,
+        "meanLocalizationError": 0.17,
+        "medianLocalizationError": 0.16,
+        "p95LocalizationError": 0.19,
+        "hausdorffDistance": 0.33,
+        "meanContinuity": 0.87,
+        "meanConfidence": 0.86,
+        "localizationErrors": [
+          0.1885,
+          0.1613,
+          0.1633,
+          0.1629,
+          0.1851,
+          0.1556,
+          0.186,
+          0.1571,
+          0.1507
+        ],
+        "medianErrors": [
+          0.1989,
+          0.1577,
+          0.1262,
+          0.1566,
+          0.193,
+          0.1509,
+          0.2033,
+          0.1497,
+          0.1218
+        ],
+        "hausdorffDistances": [
+          0.3401,
+          0.3401,
+          0.3407,
+          0.3444,
+          0.3396,
+          0.3121,
+          0.3521,
+          0.337,
+          0.3087
+        ],
+        "endpointErrors": [
+          0.2207,
+          0.3205,
+          0.3197,
+          0.3227,
+          0.2286,
+          0.3065,
+          0.2325,
+          0.3168,
+          0.3006
+        ],
+        "continuityScores": [
+          0.874,
+          0.85,
+          0.899,
+          0.851,
+          0.858,
+          0.874,
+          0.842,
+          0.845,
+          0.898
+        ],
+        "confidenceScores": [
+          0.817,
+          0.881,
+          0.885,
+          0.881,
+          0.815,
+          0.877,
+          0.808,
+          0.89,
+          0.925
+        ]
+      },
+      "heart": {
+        "totalSamples": 11,
+        "tp": 8,
+        "fp": 0,
+        "tn": 0,
+        "fn": 3,
+        "precision": 1,
+        "recall": 0.7273,
+        "f1": 0.8421,
+        "specificity": 1,
+        "falsePositiveRate": 0,
+        "falseNegativeRate": 0.2727,
+        "meanLocalizationError": 0.24,
+        "medianLocalizationError": 0.24,
+        "p95LocalizationError": 0.25,
+        "hausdorffDistance": 0.39,
+        "meanContinuity": 0.86,
+        "meanConfidence": 0.76,
+        "localizationErrors": [
+          0.2427,
+          0.2427,
+          0.2443,
+          0.2426,
+          0.2485,
+          0.2377,
+          0.2319,
+          0.2154
+        ],
+        "medianErrors": [
+          0.2072,
+          0.2444,
+          0.2111,
+          0.2478,
+          0.2223,
+          0.237,
+          0.2469,
+          0.2145
+        ],
+        "hausdorffDistances": [
+          0.4014,
+          0.3699,
+          0.4147,
+          0.3696,
+          0.4275,
+          0.3679,
+          0.3731,
+          0.374
+        ],
+        "endpointErrors": [
+          0.3273,
+          0.3113,
+          0.3328,
+          0.3115,
+          0.3404,
+          0.3068,
+          0.3032,
+          0.2477
+        ],
+        "continuityScores": [
+          0.984,
+          0.759,
+          0.986,
+          0.754,
+          0.988,
+          0.746,
+          0.768,
+          0.87
+        ],
+        "confidenceScores": [
+          0.747,
+          0.771,
+          0.747,
+          0.768,
+          0.739,
+          0.784,
+          0.769,
+          0.782
+        ]
+      },
+      "fate": {
+        "totalSamples": 11,
+        "tp": 0,
+        "fp": 0,
+        "tn": 9,
+        "fn": 2,
+        "precision": 1,
+        "recall": 0,
+        "f1": 0,
+        "specificity": 1,
+        "falsePositiveRate": 0,
+        "falseNegativeRate": 1,
+        "meanLocalizationError": 0,
+        "medianLocalizationError": 0,
+        "p95LocalizationError": 0,
+        "hausdorffDistance": 0,
+        "meanContinuity": 0,
+        "meanConfidence": 0,
+        "localizationErrors": [],
+        "medianErrors": [],
+        "hausdorffDistances": [],
+        "endpointErrors": [],
+        "continuityScores": [],
+        "confidenceScores": []
+      },
+      "sun": {
+        "totalSamples": 11,
+        "tp": 0,
+        "fp": 0,
+        "tn": 11,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "specificity": 1,
+        "falsePositiveRate": 0,
+        "falseNegativeRate": 0,
+        "meanLocalizationError": 0,
+        "medianLocalizationError": 0,
+        "p95LocalizationError": 0,
+        "hausdorffDistance": 0,
+        "meanContinuity": 0,
+        "meanConfidence": 0,
+        "localizationErrors": [],
+        "medianErrors": [],
+        "hausdorffDistances": [],
+        "endpointErrors": [],
+        "continuityScores": [],
+        "confidenceScores": []
+      }
+    },
+    "FINAL_TEST": {
+      "life": {
+        "totalSamples": 16,
+        "tp": 13,
+        "fp": 0,
+        "tn": 0,
+        "fn": 3,
+        "precision": 1,
+        "recall": 0.8125,
+        "f1": 0.8966,
+        "specificity": 1,
+        "falsePositiveRate": 0,
+        "falseNegativeRate": 0.1875,
+        "meanLocalizationError": 0.15,
+        "medianLocalizationError": 0.15,
+        "p95LocalizationError": 0.33,
+        "hausdorffDistance": 0.28,
+        "meanContinuity": 0.92,
+        "meanConfidence": 0.89,
+        "localizationErrors": [
+          0.1304,
+          0.1151,
+          0.0647,
+          0.3293,
+          0.1642,
+          0.1546,
+          0.1642,
+          0.1642,
+          0.1271,
+          0.1642,
+          0.09,
+          0.1287,
+          0.1463
+        ],
+        "medianErrors": [
+          0.1255,
+          0.1214,
+          0.0677,
+          0.327,
+          0.1702,
+          0.17,
+          0.1702,
+          0.1702,
+          0.1237,
+          0.1702,
+          0.1001,
+          0.1249,
+          0.1603
+        ],
+        "hausdorffDistances": [
+          0.1813,
+          0.2355,
+          0.1317,
+          0.4409,
+          0.3514,
+          0.3368,
+          0.3514,
+          0.3514,
+          0.1813,
+          0.3514,
+          0.1955,
+          0.1811,
+          0.3476
+        ],
+        "endpointErrors": [
+          0.1693,
+          0.2508,
+          0.121,
+          0.3859,
+          0.3353,
+          0.328,
+          0.3353,
+          0.3353,
+          0.1707,
+          0.3353,
+          0.1568,
+          0.1692,
+          0.3334
+        ],
+        "continuityScores": [
+          0.997,
+          0.882,
+          0.989,
+          0.976,
+          0.848,
+          0.851,
+          0.848,
+          0.848,
+          1,
+          0.848,
+          0.975,
+          0.998,
+          0.85
+        ],
+        "confidenceScores": [
+          0.946,
+          0.963,
+          0.898,
+          0.904,
+          0.843,
+          0.844,
+          0.843,
+          0.843,
+          0.945,
+          0.843,
+          0.936,
+          0.949,
+          0.851
+        ]
+      },
+      "head": {
+        "totalSamples": 16,
+        "tp": 13,
+        "fp": 0,
+        "tn": 0,
+        "fn": 3,
+        "precision": 1,
+        "recall": 0.8125,
+        "f1": 0.8966,
+        "specificity": 1,
+        "falsePositiveRate": 0,
+        "falseNegativeRate": 0.1875,
+        "meanLocalizationError": 0.17,
+        "medianLocalizationError": 0.18,
+        "p95LocalizationError": 0.27,
+        "hausdorffDistance": 0.35,
+        "meanContinuity": 0.86,
+        "meanConfidence": 0.87,
+        "localizationErrors": [
+          0.1834,
+          0.1186,
+          0.1617,
+          0.1034,
+          0.1754,
+          0.1667,
+          0.1754,
+          0.1754,
+          0.1817,
+          0.1754,
+          0.2717,
+          0.1851,
+          0.1585
+        ],
+        "medianErrors": [
+          0.197,
+          0.0859,
+          0.1677,
+          0.0825,
+          0.1676,
+          0.1594,
+          0.1676,
+          0.1676,
+          0.1936,
+          0.1676,
+          0.2558,
+          0.1925,
+          0.1594
+        ],
+        "hausdorffDistances": [
+          0.3396,
+          0.2834,
+          0.3275,
+          0.4391,
+          0.3482,
+          0.3334,
+          0.3482,
+          0.3482,
+          0.3462,
+          0.3482,
+          0.3585,
+          0.343,
+          0.3444
+        ],
+        "endpointErrors": [
+          0.2298,
+          0.2493,
+          0.2969,
+          0.311,
+          0.3245,
+          0.3171,
+          0.3245,
+          0.3245,
+          0.2811,
+          0.3245,
+          0.3096,
+          0.2315,
+          0.3227
+        ],
+        "continuityScores": [
+          0.856,
+          0.882,
+          0.905,
+          0.838,
+          0.848,
+          0.851,
+          0.848,
+          0.848,
+          0.831,
+          0.848,
+          0.95,
+          0.854,
+          0.85
+        ],
+        "confidenceScores": [
+          0.817,
+          0.963,
+          0.896,
+          0.813,
+          0.87,
+          0.873,
+          0.87,
+          0.87,
+          0.875,
+          0.87,
+          0.922,
+          0.813,
+          0.879
+        ]
+      },
+      "heart": {
+        "totalSamples": 16,
+        "tp": 9,
+        "fp": 1,
+        "tn": 0,
+        "fn": 6,
+        "precision": 0.9,
+        "recall": 0.6,
+        "f1": 0.72,
+        "specificity": 0,
+        "falsePositiveRate": 1,
+        "falseNegativeRate": 0.4,
+        "meanLocalizationError": 0.23,
+        "medianLocalizationError": 0.24,
+        "p95LocalizationError": 0.32,
+        "hausdorffDistance": 0.35,
+        "meanContinuity": 0.94,
+        "meanConfidence": 0.81,
+        "localizationErrors": [
+          0.1638,
+          0.3152,
+          0.2484,
+          0.1938,
+          0.2484,
+          0.2334,
+          0.2484,
+          0.1334,
+          0.2425
+        ],
+        "medianErrors": [
+          0.1894,
+          0.2963,
+          0.2223,
+          0.1951,
+          0.2223,
+          0.2407,
+          0.2223,
+          0.1128,
+          0.2444
+        ],
+        "hausdorffDistances": [
+          0.2628,
+          0.4611,
+          0.4275,
+          0.3262,
+          0.4275,
+          0.2712,
+          0.4275,
+          0.2052,
+          0.3696
+        ],
+        "endpointErrors": [
+          0.1535,
+          0.3525,
+          0.3401,
+          0.2301,
+          0.3401,
+          0.2579,
+          0.3401,
+          0.1571,
+          0.3111
+        ],
+        "continuityScores": [
+          1,
+          0.982,
+          0.989,
+          1,
+          0.989,
+          0.831,
+          0.989,
+          0.948,
+          0.76
+        ],
+        "confidenceScores": [
+          0.953,
+          0.753,
+          0.737,
+          0.907,
+          0.737,
+          0.792,
+          0.737,
+          0.915,
+          0.771
+        ]
+      },
+      "fate": {
+        "totalSamples": 16,
+        "tp": 0,
+        "fp": 0,
+        "tn": 13,
+        "fn": 3,
+        "precision": 1,
+        "recall": 0,
+        "f1": 0,
+        "specificity": 1,
+        "falsePositiveRate": 0,
+        "falseNegativeRate": 1,
+        "meanLocalizationError": 0,
+        "medianLocalizationError": 0,
+        "p95LocalizationError": 0,
+        "hausdorffDistance": 0,
+        "meanContinuity": 0,
+        "meanConfidence": 0,
+        "localizationErrors": [],
+        "medianErrors": [],
+        "hausdorffDistances": [],
+        "endpointErrors": [],
+        "continuityScores": [],
+        "confidenceScores": []
+      },
+      "sun": {
+        "totalSamples": 16,
+        "tp": 0,
+        "fp": 0,
+        "tn": 13,
+        "fn": 3,
+        "precision": 1,
+        "recall": 0,
+        "f1": 0,
+        "specificity": 1,
+        "falsePositiveRate": 0,
+        "falseNegativeRate": 1,
+        "meanLocalizationError": 0,
+        "medianLocalizationError": 0,
+        "p95LocalizationError": 0,
+        "hausdorffDistance": 0,
+        "meanContinuity": 0,
+        "meanConfidence": 0,
+        "localizationErrors": [],
+        "medianErrors": [],
+        "hausdorffDistances": [],
+        "endpointErrors": [],
+        "continuityScores": [],
+        "confidenceScores": []
+      }
+    }
+  },
+  "retakeMetrics": {
+    "totalEvaluated": 32,
+    "acceptedCount": 27,
+    "retakeAdvisedCount": 5,
+    "falseAccepts": 1,
+    "falseRejects": 1
+  },
+  "confidenceCalibration": {
+    "bins": [
+      {
+        "binRange": "[0.5-0.6]",
+        "count": 0,
+        "avgConfidence": 0,
+        "accuracy": 0,
+        "calibrationError": 0
+      },
+      {
+        "binRange": "[0.6-0.7]",
+        "count": 0,
+        "avgConfidence": 0,
+        "accuracy": 0,
+        "calibrationError": 0
+      },
+      {
+        "binRange": "[0.7-0.8]",
+        "count": 17,
+        "avgConfidence": 0.7605,
+        "accuracy": 0.8824,
+        "calibrationError": 0.1218
+      },
+      {
+        "binRange": "[0.8-0.9]",
+        "count": 42,
+        "avgConfidence": 0.8537,
+        "accuracy": 0.9524,
+        "calibrationError": 0.0987
+      },
+      {
+        "binRange": "[0.9-1.0]",
+        "count": 17,
+        "avgConfidence": 0.9326,
+        "accuracy": 0.8824,
+        "calibrationError": 0.0503
+      }
+    ],
+    "expectedCalibrationError": 0.0931
+  },
+  "temporalStability": {
+    "framesTested": 5,
+    "meanLineJitter": 0.0321,
+    "confidenceVariance": 0.0001,
+    "statusPreservationRate": 1,
+    "passed": true
+  },
+  "memoryLifecycle": {
+    "iterations": 25,
+    "initialHeapMb": 13.26,
+    "finalHeapMb": 9.88,
+    "deltaMb": -3.39,
+    "leakDetected": false
+  },
+  "failures": [
+    {
+      "imageId": "PALM-0003",
+      "line": "head",
+      "type": "FALSE_POSITIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Detected line head where ground truth is ABSENT"
+    },
+    {
+      "imageId": "PALM-0003",
+      "line": "heart",
+      "type": "FALSE_POSITIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Detected line heart where ground truth is ABSENT"
+    },
+    {
+      "imageId": "PALM-0004",
+      "line": "fate",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT fate line"
+    },
+    {
+      "imageId": "PALM-0005",
+      "line": "heart",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT heart line"
+    },
+    {
+      "imageId": "PALM-0005",
+      "line": "fate",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT fate line"
+    },
+    {
+      "imageId": "PALM-0005",
+      "line": "sun",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT sun line"
+    },
+    {
+      "imageId": "PALM-0006",
+      "line": "fate",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT fate line"
+    },
+    {
+      "imageId": "PALM-0008",
+      "line": "life",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT life line"
+    },
+    {
+      "imageId": "PALM-0008",
+      "line": "head",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT head line"
+    },
+    {
+      "imageId": "PALM-0008",
+      "line": "heart",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT heart line"
+    },
+    {
+      "imageId": "PALM-0009",
+      "line": "fate",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT fate line"
+    },
+    {
+      "imageId": "PALM-0010",
+      "line": "life",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT life line"
+    },
+    {
+      "imageId": "PALM-0010",
+      "line": "head",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT head line"
+    },
+    {
+      "imageId": "PALM-0010",
+      "line": "heart",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT heart line"
+    },
+    {
+      "imageId": "PALM-0014",
+      "line": "heart",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT heart line"
+    },
+    {
+      "imageId": "PALM-0017",
+      "line": "life",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT life line"
+    },
+    {
+      "imageId": "PALM-0017",
+      "line": "head",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT head line"
+    },
+    {
+      "imageId": "PALM-0017",
+      "line": "heart",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT heart line"
+    },
+    {
+      "imageId": "PALM-0018",
+      "line": "heart",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT heart line"
+    },
+    {
+      "imageId": "PALM-0018",
+      "line": "fate",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT fate line"
+    },
+    {
+      "imageId": "PALM-0018",
+      "line": "sun",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT sun line"
+    },
+    {
+      "imageId": "PALM-0021",
+      "line": "life",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT life line"
+    },
+    {
+      "imageId": "PALM-0021",
+      "line": "head",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT head line"
+    },
+    {
+      "imageId": "PALM-0021",
+      "line": "heart",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PARTIAL heart line"
+    },
+    {
+      "imageId": "PALM-0022",
+      "line": "heart",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT heart line"
+    },
+    {
+      "imageId": "PALM-0025",
+      "line": "heart",
+      "type": "FALSE_POSITIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Detected line heart where ground truth is ABSENT"
+    },
+    {
+      "imageId": "PALM-0027",
+      "line": "fate",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT fate line"
+    },
+    {
+      "imageId": "PALM-0027",
+      "line": "sun",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT sun line"
+    },
+    {
+      "imageId": "PALM-0030",
+      "line": "life",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT life line"
+    },
+    {
+      "imageId": "PALM-0030",
+      "line": "head",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT head line"
+    },
+    {
+      "imageId": "PALM-0030",
+      "line": "heart",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT heart line"
+    },
+    {
+      "imageId": "PALM-0031",
+      "line": "heart",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT heart line"
+    },
+    {
+      "imageId": "PALM-0031",
+      "line": "fate",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT fate line"
+    },
+    {
+      "imageId": "PALM-0032",
+      "line": "sun",
+      "type": "FALSE_NEGATIVE",
+      "triage": "ALGORITHMIC",
+      "reason": "Missed ground truth PRESENT sun line"
+    }
+  ],
+  "failureDistribution": {
+    "life": {
+      "CAPTURE": 0,
+      "SEGMENTATION": 0,
+      "PREPROCESSING": 0,
+      "CANDIDATE_GENERATION": 0,
+      "CANDIDATE_PRUNING": 0,
+      "FURROW_VERIFICATION": 0,
+      "CLASSIFICATION": 5,
+      "CONFIDENCE": 0
+    },
+    "head": {
+      "CAPTURE": 0,
+      "SEGMENTATION": 0,
+      "PREPROCESSING": 0,
+      "CANDIDATE_GENERATION": 0,
+      "CANDIDATE_PRUNING": 0,
+      "FURROW_VERIFICATION": 0,
+      "CLASSIFICATION": 5,
+      "CONFIDENCE": 0
+    },
+    "heart": {
+      "CAPTURE": 0,
+      "SEGMENTATION": 0,
+      "PREPROCESSING": 0,
+      "CANDIDATE_GENERATION": 0,
+      "CANDIDATE_PRUNING": 0,
+      "FURROW_VERIFICATION": 0,
+      "CLASSIFICATION": 10,
+      "CONFIDENCE": 0
+    },
+    "fate": {
+      "CAPTURE": 0,
+      "SEGMENTATION": 0,
+      "PREPROCESSING": 0,
+      "CANDIDATE_GENERATION": 0,
+      "CANDIDATE_PRUNING": 0,
+      "FURROW_VERIFICATION": 0,
+      "CLASSIFICATION": 7,
+      "CONFIDENCE": 0
+    },
+    "sun": {
+      "CAPTURE": 0,
+      "SEGMENTATION": 0,
+      "PREPROCESSING": 0,
+      "CANDIDATE_GENERATION": 0,
+      "CANDIDATE_PRUNING": 0,
+      "FURROW_VERIFICATION": 0,
+      "CLASSIFICATION": 4,
+      "CONFIDENCE": 0
+    }
+  },
+  "latencyRecordsMs": [
+    98.47,
+    68.22,
+    82.51,
+    63.53,
+    62.15,
+    65.51,
+    56.46,
+    14.66,
+    58.06,
+    10.75,
+    59.34,
+    54.25,
+    58.79,
+    57.31,
+    54.85,
+    54.96,
+    10.71,
+    60.17,
+    56.48,
+    58.57,
+    10.49,
+    61.92,
+    53.47,
+    59.02,
+    53.82,
+    56.99,
+    55.33,
+    57.62,
+    44.64,
+    12.66,
+    60.95,
+    53.79
+  ],
+  "caseEvaluations": [
+    {
+      "imageId": "PALM-0001",
+      "split": "DEVELOPMENT",
+      "handedness": "RIGHT",
+      "durationMs": 98.47,
+      "qualityPassed": true,
+      "status": "SUCCESS",
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.788,
+          "meanDist": 0,
+          "hausdorff": 0
+        },
+        "head": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.844,
+          "meanDist": 0,
+          "hausdorff": 0
+        },
+        "heart": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.844,
+          "meanDist": 0,
+          "hausdorff": 0
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0002",
+      "split": "DEVELOPMENT",
+      "handedness": "RIGHT",
+      "durationMs": 68.22,
+      "qualityPassed": true,
+      "status": "SUCCESS",
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.882,
+          "meanDist": 0.1129,
+          "hausdorff": 0.2103
+        },
+        "head": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.875,
+          "meanDist": 0,
+          "hausdorff": 0
+        },
+        "heart": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.875,
+          "meanDist": 0,
+          "hausdorff": 0
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0003",
+      "split": "DEVELOPMENT",
+      "handedness": "RIGHT",
+      "durationMs": 82.51,
+      "qualityPassed": true,
+      "status": "SUCCESS",
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.827,
+          "meanDist": 0.1226,
+          "hausdorff": 0.2091
+        },
+        "head": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0.85,
+          "meanDist": 0,
+          "hausdorff": 0
+        },
+        "heart": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0.85,
+          "meanDist": 0,
+          "hausdorff": 0
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0004",
+      "split": "DEVELOPMENT",
+      "handedness": "LEFT",
+      "durationMs": 63.53,
+      "qualityPassed": true,
+      "status": "SUCCESS",
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.946,
+          "meanDist": 0.1307,
+          "hausdorff": 0.1811
+        },
+        "head": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.8,
+          "meanDist": 0.1905,
+          "hausdorff": 0.3466
+        },
+        "heart": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.77,
+          "meanDist": 0.2419,
+          "hausdorff": 0.3693
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0005",
+      "split": "DEVELOPMENT",
+      "handedness": "RIGHT",
+      "durationMs": 62.15,
+      "qualityPassed": true,
+      "status": "SUCCESS",
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.928,
+          "meanDist": 0.1255,
+          "hausdorff": 0.1811
+        },
+        "head": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.814,
+          "meanDist": 0.1822,
+          "hausdorff": 0.3439
+        },
+        "heart": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0006",
+      "split": "CALIBRATION",
+      "handedness": "RIGHT",
+      "durationMs": 65.51,
+      "qualityPassed": true,
+      "status": "SUCCESS",
+      "qualityCategory": "DIFFICULT",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.827,
+          "meanDist": 0.1073,
+          "hausdorff": 0.2371
+        },
+        "head": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.817,
+          "meanDist": 0.1885,
+          "hausdorff": 0.3401
+        },
+        "heart": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.747,
+          "meanDist": 0.2427,
+          "hausdorff": 0.4014
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0007",
+      "split": "CALIBRATION",
+      "handedness": "LEFT",
+      "durationMs": 56.46,
+      "qualityPassed": true,
+      "status": "SUCCESS",
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.853,
+          "meanDist": 0.1493,
+          "hausdorff": 0.3434
+        },
+        "head": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.881,
+          "meanDist": 0.1613,
+          "hausdorff": 0.3401
+        },
+        "heart": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.771,
+          "meanDist": 0.2427,
+          "hausdorff": 0.3699
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0008",
+      "split": "CALIBRATION",
+      "handedness": "RIGHT",
+      "durationMs": 14.66,
+      "qualityPassed": false,
+      "status": "RECAPTURE_REQUIRED",
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "head": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "heart": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0009",
+      "split": "CALIBRATION",
+      "handedness": "RIGHT",
+      "durationMs": 58.06,
+      "qualityPassed": true,
+      "status": "SUCCESS",
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.948,
+          "meanDist": 0.1285,
+          "hausdorff": 0.1811
+        },
+        "head": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.885,
+          "meanDist": 0.1633,
+          "hausdorff": 0.3407
+        },
+        "heart": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.747,
+          "meanDist": 0.2443,
+          "hausdorff": 0.4147
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0010",
+      "split": "CALIBRATION",
+      "handedness": "RIGHT",
+      "durationMs": 10.75,
+      "qualityPassed": false,
+      "status": "RECAPTURE_REQUIRED",
+      "qualityCategory": "DIFFICULT",
+      "lighting": "LOW",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "head": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "heart": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0011",
+      "split": "CALIBRATION",
+      "handedness": "LEFT",
+      "durationMs": 59.34,
+      "qualityPassed": true,
+      "status": "SUCCESS",
+      "qualityCategory": "DIFFICULT",
+      "lighting": "HARSH",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.853,
+          "meanDist": 0.1517,
+          "hausdorff": 0.3476
+        },
+        "head": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.881,
+          "meanDist": 0.1629,
+          "hausdorff": 0.3444
+        },
+        "heart": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.768,
+          "meanDist": 0.2426,
+          "hausdorff": 0.3696
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0012",
+      "split": "CALIBRATION",
+      "handedness": "RIGHT",
+      "durationMs": 54.25,
+      "qualityPassed": true,
+      "status": "SUCCESS",
+      "qualityCategory": "DIFFICULT",
+      "lighting": "GLARE",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.881,
+          "meanDist": 0.129,
+          "hausdorff": 0.2358
+        },
+        "head": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.815,
+          "meanDist": 0.1851,
+          "hausdorff": 0.3396
+        },
+        "heart": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.739,
+          "meanDist": 0.2485,
+          "hausdorff": 0.4275
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0013",
+      "split": "CALIBRATION",
+      "handedness": "LEFT",
+      "durationMs": 58.79,
+      "qualityPassed": true,
+      "status": "SUCCESS",
+      "qualityCategory": "ACCEPTABLE",
+      "lighting": "BACKLIT",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.855,
+          "meanDist": 0.143,
+          "hausdorff": 0.3173
+        },
+        "head": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.877,
+          "meanDist": 0.1556,
+          "hausdorff": 0.3121
+        },
+        "heart": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.784,
+          "meanDist": 0.2377,
+          "hausdorff": 0.3679
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0014",
+      "split": "CALIBRATION",
+      "handedness": "RIGHT",
+      "durationMs": 57.31,
+      "qualityPassed": true,
+      "status": "SUCCESS",
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 8,
+      "lines": {
+        "life": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.9,
+          "meanDist": 0.1314,
+          "hausdorff": 0.2364
+        },
+        "head": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.808,
+          "meanDist": 0.186,
+          "hausdorff": 0.3521
+        },
+        "heart": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0015",
+      "split": "CALIBRATION",
+      "handedness": "LEFT",
+      "durationMs": 54.85,
+      "qualityPassed": true,
+      "status": "SUCCESS",
+      "qualityCategory": "ACCEPTABLE",
+      "lighting": "EVEN",
+      "tiltDegrees": -22,
+      "lines": {
+        "life": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.859,
+          "meanDist": 0.1445,
+          "hausdorff": 0.34
+        },
+        "head": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.89,
+          "meanDist": 0.1571,
+          "hausdorff": 0.337
+        },
+        "heart": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.769,
+          "meanDist": 0.2319,
+          "hausdorff": 0.3731
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0016",
+      "split": "CALIBRATION",
+      "handedness": "RIGHT",
+      "durationMs": 54.96,
+      "qualityPassed": true,
+      "status": "SUCCESS",
+      "qualityCategory": "FAILURE",
+      "lighting": "EVEN",
+      "tiltDegrees": 52,
+      "lines": {
+        "life": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.905,
+          "meanDist": 0.1335,
+          "hausdorff": 0.3123
+        },
+        "head": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.925,
+          "meanDist": 0.1507,
+          "hausdorff": 0.3087
+        },
+        "heart": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.782,
+          "meanDist": 0.2154,
+          "hausdorff": 0.374
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0017",
+      "split": "FINAL_TEST",
+      "handedness": "RIGHT",
+      "durationMs": 10.71,
+      "qualityPassed": true,
+      "status": "INSUFFICIENT_EVIDENCE",
+      "qualityCategory": "ACCEPTABLE",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "head": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "heart": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0018",
+      "split": "FINAL_TEST",
+      "handedness": "RIGHT",
+      "durationMs": 60.17,
+      "qualityPassed": true,
+      "status": "SUCCESS",
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.946,
+          "meanDist": 0.1304,
+          "hausdorff": 0.1813
+        },
+        "head": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.817,
+          "meanDist": 0.1834,
+          "hausdorff": 0.3396
+        },
+        "heart": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0019",
+      "split": "FINAL_TEST",
+      "handedness": "LEFT",
+      "durationMs": 56.48,
+      "qualityPassed": true,
+      "status": "SUCCESS",
+      "qualityCategory": "ACCEPTABLE",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.963,
+          "meanDist": 0.1151,
+          "hausdorff": 0.2355
+        },
+        "head": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.963,
+          "meanDist": 0.1186,
+          "hausdorff": 0.2834
+        },
+        "heart": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.953,
+          "meanDist": 0.1638,
+          "hausdorff": 0.2628
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0020",
+      "split": "FINAL_TEST",
+      "handedness": "RIGHT",
+      "durationMs": 58.57,
+      "qualityPassed": true,
+      "status": "SUCCESS",
+      "qualityCategory": "ACCEPTABLE",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.898,
+          "meanDist": 0.0647,
+          "hausdorff": 0.1317
+        },
+        "head": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.896,
+          "meanDist": 0.1617,
+          "hausdorff": 0.3275
+        },
+        "heart": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.753,
+          "meanDist": 0.3152,
+          "hausdorff": 0.4611
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0021",
+      "split": "FINAL_TEST",
+      "handedness": "LEFT",
+      "durationMs": 10.49,
+      "qualityPassed": false,
+      "status": "RECAPTURE_REQUIRED",
+      "qualityCategory": "PARTIAL",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "head": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "heart": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PARTIAL",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0022",
+      "split": "FINAL_TEST",
+      "handedness": "RIGHT",
+      "durationMs": 61.92,
+      "qualityPassed": true,
+      "status": "SUCCESS",
+      "qualityCategory": "PARTIAL",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PARTIAL",
+          "confidence": 0.904,
+          "meanDist": 0.3293,
+          "hausdorff": 0.4409
+        },
+        "head": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.813,
+          "meanDist": 0.1034,
+          "hausdorff": 0.4391
+        },
+        "heart": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0023",
+      "split": "FINAL_TEST",
+      "handedness": "RIGHT",
+      "durationMs": 53.47,
+      "qualityPassed": true,
+      "status": "SUCCESS",
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PARTIAL",
+          "confidence": 0.843,
+          "meanDist": 0.1642,
+          "hausdorff": 0.3514
+        },
+        "head": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.87,
+          "meanDist": 0.1754,
+          "hausdorff": 0.3482
+        },
+        "heart": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.737,
+          "meanDist": 0.2484,
+          "hausdorff": 0.4275
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0024",
+      "split": "FINAL_TEST",
+      "handedness": "LEFT",
+      "durationMs": 59.02,
+      "qualityPassed": true,
+      "status": "SUCCESS",
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.844,
+          "meanDist": 0.1546,
+          "hausdorff": 0.3368
+        },
+        "head": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.873,
+          "meanDist": 0.1667,
+          "hausdorff": 0.3334
+        },
+        "heart": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.907,
+          "meanDist": 0.1938,
+          "hausdorff": 0.3262
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0025",
+      "split": "FINAL_TEST",
+      "handedness": "RIGHT",
+      "durationMs": 53.82,
+      "qualityPassed": true,
+      "status": "SUCCESS",
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.843,
+          "meanDist": 0.1642,
+          "hausdorff": 0.3514
+        },
+        "head": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.87,
+          "meanDist": 0.1754,
+          "hausdorff": 0.3482
+        },
+        "heart": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0.737,
+          "meanDist": 0,
+          "hausdorff": 0
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0026",
+      "split": "FINAL_TEST",
+      "handedness": "RIGHT",
+      "durationMs": 56.99,
+      "qualityPassed": true,
+      "status": "SUCCESS",
+      "qualityCategory": "ACCEPTABLE",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.843,
+          "meanDist": 0.1642,
+          "hausdorff": 0.3514
+        },
+        "head": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.87,
+          "meanDist": 0.1754,
+          "hausdorff": 0.3482
+        },
+        "heart": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.737,
+          "meanDist": 0.2484,
+          "hausdorff": 0.4275
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0027",
+      "split": "FINAL_TEST",
+      "handedness": "LEFT",
+      "durationMs": 55.33,
+      "qualityPassed": true,
+      "status": "SUCCESS",
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.945,
+          "meanDist": 0.1271,
+          "hausdorff": 0.1813
+        },
+        "head": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.875,
+          "meanDist": 0.1817,
+          "hausdorff": 0.3462
+        },
+        "heart": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.792,
+          "meanDist": 0.2334,
+          "hausdorff": 0.2712
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0028",
+      "split": "FINAL_TEST",
+      "handedness": "RIGHT",
+      "durationMs": 57.62,
+      "qualityPassed": true,
+      "status": "SUCCESS",
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.843,
+          "meanDist": 0.1642,
+          "hausdorff": 0.3514
+        },
+        "head": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.87,
+          "meanDist": 0.1754,
+          "hausdorff": 0.3482
+        },
+        "heart": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.737,
+          "meanDist": 0.2484,
+          "hausdorff": 0.4275
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0029",
+      "split": "FINAL_TEST",
+      "handedness": "RIGHT",
+      "durationMs": 44.64,
+      "qualityPassed": true,
+      "status": "SUCCESS",
+      "qualityCategory": "ACCEPTABLE",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.936,
+          "meanDist": 0.09,
+          "hausdorff": 0.1955
+        },
+        "head": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.922,
+          "meanDist": 0.2717,
+          "hausdorff": 0.3585
+        },
+        "heart": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.915,
+          "meanDist": 0.1334,
+          "hausdorff": 0.2052
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0030",
+      "split": "FINAL_TEST",
+      "handedness": "RIGHT",
+      "durationMs": 12.66,
+      "qualityPassed": true,
+      "status": "INSUFFICIENT_EVIDENCE",
+      "qualityCategory": "ACCEPTABLE",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "head": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "heart": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0031",
+      "split": "FINAL_TEST",
+      "handedness": "RIGHT",
+      "durationMs": 60.95,
+      "qualityPassed": true,
+      "status": "SUCCESS",
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.949,
+          "meanDist": 0.1287,
+          "hausdorff": 0.1811
+        },
+        "head": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.813,
+          "meanDist": 0.1851,
+          "hausdorff": 0.343
+        },
+        "heart": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    },
+    {
+      "imageId": "PALM-0032",
+      "split": "FINAL_TEST",
+      "handedness": "LEFT",
+      "durationMs": 53.79,
+      "qualityPassed": true,
+      "status": "SUCCESS",
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "lines": {
+        "life": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.851,
+          "meanDist": 0.1463,
+          "hausdorff": 0.3476
+        },
+        "head": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.879,
+          "meanDist": 0.1585,
+          "hausdorff": 0.3444
+        },
+        "heart": {
+          "detected": true,
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.771,
+          "meanDist": 0.2425,
+          "hausdorff": 0.3696
+        },
+        "fate": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        },
+        "sun": {
+          "detected": false,
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0,
+          "meanDist": 1,
+          "hausdorff": 1
+        }
+      }
+    }
+  ],
+  "latencyStats": {
+    "mean": 52.7,
+    "median": 57.15,
+    "p95": 82.51,
+    "min": 10.49,
+    "max": 98.47,
+    "std": 19.78
+  },
+  "p14Baseline": {
+    "life": {
+      "precision": 1,
+      "recall": 0.2813,
+      "f1": 0.4391
+    },
+    "head": {
+      "precision": 0.9444,
+      "recall": 0.5484,
+      "f1": 0.6939
+    },
+    "heart": {
+      "precision": 0.9091,
+      "recall": 0.3333,
+      "f1": 0.4878
+    },
+    "fate": {
+      "precision": 1,
+      "recall": 0,
+      "f1": 0,
+      "fp": 0
+    },
+    "sun": {
+      "precision": 1,
+      "recall": 0,
+      "f1": 0,
+      "fp": 0
+    },
+    "temporalJitter": 0.0321,
+    "latencyMean": 54.44,
+    "latencyP95": 96,
+    "memoryDeltaMb": -9.05,
+    "confidenceECE": 0.0787
+  },
+  "p15Candidate": {
+    "life": {
+      "precision": 1,
+      "recall": 0.8438,
+      "f1": 0.9153
+    },
+    "head": {
+      "precision": 0.963,
+      "recall": 0.8387,
+      "f1": 0.8966
+    },
+    "heart": {
+      "precision": 0.9091,
+      "recall": 0.6667,
+      "f1": 0.7693
+    },
+    "fate": {
+      "precision": 1,
+      "recall": 0,
+      "f1": 0,
+      "fp": 0
+    },
+    "sun": {
+      "precision": 1,
+      "recall": 0,
+      "f1": 0,
+      "fp": 0
+    },
+    "temporalJitter": 0.0321,
+    "latencyMean": 52.7,
+    "latencyP95": 82.51,
+    "memoryDeltaMb": -3.39,
+    "confidenceECE": 0.0931
+  }
+}

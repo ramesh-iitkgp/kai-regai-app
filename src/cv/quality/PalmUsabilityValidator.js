@@ -85,7 +85,10 @@ export class PalmUsabilityValidator {
     const marginPx = Math.max(3, Math.min(width, height) * 0.02);
     const isLeftClipped = bbox.x <= marginPx;
     const isRightClipped = (bbox.x + bbox.width) >= (width - marginPx);
-    const isTopClipped = bbox.y <= marginPx;
+    // Anatomic palmar boundary: if middle MCP (landmark 9) is inside frame, palm is not top-clipped
+    const isTopClipped = hand.landmarks && hand.landmarks[9]
+      ? (hand.landmarks[9].y * height <= marginPx)
+      : (bbox.y <= marginPx);
     const isBotClipped = (bbox.y + bbox.height) >= (height - marginPx);
 
     // Natural wrist exit at bottom is acceptable; top/lateral clipping indicates cropped palm

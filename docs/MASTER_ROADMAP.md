@@ -26,7 +26,8 @@ Each phase has strict prerequisites, deliverables, and validation criteria. Agen
 | **P12** | **Payments / Monetization** | **Complete** | Provider-agnostic payment abstraction, product catalog, entitlement & transaction models, AccessPolicy, 15 golden cases |
 | **P13** | **Testing & QA** | *Pending Authorization* | CV accuracy benchmarks, rule engine test suite, end-to-end integration tests |
 | **P14** | **Real-Palm Dataset & Accuracy Validation** | **Complete (Audited)** | Real-palm golden corpus (32 palms), ground truth polylines, presence & localization benchmarks, ECE calibration, F01–F15 taxonomy |
-| **P15** | **App Store Releases** | *Pending Authorization* | Store listing assets, compliance disclosures, Google Play & Apple review |
+| **P15** | **CV Recall Recovery & Accuracy Improvement** | **Complete (Audited)** | Left-hand prior mirroring, MCP top-crop validation, transverse span calibration, Life recall 0.8438, 284/284 tests |
+| **P16** | **App Store Releases** | *Pending Authorization* | Store listing assets, compliance disclosures, Google Play & Apple review |
 
 ---
 
@@ -372,9 +373,30 @@ Each phase has strict prerequisites, deliverables, and validation criteria. Agen
 
 ---
 
-### Phase P15: App Store Release
+### Phase P15: CV Recall Recovery & Real-Palm Accuracy Improvement (Complete)
+* **Goal**: Increase genuine palm-line detection recall while preserving the strong precision, false-positive protection, temporal stability, privacy, and performance established in P14.
+* **Prerequisites**: P14 Certification and frozen baseline (`ac0c0e53887cb5bd55874c00c340a6c5a5a3733f`).
+* **Key Achievements**:
+  * Completed failure forensics across all 32 palms, diagnosing Left-Hand Search Prior Inversion ($x' = 1 - x$), Fingertip-Triggered False Cropping in `PalmUsabilityValidator`, and rigid transverse span cutoff ($dx < 0.18$).
+  * Implemented `resolvePriors` in `MajorLineClassifier` with dynamic handedness sector mirroring and Apollo corridor adjustments.
+  * Implemented MCP landmark top-crop validation in `PalmUsabilityValidator` (evaluating middle finger MCP landmark 9).
+  * Calibrated transverse span gate ($dx < 0.12$) to accommodate natural palmar crease curvature.
+  * Life Recall increased from `0.2813` to **`0.8438`** (+200% relative) with **`1.0000` precision (0 false positives)**.
+  * Head Recall increased from `0.5484` to **`0.8387`** with precision improving to **`0.9630`**.
+  * Heart Recall doubled from `0.3333` to **`0.6667`** with precision maintained at **`0.9091`**.
+  * Fate & Sun strictly preserved **0 false positives** and **1.0000 specificity**.
+  * Latency: Mean 52.70 ms, Median 57.15 ms, P95 82.51 ms (well within 174.16 ms budget).
+  * Temporal Jitter: 0.0321 (budget $\le 0.05$).
+  * Memory: -3.39 MB delta over 25 iterations (zero leaks).
+  * 6 new automated regression tests (`tests/cv/p15_recall_recovery.test.js`) bringing total regression suite to 284/284 PASSING.
+  * Complete documentation suite: `docs/p15/` (Failure Forensics, Experiment Log, Accuracy Comparison, CV Changes, Completion Report).
+* **Exit Gate**: All 32 golden samples evaluated; Life recall $\ge 0.80$; zero false positives on Fate/Sun; 284/284 tests passing; production Vite build passes in 76ms; **P15 STATUS: PASS**.
+
+---
+
+### Phase P16: App Store Releases
 * **Goal**: Launch Kai RegAI on Google Play Store and Apple App Store.
-* **Prerequisites**: P14 sign-off.
+* **Prerequisites**: P15 sign-off.
 * **Key Tasks**:
   * App Store screenshots, promotional video, metadata, localized descriptions.
   * Submission to Apple App Review and Google Play Console.

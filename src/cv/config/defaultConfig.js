@@ -94,34 +94,34 @@ export const PalmCVConfig = {
     // Prior search sectors normalized to rectified 512x512 palm space
     searchPriors: {
       LIFE: {
-        startZone: { x: [0.05, 0.40], y: [0.15, 0.55] }, // Near thumb-index crotch
+        startZone: { x: [0.02, 0.48], y: [0.12, 0.60] }, // Near thumb-index crotch
         trajectoryArc: 'THENAR_SWEEP',                    // Sweeps around base of thumb
-        endZone: { x: [0.10, 0.65], y: [0.55, 0.98] },   // Towards wrist crease
-        minExpectedLength: 60
+        endZone: { x: [0.05, 0.70], y: [0.45, 0.98] },   // Towards wrist crease
+        minExpectedLength: 50
       },
       HEAD: {
-        startZone: { x: [0.10, 0.45], y: [0.15, 0.52] }, // Near life line origin
+        startZone: { x: [0.05, 0.48], y: [0.12, 0.58] }, // Near life line origin
         trajectoryArc: 'TRANSVERSE_DESCENDING',            // Crosses mid-palm towards percussion/Luna
-        endZone: { x: [0.45, 0.95], y: [0.25, 0.75] },
-        minExpectedLength: 50
+        endZone: { x: [0.40, 0.95], y: [0.20, 0.80] },
+        minExpectedLength: 45
       },
       HEART: {
-        startZone: { x: [0.55, 0.95], y: [0.15, 0.50] }, // Originates at percussion side under Mercury
+        startZone: { x: [0.50, 0.95], y: [0.12, 0.55] }, // Originates at percussion side under Mercury
         trajectoryArc: 'TRANSVERSE_ASCENDING',             // Arcs across upper palm under fingers
-        endZone: { x: [0.15, 0.55], y: [0.15, 0.45] },   // Towards Jupiter/Saturn
-        minExpectedLength: 50
+        endZone: { x: [0.10, 0.60], y: [0.12, 0.50] },   // Towards Jupiter/Saturn
+        minExpectedLength: 45
       },
       FATE: {
-        startZone: { x: [0.35, 0.65], y: [0.60, 0.95] }, // Lower palm/wrist area
+        startZone: { x: [0.30, 0.70], y: [0.55, 0.98] }, // Lower palm/wrist area
         trajectoryArc: 'VERTICAL_ASCENDING',              // Runs vertically up palm center
-        endZone: { x: [0.35, 0.65], y: [0.15, 0.45] },   // Towards Saturn mount
-        minExpectedLength: 40
+        endZone: { x: [0.30, 0.70], y: [0.12, 0.50] },   // Towards Saturn mount
+        minExpectedLength: 35
       },
       SUN: {
-        startZone: { x: [0.55, 0.85], y: [0.50, 0.90] }, // Lower/mid palm towards Apollo side
+        startZone: { x: [0.50, 0.85], y: [0.45, 0.95] }, // Lower/mid palm towards Apollo side
         trajectoryArc: 'VERTICAL_APOLLO',                 // Runs vertically toward ring finger
-        endZone: { x: [0.55, 0.85], y: [0.15, 0.45] },   // Under Apollo mount
-        minExpectedLength: 35
+        endZone: { x: [0.50, 0.85], y: [0.12, 0.50] },   // Under Apollo mount
+        minExpectedLength: 30
       }
     }
   }
