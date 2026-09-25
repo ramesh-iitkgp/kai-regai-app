@@ -45,14 +45,25 @@ class Router {
       });
     }
 
+    // Merge in-memory state passed during navigate()
+    const state = this.pendingNavigationState || {};
+    this.pendingNavigationState = null;
+
     this.currentRoute = path;
-    this.routeParams = params;
+    this.routeParams = { ...params, ...state };
     this.notify();
   }
 
   navigate(route, params = {}) {
-    const queryString = Object.keys(params).length 
-      ? '?' + new URLSearchParams(params).toString() 
+    const queryParams = {};
+    for (const [k, v] of Object.entries(params)) {
+      if (typeof v === 'string' || typeof v === 'number' || typeof v === 'boolean') {
+        queryParams[k] = v;
+      }
+    }
+    this.pendingNavigationState = params;
+    const queryString = Object.keys(queryParams).length 
+      ? '?' + new URLSearchParams(queryParams).toString() 
       : '';
     window.location.hash = `#${route}${queryString}`;
   }
