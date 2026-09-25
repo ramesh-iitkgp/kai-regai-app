@@ -100,6 +100,7 @@ export class SynthesisEngine {
     }
 
     return {
+      key: lineKey,
       name: meta.name,
       color: meta.color,
       glyph: meta.glyph,
