@@ -1,0 +1,116 @@
+[
+  {
+    "configId": "baseline_default",
+    "description": "Baseline default parameters",
+    "runtimeMs": 388.29,
+    "qualityPassRate": 1,
+    "totalFailures": 0,
+    "metrics": {
+      "life_tp": 3,
+      "life_fp": 0,
+      "head_tp": 2,
+      "head_fp": 0,
+      "heart_tp": 2,
+      "heart_fp": 0,
+      "fate_tn": 3,
+      "fate_fp": 0,
+      "sun_tn": 3,
+      "sun_fp": 0
+    }
+  },
+  {
+    "configId": "clahe_clip_high",
+    "description": "High contrast enhancement (clip limit = 3.5)",
+    "runtimeMs": 331.98,
+    "qualityPassRate": 1,
+    "totalFailures": 8,
+    "metrics": {
+      "life_tp": 3,
+      "life_fp": 0,
+      "head_tp": 2,
+      "head_fp": 1,
+      "heart_tp": 1,
+      "heart_fp": 1,
+      "fate_tn": 2,
+      "fate_fp": 1,
+      "sun_tn": 2,
+      "sun_fp": 1
+    }
+  },
+  {
+    "configId": "clahe_clip_low",
+    "description": "Conservative contrast enhancement (clip limit = 1.8)",
+    "runtimeMs": 341.53,
+    "qualityPassRate": 1,
+    "totalFailures": 6,
+    "metrics": {
+      "life_tp": 3,
+      "life_fp": 0,
+      "head_tp": 2,
+      "head_fp": 0,
+      "heart_tp": 1,
+      "heart_fp": 0,
+      "fate_tn": 2,
+      "fate_fp": 1,
+      "sun_tn": 2,
+      "sun_fp": 1
+    }
+  },
+  {
+    "configId": "binarize_sensitive",
+    "description": "Sensitive candidate binarization (tau = 0.14)",
+    "runtimeMs": 309.41,
+    "qualityPassRate": 1,
+    "totalFailures": 6,
+    "metrics": {
+      "life_tp": 3,
+      "life_fp": 0,
+      "head_tp": 2,
+      "head_fp": 1,
+      "heart_tp": 1,
+      "heart_fp": 1,
+      "fate_tn": 3,
+      "fate_fp": 0,
+      "sun_tn": 2,
+      "sun_fp": 1
+    }
+  },
+  {
+    "configId": "binarize_strict",
+    "description": "Strict candidate binarization (tau = 0.24)",
+    "runtimeMs": 352.26,
+    "qualityPassRate": 1,
+    "totalFailures": 5,
+    "metrics": {
+      "life_tp": 3,
+      "life_fp": 0,
+      "head_tp": 2,
+      "head_fp": 1,
+      "heart_tp": 1,
+      "heart_fp": 1,
+      "fate_tn": 2,
+      "fate_fp": 1,
+      "sun_tn": 2,
+      "sun_fp": 1
+    }
+  },
+  {
+    "configId": "prune_aggressive",
+    "description": "Aggressive spur pruning (18px)",
+    "runtimeMs": 318.31,
+    "qualityPassRate": 1,
+    "totalFailures": 0,
+    "metrics": {
+      "life_tp": 3,
+      "life_fp": 0,
+      "head_tp": 2,
+      "head_fp": 0,
+      "heart_tp": 2,
+      "heart_fp": 0,
+      "fate_tn": 3,
+      "fate_fp": 0,
+      "sun_tn": 3,
+      "sun_fp": 0
+    }
+  }
+]

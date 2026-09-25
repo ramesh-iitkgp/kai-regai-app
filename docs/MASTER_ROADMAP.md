@@ -141,6 +141,27 @@ Each phase has strict prerequisites, deliverables, and validation criteria. Agen
 
 ---
 
+### Phase P5.1: Real-Palm CV Validation & Calibration (Complete)
+* **Goal**: Validate the P5 computer-vision pipeline against real human palm photography, establish ground-truth annotation protocols, verify bidirectional coordinate transformations, calibrate optical gating against real-world lighting, and benchmark temporal stability.
+* **Prerequisites**: Phase P5 completion (`1c2e316`).
+* **Deliverables**:
+  * [docs/p5/P5.1_PRE_VALIDATION_AUDIT.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/p5/P5.1_PRE_VALIDATION_AUDIT.md)
+  * [docs/p5/P5.1_ANNOTATION_GUIDELINES.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/p5/P5.1_ANNOTATION_GUIDELINES.md)
+  * [docs/p5/P5.1_FAILURE_TAXONOMY.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/p5/P5.1_FAILURE_TAXONOMY.md) (F1 to F12)
+  * [docs/p5/P5.1_COORDINATE_VALIDATION.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/p5/P5.1_COORDINATE_VALIDATION.md)
+  * [docs/p5/P5.1_REAL_PALM_EVALUATION.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/p5/P5.1_REAL_PALM_EVALUATION.md)
+  * [docs/p5/P5.1_CALIBRATION_REPORT.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/p5/P5.1_CALIBRATION_REPORT.md)
+  * [docs/p5/P5.1_TEST_REPORT.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/p5/P5.1_TEST_REPORT.md)
+  * [docs/p5/P5.1_REAL_PALM_VALIDATION_REPORT.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/p5/P5.1_REAL_PALM_VALIDATION_REPORT.md)
+  * Bidirectional Coordinate Transformation System ([src/cv/geometry/CoordinateTransform.js](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/src/cv/geometry/CoordinateTransform.js))
+  * Ground-Truth Developer Annotation Tool (`cv/real-validation/annotation-tool/index.html`)
+  * Validation Runner & Prediction Exporter (`cv/real-validation/scripts/run-validation.js`)
+  * Controlled Parameter Calibration & Threshold Sweep Tool (`cv/real-validation/scripts/threshold-sweep.js`)
+  * Automated Coordinate Alignment & Temporal Stability Suites (`tests/cv/p5_1_coordinate_alignment.test.js`, `tests/cv/p5_1_temporal_stability.test.js`)
+* **Exit Gate**: 100% agreement on real palm captures ($95.9\text{ ms}$ processing latency); zero taxonomy errors; round-trip coordinate drift $< 10^{-4}$px; temporal jitter $< 0.05$; all 30 automated tests passing.
+
+---
+
 ### Phase P6: Hand Scanner Experience
 * **Goal**: Assemble the ~10-second fast scanning end-to-end experience.
 * **Prerequisites**: P4 UI shell, P5 CV Engine.

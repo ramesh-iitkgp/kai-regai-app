@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Kai RegAI Comparison — real_palm_02</title>
+  <style>
+    body { font-family: monospace; background: #0f141c; color: #e2e8f0; padding: 20px; }
+    .card { background: #18202c; border: 1px solid #283548; border-radius: 8px; padding: 16px; margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+    th, td { border: 1px solid #334155; padding: 8px; text-align: left; }
+    th { background: #1e293b; color: #38bdf8; }
+    .tag { padding: 2px 6px; border-radius: 4px; font-size: 11px; }
+    .tag-pass { background: #14532d; color: #4ade80; }
+    .tag-fail { background: #7f1d1d; color: #f87171; }
+  </style>
+</head>
+<body>
+  <h1>Validation Artifact: real_palm_02</h1>
+  <div class="card">
+    <p><b>Status:</b> SUCCESS | <b>Quality Score:</b> 0.953 | <b>Duration:</b> 59.87ms</p>
+    <table>
+      <tr><th>Line</th><th>Detected</th><th>Ground Truth</th><th>Confidence</th><th>Hausdorff Error</th><th>Status</th></tr>
+      
+        <tr>
+          <td style="text-transform:uppercase;">life</td>
+          <td>DETECTED</td>
+          <td>PRESENT</td>
+          <td>0.88</td>
+          <td>Evaluated</td>
+          <td><span class="tag tag-pass">MATCH</span></td>
+        </tr>
+      
+        <tr>
+          <td style="text-transform:uppercase;">head</td>
+          <td>DETECTED</td>
+          <td>PRESENT</td>
+          <td>0.875</td>
+          <td>Evaluated</td>
+          <td><span class="tag tag-pass">MATCH</span></td>
+        </tr>
+      
+        <tr>
+          <td style="text-transform:uppercase;">heart</td>
+          <td>DETECTED</td>
+          <td>PRESENT</td>
+          <td>0.819</td>
+          <td>Evaluated</td>
+          <td><span class="tag tag-pass">MATCH</span></td>
+        </tr>
+      
+        <tr>
+          <td style="text-transform:uppercase;">fate</td>
+          <td>NOT_DETECTED</td>
+          <td>ABSENT</td>
+          <td>0</td>
+          <td>N/A</td>
+          <td><span class="tag tag-pass">MATCH</span></td>
+        </tr>
+      
+        <tr>
+          <td style="text-transform:uppercase;">sun</td>
+          <td>NOT_DETECTED</td>
+          <td>ABSENT</td>
+          <td>0</td>
+          <td>N/A</td>
+          <td><span class="tag tag-pass">MATCH</span></td>
+        </tr>
+      
+    </table>
+  </div>
+</body>
+</html>

@@ -1,0 +1,225 @@
+{
+  "timestamp": "2026-09-25T04:55:45.380Z",
+  "engineVersion": "p5.0.0",
+  "totalEvaluated": 3,
+  "passedQualityGateCount": 3,
+  "lineMetrics": {
+    "life": {
+      "tp": 3,
+      "fp": 0,
+      "fn": 0,
+      "tn": 0,
+      "meanError": 0,
+      "hausdorff": 0
+    },
+    "head": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "tn": 1,
+      "meanError": 0,
+      "hausdorff": 0
+    },
+    "heart": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "tn": 1,
+      "meanError": 0,
+      "hausdorff": 0
+    },
+    "fate": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "tn": 3,
+      "meanError": 0,
+      "hausdorff": 0
+    },
+    "sun": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "tn": 3,
+      "meanError": 0,
+      "hausdorff": 0
+    }
+  },
+  "failures": [],
+  "caseResults": [
+    {
+      "imageId": "real_palm_01",
+      "status": "SUCCESS",
+      "qualityScore": 0.974,
+      "processingTimeMs": 61.29,
+      "lines": {
+        "life": {
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.782,
+          "meanError": 0,
+          "medianError": 0,
+          "hausdorff": 0,
+          "endpointError": 0,
+          "failure": null
+        },
+        "head": {
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.844,
+          "meanError": 0,
+          "medianError": 0,
+          "hausdorff": 0,
+          "endpointError": 0,
+          "failure": null
+        },
+        "heart": {
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.792,
+          "meanError": 0,
+          "medianError": 0,
+          "hausdorff": 0,
+          "endpointError": 0,
+          "failure": null
+        },
+        "fate": {
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanError": 1,
+          "medianError": 1,
+          "hausdorff": 1,
+          "endpointError": 1,
+          "failure": null
+        },
+        "sun": {
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanError": 1,
+          "medianError": 1,
+          "hausdorff": 1,
+          "endpointError": 1,
+          "failure": null
+        }
+      }
+    },
+    {
+      "imageId": "real_palm_02",
+      "status": "SUCCESS",
+      "qualityScore": 0.953,
+      "processingTimeMs": 59.88,
+      "lines": {
+        "life": {
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.88,
+          "meanError": 0,
+          "medianError": 0,
+          "hausdorff": 0,
+          "endpointError": 0,
+          "failure": null
+        },
+        "head": {
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.875,
+          "meanError": 0,
+          "medianError": 0,
+          "hausdorff": 0,
+          "endpointError": 0,
+          "failure": null
+        },
+        "heart": {
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.819,
+          "meanError": 0,
+          "medianError": 0,
+          "hausdorff": 0,
+          "endpointError": 0,
+          "failure": null
+        },
+        "fate": {
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanError": 1,
+          "medianError": 1,
+          "hausdorff": 1,
+          "endpointError": 1,
+          "failure": null
+        },
+        "sun": {
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanError": 1,
+          "medianError": 1,
+          "hausdorff": 1,
+          "endpointError": 1,
+          "failure": null
+        }
+      }
+    },
+    {
+      "imageId": "real_palm_03",
+      "status": "SUCCESS",
+      "qualityScore": 0.953,
+      "processingTimeMs": 55.27,
+      "lines": {
+        "life": {
+          "detectedStatus": "DETECTED",
+          "groundTruthStatus": "PRESENT",
+          "confidence": 0.753,
+          "meanError": 0,
+          "medianError": 0,
+          "hausdorff": 0,
+          "endpointError": 0,
+          "failure": null
+        },
+        "head": {
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanError": 1,
+          "medianError": 1,
+          "hausdorff": 1,
+          "endpointError": 1,
+          "failure": null
+        },
+        "heart": {
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanError": 1,
+          "medianError": 1,
+          "hausdorff": 1,
+          "endpointError": 1,
+          "failure": null
+        },
+        "fate": {
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanError": 1,
+          "medianError": 1,
+          "hausdorff": 1,
+          "endpointError": 1,
+          "failure": null
+        },
+        "sun": {
+          "detectedStatus": "NOT_DETECTED",
+          "groundTruthStatus": "ABSENT",
+          "confidence": 0,
+          "meanError": 1,
+          "medianError": 1,
+          "hausdorff": 1,
+          "endpointError": 1,
+          "failure": null
+        }
+      }
+    }
+  ]
+}

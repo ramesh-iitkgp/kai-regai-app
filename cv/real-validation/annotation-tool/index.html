@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kai RegAI — Internal CV Ground-Truth Annotation Tool</title>
+  <style>
+    :root {
+      --bg: #0f141c;
+      --panel: #18202c;
+      --border: #283548;
+      --text: #e2e8f0;
+      --accent: #38bdf8;
+      --life: #a855f7;
+      --head: #00d2ff;
+      --heart: #f43f5e;
+      --fate: #fbbf24;
+      --sun: #f59e0b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+    #sidebar {
+      width: 340px;
+      background: var(--panel);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+      gap: 16px;
+      overflow-y: auto;
+    }
+    h1 { font-size: 16px; font-weight: 700; color: var(--accent); }
+    .subtitle { font-size: 11px; color: #94a3b8; }
+    .section { border: 1px solid var(--border); border-radius: 6px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+    .section-title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #cbd5e1; }
+    button, label.btn {
+      background: #232f3e;
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.15s;
+    }
+    button:hover, label.btn:hover { background: #334155; }
+    button.primary { background: #0284c7; border-color: #0284c7; font-weight: 600; }
+    button.primary:hover { background: #0369a1; }
+    .line-btn { display: flex; justify-content: space-between; align-items: center; border-left: 4px solid transparent; }
+    .line-btn.active { background: #1e293b; border-color: var(--accent); }
+    .badge { font-size: 10px; padding: 2px 6px; border-radius: 4px; background: #334155; }
+    select, input[type="text"] {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+    #workspace {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: #0b0f17;
+      position: relative;
+    }
+    #toolbar {
+      height: 48px;
+      background: var(--panel);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 12px;
+      font-size: 12px;
+    }
+    #canvas-container {
+      flex: 1;
+      position: relative;
+      overflow: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    canvas {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+      cursor: crosshair;
+    }
+    .status-select { font-size: 11px; padding: 2px 4px; }
+  </style>
+</head>
+<body>
+
+  <div id="sidebar">
+    <div>
+      <h1>Kai RegAI Annotation Tool</h1>
+      <p class="subtitle">Phase P5.1 Real-Palm Ground-Truth Studio</p>
+    </div>
+
+    <!-- Image Loader -->
+    <div class="section">
+      <div class="section-title">1. Source Image</div>
+      <label class="btn" for="image-input">Open Palm Image (JPG/PNG)</label>
+      <input type="file" id="image-input" accept="image/jpeg,image/png" style="display:none;">
+      <div style="display:flex; gap:8px;">
+        <input type="text" id="image-id" placeholder="image_id (e.g. real_palm_01)" style="flex:1;">
+        <select id="handedness-select">
+          <option value="RIGHT">Right Hand</option>
+          <option value="LEFT">Left Hand</option>
+          <option value="UNKNOWN">Unknown</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Line Selector & Status -->
+    <div class="section">
+      <div class="section-title">2. Major Crease Selector</div>
+
+      <div class="line-btn" id="btn-life" style="border-left-color: var(--life);">
+        <span>Life Line (Ayur)</span>
+        <select class="status-select" id="status-life">
+          <option value="PRESENT">PRESENT</option>
+          <option value="PARTIAL">PARTIAL</option>
+          <option value="UNCERTAIN">UNCERTAIN</option>
+          <option value="ABSENT">ABSENT</option>
+        </select>
+      </div>
+
+      <div class="line-btn" id="btn-head" style="border-left-color: var(--head);">
+        <span>Head Line (Matru)</span>
+        <select class="status-select" id="status-head">
+          <option value="PRESENT">PRESENT</option>
+          <option value="PARTIAL">PARTIAL</option>
+          <option value="UNCERTAIN">UNCERTAIN</option>
+          <option value="ABSENT">ABSENT</option>
+        </select>
+      </div>
+
+      <div class="line-btn" id="btn-heart" style="border-left-color: var(--heart);">
+        <span>Heart Line (Pitri)</span>
+        <select class="status-select" id="status-heart">
+          <option value="PRESENT">PRESENT</option>
+          <option value="PARTIAL">PARTIAL</option>
+          <option value="UNCERTAIN">UNCERTAIN</option>
+          <option value="ABSENT">ABSENT</option>
+        </select>
+      </div>
+
+      <div class="line-btn" id="btn-fate" style="border-left-color: var(--fate);">
+        <span>Fate Line (Karma)</span>
+        <select class="status-select" id="status-fate">
+          <option value="ABSENT">ABSENT</option>
+          <option value="PRESENT">PRESENT</option>
+          <option value="PARTIAL">PARTIAL</option>
+          <option value="UNCERTAIN">UNCERTAIN</option>
+        </select>
+      </div>
+
+      <div class="line-btn" id="btn-sun" style="border-left-color: var(--sun);">
+        <span>Sun Line (Surya)</span>
+        <select class="status-select" id="status-sun">
+          <option value="ABSENT">ABSENT</option>
+          <option value="PRESENT">PRESENT</option>
+          <option value="PARTIAL">PARTIAL</option>
+          <option value="UNCERTAIN">UNCERTAIN</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Polyline Actions -->
+    <div class="section">
+      <div class="section-title">3. Tracing Actions</div>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:6px;">
+        <button id="undo-btn">Undo Vertex</button>
+        <button id="clear-line-btn">Clear Line</button>
+      </div>
+      <button id="clear-all-btn">Reset All Annotations</button>
+    </div>
+
+    <!-- Export & Import -->
+    <div class="section">
+      <div class="section-title">4. Ground-Truth Export</div>
+      <button class="primary" id="export-json-btn">Export PalmAnnotation JSON</button>
+      <label class="btn" for="import-json-input">Import Existing JSON</label>
+      <input type="file" id="import-json-input" accept="application/json" style="display:none;">
+    </div>
+  </div>
+
+  <div id="workspace">
+    <div id="toolbar">
+      <span>Active Line: <b id="active-line-indicator" style="color:var(--life);">LIFE</b></span>
+      <span style="color:#64748b;">|</span>
+      <span>Vertices: <span id="vertex-count">0</span></span>
+      <span style="color:#64748b;">|</span>
+      <span style="color:#94a3b8;">Click on image to add points along crease centerline. Drag point to adjust.</span>
+    </div>
+    <div id="canvas-container">
+      <canvas id="editor-canvas" width="600" height="800"></canvas>
+    </div>
+  </div>
+
+  <script type="module">
+    const LINE_COLORS = {
+      life: '#a855f7',
+      head: '#00d2ff',
+      heart: '#f43f5e',
+      fate: '#fbbf24',
+      sun: '#f59e0b'
+    };
+
+    let activeLine = 'life';
+    let loadedImage = null;
+    let selectedPointIdx = -1;
+
+    const annotation = {
+      imageId: 'sample_palm',
+      handedness: 'RIGHT',
+      lines: {
+        life: { status: 'PRESENT', polyline: [] },
+        head: { status: 'PRESENT', polyline: [] },
+        heart: { status: 'PRESENT', polyline: [] },
+        fate: { status: 'ABSENT', polyline: [] },
+        sun: { status: 'ABSENT', polyline: [] }
+      }
+    };
+
+    const canvas = document.getElementById('editor-canvas');
+    const ctx = canvas.getContext('2d');
+
+    function setActiveLine(line) {
+      activeLine = line;
+      document.querySelectorAll('.line-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById('btn-' + line).classList.add('active');
+      const indicator = document.getElementById('active-line-indicator');
+      indicator.textContent = line.toUpperCase();
+      indicator.style.color = LINE_COLORS[line];
+      updateVertexCount();
+      redraw();
+    }
+
+    function updateVertexCount() {
+      const count = annotation.lines[activeLine].polyline.length;
+      document.getElementById('vertex-count').textContent = count;
+    }
+
+    ['life', 'head', 'heart', 'fate', 'sun'].forEach(l => {
+      document.getElementById('btn-' + l).addEventListener('click', (e) => {
+        if (e.target.tagName !== 'SELECT') setActiveLine(l);
+      });
+      document.getElementById('status-' + l).addEventListener('change', (e) => {
+        annotation.lines[l].status = e.target.value;
+        redraw();
+      });
+    });
+
+    document.getElementById('image-input').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const img = new Image();
+        img.onload = () => {
+          loadedImage = img;
+          canvas.width = img.width;
+          canvas.height = img.height;
+          document.getElementById('image-id').value = file.name.replace(/\.[^/.]+$/, "");
+          annotation.imageId = document.getElementById('image-id').value;
+          redraw();
+        };
+        img.src = event.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    canvas.addEventListener('mousedown', (e) => {
+      if (!loadedImage) return;
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      const x = (e.clientX - rect.left) * scaleX;
+      const y = (e.clientY - rect.top) * scaleY;
+
+      // Check if clicking near existing point
+      const pts = annotation.lines[activeLine].polyline;
+      for (let i = 0; i < pts.length; i++) {
+        if (Math.hypot(pts[i].x * canvas.width - x, pts[i].y * canvas.height - y) < 12) {
+          selectedPointIdx = i;
+          return;
+        }
+      }
+
+      // Add new normalized point
+      pts.push({
+        x: Number((x / canvas.width).toFixed(4)),
+        y: Number((y / canvas.height).toFixed(4))
+      });
+      annotation.lines[activeLine].status = pts.length > 0 ? 'PRESENT' : 'ABSENT';
+      document.getElementById('status-' + activeLine).value = annotation.lines[activeLine].status;
+      updateVertexCount();
+      redraw();
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+      if (selectedPointIdx === -1 || !loadedImage) return;
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      const x = (e.clientX - rect.left) * scaleX;
+      const y = (e.clientY - rect.top) * scaleY;
+
+      annotation.lines[activeLine].polyline[selectedPointIdx] = {
+        x: Number((x / canvas.width).toFixed(4)),
+        y: Number((y / canvas.height).toFixed(4))
+      };
+      redraw();
+    });
+
+    window.addEventListener('mouseup', () => { selectedPointIdx = -1; });
+
+    document.getElementById('undo-btn').addEventListener('click', () => {
+      annotation.lines[activeLine].polyline.pop();
+      updateVertexCount();
+      redraw();
+    });
+
+    document.getElementById('clear-line-btn').addEventListener('click', () => {
+      annotation.lines[activeLine].polyline = [];
+      annotation.lines[activeLine].status = 'ABSENT';
+      document.getElementById('status-' + activeLine).value = 'ABSENT';
+      updateVertexCount();
+      redraw();
+    });
+
+    document.getElementById('clear-all-btn').addEventListener('click', () => {
+      if (!confirm('Reset all polylines and statuses?')) return;
+      ['life', 'head', 'heart', 'fate', 'sun'].forEach(l => {
+        annotation.lines[l].polyline = [];
+        annotation.lines[l].status = 'ABSENT';
+        document.getElementById('status-' + l).value = 'ABSENT';
+      });
+      updateVertexCount();
+      redraw();
+    });
+
+    document.getElementById('export-json-btn').addEventListener('click', () => {
+      annotation.imageId = document.getElementById('image-id').value || 'unnamed_palm';
+      annotation.handedness = document.getElementById('handedness-select').value;
+      const blob = new Blob([JSON.stringify(annotation, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `${annotation.imageId}.annotation.json`;
+      a.click();
+    });
+
+    document.getElementById('import-json-input').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        try {
+          const imported = JSON.parse(event.target.result);
+          Object.assign(annotation, imported);
+          document.getElementById('image-id').value = annotation.imageId;
+          document.getElementById('handedness-select').value = annotation.handedness;
+          ['life', 'head', 'heart', 'fate', 'sun'].forEach(l => {
+            if (annotation.lines[l]) {
+              document.getElementById('status-' + l).value = annotation.lines[l].status;
+            }
+          });
+          updateVertexCount();
+          redraw();
+          alert('Loaded annotation for ' + annotation.imageId);
+        } catch (err) {
+          alert('Failed to parse annotation JSON: ' + err.message);
+        }
+      };
+      reader.readAsText(file);
+    });
+
+    function redraw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (loadedImage) {
+        ctx.drawImage(loadedImage, 0, 0);
+      } else {
+        ctx.fillStyle = '#1e293b';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#64748b';
+        ctx.font = '16px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Please open a palm image to begin annotation.', canvas.width / 2, canvas.height / 2);
+        return;
+      }
+
+      // Draw lines
+      ['life', 'head', 'heart', 'fate', 'sun'].forEach(l => {
+        const line = annotation.lines[l];
+        if (line.status === 'ABSENT' || !line.polyline || line.polyline.length === 0) return;
+
+        const isCurrent = (l === activeLine);
+        ctx.strokeStyle = LINE_COLORS[l];
+        ctx.lineWidth = isCurrent ? 4 : 2;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.globalAlpha = isCurrent ? 1.0 : 0.45;
+
+        ctx.beginPath();
+        for (let i = 0; i < line.polyline.length; i++) {
+          const px = line.polyline[i].x * canvas.width;
+          const py = line.polyline[i].y * canvas.height;
+          if (i === 0) ctx.moveTo(px, py);
+          else ctx.lineTo(px, py);
+        }
+        ctx.stroke();
+
+        // Draw vertex nodes
+        for (let i = 0; i < line.polyline.length; i++) {
+          const px = line.polyline[i].x * canvas.width;
+          const py = line.polyline[i].y * canvas.height;
+          ctx.fillStyle = isCurrent ? '#ffffff' : LINE_COLORS[l];
+          ctx.beginPath();
+          ctx.arc(px, py, isCurrent ? 4 : 2.5, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      });
+      ctx.globalAlpha = 1.0;
+    }
+
+    setActiveLine('life');
+  </script>
+</body>
+</html>

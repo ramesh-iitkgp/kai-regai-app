@@ -108,7 +108,7 @@ export class ImageQualityAnalyzer {
     }
 
     // 4. Framing Analysis (border clearance & center of mass)
-    const framingResult = this.analyzeFraming(gray, width, height, config);
+    const framingResult = this.analyzeFraming(image, gray, width, height, config);
     const framingScore = framingResult.score;
     if (framingResult.clipped) {
       reasons.push('PALM_CLIPPED_AT_BORDER');
@@ -197,19 +197,39 @@ export class ImageQualityAnalyzer {
   /**
    * Evaluates if palm region touches or clips against frame boundary
    */
-  static analyzeFraming(gray, width, height, config) {
+  static analyzeFraming(image, gray, width, height, config) {
     const borderThickness = Math.max(3, Math.floor(Math.min(width, height) * config.minMarginFraction));
+    const data = image?.data;
     let topCount = 0, botCount = 0, leftCount = 0, rightCount = 0;
     let xSamples = 0, ySamples = 0;
+
+    const isForeground = (pixelIdx, grayVal) => {
+      if (!data) return grayVal > 45;
+      const r = data[pixelIdx];
+      const g = data[pixelIdx + 1];
+      const b = data[pixelIdx + 2];
+      // If chromatic variation exists, check skin locus
+      if (Math.abs(r - g) > 2 || Math.abs(r - b) > 2) {
+        return (
+          r > 45 && g > 30 && b > 20 &&
+          r > g && r > b &&
+          (Math.max(r, g, b) - Math.min(r, g, b)) > 12 &&
+          Math.abs(r - g) >= 8
+        );
+      }
+      return grayVal > 45;
+    };
 
     // Top and bottom borders
     for (let x = 0; x < width; x += 4) {
       xSamples++;
       for (let y = 0; y < borderThickness; y++) {
-        if (gray[y * width + x] > 45) topCount++;
+        const idx = (y * width + x) * 4;
+        if (isForeground(idx, gray[y * width + x])) topCount++;
       }
       for (let y = height - borderThickness; y < height; y++) {
-        if (gray[y * width + x] > 45) botCount++;
+        const idx = (y * width + x) * 4;
+        if (isForeground(idx, gray[y * width + x])) botCount++;
       }
     }
 
@@ -217,10 +237,12 @@ export class ImageQualityAnalyzer {
     for (let y = 0; y < height; y += 4) {
       ySamples++;
       for (let x = 0; x < borderThickness; x++) {
-        if (gray[y * width + x] > 45) leftCount++;
+        const idx = (y * width + x) * 4;
+        if (isForeground(idx, gray[y * width + x])) leftCount++;
       }
       for (let x = width - borderThickness; x < width; x++) {
-        if (gray[y * width + x] > 45) rightCount++;
+        const idx = (y * width + x) * 4;
+        if (isForeground(idx, gray[y * width + x])) rightCount++;
       }
     }
 
@@ -229,8 +251,12 @@ export class ImageQualityAnalyzer {
     const leftDensity = leftCount / (ySamples * borderThickness || 1);
     const rightDensity = rightCount / (ySamples * borderThickness || 1);
 
-    const maxBorderDensity = Math.max(topDensity, botDensity, leftDensity, rightDensity);
-    const clipped = maxBorderDensity > 0.25;
+    // Lateral and distal borders trigger clipping at 25%; bottom border allows natural wrist exit up to 65%
+    const isLateralOrTopClipped = topDensity > 0.25 || leftDensity > 0.25 || rightDensity > 0.25;
+    const isExcessiveBottomClipped = botDensity > 0.65;
+    const clipped = isLateralOrTopClipped || isExcessiveBottomClipped;
+
+    const maxBorderDensity = Math.max(topDensity, leftDensity, rightDensity, botDensity * 0.5);
     const score = clipped ? 0.35 : Math.min(1.0, 1.0 - maxBorderDensity * 0.6);
 
     return {
