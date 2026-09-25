@@ -171,6 +171,16 @@ export class ReadingService {
    * @param {Object} [options]
    * @returns {{ total: number, readings: Object[] }}
    */
+  listUserReadings(requesterId, options = {}) {
+    return this.listReadings(requesterId, options);
+  }
+
+  /**
+   * List paginated readings owned by requester
+   * @param {string} requesterId 
+   * @param {Object} [options]
+   * @returns {{ total: number, readings: Object[] }}
+   */
   listReadings(requesterId, options = {}) {
     if (!requesterId) throw new Error('401 Unauthorized: Session required');
 

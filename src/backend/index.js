@@ -20,3 +20,4 @@ export { ReadingService } from './services/ReadingService.js';
 export { CommerceService } from './services/CommerceService.js';
 export { SyncService } from './services/SyncService.js';
 export { WebhookService } from './services/WebhookService.js';
+export { BackupService } from './services/BackupService.js';

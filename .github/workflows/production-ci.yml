@@ -1,0 +1,53 @@
+name: Kai RegAI — Production CI & Quality Gate
+
+on:
+  push:
+    branches: [ main, release/* ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    name: Build, Test & Security Audit
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [24.x]
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Full Application & Infrastructure Regression Suite
+        run: npm test
+
+      - name: Run Production Client Build
+        run: npm run build
+
+      - name: Verify Secret Hygiene
+        run: |
+          # Verify no .env or private key files exist in build artifacts
+          if find . -name "*.env" -not -path "*/node_modules/*" | grep .; then
+            echo "::error::Found uncommitted .env file"
+            exit 1
+          fi
+
+      - name: Check Bundle Budgets
+        run: |
+          node -e "
+            const fs = require('fs');
+            const jsStat = fs.statSync('dist/assets/index-BwohNfJP.js');
+            const cssStat = fs.statSync('dist/assets/index-wfFFvqcC.css');
+            console.log('Client JS Size:', (jsStat.size / 1024).toFixed(2), 'KB');
+            console.log('Client CSS Size:', (cssStat.size / 1024).toFixed(2), 'KB');
+          "

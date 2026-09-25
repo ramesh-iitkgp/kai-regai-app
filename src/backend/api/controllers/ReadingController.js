@@ -33,7 +33,9 @@ export class ReadingController {
         throw new Error('401 Unauthorized: Session required');
       }
 
-      const list = this.readingService.listUserReadings(req.user.userId);
+      const list = typeof this.readingService.listReadings === 'function'
+        ? this.readingService.listReadings(req.user.userId)
+        : this.readingService.listUserReadings(req.user.userId);
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({
         success: true,

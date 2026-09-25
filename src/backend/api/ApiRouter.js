@@ -13,6 +13,7 @@
 
 import { requestIdMiddleware } from './middleware/requestIdMiddleware.js';
 import { corsMiddleware } from './middleware/corsMiddleware.js';
+import { securityHeadersMiddleware } from './middleware/securityHeadersMiddleware.js';
 import { rateLimitMiddleware } from './middleware/rateLimitMiddleware.js';
 import { createAuthMiddleware } from './middleware/authMiddleware.js';
 import { sendError } from './middleware/errorHandler.js';
@@ -34,6 +35,7 @@ export class ApiRouter {
   async handle(req, res) {
     // 1. Core Middlewares
     await new Promise(resolve => requestIdMiddleware(req, res, resolve));
+    securityHeadersMiddleware(req, res);
 
     let corsHandled = false;
     await new Promise(resolve => {
@@ -59,10 +61,20 @@ export class ApiRouter {
     const query = Object.fromEntries(parsedUrl.searchParams.entries());
     const method = req.method.toUpperCase();
 
-    // 3. Health Endpoint
+    // 3. Health & Readiness Endpoints
     if (pathname === '/health' || pathname === '/api/v1/health') {
       if (method === 'GET') {
         return this.healthController.getHealth(req, res);
+      }
+    }
+    if (pathname === '/health/live' || pathname === '/api/v1/health/live') {
+      if (method === 'GET') {
+        return this.healthController.getLiveness(req, res);
+      }
+    }
+    if (pathname === '/health/ready' || pathname === '/api/v1/health/ready') {
+      if (method === 'GET') {
+        return this.healthController.getReadiness(req, res);
       }
     }
 

@@ -1,18 +1,24 @@
 /**
  * Kai RegAI — CORS Middleware
- * Phase: P13 — Production Backend & Commercial Authority
+ * Phase: P13/P17 — Production Backend & Infrastructure Certification
  */
 
 import { CONFIG } from '../../config.js';
 
 export function corsMiddleware(req, res, next) {
   const origin = req.headers['origin'];
-  const allowedOrigins = CONFIG.corsOrigins;
+  const allowedOrigins = CONFIG.corsOrigins || [];
+  const isProduction = CONFIG.env === 'production' || CONFIG.env === 'staging';
 
-  if (origin && (allowedOrigins.includes(origin) || allowedOrigins.includes('*'))) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-  } else if (!origin && allowedOrigins.includes('*')) {
+  if (origin) {
+    if (allowedOrigins.includes(origin)) {
+      res.setHeader('Access-Control-Allow-Origin', origin);
+      res.setHeader('Access-Control-Allow-Credentials', 'true');
+    } else if (!isProduction && allowedOrigins.includes('*')) {
+      res.setHeader('Access-Control-Allow-Origin', origin);
+      res.setHeader('Access-Control-Allow-Credentials', 'true');
+    }
+  } else if (!isProduction && allowedOrigins.includes('*')) {
     res.setHeader('Access-Control-Allow-Origin', '*');
   }
 

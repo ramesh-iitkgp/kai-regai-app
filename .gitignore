@@ -20,3 +20,8 @@ build/
 *.mp4
 extracted_frames/
 screens/
+backups/
+*.db
+*.db-wal
+*.db-shm
+*.sqlite

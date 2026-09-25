@@ -1,12 +1,12 @@
 /**
  * Kai RegAI — HTTP Backend Server
- * Phase: P13 — Production Backend & Commercial Authority
+ * Phase: P13/P17 — Production Backend & Infrastructure Certification
  */
 
 import http from 'node:http';
 import { Database } from '../database/Database.js';
 import { MigrationEngine } from '../database/MigrationEngine.js';
-import { CONFIG } from '../config.js';
+import { CONFIG, validateConfig } from '../config.js';
 
 import { AuditService } from '../services/AuditService.js';
 import { AuthService } from '../services/AuthService.js';
@@ -14,6 +14,7 @@ import { ReadingService } from '../services/ReadingService.js';
 import { CommerceService } from '../services/CommerceService.js';
 import { SyncService } from '../services/SyncService.js';
 import { WebhookService } from '../services/WebhookService.js';
+import { BackupService } from '../services/BackupService.js';
 
 import { AuthController } from './controllers/AuthController.js';
 import { UserController } from './controllers/UserController.js';
@@ -28,16 +29,43 @@ import { ApiRouter } from './ApiRouter.js';
 
 export class Server {
   constructor(options = {}) {
-    this.port = options.port || CONFIG.port;
+    this.port = options.port !== undefined ? options.port : CONFIG.port;
     this.host = options.host || CONFIG.host;
     this.dbPath = options.dbPath || CONFIG.databasePath;
     this.webhookSecret = options.webhookSecret || CONFIG.webhookSecret;
+    this.sessionSecret = options.sessionSecret || CONFIG.session.secret;
+    this.env = options.env || CONFIG.env;
 
     this.database = new Database(this.dbPath);
     this.httpServer = null;
+    this.inFlightRequests = new Set();
+    this.isShuttingDown = false;
+  }
+
+  validateStartupConfig() {
+    const configToValidate = {
+      ...CONFIG,
+      env: this.env,
+      port: this.port,
+      session: {
+        ...CONFIG.session,
+        secret: this.sessionSecret
+      },
+      database: { filename: this.dbPath },
+      webhookSecret: this.webhookSecret
+    };
+
+    const validation = validateConfig(configToValidate);
+    if (!validation.valid && (this.env === 'production' || this.env === 'staging')) {
+      throw new Error(`Startup rejected due to invalid production configuration:\n${validation.errors.join('\n')}`);
+    }
+    return validation;
   }
 
   async init() {
+    // 0. Validate Startup Configuration
+    this.validateStartupConfig();
+
     // 1. Initialize SQLite Database & Run Migrations
     this.database.init();
     const migrationEngine = new MigrationEngine(this.database);
@@ -55,6 +83,7 @@ export class Server {
       this.auditService,
       this.webhookSecret
     );
+    this.backupService = new BackupService(this.database);
 
     // 3. Initialize Controllers
     const controllers = {
@@ -79,10 +108,23 @@ export class Server {
     // 4. Initialize Router
     this.router = new ApiRouter(controllers, services);
 
-    // 5. Create Node.js HTTP Server
+    // 5. Create Node.js HTTP Server with in-flight tracking & timeout
     this.httpServer = http.createServer((req, res) => {
+      if (this.isShuttingDown) {
+        res.writeHead(503, { 'Content-Type': 'application/json', 'Connection': 'close' });
+        res.end(JSON.stringify({ error: 'Service Unavailable: Server is shutting down' }));
+        return;
+      }
+
+      this.inFlightRequests.add(res);
+      res.on('finish', () => this.inFlightRequests.delete(res));
+      res.on('close', () => this.inFlightRequests.delete(res));
+
       this.router.handle(req, res);
     });
+
+    // Enforce 15-second request socket timeout
+    this.httpServer.setTimeout(15000);
 
     return this;
   }
@@ -103,16 +145,39 @@ export class Server {
     });
   }
 
-  async stop() {
+  async stop(graceTimeoutMs = 3000) {
+    this.isShuttingDown = true;
+
     return new Promise(resolve => {
-      if (this.httpServer) {
-        this.httpServer.close(() => {
+      const finishShutdown = () => {
+        try {
           this.database.close();
-          resolve();
-        });
-      } else {
-        this.database.close();
+        } catch {
+          // ignore
+        }
         resolve();
+      };
+
+      if (this.httpServer) {
+        // Stop accepting new connections
+        this.httpServer.close(() => {
+          finishShutdown();
+        });
+
+        // Drain in-flight requests or force termination after grace period
+        if (this.inFlightRequests.size > 0) {
+          const timer = setTimeout(() => {
+            for (const res of this.inFlightRequests) {
+              try {
+                res.destroy();
+              } catch {}
+            }
+            this.inFlightRequests.clear();
+          }, graceTimeoutMs);
+          if (timer.unref) timer.unref();
+        }
+      } else {
+        finishShutdown();
       }
     });
   }

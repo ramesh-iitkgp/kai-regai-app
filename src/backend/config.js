@@ -1,6 +1,6 @@
 /**
  * Kai RegAI — Backend Configuration
- * Phase: P13 — Production Backend & Commercial Authority
+ * Phase: P13/P17 — Production Backend & Infrastructure Certification
  */
 
 export const BACKEND_CONFIG = {
@@ -29,6 +29,43 @@ export const BACKEND_CONFIG = {
   }
 };
 
+export function validateConfig(config = BACKEND_CONFIG) {
+  const errors = [];
+  const env = config.env || 'development';
+
+  if (env === 'production' || env === 'staging') {
+    // 1. Session secret validation
+    if (!config.session?.secret || config.session.secret.includes('dev-session-secret')) {
+      errors.push('Production session secret must not use default development placeholder');
+    }
+    if (config.session?.secret && config.session.secret.length < 32) {
+      errors.push('Production session secret must be at least 32 characters in length');
+    }
+
+    // 2. Database path validation
+    if (config.database?.filename === ':memory:') {
+      errors.push('Production database must use a durable filesystem path, not :memory:');
+    }
+
+    // 3. Webhook secret validation
+    const webhookSecret = process.env.WEBHOOK_SECRET || config.webhookSecret;
+    if (!webhookSecret || webhookSecret.includes('kai-regai-webhook-secret-p13')) {
+      errors.push('Production webhook secret must not use default development placeholder');
+    }
+
+    // 4. CORS origin validation (no wildcard allowed in production)
+    const origins = config.cors?.allowedOrigins || [];
+    if (origins.includes('*')) {
+      errors.push('Production CORS origins must be explicitly enumerated; wildcard * is prohibited');
+    }
+  }
+
+  return {
+    valid: errors.length === 0,
+    errors
+  };
+}
+
 export const CONFIG = {
   ...BACKEND_CONFIG,
   port: BACKEND_CONFIG.port,
@@ -39,5 +76,6 @@ export const CONFIG = {
   rateLimits: {
     windowMs: BACKEND_CONFIG.rateLimits.windowSeconds * 1000,
     maxRequests: BACKEND_CONFIG.rateLimits.defaultMaxRequests
-  }
+  },
+  validate: () => validateConfig(BACKEND_CONFIG)
 };

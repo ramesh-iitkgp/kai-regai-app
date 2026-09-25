@@ -1,20 +1,20 @@
 /**
  * Kai RegAI — Rate Limiting Middleware
- * Phase: P13 — Production Backend & Commercial Authority
+ * Phase: P13/P17 — Production Backend & Infrastructure Certification
  */
 
 import { RateLimiter } from '../../security/RateLimiter.js';
 import { CONFIG } from '../../config.js';
 
 const maxRequests = CONFIG.rateLimits.maxRequests || 120;
-const limiter = new RateLimiter({
+export const rateLimiter = new RateLimiter({
   windowSeconds: (CONFIG.rateLimits.windowMs || 60000) / 1000,
   defaultMaxRequests: maxRequests
 });
 
 export function rateLimitMiddleware(req, res, next) {
   const ip = req.socket?.remoteAddress || req.headers['x-forwarded-for'] || '127.0.0.1';
-  const check = limiter.check(ip, maxRequests);
+  const check = rateLimiter.check(ip, maxRequests);
 
   res.setHeader('X-RateLimit-Limit', maxRequests);
   res.setHeader('X-RateLimit-Remaining', check.remaining);

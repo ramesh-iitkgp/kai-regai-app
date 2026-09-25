@@ -48,6 +48,9 @@ export function sendError(res, err, requestId = null, statusCode = null) {
     message = rawMsg.replace(/^429\s*/i, '') || 'Rate limit exceeded';
   } else {
     code = 'INTERNAL_SERVER_ERROR';
+    if (process.env.NODE_ENV !== 'production' || process.env.DEBUG_SERVER) {
+      console.error('[SERVER_ERROR]', rawMsg);
+    }
     // Protect against leaking SQL or internal details
     message = 'Internal server error. Please try again later.';
   }
