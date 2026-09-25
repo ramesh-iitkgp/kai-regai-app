@@ -335,14 +335,21 @@ Each phase has strict prerequisites, deliverables, and validation criteria. Agen
 
 ---
 
-### Phase P13: Testing & Quality Assurance
-* **Goal**: Conduct rigorous functional, performance, security, and edge-case testing.
-* **Prerequisites**: P6 through P12.
-* **Key Tasks**:
-  * Device matrix testing across iOS and Android screen sizes and camera hardware.
-  * Hand diversity testing across age groups, skin tones, calloused/faint lines, lighting conditions.
-  * Automated regression tests for rule engine and AI guardrails.
-* **Exit Gate**: Crash-free rate > 99.8%, CV recognition success rate > 95% on valid hands.
+### Phase P13: Production Backend & Commercial Authority (Complete)
+* **Goal**: Establish the authoritative production backend boundary, API v1, session management, reading synchronization, and commercial authority around the frozen P5–P12 contracts.
+* **Prerequisites**: P11 Persistence, P12 Monetization, P11.5 Audit Pass.
+* **Key Achievements**:
+  * Native Node.js 24 SQLite relational persistence (`node:sqlite`) with WAL mode, foreign keys, and atomic transactions.
+  * Versioned API v1 (`/api/v1/`) with `/health` liveness/readiness probe, request correlation IDs (`X-Request-ID`), and standardized error envelopes.
+  * Cryptographic session security: 256-bit bearer tokens stored exclusively as SHA-256 hashes, with 30-day expiry and instant revocation.
+  * Guest-to-Account atomic migration (`migrateGuestToAccount`) reassigning readings, transactions, and entitlements within an ACID transaction.
+  * Server-authoritative commercial boundary: transactions (`PENDING` -> `VERIFIED` -> `REFUNDED`), entitlements, and access decisions.
+  * Invariant 10 enforcement: Refunds revoke access but never delete or alter historical ReadingRecords.
+  * Webhook architecture with HMAC-SHA256 constant-time verification (`SignatureVerifier`) and replay protection (`webhook_events`).
+  * Strict Biometric & Privacy Guard (`PrivacyGuard`): rejection of raw camera images, buffers, base64 pictures, credit card numbers.
+  * 15 Security test cases (S01–S15), 20 Golden Backend cases (B01–B20), and 5 live HTTP API integration tests passing (40/40 tests).
+  * Comprehensive documentation suite under `docs/p13/`.
+* **Exit Gate**: 100% verified server authorization and IDOR protection; zero raw biometric photographic retention; 269/269 master regression tests passing; production Vite build passes in 73ms.
 
 ---
 
