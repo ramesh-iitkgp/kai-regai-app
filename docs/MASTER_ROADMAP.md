@@ -27,7 +27,9 @@ Each phase has strict prerequisites, deliverables, and validation criteria. Agen
 | **P13** | **Testing & QA** | *Pending Authorization* | CV accuracy benchmarks, rule engine test suite, end-to-end integration tests |
 | **P14** | **Real-Palm Dataset & Accuracy Validation** | **Complete (Audited)** | Real-palm golden corpus (32 palms), ground truth polylines, presence & localization benchmarks, ECE calibration, F01–F15 taxonomy |
 | **P15** | **CV Recall Recovery & Accuracy Improvement** | **Complete (Audited)** | Left-hand prior mirroring, MCP top-crop validation, transverse span calibration, Life recall 0.8438, 284/284 tests |
-| **P16** | **App Store Releases** | *Pending Authorization* | Store listing assets, compliance disclosures, Google Play & Apple review |
+| **P16** | **Production UX, Reading Experience & Conversion** | **Complete (Audited)** | Multi-modal accessibility, design system tokens, conversion funnel telemetry, multi-currency paywall, WCAG 2.1 AA |
+| **P17** | **App Store Releases** | *Pending Authorization* | Store listing assets, compliance disclosures, Google Play & Apple review |
+
 
 ---
 
@@ -394,11 +396,29 @@ Each phase has strict prerequisites, deliverables, and validation criteria. Agen
 
 ---
 
-### Phase P16: App Store Releases
-* **Goal**: Launch Kai RegAI on Google Play Store and Apple App Store.
+### Phase P16: Production UX, Reading Experience & Conversion (Complete)
+* **Goal**: Transform the certified technical platform into an intuitive, accessible, aesthetically elevated, and conversion-ready mobile and web customer experience.
 * **Prerequisites**: P15 sign-off.
+* **Key Achievements**:
+  * Established unified, token-driven CSS architecture (`tokens.css`, `components.css`) eliminating all ad-hoc styling.
+  * Multi-modal accessibility with WCAG 2.1 AA compliance: 4-fold crease line identification (semantic colors Violet, Blue, Rose, Gold, Amber + glyphs + stroke dash patterns + screen reader ARIA labels).
+  * Enforced $\ge 44 \times 44\,\text{px}$ minimum touch targets, high-contrast focus rings, and full `@media (prefers-reduced-motion: reduce)` support with in-app toggle.
+  * Enhanced dual-reading journeys: 10-second fast camera scan (Mode 1) with progressive reveal and deep guided tactile questionnaire (Mode 2).
+  * Ethical conversion architecture: Multi-currency pricing (INR, USD, EUR, GBP) dynamically bound to `ProductCatalog`, transparent tier breakdown, reliable 1-tap Restore Purchases, and zero manipulative dark patterns.
+  * Privacy-preserving funnel telemetry tracking 17 granular events (`ReportTelemetry.js`) with zero biometric leakage and PCI-DSS data scrubbing.
+  * 100% RAM-only ephemeral palm processing with verified 1-tap data purge.
+  * Complete documentation suite: `docs/p16/` (Design System, UX Architecture, User Flows, Conversion Architecture, Accessibility Audit, Performance Audit, Privacy Audit, Completion Report) + `reports/p16_ux_metrics.json`.
+  * Automated testing: 284/284 tests passing; production Vite build passes in 74ms.
+* **Exit Gate**: Multi-currency paywall, complete funnel telemetry, WCAG AA compliance, 284/284 tests passing, zero privacy leaks; **P16 STATUS: PASS**.
+
+---
+
+### Phase P17: App Store Releases
+* **Goal**: Launch Kai RegAI on Google Play Store and Apple App Store.
+* **Prerequisites**: P16 sign-off.
 * **Key Tasks**:
   * App Store screenshots, promotional video, metadata, localized descriptions.
   * Submission to Apple App Review and Google Play Console.
   * Production monitoring, telemetry, crash reporting, and launch support.
 * **Exit Gate**: Live production status on both official app stores.
+

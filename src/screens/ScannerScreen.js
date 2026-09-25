@@ -12,8 +12,10 @@ import { renderCameraPermissionModal } from '../components/CameraPermissionModal
 import { renderErrorCalibrationModal } from '../components/ErrorCalibrationModal.js';
 import { PalmScannerController, SCANNER_STATES } from '../scanner/index.js';
 import { PERMISSION_STATES } from '../scanner/CameraCaptureService.js';
+import { reportTelemetry, TELEMETRY_EVENTS } from '../report/ReportTelemetry.js';
 
 export function renderScannerScreen(container) {
+  reportTelemetry.logEvent(TELEMETRY_EVENTS.SCANNER_OPEN, {});
   let controller = null;
   let showDiagnostics = false;
   let hasShownIntro = sessionStorage.getItem('kai_scanner_intro_seen') === 'true';
@@ -223,12 +225,14 @@ export function renderScannerScreen(container) {
 
     // 4. Retake State -> Show Actionable Retake Guidance
     if (newState === SCANNER_STATES.RETAKE) {
+      reportTelemetry.logEvent(TELEMETRY_EVENTS.CAPTURE_RETAKE, { reason: context.feedbackMessage });
       showRetakeModal(context);
       return;
     }
 
     // 5. Success -> Navigate to Quick Report with real result
     if (newState === SCANNER_STATES.SUCCESS) {
+      reportTelemetry.logEvent(TELEMETRY_EVENTS.CAPTURE_SUCCESS, { handSide: context.handSide || 'RIGHT' });
       cleanup();
       router.navigate(ROUTES.QUICK_REPORT, {
         visionResult: context.visionResult,

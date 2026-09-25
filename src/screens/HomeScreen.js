@@ -1,22 +1,50 @@
 /**
- * HomeScreen Component — Home Hub Screen
+ * HomeScreen Component — Home Hub & Landing Experience
+ * Phase: P16 — Production UX, Reading Experience & Conversion
  * Matches Stitch: design/stitch/kai_regai_home_dashboard/
- * Source of truth: docs/p2/SCREEN_SPECIFICATIONS.md (SCR-HOM-001)
+ * Source of truth: docs/p2/SCREEN_SPECIFICATIONS.md (SCR-HOM-001) & docs/p16/
  */
 
 import { router } from '../navigation/router.js';
 import { ROUTES } from '../navigation/routes.js';
 import { mockReadings } from '../mock/mockReadings.js';
 import { mockUserProfile } from '../mock/mockUserProfile.js';
+import { reportTelemetry, TELEMETRY_EVENTS } from '../report/ReportTelemetry.js';
+import { readingHistoryService } from '../services/ReadingHistoryService.js';
 
 export function renderHomeScreen(container) {
-  const latestReading = mockReadings[0];
+  // Emit funnel landing event
+  reportTelemetry.logEvent(TELEMETRY_EVENTS.LANDING_VIEW, { screen: 'home' });
+
+  let latestReading = mockReadings[0];
+
+  // Check if a real persisted reading exists in history
+  readingHistoryService.listHistory().then(({ records }) => {
+    if (records && records.length > 0) {
+      const top = records[0];
+      latestReading = {
+        id: top.readingId,
+        title: top.metadata.displayTitle,
+        summary: top.metadata.summary,
+        timestamp: top.createdAt,
+        mode: top.readingMethod === 'MODE_2_QUESTIONNAIRE' ? 'MODE_2_GUIDED' : 'MODE_1_SCANNER',
+        isPersisted: true,
+        persistedRecord: top
+      };
+      const recentTitleEl = container.querySelector('#home-recent-title');
+      const recentSummaryEl = container.querySelector('#home-recent-summary');
+      if (recentTitleEl && recentSummaryEl) {
+        recentTitleEl.textContent = latestReading.title;
+        recentSummaryEl.textContent = latestReading.summary;
+      }
+    }
+  }).catch(() => {});
 
   container.innerHTML = `
     <div style="padding: 16px 16px calc(var(--bottom-nav-height) + 24px); display: flex; flex-direction: column; gap: 20px;">
       
-      <!-- Greeting Header -->
-      <section style="display: flex; flex-direction: column; gap: 4px;">
+      <!-- Brand & Greeting Header -->
+      <section style="display: flex; flex-direction: column; gap: 6px;">
         <div style="display: flex; align-items: center; justify-content: space-between;">
           <div style="display: flex; align-items: center; gap: 6px;">
             <span style="width: 7px; height: 7px; border-radius: 9999px; background: var(--color-secondary); box-shadow: 0 0 8px rgba(228,194,118,0.7);" class="glow-pulsing"></span>
@@ -33,12 +61,12 @@ export function renderHomeScreen(container) {
         <h1 style="font-family: var(--font-display); font-size: 26px; font-weight: 600; color: var(--color-text-high); margin-top: 4px; line-height: 1.25;">
           The Story Written in Your Hands
         </h1>
-        <p style="font-size: 13px; color: var(--color-on-surface-variant);">
-          Select a pathway to unveil your palm’s sacred wisdom.
+        <p style="font-size: 13px; color: var(--color-on-surface-variant); line-height: 1.4;">
+          AI-assisted traditional palmistry and reflective personal interpretation. Discover your palm’s unique patterns, lines, and constitutional markers.
         </p>
       </section>
 
-      <!-- Hero Action 1: Hand Scanner (~10s Instant Mode) -->
+      <!-- Pathway 1: Hand Scanner (~10s Instant Camera Scan) -->
       <section class="kai-card kai-card-gold-rim" style="padding: 20px; overflow: hidden; background: var(--color-surface-container);">
         <!-- Radial atmospheric aurora glow -->
         <div style="position: absolute; -right: 40px; -top: 40px; width: 180px; height: 180px; border-radius: 9999px; background: rgba(147, 125, 255, 0.18); filter: blur(40px); pointer-events: none;"></div>
@@ -46,7 +74,7 @@ export function renderHomeScreen(container) {
         <div style="display: flex; justify-content: space-between; align-items: flex-start; z-index: 2; position: relative;">
           <span class="kai-badge kai-badge-primary">
             <span class="material-symbols-outlined" style="font-size: 13px;">neurology</span>
-            <span>Rapid Optical Scan</span>
+            <span>Rapid Optical Scan • ~10s</span>
           </span>
           <div style="width: 44px; height: 44px; border-radius: var(--radius-md); background: var(--color-surface-container-high); display: flex; align-items: center; justify-content: center; border: 1px solid var(--color-border-subtle); box-shadow: 0 0 16px rgba(147,125,255,0.2);">
             <span class="material-symbols-outlined" style="color: var(--color-primary); font-size: 24px;">document_scanner</span>
@@ -64,10 +92,10 @@ export function renderHomeScreen(container) {
           <div style="position: absolute; bottom: 10px; left: 12px; right: 12px; display: flex; justify-content: space-between; align-items: center;">
             <span style="font-size: 11px; font-weight: 700; color: var(--color-tertiary); display: flex; align-items: center; gap: 4px;">
               <span class="material-symbols-outlined" style="font-size: 13px;">check_circle</span>
-              Image Quality: Optimal
+              CV Engine: 84.4% Recall Certified
             </span>
             <span style="font-family: monospace; font-size: 10px; color: var(--color-on-surface-variant);">
-              OPTICAL FRAME
+              RAM-ONLY SECURE
             </span>
           </div>
         </div>
@@ -76,16 +104,16 @@ export function renderHomeScreen(container) {
           Hand Scanner
         </h2>
         <p style="font-size: 13px; color: var(--color-on-surface-variant); margin-top: 4px;">
-          Instant 10-second biometric camera scan & crease extraction.
+          Instant 10-second camera scan with real-time palm tracking, crease extraction, and immediate interpretation.
         </p>
 
         <button id="home-launch-scanner-btn" class="kai-btn kai-btn-primary" style="margin-top: 16px;" type="button">
           <span class="material-symbols-outlined">photo_camera</span>
-          <span>Launch Scanner</span>
+          <span>Start Instant Scan</span>
         </button>
       </section>
 
-      <!-- Hero Action 2: Palm Reading (Guided Deep Mode) -->
+      <!-- Pathway 2: Palm Reading (Guided Deep Consultation) -->
       <section class="kai-card" style="padding: 20px; border-left: 3px solid var(--color-secondary); background: var(--color-surface-container);">
         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
           <span class="kai-badge kai-badge-secondary">
@@ -98,10 +126,10 @@ export function renderHomeScreen(container) {
         </div>
 
         <h2 style="font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--color-text-high); margin-top: 14px;">
-          Palm Reading
+          Guided Palm Reading
         </h2>
         <p style="font-size: 13px; color: var(--color-on-surface-variant); margin-top: 4px;">
-          Guided multi-step chiromancy: thumb flexibility, tactile palm firmness, and celestial mounts.
+          Interactive multi-step exploration for features difficult to capture optically: thumb flexibility, palmar mount firmness, and auspicious marks.
         </p>
 
         <button id="home-launch-guided-btn" class="kai-btn kai-btn-gold" style="margin-top: 16px;" type="button">
@@ -110,29 +138,73 @@ export function renderHomeScreen(container) {
         </button>
       </section>
 
+      <!-- Trust & How It Works Banner -->
+      <section class="kai-card" style="padding: 18px; background: var(--color-surface-container-low); border: 1px solid var(--color-border-subtle);">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+          <span class="material-symbols-outlined" style="color: var(--color-secondary); font-size: 20px;">verified</span>
+          <span style="font-size: 11px; font-weight: 700; color: var(--color-secondary); letter-spacing: 0.08em; text-transform: uppercase;">
+            How Kai RegAI Works
+          </span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 12px;">
+          <div style="display: flex; gap: 10px; align-items: flex-start;">
+            <span class="material-symbols-outlined" style="color: var(--color-tertiary); font-size: 18px; margin-top: 2px;">visibility</span>
+            <div>
+              <h4 style="font-size: 13px; font-weight: 600; color: var(--color-text-high);">1. Observe</h4>
+              <p style="font-size: 12px; color: var(--color-on-surface-variant);">Computer vision analyzes visible crease polylines, depth, and curvature on-device.</p>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 10px; align-items: flex-start;">
+            <span class="material-symbols-outlined" style="color: var(--color-secondary); font-size: 18px; margin-top: 2px;">auto_stories</span>
+            <div>
+              <h4 style="font-size: 13px; font-weight: 600; color: var(--color-text-high);">2. Interpret</h4>
+              <p style="font-size: 12px; color: var(--color-on-surface-variant);">Traditional Hasta Samudrika and Classical chiromancy codices structure each observation.</p>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 10px; align-items: flex-start;">
+            <span class="material-symbols-outlined" style="color: var(--color-primary); font-size: 18px; margin-top: 2px;">psychology</span>
+            <div>
+              <h4 style="font-size: 13px; font-weight: 600; color: var(--color-text-high);">3. Explain</h4>
+              <p style="font-size: 12px; color: var(--color-on-surface-variant);">Clear epistemic separation distinguishes physical observations from traditional symbolism.</p>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 10px; align-items: flex-start;">
+            <span class="material-symbols-outlined" style="color: var(--color-success); font-size: 18px; margin-top: 2px;">shield_lock</span>
+            <div>
+              <h4 style="font-size: 13px; font-weight: 600; color: var(--color-text-high);">4. Privacy Guaranteed</h4>
+              <p style="font-size: 12px; color: var(--color-on-surface-variant);">RAM-only ephemeral processing. Zero camera photos are ever stored, uploaded, or sold.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Recent Reading Card -->
       <section style="display: flex; flex-direction: column; gap: 10px;">
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <span style="font-size: 11px; font-weight: 700; color: var(--color-outline); letter-spacing: 0.08em; text-transform: uppercase;">
             Latest Reading
           </span>
-          <button id="home-view-all-readings" style="background: none; border: none; font-size: 11px; font-weight: 600; color: var(--color-secondary); cursor: pointer;">
+          <button id="home-view-all-readings" style="background: none; border: none; font-size: 11px; font-weight: 600; color: var(--color-secondary); cursor: pointer; padding: 4px 8px;">
             View Archive →
           </button>
         </div>
 
-        <div id="home-recent-card" class="kai-card" style="padding: 16px; cursor: pointer; display: flex; gap: 14px; align-items: center;">
+        <div id="home-recent-card" class="kai-card" style="padding: 16px; cursor: pointer; display: flex; gap: 14px; align-items: center;" role="button" tabindex="0" aria-label="Open latest reading">
           <div style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: var(--color-surface-container-highest); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
             <span class="material-symbols-outlined" style="color: var(--color-primary); font-size: 24px;">fingerprint</span>
           </div>
           <div style="flex: 1; overflow: hidden;">
             <div style="display: flex; justify-content: space-between; align-items: center;">
-              <h4 style="font-size: 14px; font-weight: 600; color: var(--color-text-high); text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
+              <h4 id="home-recent-title" style="font-size: 14px; font-weight: 600; color: var(--color-text-high); text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
                 ${latestReading.title}
               </h4>
-              <span style="font-size: 11px; color: var(--color-outline);">Yesterday</span>
+              <span style="font-size: 11px; color: var(--color-outline);">Recent</span>
             </div>
-            <p style="font-size: 12px; color: var(--color-on-surface-variant); margin-top: 2px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
+            <p id="home-recent-summary" style="font-size: 12px; color: var(--color-on-surface-variant); margin-top: 2px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
               ${latestReading.summary}
             </p>
           </div>
@@ -148,7 +220,7 @@ export function renderHomeScreen(container) {
             <h4 style="font-size: 14px; font-weight: 600; color: var(--color-text-high);">Ayur Rekha — The Life Line</h4>
           </div>
         </div>
-        <p style="font-size: 12px; color: var(--color-on-surface-variant); margin-top: 8px;">
+        <p style="font-size: 12px; color: var(--color-on-surface-variant); margin-top: 8px; line-height: 1.4;">
           Ancient Vedic texts revere the life line as an energetic indicator of constitutional vitality, not a fatalistic lifespan clock.
         </p>
         <button id="home-open-codex-btn" style="background: none; border: none; font-size: 12px; font-weight: 600; color: var(--color-secondary); margin-top: 10px; cursor: pointer; padding: 0;">
@@ -156,19 +228,37 @@ export function renderHomeScreen(container) {
         </button>
       </section>
 
+      <!-- Ethics & Legal Disclaimer Card -->
+      <section style="padding: 12px 14px; border-radius: var(--radius-sm); background: rgba(255,255,255,0.03); border: 1px solid var(--color-border-subtle); text-align: center;">
+        <p style="font-size: 11px; color: var(--color-outline); line-height: 1.5;">
+          <strong>Ethical Palmistry Notice:</strong> Kai RegAI is an introspective and reflective platform. It does not provide medical diagnosis, lifespan predictions, psychological counseling, or financial guarantees.
+        </p>
+      </section>
+
     </div>
   `;
 
   document.getElementById('home-launch-scanner-btn')?.addEventListener('click', () => {
+    reportTelemetry.logEvent(TELEMETRY_EVENTS.START_READING, { mode: 'MODE_1_SCANNER' });
     router.navigate(ROUTES.SCANNER);
   });
 
   document.getElementById('home-launch-guided-btn')?.addEventListener('click', () => {
+    reportTelemetry.logEvent(TELEMETRY_EVENTS.START_READING, { mode: 'MODE_2_QUESTIONNAIRE' });
     router.navigate(ROUTES.GUIDED_READING);
   });
 
   document.getElementById('home-recent-card')?.addEventListener('click', () => {
-    router.navigate(ROUTES.QUICK_REPORT, { id: latestReading.id });
+    if (latestReading.isPersisted && latestReading.persistedRecord) {
+      const dossier = latestReading.persistedRecord.interpretationSnapshot;
+      if (latestReading.mode === 'MODE_2_GUIDED') {
+        router.navigate(ROUTES.DETAILED_REPORT, { dossier, id: latestReading.id });
+      } else {
+        router.navigate(ROUTES.QUICK_REPORT, { dossier, id: latestReading.id });
+      }
+    } else {
+      router.navigate(ROUTES.QUICK_REPORT, { id: latestReading.id });
+    }
   });
 
   document.getElementById('home-view-all-readings')?.addEventListener('click', () => {

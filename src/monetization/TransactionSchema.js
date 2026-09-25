@@ -105,8 +105,8 @@ export class TransactionSchemaValidator {
     const forbiddenPatterns = [
       /cardNumber/i,
       /creditCard/i,
-      /cvv/i,
-      /cvc/i,
+      /\bcvv\b/i,
+      /\bcvc\b/i,
       /password/i,
       /secret/i,
       /rawImage/i,

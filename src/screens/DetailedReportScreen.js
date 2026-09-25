@@ -9,8 +9,10 @@ import { ROUTES } from '../navigation/routes.js';
 import { mockReadings } from '../mock/mockReadings.js';
 import { renderPalmLineOverlay } from '../components/PalmLineOverlay.js';
 import { defaultEntitlementService, FEATURE_KEYS } from '../monetization/index.js';
+import { reportTelemetry, TELEMETRY_EVENTS } from '../report/ReportTelemetry.js';
 
 export function renderDetailedReportScreen(container, params = {}) {
+  reportTelemetry.logEvent(TELEMETRY_EVENTS.DETAILED_REPORT_VIEW, { reportTier: 'DETAILED' });
   const reading = params.dossier || mockReadings.find(r => r.id === params.id) || mockReadings[1];
   const isQuestionnaire = reading.reading_method === 'GUIDED_QUESTIONNAIRE' ||
                           params.featureModel?.provenance?.reading_method === 'GUIDED_QUESTIONNAIRE' ||

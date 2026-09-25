@@ -4,6 +4,7 @@ import { mockReadings } from '../mock/mockReadings.js';
 import { renderPalmLineOverlay } from '../components/PalmLineOverlay.js';
 import { PalmFeatureModelAdapter } from '../cv/adapters/PalmFeatureModelAdapter.js';
 import { defaultEntitlementService, FEATURE_KEYS } from '../monetization/index.js';
+import { reportTelemetry, TELEMETRY_EVENTS } from '../report/ReportTelemetry.js';
 
 /**
  * Format line status display badge and honest epistemic observation
@@ -67,6 +68,7 @@ function getLinePresentation(lineKey, lineData) {
 
 export function renderQuickReportScreen(container, params = {}) {
   const { visionResult, featureModel, capturedImage, dossier } = params;
+  reportTelemetry.logEvent(TELEMETRY_EVENTS.QUICK_REPORT_VIEW, { reportTier: 'QUICK' });
   const isQuestionnaire = featureModel?.provenance?.reading_method === 'GUIDED_QUESTIONNAIRE' || 
                           featureModel?.provenance?.mode === 'MODE_2_QUESTIONNAIRE' ||
                           dossier?.reading_method === 'GUIDED_QUESTIONNAIRE';
@@ -250,6 +252,7 @@ export function renderQuickReportScreen(container, params = {}) {
     }
   });
   document.getElementById('quick-done-btn')?.addEventListener('click', () => {
+    reportTelemetry.logEvent(TELEMETRY_EVENTS.READING_SAVED, { reportTier: 'QUICK' });
     router.navigate(ROUTES.HOME);
   });
   document.getElementById('quick-explore-full-btn')?.addEventListener('click', () => {

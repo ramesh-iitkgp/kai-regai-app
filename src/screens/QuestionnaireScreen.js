@@ -12,12 +12,14 @@ import { QuestionnaireFeatureAdapter } from '../questionnaire/QuestionnaireFeatu
 import { PalmInterpretationEngine } from '../services/PalmInterpretationEngine.js';
 import { QuestionnaireHUD } from '../components/QuestionnaireHUD.js';
 import { QUESTION_TYPES } from '../questionnaire/QuestionnaireSchema.js';
+import { reportTelemetry, TELEMETRY_EVENTS } from '../report/ReportTelemetry.js';
 
 export function renderQuestionnaireScreen(container, params = {}) {
   const initialAnswers = {
     hand_side: params?.hand || 'RIGHT'
   };
 
+  reportTelemetry.logEvent(TELEMETRY_EVENTS.QUESTIONNAIRE_STARTED, { handSide: initialAnswers.hand_side });
   const engine = new QuestionnaireEngine({ initialAnswers });
   engine.start();
 
@@ -177,6 +179,7 @@ export function renderQuestionnaireScreen(container, params = {}) {
 
     // Transition smoothly to Quick Report after brief synthesis celebration
     setTimeout(() => {
+      reportTelemetry.logEvent(TELEMETRY_EVENTS.QUESTIONNAIRE_COMPLETED, { readingMethod: 'GUIDED_QUESTIONNAIRE' });
       engine.stateMachine.transition(QUESTIONNAIRE_STATES.COMPLETE);
       router.navigate(ROUTES.QUICK_REPORT, {
         featureModel,
