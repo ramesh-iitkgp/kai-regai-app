@@ -1,0 +1,408 @@
+/* ==========================================================================
+   Kai RegAI — Reusable Component Styles
+   ========================================================================== */
+
+/* Brand Wordmark & Emblem */
+.kai-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  height: var(--header-height);
+  background: rgba(10, 14, 26, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--color-border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kai-header-inner {
+  width: 100%;
+  max-width: var(--max-app-width);
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.kai-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.kai-emblem {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(228, 194, 118, 0.4);
+  background: var(--color-surface-container-lowest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 12px rgba(228, 194, 118, 0.25);
+  overflow: hidden;
+}
+
+.kai-wordmark {
+  display: flex;
+  flex-direction: column;
+}
+
+.kai-title-row {
+  display: flex;
+  align-items: baseline;
+  line-height: 1;
+}
+
+.kai-brand-reg {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-secondary);
+  letter-spacing: -0.01em;
+}
+
+.kai-brand-ai {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 800;
+  margin-left: 2px;
+  background: var(--gradient-ai-badge);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 8px rgba(71, 214, 255, 0.7));
+}
+
+.kai-descriptor {
+  font-family: var(--font-body);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-on-surface-variant);
+  margin-top: 3px;
+}
+
+/* Bottom Navigation Bar */
+.kai-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  height: var(--bottom-nav-height);
+  background: rgba(15, 19, 32, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--color-border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.kai-bottom-nav-inner {
+  width: 100%;
+  max-width: var(--max-app-width);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 8px;
+}
+
+.kai-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 8px 12px;
+  color: var(--color-outline);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+
+.kai-nav-item .material-symbols-outlined {
+  font-size: 22px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.kai-nav-item.active {
+  color: var(--color-secondary);
+}
+
+.kai-nav-item.active .material-symbols-outlined {
+  color: var(--color-secondary);
+  filter: drop-shadow(0 0 10px rgba(228, 194, 118, 0.6));
+  transform: translateY(-2px);
+}
+
+/* Cards & Containers */
+.kai-card {
+  position: relative;
+  background-color: var(--color-surface-container);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  border: 1px solid var(--color-border-subtle);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.kai-card-gold-rim {
+  border: 1px solid rgba(228, 194, 118, 0.2);
+}
+
+.kai-card-gold-rim::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-secondary) 50%, transparent 100%);
+  opacity: 0.7;
+}
+
+/* Primary and Secondary Buttons */
+.kai-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 52px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.kai-btn:active {
+  transform: scale(0.98);
+}
+
+.kai-btn-primary {
+  background: var(--gradient-primary-btn);
+  color: #ffffff;
+  box-shadow: 0 4px 20px rgba(147, 125, 255, 0.35);
+}
+
+.kai-btn-primary:hover {
+  filter: brightness(1.1);
+}
+
+.kai-btn-gold {
+  background: var(--gradient-gold-cta);
+  color: #1a1505;
+  font-weight: 700;
+  box-shadow: 0 4px 20px rgba(228, 194, 118, 0.35);
+}
+
+.kai-btn-secondary {
+  background: var(--color-surface-container-high);
+  color: var(--color-on-surface);
+  border: 1px solid var(--color-border-subtle);
+}
+
+.kai-btn-ghost {
+  background: transparent;
+  color: var(--color-secondary);
+  border: 1px solid rgba(228, 194, 118, 0.3);
+}
+
+.kai-btn-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: rgba(38, 41, 55, 0.8);
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-on-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+
+.kai-btn-icon:active {
+  transform: scale(0.95);
+  background: var(--color-surface-container-highest);
+}
+
+/* Badges & Chips */
+.kai-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.kai-badge-primary {
+  background: rgba(147, 125, 255, 0.15);
+  color: var(--color-primary);
+  border: 1px solid rgba(147, 125, 255, 0.3);
+}
+
+.kai-badge-secondary {
+  background: rgba(228, 194, 118, 0.12);
+  color: var(--color-secondary);
+  border: 1px solid rgba(228, 194, 118, 0.3);
+}
+
+.kai-badge-cyan {
+  background: rgba(71, 214, 255, 0.12);
+  color: var(--color-tertiary);
+  border: 1px solid rgba(71, 214, 255, 0.3);
+}
+
+/* Line Indicator Chips with Glyphs (Colorblind Accessible) */
+.kai-line-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(15, 19, 32, 0.85);
+  border: 1px solid var(--color-border-subtle);
+}
+
+.kai-line-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+}
+
+/* Interactive Tabs */
+.kai-tabs-bar {
+  display: flex;
+  background: var(--color-surface-container-lowest);
+  border-radius: var(--radius-md);
+  padding: 4px;
+  border: 1px solid var(--color-border-subtle);
+  gap: 4px;
+  overflow-x: auto;
+}
+
+.kai-tab-btn {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: none;
+  color: var(--color-outline);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.kai-tab-btn.active {
+  background: var(--color-surface-container-high);
+  color: var(--color-secondary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Modals & Overlays */
+.kai-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(5, 7, 13, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.kai-modal-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.kai-modal-sheet {
+  width: 100%;
+  max-width: var(--max-app-width);
+  background: var(--color-surface-container);
+  border-top-left-radius: var(--radius-xl);
+  border-top-right-radius: var(--radius-xl);
+  border: 1px solid var(--color-border-subtle);
+  border-bottom: none;
+  padding: 24px 20px calc(24px + env(safe-area-inset-bottom, 0px));
+  box-shadow: var(--shadow-modal);
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.kai-modal-backdrop.open .kai-modal-sheet {
+  transform: translateY(0);
+}
+
+.kai-sheet-handle {
+  width: 40px;
+  height: 4px;
+  border-radius: var(--radius-full);
+  background: var(--color-outline-variant);
+  margin: 0 auto 20px;
+}
+
+/* Animations */
+@keyframes laserSweep {
+  0% { transform: translateY(0); opacity: 0; }
+  20% { opacity: 0.9; }
+  80% { opacity: 0.9; }
+  100% { transform: translateY(320px); opacity: 0; }
+}
+
+.laser-beam {
+  animation: laserSweep 2.5s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.04); }
+}
+
+.glow-pulsing {
+  animation: pulseGlow 3s ease-in-out infinite;
+}

@@ -1,0 +1,154 @@
+/* ==========================================================================
+   Kai RegAI — Design System Tokens (Vedic Cyber-Mysticism)
+   Authoritative source: design/stitch/vedic_cyber_mysticism/DESIGN.md
+   ========================================================================== */
+
+:root {
+  /* Canvas & Structural Tonal Surfaces */
+  --color-canvas: #080A12;
+  --color-background: #0f1320;
+  --color-surface: #111522;
+  --color-surface-dim: #0f1320;
+  --color-surface-bright: #353947;
+  --color-surface-container-lowest: #0a0e1a;
+  --color-surface-container-low: #171b28;
+  --color-surface-container: #1b1f2d;
+  --color-surface-container-high: #262937;
+  --color-surface-container-highest: #303443;
+  --color-surface-elevated: #171C2C;
+  --color-surface-glass: rgba(26, 26, 46, 0.75);
+
+  /* Primary Brand Violet Accents (AI Vision & Activation) */
+  --color-primary: #cabeff;
+  --color-primary-container: #937dff;
+  --color-on-primary: #31009a;
+  --color-on-primary-container: #2a0088;
+  --color-primary-fixed: #e6deff;
+  --color-primary-fixed-dim: #cabeff;
+  --color-inverse-primary: #6044d1;
+  --color-primary-violet: #8B72FF;
+  --color-deep-violet: #5D46C7;
+
+  /* Secondary Prestige Gold (Vedic Heritage & Ancient Shastra) */
+  --color-secondary: #e4c276;
+  --color-secondary-container: #5d4602;
+  --color-on-secondary: #3f2e00;
+  --color-on-secondary-container: #d5b46a;
+  --color-secondary-fixed: #ffdf9a;
+  --color-secondary-fixed-dim: #e4c276;
+  --color-antique-gold: #D6B56A;
+  --color-warm-gold: #E8CA7A;
+
+  /* Tertiary Electric Cyan (Precision Neural Scanning & Holography) */
+  --color-tertiary: #47d6ff;
+  --color-tertiary-container: #009ec0;
+  --color-on-tertiary: #003543;
+  --color-on-tertiary-container: #002e3a;
+  --color-tertiary-fixed: #b6ebff;
+  --color-tertiary-fixed-dim: #47d6ff;
+
+  /* Semantic Palm Line Identifiers (Non-negotiable P1/P2 standard) */
+  --color-line-life: #A855F7;  /* Violet */
+  --color-line-head: #00D2FF;  /* Blue / Cyan */
+  --color-line-heart: #F43F5E; /* Rose */
+  --color-line-fate: #FBBF24;  /* Gold */
+  --color-line-sun: #F59E0B;   /* Amber */
+
+  /* Text & Feedback Tones */
+  --color-on-surface: #dfe1f4;
+  --color-on-surface-variant: #c9c4d6;
+  --color-text-high: #F6F1E7; /* Sacred Ivory */
+  --color-text-muted: #B9B4AA; /* Subdued Bone Ivory */
+  --color-outline: #938ea0;
+  --color-outline-variant: #484554;
+  --color-border-trim: rgba(214, 181, 106, 0.14);
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
+
+  /* Status Colors */
+  --color-success: #6FCF97;
+  --color-warning: #E5B96B;
+  --color-error: #ffb4ab;
+  --color-error-container: #93000a;
+  --color-on-error: #690005;
+
+  /* Gradients */
+  --gradient-ai-badge: linear-gradient(135deg, #47d6ff 0%, #cabeff 100%);
+  --gradient-primary-btn: linear-gradient(135deg, #937dff 0%, #6044d1 100%);
+  --gradient-gold-cta: linear-gradient(135deg, #e4c276 0%, #d5b46a 100%);
+  --gradient-card-rim: linear-gradient(180deg, rgba(228, 194, 118, 0.25) 0%, rgba(202, 190, 255, 0.05) 50%, transparent 100%);
+
+  /* Typography */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Radii */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows & Sacred Glows */
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.45);
+  --shadow-modal: 0 16px 48px -8px rgba(0, 0, 0, 0.85);
+  --glow-violet: 0 0 24px -2px rgba(147, 125, 255, 0.35);
+  --glow-gold: 0 0 20px -2px rgba(228, 194, 118, 0.3);
+  --glow-cyan: 0 0 20px -2px rgba(71, 214, 255, 0.4);
+
+  /* Layout Constrained Dimensions */
+  --max-app-width: 440px;
+  --bottom-nav-height: 72px;
+  --header-height: 64px;
+}
+
+/* Base resets & layout rules */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-canvas);
+  color: var(--color-on-surface);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* App viewport wrapper (Mobile phone framed on desktop, full on phone) */
+#app-root {
+  width: 100%;
+  min-height: 100vh;
+  max-width: var(--max-app-width);
+  margin: 0 auto;
+  position: relative;
+  background-color: var(--color-background);
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  box-shadow: 0 0 80px rgba(0, 0, 0, 0.7);
+}
+
+/* Safe area insets */
+.pt-safe {
+  padding-top: max(16px, env(safe-area-inset-top));
+}
+.pb-safe {
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+}
+
+/* Hide scrollbar while preserving scrolling */
+::-webkit-scrollbar {
+  display: none;
+}
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

@@ -1,0 +1,203 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>Vedic Biometric Synthesis</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "background": "#0a0e1a",
+            "surface": "#0f1320",
+            "surface-container": "#171b29",
+            "surface-container-high": "#202538",
+            "surface-container-low": "#121624",
+            "surface-container-lowest": "#070a13",
+            "primary": "#cabeff",
+            "primary-container": "#937dff",
+            "secondary": "#dfb86c",
+            "secondary-fixed": "#f5df9b",
+            "tertiary": "#4ee2ff",
+            "rose-line": "#ff6b9d",
+            "emerald-line": "#34d399",
+            "violet-line": "#8b72ff",
+            "on-surface": "#dfe1f4",
+            "on-surface-variant": "#a1a6c2",
+            "outline-variant": "#2f354d",
+          },
+          fontFamily: {
+            "headline": ["Playfair Display", "serif"],
+            "sans": ["Manrope", "sans-serif"],
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    @keyframes laserSweep {
+      0% {
+        top: 6%;
+        opacity: 0.1;
+      }
+      15% {
+        opacity: 0.95;
+      }
+      85% {
+        opacity: 0.95;
+      }
+      100% {
+        top: 92%;
+        opacity: 0.1;
+      }
+    }
+    @keyframes slowSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes reverseSpin {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+    .animate-laser {
+      animation: laserSweep 3.6s ease-in-out infinite alternate;
+    }
+    .animate-spin-slow {
+      animation: slowSpin 24s linear infinite;
+    }
+    .animate-spin-reverse {
+      animation: reverseSpin 32s linear infinite;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-sans antialiased min-h-screen selection:bg-primary/20 selection:text-primary">
+<main class="relative w-full min-h-screen px-4 py-5 max-w-[440px] mx-auto flex flex-col justify-between space-y-4">
+<!-- 2. TOP BAR & TELEMETRY HEADER -->
+<header class="w-full space-y-2.5"><div class="flex items-center justify-between bg-surface-container-low/90 backdrop-blur-xl border border-outline-variant/50 px-3.5 py-2.5 rounded-2xl shadow-xl"><div class="flex items-center space-x-2.5"><span class="relative flex h-2.5 w-2.5"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary opacity-80"></span><span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-tertiary shadow-[0_0_10px_#4ee2ff]"></span></span><div class="flex flex-col"><span class="text-[12px] font-extrabold uppercase tracking-[0.14em] text-tertiary drop-shadow-[0_0_8px_rgba(78,226,255,0.4)]">Kai RegAI</span><span class="text-[9.5px] text-on-surface-variant font-bold tracking-wider">PALM READING • STEP 3 OF 5</span></div></div><div class="flex items-center space-x-1.5 bg-surface-container-high/90 border border-secondary/30 px-2.5 py-1 rounded-full shadow-inner"><span class="material-symbols-outlined text-[13px] text-secondary animate-pulse" style="font-variation-settings: 'FILL' 1;">sensors</span><span class="text-[10.5px] font-bold text-secondary font-mono tracking-tight" id="timer-val">PALM DETECTED • POSITION GOOD</span></div></div><div class="relative w-full bg-surface-container-lowest/80 border border-outline-variant/40 p-1 rounded-full shadow-inner"><div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-violet-line via-tertiary to-secondary rounded-full transition-all duration-300 shadow-[0_0_12px_rgba(78,226,255,0.7)]" id="progress-bar" style="width: 60%;"></div></div></div><div class="flex items-center justify-between px-1 text-[10px] text-on-surface-variant/80 font-mono tracking-wide"><span class="flex items-center gap-1 italic text-on-surface-variant/90"><span class="material-symbols-outlined text-[12px] text-secondary">auto_awesome</span>The Story Written in Your Hands</span><span class="text-tertiary/90 font-medium font-mono uppercase">DETECTING MAJOR CREASES</span></div></header>
+<!-- 1. HERO BIOMETRIC HUD & PALM DISPLAY -->
+<section class="relative w-full aspect-[1/1.08] bg-surface-container-lowest rounded-3xl overflow-hidden border border-outline-variant/60 shadow-[0_12px_45px_rgba(0,0,0,0.7)] flex items-center justify-center group">
+<!-- Spatial Deep Nebula Glow Background -->
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(78,226,255,0.12),rgba(139,114,255,0.06)_40%,transparent_75%)] pointer-events-none"></div>
+<!-- Realistic Hand Scan with Illuminated Glowing Palm Lines -->
+<img alt="Biometric Palm Scan with glowing Vedic Rekha pathways" class="absolute inset-0 w-full h-full object-cover object-center scale-[1.03] transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGiZgKTQvx7n0vMOaDRwpGccVGew23SrNfX5kD7N_RSTZh-A463-cXWVYLVKfWkU3nZMeZP-AE5Fb8SN23bLWbgug20qOmGNg6YkxL4BVHUO_Hzc21kZiy8IcOTCUAtiD0T2lNEwf7SKnxWtwY4H5pQOU7GCfwnm-krHgO9sFd1YPGcwSYOjsBc86yZvh6rScE6iF16y27EAg0W6hZhZrZOtZ7xhBuvK7iuy3hzSoWes8eOcvI8N0NcK6GpzRF_q_TWA">
+<!-- Subtle Dark Gradient Scrim to frame HUD and enhance pin legibility -->
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-background/70 pointer-events-none"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-background/40 via-transparent to-background/40 pointer-events-none"></div>
+<!-- Astrolabe & Vedic Sacred Geometry HUD Overlay -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none opacity-45" fill="none" viewBox="0 0 400 440">
+<!-- Astrolabe Concentric Coordinates -->
+<circle class="animate-spin-slow" cx="200" cy="220" r="185" stroke="#cabeff" stroke-dasharray="3 7" stroke-width="0.8" style="transform-origin: 200px 220px;"></circle>
+<circle cx="200" cy="220" r="145" stroke="#dfb86c" stroke-opacity="0.6" stroke-width="0.75"></circle>
+<circle class="animate-spin-reverse" cx="200" cy="220" r="95" stroke="#4ee2ff" stroke-dasharray="2 5" stroke-width="0.8" style="transform-origin: 200px 220px;"></circle>
+<!-- Crosshairs & Sanskrit Meridian Guides -->
+<line opacity="0.35" stroke="#cabeff" stroke-dasharray="2 6" stroke-width="0.5" x1="200" x2="200" y1="20" y2="420"></line>
+<line opacity="0.35" stroke="#cabeff" stroke-dasharray="2 6" stroke-width="0.5" x1="15" x2="385" y1="220" y2="220"></line>
+<!-- Polar Coordinate Markings -->
+<circle cx="200" cy="220" fill="#dfb86c" opacity="0.8" r="3"></circle>
+<circle cx="200" cy="35" fill="#4ee2ff" r="2"></circle>
+<circle cx="385" cy="220" fill="#4ee2ff" r="2"></circle>
+<circle cx="200" cy="405" fill="#4ee2ff" r="2"></circle>
+<circle cx="15" cy="220" fill="#4ee2ff" r="2"></circle>
+</svg>
+<!-- Active Cyber Scanning Laser Beam & Wave Sweep -->
+<div class="absolute inset-x-0 h-14 bg-gradient-to-b from-transparent via-tertiary/25 to-transparent pointer-events-none animate-laser flex items-center">
+<div class="w-full h-[2px] bg-gradient-to-r from-transparent via-cyan-200 to-transparent shadow-[0_0_15px_#4ee2ff,0_0_30px_#4ee2ff]"></div>
+</div>
+<!-- Top Left Sensor Metric Badge -->
+<div class="absolute top-3 left-3 bg-surface-container-lowest/85 backdrop-blur-md border border-white/10 px-2.5 py-1 rounded-full shadow-lg flex items-center space-x-1.5 z-10">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+<span class="text-[9.5px] font-mono text-on-surface-variant font-medium tracking-tight">OPTICAL APERTURE: F/1.8 • 48MP ISO 120</span>
+</div>
+<!-- Top Right Telemetry Depth Pill -->
+<div class="absolute top-3 right-3 bg-rose-line/15 border border-rose-line/40 backdrop-blur-md px-2.5 py-1 rounded-full shadow-lg flex items-center space-x-1.5 z-10"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-line opacity-80"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-rose-line"></span></span><span class="text-[10px] font-mono font-bold text-rose-line tracking-wide">PALM DETECTED • OPTIMAL FOCUS</span></div>
+<!-- Pin 1: GURU MOUNT (Jupiter) [28.4°] (Gold) -->
+<div class="absolute top-[31%] left-[34%] -translate-x-1/2 -translate-y-1/2 flex items-center space-x-1.5 z-10 pointer-events-none">
+<div class="relative flex items-center justify-center">
+<span class="animate-ping absolute w-4 h-4 rounded-full bg-secondary opacity-40"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-secondary shadow-[0_0_8px_#dfb86c] border border-white/80"></span>
+</div>
+<div class="bg-surface-container-lowest/90 backdrop-blur-md border border-secondary/40 px-2 py-0.5 rounded shadow-lg">
+<span class="text-[9px] font-mono font-bold text-secondary tracking-tight">GURU MOUNT [28.4°]</span>
+</div>
+</div>
+<!-- Pin 2: HRIDAYA REKHA (Heart Line) (Active Pulsing Rose Pink) -->
+<div class="absolute top-[41%] right-[5%] flex items-center space-x-1.5 z-10 pointer-events-none"><div class="bg-surface-container-lowest/95 backdrop-blur-md border border-rose-line/60 px-2.5 py-1 rounded-lg shadow-[0_0_15px_rgba(255,107,157,0.35)] flex items-center space-x-1.5"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-line"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-rose-line"></span></span><div class="flex flex-col"><span class="text-[10px] font-bold text-rose-line tracking-tight leading-tight">HEART LINE (Hridaya Rekha)</span><span class="text-[8.5px] font-mono text-rose-line/90 font-semibold uppercase">STATUS: ANALYZING</span></div></div><div class="relative flex items-center justify-center"><span class="animate-ping absolute w-4 h-4 rounded-full bg-rose-line opacity-75"></span><span class="w-3 h-3 rounded-full bg-rose-line shadow-[0_0_10px_#ff6b9d] border-2 border-white"></span></div></div>
+<!-- Pin 3: MASTRI REKHA (Head Line) (Cyan Verified) -->
+<div class="absolute top-[58%] right-[8%] flex items-center space-x-1.5 z-10 pointer-events-none">
+<div class="bg-surface-container-lowest/90 backdrop-blur-md border border-tertiary/40 px-2 py-0.5 rounded shadow-lg">
+<span class="text-[9px] font-mono text-tertiary font-semibold">MASTRI REKHA • [VERIFIED]</span>
+</div>
+<span class="w-2 h-2 rounded-full bg-tertiary shadow-[0_0_8px_#4ee2ff] border border-white/80"></span>
+</div>
+<!-- Pin 4: JEEVA REKHA (Life Line) (Amber Orange Calibrating) -->
+<div class="absolute top-[65%] left-[8%] flex items-center space-x-1.5 z-10 pointer-events-none"><span class="w-2.5 h-2.5 rounded-full bg-violet-line shadow-[0_0_8px_#8b72ff] border border-white/90"></span><div class="bg-surface-container-lowest/90 backdrop-blur-md border border-violet-line/40 px-2 py-0.5 rounded shadow-lg"><span class="text-[9px] font-mono font-bold text-violet-300">LIFE LINE (Jeeva Rekha) • [DETECTED]</span></div></div>
+<!-- Pin 5: CHANDRA REALM (Violet Mount) -->
+<div class="absolute bottom-[14%] right-[22%] flex items-center space-x-1 z-10 pointer-events-none">
+<span class="w-2 h-2 rounded-full bg-violet-line shadow-[0_0_8px_#8b72ff]"></span>
+<div class="bg-surface-container-lowest/80 backdrop-blur-md border border-violet-line/30 px-1.5 py-0.5 rounded">
+<span class="text-[8.5px] font-mono text-violet-300">CHANDRA REALM</span>
+</div>
+</div>
+<!-- Bottom Reticle Coordinates Footer -->
+<div class="absolute bottom-2.5 left-3 flex items-center space-x-2 bg-surface-container-lowest/80 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10">
+<span class="material-symbols-outlined text-[12px] text-tertiary">radar</span>
+<span class="text-[9px] font-mono text-on-surface-variant">GEO-VECTOR: 18.922°N / 72.834°E</span>
+</div>
+</section>
+<!-- 3. ACTIVE STAGE CARTOUCHE (PHASE 3 OF 5) -->
+<section class="relative overflow-hidden bg-surface-container-high/90 border border-rose-line/30 p-3.5 rounded-2xl shadow-xl"><div class="absolute -right-8 -top-8 w-28 h-28 rounded-full bg-rose-line/15 blur-2xl pointer-events-none"></div><div class="flex items-center justify-between mb-2"><div class="flex items-center space-x-2"><span class="flex h-2 w-2 rounded-full bg-rose-line shadow-[0_0_8px_#ff6b9d]"></span><span class="text-[11px] font-extrabold uppercase tracking-widest text-rose-line">Phase 3 of 5 • Heart Line Analysis</span></div><span class="text-[10px] font-mono text-rose-line font-bold bg-rose-line/10 px-2 py-0.5 rounded-full border border-rose-line/20">ANALYZING CREASE</span></div><div class="space-y-2 text-[11px] font-sans"><div class="bg-surface-container-lowest/80 p-2 rounded-lg border border-white/5 space-y-0.5"><div class="text-[9.5px] font-bold uppercase tracking-wider text-rose-line font-mono">1. Observed Pattern</div><p class="text-on-surface leading-snug font-medium">Clear curvature extending gracefully toward the Mount of Jupiter with upward micro-branching.</p></div><div class="bg-surface-container-lowest/80 p-2 rounded-lg border border-white/5 space-y-0.5"><div class="text-[9.5px] font-bold uppercase tracking-wider text-secondary font-mono">2. Traditional Interpretation</div><p class="text-on-surface-variant leading-snug">Associated with emotional breadth, relational openness, and warmth in connections.</p></div><div class="bg-surface-container-lowest/80 p-2 rounded-lg border border-white/5 space-y-0.5"><div class="text-[9.5px] font-bold uppercase tracking-wider text-tertiary font-mono">3. Kai RegAI Synthesis</div><p class="text-on-surface leading-snug font-medium">Tracing continuity and branch trajectory across palm coordinates.</p></div></div></section>
+<!-- 4. SEMANTIC REKHA PIPELINE QUEUE -->
+<section class="bg-surface-container-low/95 border border-outline-variant/40 p-3.5 rounded-2xl space-y-2.5 shadow-lg"><div class="flex items-center justify-between border-b border-white/5 pb-1.5"><span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant font-mono">Five Primary Rekhas</span><span class="text-[10px] font-mono text-secondary font-semibold">2 of 5 Detected</span></div><div class="space-y-1.5"><div class="flex items-center justify-between px-3 py-2 bg-surface-container/70 border border-violet-line/30 rounded-xl transition-all"><div class="flex items-center space-x-2.5"><span class="w-2 h-2 rounded-full bg-violet-line shadow-[0_0_6px_#8b72ff]"></span><div class="flex items-baseline space-x-1.5"><span class="text-[12px] font-semibold text-on-surface">Life Line</span><span class="text-[10px] text-on-surface-variant">(Jeeva Rekha)</span></div></div><div class="flex items-center space-x-1 text-violet-300 bg-violet-line/10 px-2 py-0.5 rounded-full border border-violet-line/30"><span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">check_circle</span><span class="text-[9.5px] font-mono font-bold tracking-wider">DETECTED</span></div></div><div class="flex items-center justify-between px-3 py-2 bg-surface-container/70 border border-tertiary/30 rounded-xl transition-all"><div class="flex items-center space-x-2.5"><span class="w-2 h-2 rounded-full bg-tertiary shadow-[0_0_6px_#4ee2ff]"></span><div class="flex items-baseline space-x-1.5"><span class="text-[12px] font-semibold text-on-surface">Head Line</span><span class="text-[10px] text-on-surface-variant">(Mastri Rekha)</span></div></div><div class="flex items-center space-x-1 text-tertiary bg-tertiary/10 px-2 py-0.5 rounded-full border border-tertiary/30"><span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">check_circle</span><span class="text-[9.5px] font-mono font-bold tracking-wider">DETECTED</span></div></div><div class="flex items-center justify-between px-3 py-2 bg-surface-container-high border border-rose-line/40 rounded-xl shadow-[0_0_12px_rgba(255,107,157,0.18)]"><div class="flex items-center space-x-2.5"><span class="relative flex h-2.5 w-2.5"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-line opacity-80"></span><span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-line"></span></span><div class="flex items-baseline space-x-1.5"><span class="text-[12px] font-bold text-rose-line">Heart Line</span><span class="text-[10px] text-rose-line/80">(Hridaya Rekha)</span></div></div><div class="flex items-center space-x-1 text-rose-line bg-rose-line/15 px-2 py-0.5 rounded-full border border-rose-line/30 animate-pulse"><span class="material-symbols-outlined text-[13px] animate-spin">progress_activity</span><span class="text-[9.5px] font-mono font-bold tracking-wider">ANALYZING</span></div></div><div class="flex items-center justify-between px-3 py-1.5 bg-surface-container/40 border border-outline-variant/30 rounded-xl opacity-65"><div class="flex items-center space-x-2.5"><span class="w-2 h-2 rounded-full bg-secondary"></span><div class="flex items-baseline space-x-1.5"><span class="text-[11.5px] font-medium text-on-surface-variant">Fate Line</span><span class="text-[9.5px] text-on-surface-variant/70">(Karma Rekha)</span></div></div><span class="text-[9px] font-mono uppercase text-secondary bg-secondary/10 px-2 py-0.5 rounded">QUEUED</span></div><div class="flex items-center justify-between px-3 py-1.5 bg-surface-container/40 border border-outline-variant/30 rounded-xl opacity-65"><div class="flex items-center space-x-2.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span><div class="flex items-baseline space-x-1.5"><span class="text-[11.5px] font-medium text-on-surface-variant">Sun Line</span><span class="text-[9.5px] text-on-surface-variant/70">(Surya Rekha)</span></div></div><span class="text-[9px] font-mono uppercase text-amber-300 bg-amber-400/10 px-2 py-0.5 rounded">QUEUED</span></div></div></section>
+<!-- 5. BOTTOM HUD CONTROLS & SECURITY FOOTNOTE -->
+<footer class="w-full pt-1 pb-2 space-y-3">
+<!-- Calm Reassurance Micro-Copy with Palm Icon -->
+<div class="flex items-start justify-center space-x-2 text-center px-4">
+<span class="material-symbols-outlined text-secondary text-[16px] mt-0.5 shrink-0" style="font-variation-settings: 'FILL' 1;">front_hand</span>
+<p class="text-[11px] text-on-surface-variant/90 leading-relaxed font-sans">Hold steady. Kai RegAI is synthesizing your hand creases, mount elevations, and line intersections.</p>
+</div>
+<!-- Sleek Glassmorphism Cancel Button -->
+<div class="flex justify-center">
+<button class="group px-6 py-2 rounded-full bg-surface-container-high/80 hover:bg-surface-container-high border border-outline-variant/60 hover:border-outline-variant text-on-surface-variant hover:text-on-surface transition-all active:scale-95 flex items-center space-x-2 shadow-md" onclick="handleCancelScan()" type="button">
+<span class="material-symbols-outlined text-[15px] group-hover:rotate-90 transition-transform">close</span>
+<span class="text-[12px] font-semibold tracking-wide">Cancel Scan</span>
+</button>
+</div>
+</footer>
+</main>
+<script>
+    function handleCancelScan() {
+      if (confirm("Pause current chiromancy synthesis? Detected crease matrices will be preserved in your encrypted local session.")) {
+        console.log("Chiromancy biometric analysis canceled by user.");
+      }
+    }
+
+    // Micro-interaction: Progress simulation up to completion sequence
+    (function simulateScanProgress() {
+      let currentSeconds = 7.3;
+      const timerElem = document.getElementById('timer-val');
+      const progressElem = document.getElementById('progress-bar');
+      
+      const interval = setInterval(() => {
+        if (currentSeconds >= 9.9) {
+          clearInterval(interval);
+          if (timerElem) timerElem.textContent = "⏱ 10.0s / 10s";
+          if (progressElem) progressElem.style.width = "100%";
+          return;
+        }
+        currentSeconds = +(currentSeconds + 0.1).toFixed(1);
+        if (timerElem) timerElem.textContent = `⏱ ${currentSeconds}s / 10s`;
+        if (progressElem) {
+          const percent = Math.min(100, Math.round((currentSeconds / 10) * 100));
+          progressElem.style.width = `${percent}%`;
+        }
+      }, 500);
+    })();
+  </script>
+
+
+</body></html>

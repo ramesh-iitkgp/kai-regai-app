@@ -1,0 +1,450 @@
+<!DOCTYPE html><html class="dark" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><meta content="mobile_stack" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#0f1320;color:#dfe1f4;font-family:'Manrope',sans-serif;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-background": "#dfe1f4", "surface-container-highest": "#303443", "secondary": "#e4c276", "tertiary-container": "#009ec0", "surface-variant": "#303443", "surface-container-lowest": "#0a0e1a", "on-surface-variant": "#c9c4d6", "tertiary-fixed-dim": "#47d6ff", "on-secondary-container": "#d5b46a", "tertiary": "#47d6ff", "tertiary-fixed": "#b6ebff", "surface-tint": "#cabeff", "secondary-container": "#5d4602", "surface-container-high": "#262937", "on-secondary-fixed": "#251a00", "on-error": "#690005", "surface-container-low": "#171b28", "error": "#ffb4ab", "surface": "#0f1320", "on-primary-fixed-variant": "#4826b9", "inverse-surface": "#dfe1f4", "error-container": "#93000a", "on-tertiary-fixed": "#001f28", "surface-dim": "#0f1320", "inverse-primary": "#6044d1", "on-tertiary-fixed-variant": "#004e60", "on-surface": "#dfe1f4", "on-tertiary-container": "#002e3a", "primary-container": "#937dff", "surface-bright": "#353947", "background": "#0f1320", "secondary-fixed": "#ffdf9a", "secondary-fixed-dim": "#e4c276", "on-secondary": "#3f2e00", "primary": "#cabeff", "primary-fixed": "#e6deff", "primary-fixed-dim": "#cabeff", "on-primary-container": "#2a0088", "outline-variant": "#484554", "on-secondary-fixed-variant": "#5a4300", "on-primary-fixed": "#1c0062", "inverse-on-surface": "#2c303e", "on-error-container": "#ffdad6", "on-tertiary": "#003543", "outline": "#938ea0", "surface-container": "#1b1f2d", "on-primary": "#31009a" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-xs": "0.25rem", "space-md": "1rem", "space-xl": "2.5rem", "margin": "1.25rem", "space-lg": "1.5rem", "space-sm": "0.5rem", "gutter": "1rem" }, fontFamily: { "body-lg": ["Manrope"], "headline-xl": ["Playfair Display"], "body-sm": ["Manrope"], "headline-xl-mobile": ["Playfair Display"], "headline-lg-mobile": ["Playfair Display"], "subheading-lg": ["Manrope"], "label-sm": ["Manrope"], "headline-sm": ["Playfair Display"], "subheading-md": ["Manrope"], "headline-lg": ["Playfair Display"], "headline-md": ["Playfair Display"], "body-md": ["Manrope"], "quote-wisdom": ["Playfair Display"], "label-md": ["Manrope"] }, fontSize: { "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }], "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-xl-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "subheading-lg": ["17px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "700" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "subheading-md": ["15px", { "lineHeight": "22px", "fontWeight": "500" }], "headline-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }], "quote-wisdom": ["18px", { "lineHeight": "28px", "letterSpacing": "0.01em", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface antialiased flex flex-col min-h-screen selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.35)] pt-safe"><div class="h-16 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><button aria-label="Go back" class="min-w-[44px] min-h-[44px] -ml-space-xs flex items-center justify-center text-on-surface-variant hover:text-secondary active:scale-95 transition-all" onclick="history.back()" type="button"><span class="material-symbols-outlined text-[22px]">arrow_back</span></button><div class="flex flex-col truncate"><span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary truncate">Report Telemetry</span><h1 class="font-headline-sm text-headline-sm text-on-surface truncate">Hastarekha Synthesis</h1></div></div><div class="flex items-center gap-space-xs"><button aria-label="Table of Contents" class="min-w-[44px] min-h-[44px] flex items-center justify-center text-on-surface-variant hover:text-on-surface active:scale-95 transition-all" type="button"><span class="material-symbols-outlined text-[22px]">menu_book</span></button><button aria-label="Share report" class="min-w-[44px] min-h-[44px] flex items-center justify-center text-on-surface-variant hover:text-primary active:scale-95 transition-all" type="button"><span class="material-symbols-outlined text-[22px]">ios_share</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-xs shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 bg-surface"><div class="flex flex-col w-full text-on-surface">
+<!-- Interactive State Engine Script -->
+<script>
+    function switchChapter(chapterId) {
+      document.querySelectorAll('.chapter-pill').forEach(el => {
+        el.classList.remove('bg-secondary', 'text-on-secondary', 'shadow-md');
+        el.classList.add('bg-surface-container', 'text-on-surface-variant');
+      });
+      const activeBtn = document.getElementById('btn-chap-' + chapterId);
+      if (activeBtn) {
+        activeBtn.classList.remove('bg-surface-container', 'text-on-surface-variant');
+        activeBtn.classList.add('bg-secondary', 'text-on-secondary', 'shadow-md');
+      }
+    }
+
+    function toggleLineDetail(lineKey) {
+      const allContents = document.querySelectorAll('.line-detail-panel');
+      const target = document.getElementById('detail-' + lineKey);
+      const icon = document.getElementById('icon-' + lineKey);
+      
+      const isCurrentlyOpen = !target.classList.contains('hidden');
+
+      allContents.forEach(p => p.classList.add('hidden'));
+      document.querySelectorAll('.line-chevron').forEach(i => i.style.transform = 'rotate(0deg)');
+
+      if (!isCurrentlyOpen && target && icon) {
+        target.classList.remove('hidden');
+        icon.style.transform = 'rotate(180deg)';
+      }
+    }
+  </script>
+<!-- 1. Metadata & Chapter Navigation Track -->
+<section class="flex flex-col px-margin pt-space-sm pb-space-md bg-surface-container-low/70">
+<div class="flex items-center justify-between mb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Hastarekha Synthesis • Vol. VII</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant/80">Telemetry #KA-709-ENC</span>
+</div>
+<div class="flex flex-col mb-space-sm">
+<div class="flex items-baseline justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Maya Lin</h2>
+<span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded-full bg-surface-container-high text-secondary-fixed">Right Hand (Manifest Karma)</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Archetype: Sovereign Architect (Air-Ether / Guru Dominant)</p>
+</div>
+<!-- Chapter Ribbon (Horizontal Scroll) -->
+<div class="flex items-center gap-space-xs overflow-x-auto pb-space-xs -mx-margin px-margin no-scrollbar">
+<button class="chapter-pill shrink-0 px-space-sm py-1.5 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm shadow-md transition-all" id="btn-chap-1" onclick="switchChapter(1)">
+        I. Cover &amp; Genesis
+      </button>
+<button class="chapter-pill shrink-0 px-space-sm py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all" id="btn-chap-2" onclick="switchChapter(2)">
+        II. Tri-Dosha Matrix
+      </button>
+<button class="chapter-pill shrink-0 px-space-sm py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all" id="btn-chap-3" onclick="switchChapter(3)">
+        III. Angustha (Thumb)
+      </button>
+<button class="chapter-pill shrink-0 px-space-sm py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all" id="btn-chap-4" onclick="switchChapter(4)">
+        IV. Major Lines (Rekha)
+      </button>
+<button class="chapter-pill shrink-0 px-space-sm py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all" id="btn-chap-5" onclick="switchChapter(5)">
+        V. Seven Mounts
+      </button>
+<button class="chapter-pill shrink-0 px-space-sm py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all" id="btn-chap-6" onclick="switchChapter(6)">
+        VI. Sacred Markings
+      </button>
+<button class="chapter-pill shrink-0 px-space-sm py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all" id="btn-chap-7" onclick="switchChapter(7)">
+        VII. Vocation &amp; Dharma
+      </button>
+<button class="chapter-pill shrink-0 px-space-sm py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all" id="btn-chap-8" onclick="switchChapter(8)">
+        VIII. Synthesis Matrix
+      </button>
+</div>
+</section>
+<!-- Main Narrative Body -->
+<div class="flex flex-col px-margin py-space-md gap-space-lg">
+<!-- 2. Illuminated Tome Cover Card -->
+<article class="relative flex flex-col items-center text-center p-space-lg rounded-xl bg-surface-container-low shadow-xl overflow-hidden">
+<!-- Ambient Sacred Geometry Constellation SVG Overlay -->
+<div class="absolute inset-0 opacity-20 pointer-events-none flex items-center justify-center">
+<svg class="w-full h-full" fill="none" viewBox="0 0 360 420" xmlns="http://www.w3.org/2000/svg">
+<circle cx="180" cy="210" r="140" stroke="#e4c276" stroke-dasharray="3 3" stroke-width="0.75"></circle>
+<circle cx="180" cy="210" r="100" stroke="#cabeff" stroke-width="0.5"></circle>
+<circle cx="180" cy="210" r="60" stroke="#e4c276" stroke-width="0.75"></circle>
+<polygon opacity="0.6" points="180,70 301,280 59,280" stroke="#cabeff" stroke-width="0.5"></polygon>
+<polygon opacity="0.6" points="180,350 59,140 301,140" stroke="#e4c276" stroke-width="0.5"></polygon>
+<line stroke="#e4c276" stroke-dasharray="4 4" stroke-width="0.5" x1="180" x2="180" y1="50" y2="370"></line>
+<line stroke="#cabeff" stroke-dasharray="4 4" stroke-width="0.5" x1="20" x2="340" y1="210" y2="210"></line>
+</svg>
+</div>
+<!-- Sacred Monogram / Vedic Yantra Crest -->
+<div class="relative w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center mb-space-md shadow-inner">
+<span class="material-symbols-outlined text-secondary text-[32px]">fingerprint</span>
+<div class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary text-[10px]">auto_awesome</span>
+</div>
+</div>
+<!-- Title Block -->
+<div class="relative z-10 flex flex-col items-center">
+<span class="font-label-sm text-label-sm tracking-widest uppercase text-secondary mb-space-xs">Exegesis • Chapter IV</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-semibold max-w-[280px]">The Geometry of Sovereign Intent</h2>
+<div class="w-12 h-0.5 bg-secondary/40 my-space-sm"></div>
+<p class="font-quote-wisdom text-quote-wisdom italic text-on-surface-variant max-w-[320px]">
+          "A Shastric &amp; Biometric Decomposition of Neural Creases"
+        </p>
+</div>
+<!-- Biometric Seal Tag -->
+<div class="relative z-10 mt-space-md inline-flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-surface-container-highest text-secondary-fixed">
+<span class="material-symbols-outlined text-[14px]">grain</span>
+<span class="font-label-sm text-label-sm">Vata-Pitta Equilibrium • High Prana Flow</span>
+</div>
+</article>
+<!-- Visual Anchor: Sacred Palm Macro Biometric Image -->
+<div class="flex flex-col rounded-xl bg-surface-container-low overflow-hidden shadow-lg">
+<div class="relative h-48 w-full bg-surface-container-highest">
+<img class="w-full h-full object-cover opacity-80" data-alt="Macro close-up photograph of human palm interior creases bathed in deep cosmic violet ambient light with fine gold vector geometry tracking lines superimposed over the skin texture. Dark atmospheric laboratory setting, mystical ancient scientific mood, 8k resolution editorial photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiVziqbsF8eUuh5NGaZNnib1Dmw0EPNXO8BPRp55s1jnWoUPNjGyYKjEz4Ku89hsuleYZv7ahn68XagM3ubAHCXrO0XD4GgVrQCaK7QRidaIUplVIvNfu7QLHRl4mTSwKJtCik_JLT5gN3gx-dly-aDECAZkdFUBBO5Cfp8QDyidqzCO8_4bbryTYA1_7HBSSq58WVBZa1Jv-Ov7ZQKmnOOVihuECmzLhsddv_IbJuzYJ-P30f9wPMSY6_pHB64TB4VQ">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent"></div>
+<div class="absolute bottom-space-sm left-space-md right-space-md flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lens_blur</span> High-Fidelity Optical Inscription
+          </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container-highest/80 px-2 py-0.5 rounded">0.024mm Crease Mesh</span>
+</div>
+</div>
+<div class="p-space-md">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Hand orientation confirmed: Right palmar facade. Dermal ridge density matches high intellectual deliberation. Neural pathways indicate autonomous self-directed vocation initiated at age 22.
+        </p>
+</div>
+</div>
+<!-- 3. Tri-Pillar Synthesis Methodology Key -->
+<section class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<h3 class="font-label-md text-label-md uppercase tracking-wider text-secondary">Synthesis Epistemology</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">3 Analytical Layers</span>
+</div>
+<div class="grid grid-cols-1 gap-space-xs">
+<!-- Pillar 1: Neutral Optical Crease Vector -->
+<div class="flex items-start gap-space-sm p-space-sm rounded-lg bg-surface-container-low">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest shrink-0 flex items-center justify-center text-outline">
+<span class="material-symbols-outlined text-[18px]">csv</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm uppercase text-on-surface">1. Optical Crease Vector</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Objective morphological data: incision depth, terminal bifurcations, uninterrupted continuity index.</p>
+</div>
+</div>
+<!-- Pillar 2: Shastric Lineage -->
+<div class="flex items-start gap-space-sm p-space-sm rounded-lg bg-surface-container-low">
+<div class="w-8 h-8 rounded-full bg-secondary-container shrink-0 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm uppercase text-secondary">2. Hastarekha Shastra (Brihat Samhita)</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Classical sanskrit treaties codified over 3,000 years: karmic momentum, mount governance, prana allocation.</p>
+</div>
+</div>
+<!-- Pillar 3: Kai RegAI Synthesis -->
+<div class="flex items-start gap-space-sm p-space-sm rounded-lg bg-surface-container-low">
+<div class="w-8 h-8 rounded-full bg-primary-container shrink-0 flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[18px]">neurology</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm uppercase text-primary">3. Kai RegAI Synthesis Engine</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Adaptive neural interpretation translating ancient somatic indicators into high-uncertainty modern leadership praxis.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. Chapter IV Deep Dive: Major Crease Decomposition -->
+<section class="flex flex-col gap-space-md">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Chapter IV • Deep Dive</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">The Four Primal Trajectories</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Select a primary line to review classical verse alongside AI computational telemetry.</p>
+</div>
+<!-- Line 1: Jeeva Rekha (Life Line) -->
+<div class="flex flex-col rounded-xl bg-surface-container-low overflow-hidden transition-all">
+<button class="w-full text-left p-space-md flex items-center justify-between" onclick="toggleLineDetail('jeeva')">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-3.5 h-3.5 rounded-full bg-primary-container shrink-0 shadow-[0_0_12px_rgba(147,125,255,0.6)]"></div>
+<div class="flex flex-col truncate">
+<span class="font-label-md text-label-md text-on-surface font-bold truncate">Jeeva Rekha (Life Line)</span>
+<span class="font-body-sm text-body-sm text-primary">Vitality Index: 94% • Constitutional Resilience</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary line-chevron transition-transform text-[20px]" id="icon-jeeva">expand_more</span>
+</button>
+<div class="line-detail-panel px-space-md pb-space-md pt-0 flex flex-col gap-space-sm" id="detail-jeeva">
+<!-- Metrics Row -->
+<div class="grid grid-cols-2 gap-space-xs p-space-xs rounded-lg bg-surface-container">
+<div class="flex flex-col px-space-xs py-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Fissure Depth</span>
+<span class="font-subheading-md text-subheading-md text-on-surface font-semibold">0.84 mm (Firm)</span>
+</div>
+<div class="flex flex-col px-space-xs py-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Anchor Mount</span>
+<span class="font-subheading-md text-subheading-md text-on-surface font-semibold">Shukra (Venus)</span>
+</div>
+</div>
+<!-- Classical Citation Card -->
+<div class="p-space-sm rounded-lg bg-surface-container-high/60">
+<div class="flex items-center gap-1.5 text-secondary mb-1">
+<span class="material-symbols-outlined text-[14px]">auto_stories</span>
+<span class="font-label-sm text-label-sm uppercase">Brihat Samhita • Sloka 68.2</span>
+</div>
+<p class="font-quote-wisdom text-quote-wisdom italic text-on-surface/90">
+              "Dirgha Jeeva Rekha Nirmala — When the vitality line encompasses Venus without break or cross-hatch, cognitive endurance remains unbroken across planetary transitions."
+            </p>
+</div>
+<!-- AI Modern Translation -->
+<div class="p-space-sm rounded-lg bg-surface-container">
+<div class="flex items-center gap-1.5 text-primary mb-1">
+<span class="material-symbols-outlined text-[14px]">psychology</span>
+<span class="font-label-sm text-label-sm uppercase">Kai Biometric Application</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              High autonomous recovery capacity. Physiological response curves reveal minimal nervous fatigue during prolonged organizational stress.
+            </p>
+</div>
+</div>
+</div>
+<!-- Line 2: Mastri Rekha (Head Line) -->
+<div class="flex flex-col rounded-xl bg-surface-container-low overflow-hidden transition-all">
+<button class="w-full text-left p-space-md flex items-center justify-between" onclick="toggleLineDetail('mastri')">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-3.5 h-3.5 rounded-full bg-tertiary-fixed-dim shrink-0 shadow-[0_0_12px_rgba(71,214,255,0.6)]"></div>
+<div class="flex flex-col truncate">
+<span class="font-label-md text-label-md text-on-surface font-bold truncate">Mastri Rekha (Head Line)</span>
+<span class="font-body-sm text-body-sm text-tertiary">Bifurcation: Strategist’s Fork</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary line-chevron transition-transform text-[20px]" id="icon-mastri">expand_more</span>
+</button>
+<div class="line-detail-panel hidden px-space-md pb-space-md pt-0 flex flex-col gap-space-sm" id="detail-mastri">
+<div class="grid grid-cols-2 gap-space-xs p-space-xs rounded-lg bg-surface-container">
+<div class="flex flex-col px-space-xs py-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Trajectory</span>
+<span class="font-subheading-md text-subheading-md text-on-surface font-semibold">Luna Declination</span>
+</div>
+<div class="flex flex-col px-space-xs py-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Terminal Prongs</span>
+<span class="font-subheading-md text-subheading-md text-on-surface font-semibold">Dual (38° Angle)</span>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-high/60">
+<div class="flex items-center gap-1.5 text-secondary mb-1">
+<span class="material-symbols-outlined text-[14px]">auto_stories</span>
+<span class="font-label-sm text-label-sm uppercase">Hastarekha Chandrika</span>
+</div>
+<p class="font-quote-wisdom text-quote-wisdom italic text-on-surface/90">
+              "Dvi-Shakha Mastri — One prong reaches Saturn for iron logic; one dips into Chandra for visionary synthesis. He who bears this governs complex councils."
+            </p>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container">
+<div class="flex items-center gap-1.5 text-tertiary mb-1">
+<span class="material-symbols-outlined text-[14px]">psychology</span>
+<span class="font-label-sm text-label-sm uppercase">Cognitive Processing Pattern</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Rare dual-hemispheric balance: Excels at reconciling strict mathematical constraints with speculative intuitive strategies.
+            </p>
+</div>
+</div>
+</div>
+<!-- Line 3: Hridaya Rekha (Heart Line) -->
+<div class="flex flex-col rounded-xl bg-surface-container-low overflow-hidden transition-all">
+<button class="w-full text-left p-space-md flex items-center justify-between" onclick="toggleLineDetail('hridaya')">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-3.5 h-3.5 rounded-full bg-error shrink-0 shadow-[0_0_12px_rgba(255,180,171,0.5)]"></div>
+<div class="flex flex-col truncate">
+<span class="font-label-md text-label-md text-on-surface font-bold truncate">Hridaya Rekha (Heart Line)</span>
+<span class="font-body-sm text-body-sm text-error">Termination: Guru-Shani Cleft</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary line-chevron transition-transform text-[20px]" id="icon-hridaya">expand_more</span>
+</button>
+<div class="line-detail-panel hidden px-space-md pb-space-md pt-0 flex flex-col gap-space-sm" id="detail-hridaya">
+<div class="p-space-sm rounded-lg bg-surface-container">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Curved arc terminating precisely between the Mount of Jupiter (ideals) and Saturn (pragmatism). Denotes emotional sovereignty anchored in ethical duty rather than reactive impulses.
+            </p>
+</div>
+</div>
+</div>
+<!-- Line 4: Karma Rekha (Fate Line) -->
+<div class="flex flex-col rounded-xl bg-surface-container-low overflow-hidden transition-all">
+<button class="w-full text-left p-space-md flex items-center justify-between" onclick="toggleLineDetail('karma')">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-3.5 h-3.5 rounded-full bg-secondary shrink-0 shadow-[0_0_12px_rgba(228,194,118,0.6)]"></div>
+<div class="flex flex-col truncate">
+<span class="font-label-md text-label-md text-on-surface font-bold truncate">Karma Rekha (Fate Line)</span>
+<span class="font-body-sm text-body-sm text-secondary">Origin: Independent Wrist Ascent</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary line-chevron transition-transform text-[20px]" id="icon-karma">expand_more</span>
+</button>
+<div class="line-detail-panel hidden px-space-md pb-space-md pt-0 flex flex-col gap-space-sm" id="detail-karma">
+<div class="p-space-sm rounded-lg bg-surface-container">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Ascending vertically from the wrist crease directly to the Mount of Saturn without ancestral tethering. Manifests complete agency over vocational milestones without hereditary dependence.
+            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Chapter V: Mount Topography (Elevation Profile) -->
+<section class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Chapter V</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Mount Topography</h3>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant px-2 py-0.5 rounded bg-surface-container">Lidar Optical Profile</span>
+</div>
+<!-- Interactive Topography Cards -->
+<div class="grid grid-cols-3 gap-space-xs">
+<!-- Jupiter -->
+<div class="flex flex-col p-space-sm rounded-lg bg-surface-container-low items-center text-center">
+<div class="w-9 h-9 rounded-full bg-surface-container-high flex items-center justify-center text-secondary mb-1">
+<span class="material-symbols-outlined text-[20px]">stars</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase text-on-surface">Guru (Jupiter)</span>
+<span class="font-subheading-md text-subheading-md text-secondary font-bold my-0.5">+2.4 mm</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px] leading-tight">Expansive Vision &amp; Mentorship</span>
+</div>
+<!-- Venus -->
+<div class="flex flex-col p-space-sm rounded-lg bg-surface-container-low items-center text-center">
+<div class="w-9 h-9 rounded-full bg-surface-container-high flex items-center justify-center text-primary mb-1">
+<span class="material-symbols-outlined text-[20px]">circle</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase text-on-surface">Shukra (Venus)</span>
+<span class="font-subheading-md text-subheading-md text-primary font-bold my-0.5">Firm Arc</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px] leading-tight">Aesthetic Balance &amp; Vitality</span>
+</div>
+<!-- Moon -->
+<div class="flex flex-col p-space-sm rounded-lg bg-surface-container-low items-center text-center">
+<div class="w-9 h-9 rounded-full bg-surface-container-high flex items-center justify-center text-tertiary mb-1">
+<span class="material-symbols-outlined text-[20px]">bedtime</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase text-on-surface">Chandra (Luna)</span>
+<span class="font-subheading-md text-subheading-md text-tertiary font-bold my-0.5">Deep Node</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px] leading-tight">Subconscious Retrieval</span>
+</div>
+</div>
+<!-- Mount Visual Elevation Bar Representation -->
+<div class="flex flex-col p-space-md rounded-xl bg-surface-container-low gap-space-xs mt-space-xs">
+<div class="flex justify-between items-center text-on-surface-variant font-label-sm text-label-sm">
+<span class="">Relative Planetary Densities</span>
+<span class="text-secondary">Guru Mount Peak Variance</span>
+</div>
+<div class="w-full bg-surface-container-highest h-2 rounded-full overflow-hidden flex">
+<div class="bg-secondary h-full" style="width: 46%;"></div>
+<div class="bg-primary h-full" style="width: 32%;"></div>
+<div class="bg-tertiary h-full" style="width: 22%;"></div>
+</div>
+<div class="flex justify-between text-[11px] text-on-surface-variant pt-1">
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-secondary"></span> Jupiter (46%)</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-primary"></span> Venus (32%)</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-tertiary"></span> Luna (22%)</span>
+</div>
+</div>
+</section>
+<!-- 6. Sacred Micro-Markings & Anomalies -->
+<section class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Chapter VI</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Sacred Glyphs &amp; Anomalies</h3>
+</div>
+<span class="font-label-sm text-label-sm text-secondary bg-secondary/10 px-2 py-0.5 rounded">2 Confirmed</span>
+</div>
+<!-- Marking 1: Matsya (Fish) -->
+<div class="flex items-start gap-space-md p-space-md rounded-xl bg-surface-container-low">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[24px]">set_meal</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold">Matsya (Fish Glyph)</span>
+<span class="font-label-sm text-label-sm text-secondary">Base of Life Line</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+            An ancient signifier of sustained abundance resulting from ethical stewardship. In modern neural reading, this reflects intuitive resource multiplication during periods of general scarcity.
+          </p>
+</div>
+</div>
+<!-- Marking 2: Mystic Cross -->
+<div class="flex items-start gap-space-md p-space-md rounded-xl bg-surface-container-low">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[24px]">add</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold">La Croix Mystique</span>
+<span class="font-label-sm text-label-sm text-primary">Inter-Palmar Quadrangle</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+            Located between Head and Heart trajectories under the Mount of Saturn. Indicates acute pattern recognition that precedes formal empirical validation.
+          </p>
+</div>
+</div>
+</section>
+<!-- Visual Secondary Plate: Astrological/Planetary Hand Aspect Placeholder -->
+<div class="relative w-full rounded-xl overflow-hidden bg-surface-container-low p-space-md flex items-center gap-space-md">
+<div class="w-20 h-20 rounded-lg bg-surface-container-highest shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Intricate golden astronomical quadrant wheel etched on deep obsidian stone showing planetary symbols and constellation lines. Elegant luxury sacred science relic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZXgoHbnSD4uzKYsjCPi5M1LWzI5bUGCg3LPfnVfJs1GX5mKRnN2-K9i3I9Pyd7FXO0U_LWLKwJbDVHYrMgK29n-VHxiyop6tDOEoE4owujgKeSThfVY3UZXl4wvDG9dzH_9O7g5RqkcI7q0dlLIKXLZLETCSuJjybLBJweF8bzzT8K2as3AfPS-YuHwVUicnEqtM3eR9QaQ-toJBfLx9mFqHH31SijrYjkUH84yBLIVd_GqjJBCAP">
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm uppercase text-secondary">Transit Synchronization</span>
+<h4 class="font-subheading-lg text-subheading-lg text-on-surface font-semibold">Guru-Chandra Cycle Active</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Next harmonic convergence: 14 Days</p>
+</div>
+</div>
+<!-- 7. Action & Download Footer Section -->
+<section class="flex flex-col gap-space-sm pt-space-md pb-space-lg">
+<!-- Primary Save Action -->
+<button class="w-full h-12 rounded-xl bg-primary text-on-primary font-label-md text-label-md font-bold flex items-center justify-center gap-space-xs shadow-lg active:scale-98 transition-transform" type="button">
+<span class="material-symbols-outlined text-[20px]">bookmark</span>
+<span class="">Save to Synthesis Archive</span>
+</button>
+<!-- Secondary PDF Action -->
+<button class="w-full h-12 rounded-xl bg-surface-container text-on-surface hover:bg-surface-container-high font-label-md text-label-md font-semibold flex items-center justify-center gap-space-xs active:scale-98 transition-transform" type="button">
+<span class="material-symbols-outlined text-secondary text-[20px]">picture_as_pdf</span>
+<span class="">Download Complete Illuminated PDF (24 Pages)</span>
+</button>
+<!-- Audio Excerpt Action -->
+<button class="w-full h-10 rounded-xl bg-transparent text-secondary hover:text-on-surface font-label-md text-label-md flex items-center justify-center gap-space-xs transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">graphic_eq</span>
+<span class="">Listen to Sage Voice Commentary (8m 40s)</span>
+</button>
+<!-- Security / Trust Stamp -->
+<div class="flex items-center justify-center gap-space-xs mt-space-md p-space-sm rounded-lg bg-surface-container-lowest/60 text-center">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified_user</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">
+          Cryptographically verified Hastarekha document • Biometric data kept locally
+        </span>
+</div>
+</section>
+</div>
+</div></main>
+
+</body></html>

@@ -132,3 +132,18 @@ Any agent operating in or building upon Phase P2 must strictly adhere to the fol
 8. **Accessibility & Multi-modal Feedback**: Color must never be the sole differentiator for major palm lines. Always pair line colors (Violet, Blue, Rose, Gold, Amber) with dedicated glyphs, stroke dash patterns, and textual labels per [ACCESSIBILITY_SPEC.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/p2/ACCESSIBILITY_SPEC.md).
 9. **Decision Logging**: Every non-trivial product, architectural, or technical decision must be logged with alternatives and rationale in [docs/p2/P2_DECISION_LOG.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/p2/P2_DECISION_LOG.md).
 10. **Pre-Completion Validation**: Run full validation against [docs/p2/P2_AUDIT_REPORT.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/p2/P2_AUDIT_REPORT.md) quality gates before marking any phase-related task complete.
+
+---
+
+## 8. Phase P4 UI Integration Governance
+
+Any agent maintaining or extending the Kai RegAI mobile UI must adhere to:
+
+1. **Stitch Reference Immutability**: Treat `design/stitch/` as an immutable design reference. Never overwrite Stitch source files.
+2. **Central Design Tokens**: Never hardcode colors, spacing, or typography. All presentation styles must consume `src/styles/tokens.css` and `src/styles/components.css`.
+3. **No Business Logic in UI**: Never embed computer vision crease extraction algorithms, palmistry rule evaluations, or raw LLM prompts inside UI components. The UI strictly renders canonical view models provided by the state machine and data layers.
+4. **Accessible Line Identity**: Major crease lines must always feature semantic colors (Violet `#A855F7`, Blue `#00D2FF`, Rose `#F43F5E`, Gold `#FBBF24`, Amber `#F59E0B`), unique SVG stroke dash patterns, distinct anatomical glyphs, and text labels.
+5. **State-Preserving Navigation**: Sub-selectors (e.g. Line filters in the Detailed Report, Reading Archive categories) must preserve their active state during tab navigation.
+6. **Epistemic Layer Distinction**: Reports must visibly separate Physical Observations, Traditional Attributions, and Kai RegAI Synthesis. Fatalistic expiration dates or medical diagnostic predictions are strictly forbidden.
+7. **Biometric Privacy Safeguard**: Default to ephemeral, RAM-only palm processing with zero persistent photo retention and 1-tap data purge controls.
+

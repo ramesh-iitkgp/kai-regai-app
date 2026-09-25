@@ -1,0 +1,253 @@
+<!DOCTYPE html><html class="dark" lang="en"><head></head><body class="bg-surface font-body-md text-on-surface antialiased flex flex-col min-h-screen selection:bg-primary-container selection:text-on-primary-container"><svg class="inline-defs-container" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"></svg><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><meta content="mobile_stack" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#0f1320;color:#dfe1f4;font-family:'Manrope',sans-serif;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-background": "#dfe1f4", "surface-container-highest": "#303443", "secondary": "#e4c276", "tertiary-container": "#009ec0", "surface-variant": "#303443", "surface-container-lowest": "#0a0e1a", "on-surface-variant": "#c9c4d6", "tertiary-fixed-dim": "#47d6ff", "on-secondary-container": "#d5b46a", "tertiary": "#47d6ff", "tertiary-fixed": "#b6ebff", "surface-tint": "#cabeff", "secondary-container": "#5d4602", "surface-container-high": "#262937", "on-secondary-fixed": "#251a00", "on-error": "#690005", "surface-container-low": "#171b28", "error": "#ffb4ab", "surface": "#0f1320", "on-primary-fixed-variant": "#4826b9", "inverse-surface": "#dfe1f4", "error-container": "#93000a", "on-tertiary-fixed": "#001f28", "surface-dim": "#0f1320", "inverse-primary": "#6044d1", "on-tertiary-fixed-variant": "#004e60", "on-surface": "#dfe1f4", "on-tertiary-container": "#002e3a", "primary-container": "#937dff", "surface-bright": "#353947", "background": "#0f1320", "secondary-fixed": "#ffdf9a", "secondary-fixed-dim": "#e4c276", "on-secondary": "#3f2e00", "primary": "#cabeff", "primary-fixed": "#e6deff", "primary-fixed-dim": "#cabeff", "on-primary-container": "#2a0088", "outline-variant": "#484554", "on-secondary-fixed-variant": "#5a4300", "on-primary-fixed": "#1c0062", "inverse-on-surface": "#2c303e", "on-error-container": "#ffdad6", "on-tertiary": "#003543", "outline": "#938ea0", "surface-container": "#1b1f2d", "on-primary": "#31009a" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-xs": "0.25rem", "space-md": "1rem", "space-xl": "2.5rem", "margin": "1.25rem", "space-lg": "1.5rem", "space-sm": "0.5rem", "gutter": "1rem" }, fontFamily: { "body-lg": ["Manrope"], "headline-xl": ["Playfair Display"], "body-sm": ["Manrope"], "headline-xl-mobile": ["Playfair Display"], "headline-lg-mobile": ["Playfair Display"], "subheading-lg": ["Manrope"], "label-sm": ["Manrope"], "headline-sm": ["Playfair Display"], "subheading-md": ["Manrope"], "headline-lg": ["Playfair Display"], "headline-md": ["Playfair Display"], "body-md": ["Manrope"], "quote-wisdom": ["Playfair Display"], "label-md": ["Manrope"] }, fontSize: { "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }], "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-xl-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "subheading-lg": ["17px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "700" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "subheading-md": ["15px", { "lineHeight": "22px", "fontWeight": "500" }], "headline-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }], "quote-wisdom": ["18px", { "lineHeight": "28px", "letterSpacing": "0.01em", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.35)] pt-safe"><div class="h-16 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><button aria-label="Go back" class="min-w-[44px] min-h-[44px] -ml-space-xs flex items-center justify-center text-on-surface-variant hover:text-secondary active:scale-95 transition-all" onclick="history.back()" type="button"><span class="material-symbols-outlined text-[22px]">arrow_back</span></button><div class="flex flex-col truncate"><span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary truncate">Report Telemetry</span><h1 class="font-headline-sm text-headline-sm text-on-surface truncate">Hastarekha Synthesis</h1></div></div><div class="flex items-center gap-space-xs"><button aria-label="Table of Contents" class="min-w-[44px] min-h-[44px] flex items-center justify-center text-on-surface-variant hover:text-on-surface active:scale-95 transition-all" type="button"><span class="material-symbols-outlined text-[22px]">menu_book</span></button><button aria-label="Share report" class="min-w-[44px] min-h-[44px] flex items-center justify-center text-on-surface-variant hover:text-primary active:scale-95 transition-all" type="button"><span class="material-symbols-outlined text-[22px]">ios_share</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-xs shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 bg-surface"><div class="flex flex-col w-full text-on-surface">
+<!-- Calibration Telemetry Header Ribbon -->
+<div class="px-margin pt-space-xs pb-space-sm flex items-center justify-between bg-surface-container-lowest/80 backdrop-blur-md">
+<div class="flex items-center gap-space-xs">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+</span>
+<span class="font-label-sm text-label-sm tracking-widest uppercase text-secondary">Diagnostic Enclave • Fault P3.13</span>
+</div>
+<button class="flex items-center gap-1 text-tertiary hover:text-tertiary-fixed transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+<span class="font-label-sm text-label-sm underline decoration-tertiary/40 underline-offset-4">Manual Override</span>
+</button>
+</div>
+<div class="px-margin flex flex-col gap-space-md py-space-sm">
+<!-- Camera Viewport Simulation / Biometric HUD Viewfinder -->
+<div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-surface-container-lowest shadow-2xl flex flex-col justify-between p-space-sm"><div class="absolute inset-0 z-0 overflow-hidden"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKoY2liNQLwd4EzSkcEaL-De4TS4uvqPHH12K381Duxue7Kf77zJyEqIyo547CV2VRqkCBjPzCfjz7zNni5aaNSLGKrYiD5af49dk43S_w4tr9xpiA8zwjlq33u2Sqf67oO2I3aRi39JbX0vDDzIW5j98OH_tiWR3oOQDXzLSizIkdZZEb6f7JrteO7MFi5H3-l5M4Zj16o6ByeGoG-CNsS60OZ9ndK5DEWgBykqrfTCEkkXjEVcoC" alt="Palmar Diagnostic Feed" class="w-full h-full object-cover object-center opacity-80"><div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-surface-container-lowest/80"></div><div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-surface-container-lowest/30 to-surface-container-lowest/90"></div></div>
+<!-- Simulated Camera Live Feed Texture Overlay -->
+<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-surface-container-high/40 via-surface-container-lowest/90 to-surface-container-lowest pointer-events-none"></div>
+<!-- Biometric Spatial Grid Pattern -->
+<svg class="absolute inset-0 w-full h-full opacity-15 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern height="24" id="chiro-grid" patternUnits="userSpaceOnUse" width="24">
+<path d="M 24 0 L 0 0 0 24" fill="none" stroke="#dfe1f4" stroke-width="0.5"></path>
+</pattern>
+</defs>
+<rect fill="url(#chiro-grid)" height="100%" width="100%"></rect>
+<circle cx="50%" cy="48%" fill="none" r="130" stroke="#e4c276" stroke-dasharray="3 6" stroke-width="0.75"></circle>
+<circle cx="50%" cy="48%" fill="none" r="70" stroke="#47d6ff" stroke-dasharray="2 4" stroke-width="0.5"></circle>
+</svg>
+<!-- HUD Top Status Bar -->
+<div class="relative z-10 flex items-center justify-between w-full">
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container/90 backdrop-blur-md shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[14px]">wb_twilight</span>
+<span class="font-label-sm text-label-sm text-secondary">OPTICAL LUX: 14 lm</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">(MIN 45)</span>
+</div>
+<div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-error-container/80 backdrop-blur-md text-on-error-container shadow-sm">
+<span class="material-symbols-outlined text-[14px]">vibration</span>
+<span class="font-label-sm text-label-sm">DRIFT: 0.42mm</span>
+</div>
+</div>
+<!-- Holographic Viewfinder Centerpiece with Mesh & Vedic Lines -->
+<div class="relative z-10 flex-1 flex items-center justify-center my-auto">
+<!-- SVG Palm Reticle & Wireframe Reconstruction -->
+<svg class="w-64 h-72 drop-shadow-[0_0_12px_rgba(228,194,118,0.2)]" fill="none" viewBox="0 0 240 280" xmlns="http://www.w3.org/2000/svg">
+<!-- Outer Corner Hologram Brackets -->
+<path d="M 20 50 L 20 20 L 50 20" stroke="#e4c276" stroke-linecap="round" stroke-width="2"></path>
+<path d="M 220 50 L 220 20 L 190 20" stroke="#e4c276" stroke-linecap="round" stroke-width="2"></path>
+<path d="M 20 230 L 20 260 L 50 260" stroke="#ffb4ab" stroke-linecap="round" stroke-width="2"></path>
+<path d="M 220 230 L 220 260 L 190 260" stroke="#ffb4ab" stroke-linecap="round" stroke-width="2"></path>
+<!-- Ghost Hand Contour (Tilted 18° off-axis posture) -->
+<g opacity="0.9"><!-- Holographic Scanner Arc Rings --><circle cx="120" cy="145" r="52" stroke="#47d6ff" stroke-width="1.5" stroke-dasharray="14 6" fill="none" opacity="0.85"><circle cx="120" cy="145" r="38" stroke="#cabeff" stroke-width="1" stroke-dasharray="8 4" fill="none" opacity="0.7"><!-- Vedic Line Overlay Targets --><path d="M 90 120 C 100 155 115 190 126 215" stroke="#cabeff" stroke-linecap="round" stroke-width="2" fill="none"></path><path d="M 126 215 C 130 224 133 232 136 240" stroke="#ffb4ab" stroke-dasharray="3 3" stroke-linecap="round" stroke-width="2" fill="none"></path><path d="M 92 135 C 112 145 135 152 152 156" stroke="#e4c276" stroke-dasharray="5 3" stroke-width="1.75" fill="none"></path><path d="M 96 115 C 118 116 138 123 156 132" stroke="#47d6ff" stroke-width="1.5" fill="none"></path><!-- Break / Fault Marker Targets --><circle class="animate-pulse" cx="75" cy="135" r="10" stroke="#e4c276" stroke-dasharray="2 2" stroke-width="1.5" fill="none"></circle><path d="M 70 135 L 80 135 M 75 130 L 75 140" stroke="#e4c276" stroke-width="1.5"></path><circle cx="135" cy="244" r="12" stroke="#ffb4ab" stroke-dasharray="3 2" stroke-width="1.5" fill="none"></circle><path d="M 129 244 L 141 244 M 135 238 L 135 250" stroke="#ffb4ab" stroke-width="1.5"></path></circle></circle></g>
+<!-- Dynamic Calibration Error Callouts -->
+<!-- Raschette Wrist Lock Fail Callout -->
+<line stroke="#ffb4ab" stroke-width="1" x1="126" x2="160" y1="236" y2="250"></line>
+<!-- Jeeva Rekha Break Callout -->
+<line stroke="#e4c276" stroke-dasharray="2 2" stroke-width="1" x1="110" x2="168" y1="210" y2="190"></line>
+</svg>
+<!-- Floating HUD Pill: Crease Contrast Break -->
+<div class="absolute right-2 top-28 bg-surface-container-high/90 backdrop-blur-md px-2.5 py-1 rounded shadow-md max-w-[150px]">
+<span class="font-label-sm text-[10px] uppercase text-secondary block">Jeeva Rekha Break</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant leading-tight">Low ridge contrast</span>
+</div>
+<!-- Floating HUD Pill: Raschette Lost Lock -->
+<div class="absolute left-2 bottom-6 bg-error-container/90 backdrop-blur-md px-2.5 py-1 rounded shadow-md max-w-[160px]">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px] text-error">warning</span>
+<span class="font-label-sm text-[10px] uppercase text-error">Manibandha Missing</span>
+</div>
+<span class="font-body-sm text-[11px] text-on-error-container leading-tight">Shift wrist +22mm into frame</span>
+</div>
+</div>
+<!-- Live Orientation Vector Guideline Footer -->
+<div class="relative z-10 flex items-center justify-between p-2 rounded-lg bg-surface-container-high/70 backdrop-blur-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">screen_rotation_alt</span>
+<span class="font-label-md text-label-md text-secondary">PALMAR TILT: 18° OFF-AXIS</span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary">PITCH PENDING</span>
+</div>
+</div>
+<!-- Epistemological Diagnostic Breakdown Card -->
+<div class="p-space-md rounded-xl bg-surface-container flex flex-col gap-space-sm shadow-md">
+<div class="flex items-start justify-between gap-space-xs">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary block mb-1">Vedic Epistemology Engine</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Optical Inscription Interrupted</h2>
+</div>
+<span class="px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm self-start">FAULT</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        The classical <em class="font-quote-wisdom text-secondary">Brihat Samhita</em> topology validator requires uninterrupted continuity across the three cardinal raschette gates. Three optical thresholds are currently degraded:
+      </p>
+<!-- Sensor Diagnostic Breakdown Rows -->
+<div class="flex flex-col gap-space-sm pt-space-xs">
+<!-- Row 1: Lux & Luminance -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error text-[18px]">light_mode</span>
+<span class="font-subheading-md text-subheading-md text-on-surface font-semibold">Luminance &amp; Contrast</span>
+</div>
+<span class="font-label-md text-label-md text-error">28% (Critical)</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-error rounded-full" style="width: 28%"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Ambient illumination insufficient to resolve tertiary micro-rekhas along Mount of Venus.</p>
+</div>
+<!-- Row 2: Flatness & Pitch -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">pan_tool</span>
+<span class="font-subheading-md text-subheading-md text-on-surface font-semibold">Palmar Flatness &amp; Pitch</span>
+</div>
+<span class="font-label-md text-label-md text-secondary">72% (Marginal)</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 72%"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Hand cupped 18°. Extend fingers neutrally without dorsal tension or muscle contraction.</p>
+</div>
+<!-- Row 3: Chiro-Anchor Lock -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error text-[18px]">anchor</span>
+<span class="font-subheading-md text-subheading-md text-on-surface font-semibold">Chiro-Anchor Lock</span>
+</div>
+<span class="font-label-md text-label-md text-error">15% (Failed)</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-error rounded-full" style="width: 15%"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Primary wrist crease (Manibandha) clipped past lower viewport bounds.</p>
+</div>
+</div>
+</div>
+<!-- Multi-State Interactive Fault Scenario Selector -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Diagnostic Simulator</span>
+<span class="font-body-sm text-body-sm text-tertiary">Tap to view protocol</span>
+</div>
+<div class="flex gap-2 overflow-x-auto pb-1 no-scrollbar">
+<button class="px-3 py-2 rounded-lg bg-secondary text-on-secondary shrink-0 font-label-md text-label-md shadow flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[16px]">wb_incandescent</span>
+<span class="">Low Lux (Active)</span>
+</button>
+<button class="px-3 py-2 rounded-lg bg-surface-container-high text-on-surface shrink-0 font-label-md text-label-md hover:bg-surface-bright transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[16px]">back_hand</span>
+<span class="">Cupped Hand</span>
+</button>
+<button class="px-3 py-2 rounded-lg bg-surface-container-high text-on-surface shrink-0 font-label-md text-label-md hover:bg-surface-bright transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[16px]">crop</span>
+<span class="">Fingers Clipped</span>
+</button>
+<button class="px-3 py-2 rounded-lg bg-surface-container-high text-on-surface shrink-0 font-label-md text-label-md hover:bg-surface-bright transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[16px]">flip</span>
+<span class="">Dorsal Inversion</span>
+</button>
+</div>
+<!-- Contextual Actionable Vedic Protocol Directive -->
+<div class="p-space-sm rounded-xl bg-surface-container-low flex items-start gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase text-secondary">Vedic Sensor Calibration Protocol</span>
+<p class="font-body-sm text-body-sm text-on-surface mt-0.5">
+            Reposition palm under warm, indirect illumination (&gt; 50 lux). Avoid harsh overhead spotlighting which bleaches the subtler lines of Mercury (Budha Rekha).
+          </p>
+</div>
+</div>
+</div>
+<!-- Biometric Sensor Recovery Controls -->
+<div class="flex flex-col gap-space-sm p-space-md rounded-xl bg-surface-container">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Sensor Recovery Aids</span>
+<!-- Infrared Flash Boost Toggle -->
+<label class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low cursor-pointer active:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">flashlight_on</span>
+</div>
+<div class="flex flex-col">
+<span class="font-subheading-md text-subheading-md text-on-surface">Infrared Night Assist</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Compensate for dim lux &lt; 30lm</span>
+</div>
+</div>
+<div class="relative inline-flex items-center">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-on-surface after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</div>
+</label>
+<!-- 3D Gyro Haptic Alignment Audio Toggle -->
+<label class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low cursor-pointer active:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">spatial_audio_off</span>
+</div>
+<div class="flex flex-col">
+<span class="font-subheading-md text-subheading-md text-on-surface">Haptic &amp; Sonic Gyro Cues</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Vibrate when coplanar 0° achieved</span>
+</div>
+</div>
+<div class="relative inline-flex items-center">
+<input class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-on-surface after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</div>
+</label>
+</div>
+<!-- Sacred Fallback Alternative (Non-Camera Ingress) -->
+<div class="p-space-md rounded-xl bg-surface-container-low shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">menu_book</span>
+<span class="font-subheading-md text-subheading-md text-on-surface font-semibold">Optical Scan Impeded?</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary uppercase">Fallback P3.6</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        If ambient lighting remains unsuitable, transition seamlessly into the <strong class="text-on-surface">Guided Tactile Inquiry</strong>—an 8-step ritual observation where you manually map your mounts and crease characteristics without camera capture.
+      </p>
+<button class="w-full py-2.5 px-3 rounded-lg bg-surface-container-high hover:bg-surface-bright active:scale-[0.98] transition-all flex items-center justify-center gap-2 text-on-surface font-label-md text-label-md" type="button">
+<span class="">Switch to Guided Non-Camera Reading</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<!-- Primary Action Dock -->
+<div class="flex flex-col gap-space-xs pt-space-xs pb-space-lg">
+<button class="w-full h-12 rounded-xl bg-gradient-to-r from-primary-container to-secondary text-on-primary-container font-label-md text-label-md tracking-wider uppercase font-bold flex items-center justify-center gap-2 shadow-[0_0_24px_-2px_rgba(147,125,255,0.4)] active:scale-[0.98] transition-all" type="button">
+<span class="material-symbols-outlined text-[20px]">refresh</span>
+<span class="">Re-Engage Optical Alignment Reticle</span>
+</button>
+<button class="w-full h-10 rounded-xl bg-transparent hover:bg-surface-container-low text-on-surface-variant font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+<span class="">Run Full Optical Sensor Self-Test</span>
+</button>
+</div>
+</div>
+</div></main>
+
+</body></html>

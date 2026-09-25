@@ -1,0 +1,450 @@
+<!DOCTYPE html><html class="dark" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><meta content="mobile_stack" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#0f1320;color:#dfe1f4;font-family:'Manrope',sans-serif;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-background": "#dfe1f4", "surface-container-highest": "#303443", "secondary": "#e4c276", "tertiary-container": "#009ec0", "surface-variant": "#303443", "surface-container-lowest": "#0a0e1a", "on-surface-variant": "#c9c4d6", "tertiary-fixed-dim": "#47d6ff", "on-secondary-container": "#d5b46a", "tertiary": "#47d6ff", "tertiary-fixed": "#b6ebff", "surface-tint": "#cabeff", "secondary-container": "#5d4602", "surface-container-high": "#262937", "on-secondary-fixed": "#251a00", "on-error": "#690005", "surface-container-low": "#171b28", "error": "#ffb4ab", "surface": "#0f1320", "on-primary-fixed-variant": "#4826b9", "inverse-surface": "#dfe1f4", "error-container": "#93000a", "on-tertiary-fixed": "#001f28", "surface-dim": "#0f1320", "inverse-primary": "#6044d1", "on-tertiary-fixed-variant": "#004e60", "on-surface": "#dfe1f4", "on-tertiary-container": "#002e3a", "primary-container": "#937dff", "surface-bright": "#353947", "background": "#0f1320", "secondary-fixed": "#ffdf9a", "secondary-fixed-dim": "#e4c276", "on-secondary": "#3f2e00", "primary": "#cabeff", "primary-fixed": "#e6deff", "primary-fixed-dim": "#cabeff", "on-primary-container": "#2a0088", "outline-variant": "#484554", "on-secondary-fixed-variant": "#5a4300", "on-primary-fixed": "#1c0062", "inverse-on-surface": "#2c303e", "on-error-container": "#ffdad6", "on-tertiary": "#003543", "outline": "#938ea0", "surface-container": "#1b1f2d", "on-primary": "#31009a" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-xs": "0.25rem", "space-md": "1rem", "space-xl": "2.5rem", "margin": "1.25rem", "space-lg": "1.5rem", "space-sm": "0.5rem", "gutter": "1rem" }, fontFamily: { "body-lg": ["Manrope"], "headline-xl": ["Playfair Display"], "body-sm": ["Manrope"], "headline-xl-mobile": ["Playfair Display"], "headline-lg-mobile": ["Playfair Display"], "subheading-lg": ["Manrope"], "label-sm": ["Manrope"], "headline-sm": ["Playfair Display"], "subheading-md": ["Manrope"], "headline-lg": ["Playfair Display"], "headline-md": ["Playfair Display"], "body-md": ["Manrope"], "quote-wisdom": ["Playfair Display"], "label-md": ["Manrope"] }, fontSize: { "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }], "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-xl-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "subheading-lg": ["17px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "700" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "subheading-md": ["15px", { "lineHeight": "22px", "fontWeight": "500" }], "headline-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }], "quote-wisdom": ["18px", { "lineHeight": "28px", "letterSpacing": "0.01em", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head><body class="bg-surface font-body-md text-on-surface antialiased flex flex-col min-h-screen selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.35)] pt-safe"><div class="h-16 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><button aria-label="Go back" class="min-w-[44px] min-h-[44px] -ml-space-xs flex items-center justify-center text-on-surface-variant hover:text-secondary active:scale-95 transition-all" onclick="history.back()" type="button"><span class="material-symbols-outlined text-[22px]">arrow_back</span></button><div class="flex flex-col truncate"><span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary truncate">Report Telemetry</span><h1 class="font-headline-sm text-headline-sm text-on-surface truncate">Hastarekha Synthesis</h1></div></div><div class="flex items-center gap-space-xs"><button aria-label="Table of Contents" class="min-w-[44px] min-h-[44px] flex items-center justify-center text-on-surface-variant hover:text-on-surface active:scale-95 transition-all" type="button"><span class="material-symbols-outlined text-[22px]">menu_book</span></button><button aria-label="Share report" class="min-w-[44px] min-h-[44px] flex items-center justify-center text-on-surface-variant hover:text-primary active:scale-95 transition-all" type="button"><span class="material-symbols-outlined text-[22px]">ios_share</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-xs shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 bg-surface"><div class="flex flex-col w-full pb-safe">
+<!-- Interactive Modal Wrapper Backdrop Layer -->
+<div class="flex flex-col w-full px-margin pt-space-sm space-y-space-lg">
+<!-- 1. Modal Top Bar & Document Metadata -->
+<section class="flex flex-col w-full space-y-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-space-xs">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high text-secondary text-label-sm font-label-sm uppercase tracking-widest shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+            Interactive Spread Preview
+          </span>
+</div>
+<button aria-label="Dismiss export modal" class="w-9 h-9 flex items-center justify-center rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="flex items-baseline justify-between pt-space-xs">
+<div class="min-w-0">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest block">HASTAREKHA SAMHITA EXPORT</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface truncate">Illuminated Codex</h2>
+</div>
+<div class="text-right shrink-0">
+<span class="inline-block px-2 py-0.5 rounded bg-surface-container-lowest text-tertiary font-label-sm text-label-sm font-mono tracking-tight">#KA-709-ENC</span>
+<span class="block text-body-sm font-body-sm text-on-surface-variant">24 Folios • Archival</span>
+</div>
+</div>
+</section>
+<!-- 2. Illuminated Manuscript Live Folio Carousel / Spread Preview -->
+<section class="flex flex-col w-full">
+<!-- Outer Leather-Vellum Codex Spine Wrapper -->
+<div class="relative w-full rounded-xl bg-surface-container-lowest overflow-hidden shadow-2xl p-space-sm">
+<!-- Ambient Radial Glow Underlay -->
+<div class="absolute inset-0 bg-radial from-secondary/10 via-primary/5 to-transparent pointer-events-none"></div>
+<!-- Book Header Telemetry -->
+<div class="relative z-10 flex items-center justify-between pb-space-xs px-space-xs">
+<div class="flex items-center space-x-1 text-secondary">
+<span class="material-symbols-outlined text-[16px]">menu_book</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Folio Plate 01 / 24</span>
+</div>
+<span class="text-on-surface-variant font-label-sm text-label-sm tracking-wider">Lahiri Ayanamsa • 28°14'</span>
+</div>
+<!-- The Illuminated Cover Plate -->
+<div class="relative w-full rounded-lg bg-surface-container-low p-space-md flex flex-col items-center justify-between text-center overflow-hidden min-h-[360px] shadow-inner transition-all duration-300" id="folio-stage">
+<!-- Subtle Sacred Geometry Watermark Background -->
+<svg class="absolute inset-0 w-full h-full opacity-10 text-secondary pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 300 400">
+<circle cx="150" cy="200" r="120" stroke-dasharray="2 2" stroke-width="0.5"></circle>
+<circle cx="150" cy="200" r="85" stroke-width="0.75"></circle>
+<polygon points="150,90 245,255 55,255" stroke-width="0.5"></polygon>
+<polygon points="150,310 245,145 55,145" stroke-width="0.5"></polygon>
+<circle cx="150" cy="200" r="45" stroke-width="0.5"></circle>
+<!-- Meridian Vector Guidelines -->
+<path d="M150 20 L150 380 M20 200 L280 200" stroke-dasharray="4 4" stroke-width="0.3"></path>
+</svg>
+<!-- Top Seal Crest & Vedic Sloka -->
+<div class="relative z-10 flex flex-col items-center space-y-1">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-secondary shadow-md">
+<span class="material-symbols-outlined text-[24px]">auto_awesome</span>
+</div>
+<p class="font-quote-wisdom text-quote-wisdom text-secondary italic tracking-wide pt-1">
+              "रेखाभिर्विहितं सर्वं मानवानां शुभाशुभम्"
+            </p>
+<span class="font-label-sm text-label-sm text-on-surface-variant tracking-widest uppercase">
+              Brihat Samhita 68.2 • Primary Vector Axiom
+            </span>
+</div>
+<!-- Central Book Debossed Inscription & Biometric Glyph -->
+<div class="relative z-10 py-space-md flex flex-col items-center">
+<div class="w-24 h-24 rounded-full bg-surface-container-lowest/80 flex items-center justify-center p-2 mb-space-sm relative"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPiU3ovc-N2KQky8O4jQPhJY-Jyyz4lrro7wGytf2YMsZwas4k7owirHcSiYQgaDIPQV345Bs6wt4n-z9q-HgDdtC7W4jJlcbRt-BOHTp0HmEuvRyR-ZJDluy5QX5AWM3foCbVhCRVQerG5g-IX2h2hvbcQUXu7z_Rb8NEJIq9RuOLz4ob_ait7THRazMI7FbIRqYlg4Oqp5mawH5iBapFT3oxc2VlS52vula4-qd9cvJCIdZv18p30A04oYXXS_T4GA" alt="Palmar Facade Synthesis Telemetry" class="w-full h-full object-cover rounded-full mix-blend-screen scale-110"><div class="absolute inset-0 rounded-full border border-secondary/30 pointer-events-none"></div><div class="absolute inset-1 rounded-full border border-dashed border-secondary/40 animate-pulse pointer-events-none"></div><div class="absolute inset-0 bg-radial from-transparent via-secondary/10 to-surface-container-lowest/70 pointer-events-none"></div></div>
+<span class="font-label-sm text-label-sm tracking-widest text-tertiary uppercase">Volume VII</span>
+<h3 class="font-headline-md text-headline-md text-on-surface px-space-sm pt-0.5">
+              The Geometry of Sovereign Intent
+            </h3>
+<p class="font-subheading-md text-subheading-md text-secondary pt-1">
+              Maya Lin • Palmar Facade Synthesis
+            </p>
+</div>
+<!-- Bottom Cryptographic Foil Seal -->
+<div class="relative z-10 w-full flex items-center justify-between px-space-xs pt-space-xs">
+<div class="text-left">
+<span class="block font-label-sm text-label-sm text-on-surface-variant font-mono">HASH: 98E7...C421</span>
+<span class="block font-label-sm text-label-sm text-secondary">Neural Precision 99.8%</span>
+</div>
+<div class="flex items-center space-x-1 px-2 py-1 rounded bg-secondary/15 text-secondary">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Archival Vellum</span>
+</div>
+</div>
+</div>
+<!-- Carousel Pagination & Interactive Flip Controls -->
+<div class="relative z-10 flex items-center justify-between pt-space-sm px-space-xs">
+<button class="flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-surface-container-high text-on-surface-variant hover:text-secondary active:scale-95 transition-all text-label-md font-label-md" id="prev-folio-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+<span class="">Prev Folio</span>
+</button>
+<div class="flex items-center space-x-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-surface-variant"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-surface-variant"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-surface-variant"></span>
+<span class="text-body-sm font-body-sm text-on-surface-variant pl-1">1/24</span>
+</div>
+<button class="flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-surface-container-high text-on-surface hover:text-secondary active:scale-95 transition-all text-label-md font-label-md" id="next-folio-btn" type="button">
+<span class="">Next Folio</span>
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 3. Folio Configuration & Composition Layers -->
+<section class="flex flex-col w-full space-y-space-sm">
+<div class="flex items-center justify-between">
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Codex Composition</h4>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">4 Tiers Available</span>
+</div>
+<div class="flex flex-col space-y-2">
+<!-- Layer Item 1 (Active) -->
+<label class="flex items-center justify-between p-space-sm rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer select-none">
+<div class="flex items-center space-x-space-sm min-w-0 pr-space-xs">
+<div class="w-8 h-8 rounded-lg bg-primary-container/20 text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[18px]">translate</span>
+</div>
+<div class="min-w-0">
+<p class="font-subheading-md text-subheading-md text-on-surface truncate">Shastric Classical Transliteration</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Original Devanagari slokas with parallel IAST Latin phonetics</p>
+</div>
+</div>
+<input checked="" class="w-5 h-5 rounded accent-secondary cursor-pointer shrink-0" type="checkbox">
+</label>
+<!-- Layer Item 2 (Active) -->
+<label class="flex items-center justify-between p-space-sm rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer select-none">
+<div class="flex items-center space-x-space-sm min-w-0 pr-space-xs">
+<div class="w-8 h-8 rounded-lg bg-tertiary-container/20 text-tertiary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[18px]">polyline</span>
+</div>
+<div class="min-w-0">
+<p class="font-subheading-md text-subheading-md text-on-surface truncate">0.024mm Palmar Mesh Vector Overlay</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Sub-millimeter ridge vectors and focal mount intersections</p>
+</div>
+</div>
+<input checked="" class="w-5 h-5 rounded accent-secondary cursor-pointer shrink-0" type="checkbox">
+</label>
+<!-- Layer Item 3 (Active) -->
+<label class="flex items-center justify-between p-space-sm rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer select-none">
+<div class="flex items-center space-x-space-sm min-w-0 pr-space-xs">
+<div class="w-8 h-8 rounded-lg bg-secondary-container/30 text-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[18px]">explore</span>
+</div>
+<div class="min-w-0">
+<p class="font-subheading-md text-subheading-md text-on-surface truncate">Ephemeris &amp; Dosha Resonance Charts</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Planetary transit alignment calibrated to palm time coordinates</p>
+</div>
+</div>
+<input checked="" class="w-5 h-5 rounded accent-secondary cursor-pointer shrink-0" type="checkbox">
+</label>
+<!-- Layer Item 4 (Zero Knowledge Privacy Toggle - Unchecked) -->
+<label class="flex items-center justify-between p-space-sm rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer select-none">
+<div class="flex items-center space-x-space-sm min-w-0 pr-space-xs">
+<div class="w-8 h-8 rounded-lg bg-surface-variant text-on-surface-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[18px]">fingerprint</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center space-x-1.5">
+<p class="font-subheading-md text-subheading-md text-on-surface truncate">Raw Biometric Ridge Data</p>
+<span class="px-1.5 py-0.2 rounded bg-error-container/30 text-error font-label-sm text-[9px] uppercase tracking-wider">Sovereign Vault</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Zero-Knowledge Enclave export with private cryptographic keys</p>
+</div>
+</div>
+<input class="w-5 h-5 rounded accent-secondary cursor-pointer shrink-0" type="checkbox">
+</label>
+</div>
+</section>
+<!-- 4. Binding & Color Grading Palette -->
+<section class="flex flex-col w-full space-y-space-sm">
+<div class="flex items-center justify-between">
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Binding &amp; Illumination Palette</h4>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Preset Grade</span>
+</div>
+<div class="grid grid-cols-3 gap-space-xs">
+<!-- Palette Option 1 (Selected) -->
+<button class="palette-btn flex flex-col items-center text-center p-2.5 rounded-xl bg-surface-container-high ring-1 ring-secondary/40 transition-all text-on-surface group" type="button">
+<div class="w-full h-10 rounded-lg bg-gradient-to-r from-surface-container-lowest via-secondary/40 to-secondary flex items-center justify-center mb-1.5 shadow-sm">
+<span class="material-symbols-outlined text-surface-container-lowest text-[18px]">check_circle</span>
+</div>
+<span class="font-label-md text-label-md text-secondary truncate w-full">Obsidian Gold</span>
+<span class="font-label-sm text-[10px] text-on-surface-variant truncate w-full">Astral Foil</span>
+</button>
+<!-- Palette Option 2 -->
+<button class="palette-btn flex flex-col items-center text-center p-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container-high transition-all text-on-surface group" type="button">
+<div class="w-full h-10 rounded-lg bg-gradient-to-r from-[#2c2214] via-[#5d4602] to-[#e4c276] flex items-center justify-center mb-1.5 shadow-sm">
+<span class="material-symbols-outlined text-transparent text-[18px] group-hover:text-secondary">check</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface truncate w-full">Vellum Paper</span>
+<span class="font-label-sm text-[10px] text-on-surface-variant truncate w-full">Saffron Sepia</span>
+</button>
+<!-- Palette Option 3 -->
+<button class="palette-btn flex flex-col items-center text-center p-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container-high transition-all text-on-surface group" type="button">
+<div class="w-full h-10 rounded-lg bg-gradient-to-r from-[#0a1824] via-tertiary/30 to-tertiary flex items-center justify-center mb-1.5 shadow-sm">
+<span class="material-symbols-outlined text-transparent text-[18px] group-hover:text-tertiary">check</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface truncate w-full">Pranava Cyan</span>
+<span class="font-label-sm text-[10px] text-on-surface-variant truncate w-full">Titanium Wire</span>
+</button>
+</div>
+</section>
+<!-- 5. Export Format & Resolution Selection Cards -->
+<section class="flex flex-col w-full space-y-space-sm">
+<div class="flex items-center justify-between">
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Target Export Format</h4>
+<span class="font-label-sm text-label-sm text-secondary font-mono">SPEC v4.2</span>
+</div>
+<div class="flex flex-col space-y-space-xs">
+<!-- Card 1: Active / Recommended Illuminated Digital PDF -->
+<div class="format-card relative p-space-sm rounded-xl bg-surface-container-high flex flex-col space-y-2 cursor-pointer shadow-md">
+<div class="flex items-start justify-between">
+<div class="flex items-center space-x-space-sm min-w-0">
+<div class="w-10 h-10 rounded-lg bg-secondary text-surface-container-lowest flex items-center justify-center font-bold shrink-0 shadow">
+<span class="material-symbols-outlined text-[24px]">picture_as_pdf</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center space-x-2">
+<h5 class="font-subheading-lg text-subheading-lg text-on-surface truncate">Illuminated Digital Codex</h5>
+<span class="px-1.5 py-0.5 rounded bg-secondary/20 text-secondary font-label-sm text-[10px] uppercase font-bold">Recommended</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">4K Retina Vectors • Hyperlinked Sanskrit Exegesis</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-mono shrink-0 pl-2">18.4 MB</span>
+</div>
+<div class="flex items-center justify-between pt-1 text-on-surface-variant text-label-sm font-label-sm">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">check</span> PDF/X-4 Compatible
+            </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">check</span> Vector Embedded Fonts
+            </span>
+</div>
+</div>
+<!-- Card 2: Print-Ready Hardcover Spec -->
+<div class="format-card relative p-space-sm rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col space-y-2 cursor-pointer">
+<div class="flex items-start justify-between">
+<div class="flex items-center space-x-space-sm min-w-0">
+<div class="w-10 h-10 rounded-lg bg-surface-variant text-on-surface flex items-center justify-center font-bold shrink-0">
+<span class="material-symbols-outlined text-[24px]">print</span>
+</div>
+<div class="min-w-0">
+<h5 class="font-subheading-lg text-subheading-lg text-on-surface truncate">Print-Ready Archival Folio</h5>
+<p class="font-body-sm text-body-sm text-on-surface-variant">CMYK 300 DPI • Bleed Guides • Foil Stamping Masks</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono shrink-0 pl-2">64.2 MB</span>
+</div>
+</div>
+<!-- Card 3: Sovereign Vault Zip -->
+<div class="format-card relative p-space-sm rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col space-y-2 cursor-pointer">
+<div class="flex items-start justify-between">
+<div class="flex items-center space-x-space-sm min-w-0">
+<div class="w-10 h-10 rounded-lg bg-surface-variant text-on-surface flex items-center justify-center font-bold shrink-0">
+<span class="material-symbols-outlined text-[24px]">folder_zip</span>
+</div>
+<div class="min-w-0">
+<h5 class="font-subheading-lg text-subheading-lg text-on-surface truncate">Sovereign Vault Bundle (.ZIP)</h5>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Raw JSON Tensors + PGP Signatures + Master PDF</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono shrink-0 pl-2">4.1 MB</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. Cryptographic Provenance & Privacy Seal -->
+<section class="w-full p-space-sm rounded-xl bg-surface-container-lowest flex flex-col space-y-2 shadow-inner">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-1.5 text-secondary">
+<span class="material-symbols-outlined text-[16px]">shield_with_heart</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-bold">Zero-Knowledge Biometric Proof</span>
+</div>
+<span class="font-label-sm text-[10px] font-mono text-tertiary">SHA-256 Verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        Rendered 100% on-device via local Apple Neural Engine &amp; WebGPU shaders. No biometric palm telemetry, fingerprints, or ridge matrices ever leave your local hardware enclave.
+      </p>
+<div class="flex items-center space-x-2 pt-1 font-mono text-label-sm text-on-surface-variant truncate">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="truncate">DIGEST: f7a9e623b7b28a01cd4591a27e02b30248a3e8...</span>
+</div>
+</section>
+<!-- 7. Primary Action Deck & Secondary Channels -->
+<section class="flex flex-col w-full space-y-space-sm pt-space-xs">
+<!-- Main Glowing Luxury Export Button -->
+<button class="w-full min-h-[54px] rounded-xl bg-gradient-to-r from-secondary-container via-secondary to-secondary-fixed text-on-secondary-fixed font-headline-sm text-headline-sm flex items-center justify-between px-space-md shadow-xl hover:brightness-110 active:scale-[0.98] transition-all" id="main-export-cta" type="button">
+<div class="flex items-center space-x-space-xs">
+<span class="material-symbols-outlined text-[24px]">download</span>
+<span class="font-semibold tracking-wide">Generate &amp; Download PDF</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-lowest/40 text-on-secondary-fixed font-label-sm text-label-sm font-mono tracking-normal">
+          24 Folios • 18.4 MB
+        </span>
+</button>
+<!-- Secondary Row: Fast Share & Local AirDrop -->
+<div class="grid grid-cols-2 gap-space-xs">
+<button class="min-h-[46px] flex items-center justify-center space-x-1.5 px-space-sm rounded-xl bg-surface-container-high text-on-surface hover:text-secondary active:scale-95 transition-all text-label-md font-label-md" type="button">
+<span class="material-symbols-outlined text-[18px]">link</span>
+<span class="truncate">Secure Link (24h)</span>
+</button>
+<button class="min-h-[46px] flex items-center justify-center space-x-1.5 px-space-sm rounded-xl bg-surface-container-high text-on-surface hover:text-primary active:scale-95 transition-all text-label-md font-label-md" type="button">
+<span class="material-symbols-outlined text-[18px]">podcasts</span>
+<span class="truncate">AirDrop / Print</span>
+</button>
+</div>
+<!-- Subtle Legal & Chiromantic Calibration Footnote -->
+<div class="text-center pt-space-xs pb-space-sm">
+<p class="font-body-sm text-[11px] text-on-surface-variant/80">
+          Hastarekha Samhita v4.2 • Certified by Vedic Chiromancy Institute &amp; Neural Shastra Lab
+        </p>
+</div>
+</section>
+</div>
+</div>
+<script>
+  // Micro-interactions for interactive folio browsing
+  (function() {
+    const folios = [
+      {
+        title: "The Geometry of Sovereign Intent",
+        subtitle: "Maya Lin • Palmar Facade Synthesis",
+        number: "Folio Plate 01 / 24",
+        sloka: '"रेखाभिर्विहितं सर्वं मानवानां शुभाशुभम्"',
+        slokaSrc: "Brihat Samhita 68.2 • Primary Vector Axiom",
+        hash: "98E7...C421"
+      },
+      {
+        title: "Prajapati & Mount of Jupiter",
+        subtitle: "Executive Ambition & Meridian Trajectory",
+        number: "Folio Plate 02 / 24",
+        sloka: '"गुरुक्षेत्रे स्थिता रेखा राजयोगप्रदायिनी"',
+        slokaSrc: "Garga Samhita 14.9 • Mount of Sovereign Governance",
+        hash: "4A12...E09B"
+      },
+      {
+        title: "Saraswati Meridian Analysis",
+        subtitle: "Intellectual Curvature & Synthetic Focus",
+        number: "Folio Plate 03 / 24",
+        sloka: '"बुद्धिरेखा सुदीर्घा चेत् प्रज्ञावान् भवति ध्रुवम्"',
+        slokaSrc: "Hastarekha Deepika 4.12 • Mental Axis Calibration",
+        hash: "B288...F7C3"
+      }
+    ];
+
+    let currentIndex = 0;
+    const prevBtn = document.getElementById('prev-folio-btn');
+    const nextBtn = document.getElementById('next-folio-btn');
+    const stage = document.getElementById('folio-stage');
+
+    function updateFolio(idx) {
+      if (!stage) return;
+      const f = folios[idx];
+      stage.style.opacity = '0.4';
+      stage.style.transform = 'scale(0.98)';
+      
+      setTimeout(() => {
+        const titleEl = stage.querySelector('h3');
+        const subEl = stage.querySelector('p.font-subheading-md');
+        const quoteEl = stage.querySelector('p.font-quote-wisdom');
+        const quoteSrc = stage.querySelector('span.font-label-sm.text-on-surface-variant');
+        const hashEl = stage.querySelector('.font-mono');
+
+        if (titleEl) titleEl.innerText = f.title;
+        if (subEl) subEl.innerText = f.subtitle;
+        if (quoteEl) quoteEl.innerText = f.sloka;
+        if (quoteSrc) quoteSrc.innerText = f.slokaSrc;
+        if (hashEl) hashEl.innerText = 'HASH: ' + f.hash;
+
+        stage.style.opacity = '1';
+        stage.style.transform = 'scale(1)';
+      }, 150);
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % folios.length;
+        updateFolio(currentIndex);
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + folios.length) % folios.length;
+        updateFolio(currentIndex);
+      });
+    }
+
+    // Format card selection toggle behavior
+    const formatCards = document.querySelectorAll('.format-card');
+    formatCards.forEach(card => {
+      card.addEventListener('click', () => {
+        formatCards.forEach(c => {
+          c.classList.remove('bg-surface-container-high', 'shadow-md');
+          c.classList.add('bg-surface-container-low');
+        });
+        card.classList.remove('bg-surface-container-low');
+        card.classList.add('bg-surface-container-high', 'shadow-md');
+      });
+    });
+
+    // Main download CTA feedback
+    const mainCTA = document.getElementById('main-export-cta');
+    if (mainCTA) {
+      mainCTA.addEventListener('click', function() {
+        const originalContent = this.innerHTML;
+        this.innerHTML = `
+          <div class="flex items-center space-x-2">
+            <span class="material-symbols-outlined text-[22px] animate-spin">progress_activity</span>
+            <span class="font-semibold tracking-wide">Compiling 24 Vector Folios...</span>
+          </div>
+          <span class="font-mono text-label-sm">WebGPU 100%</span>
+        `;
+        setTimeout(() => {
+          this.innerHTML = `
+            <div class="flex items-center space-x-2">
+              <span class="material-symbols-outlined text-[22px]">check_circle</span>
+              <span class="font-semibold tracking-wide">Codex Exported Successfully</span>
+            </div>
+            <span class="font-mono text-label-sm">Saved</span>
+          `;
+          setTimeout(() => {
+            this.innerHTML = originalContent;
+          }, 2400);
+        }, 1600);
+      });
+    }
+  })();
+</script></main>
+
+
+
+</body></html>
