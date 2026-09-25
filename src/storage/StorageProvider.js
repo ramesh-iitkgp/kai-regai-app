@@ -54,6 +54,36 @@ export class StorageProvider {
     throw new Error('deleteSyncItem() not implemented');
   }
 
+  // Entitlements
+  async saveEntitlement(entitlement) {
+    throw new Error('saveEntitlement() not implemented');
+  }
+
+  async getEntitlement(entitlementId) {
+    throw new Error('getEntitlement() not implemented');
+  }
+
+  async listEntitlements(options = {}) {
+    throw new Error('listEntitlements() not implemented');
+  }
+
+  async deleteEntitlement(entitlementId) {
+    throw new Error('deleteEntitlement() not implemented');
+  }
+
+  // Transactions
+  async saveTransaction(transaction) {
+    throw new Error('saveTransaction() not implemented');
+  }
+
+  async getTransaction(transactionId) {
+    throw new Error('getTransaction() not implemented');
+  }
+
+  async listTransactions(options = {}) {
+    throw new Error('listTransactions() not implemented');
+  }
+
   // Complete Local Purge
   async clearAll() {
     throw new Error('clearAll() not implemented');

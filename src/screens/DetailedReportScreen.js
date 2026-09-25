@@ -8,6 +8,7 @@ import { router } from '../navigation/router.js';
 import { ROUTES } from '../navigation/routes.js';
 import { mockReadings } from '../mock/mockReadings.js';
 import { renderPalmLineOverlay } from '../components/PalmLineOverlay.js';
+import { defaultEntitlementService, FEATURE_KEYS } from '../monetization/index.js';
 
 export function renderDetailedReportScreen(container, params = {}) {
   const reading = params.dossier || mockReadings.find(r => r.id === params.id) || mockReadings[1];
@@ -96,8 +97,17 @@ export function renderDetailedReportScreen(container, params = {}) {
       }
     });
 
-    container.querySelector('#detail-export-btn')?.addEventListener('click', () => {
-      router.openModal('pdf_export', { title: reading.title });
+    container.querySelector('#detail-export-btn')?.addEventListener('click', async () => {
+      const allowed = await defaultEntitlementService.canAccess(reading.id, FEATURE_KEYS.PDF_EXPORT);
+      if (allowed) {
+        router.openModal('pdf_export', { title: reading.title });
+      } else {
+        router.openModal('paywall', {
+          readingId: reading.id,
+          featureKey: FEATURE_KEYS.PDF_EXPORT,
+          onUnlocked: () => render()
+        });
+      }
     });
   }
 

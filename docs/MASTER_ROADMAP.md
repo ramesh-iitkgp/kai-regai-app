@@ -22,7 +22,8 @@ Each phase has strict prerequisites, deliverables, and validation criteria. Agen
 | **P9** | **AI / RAG Narration Engine** | **Complete** | Context assembly, prompt compiler, approved RAG, safety gates, deterministic fallback |
 | **P10** | **Report Engine** | **Complete** | Multi-tier digital reports (Quick/Standard/Premium), vector A4 PDF export, high-DPI social cards, privacy telemetry |
 | **P11** | **Backend / User System** | **Complete** | Offline-first IndexedDB storage, ReadingRecord snapshots, guest mode, sync queue, IDOR protection |
-| **P12** | **Payments / Monetization** | *Pending Authorization* | In-app purchases, subscriptions, premium reading tiers, receipt validation |
+| **P11.5** | **Production Readiness Audit** | **Complete** | Full P5–P11 audit across security, privacy, latency, mobile, and contract invariance |
+| **P12** | **Payments / Monetization** | **Complete** | Provider-agnostic payment abstraction, product catalog, entitlement & transaction models, AccessPolicy, 15 golden cases |
 | **P13** | **Testing & QA** | *Pending Authorization* | CV accuracy benchmarks, rule engine test suite, end-to-end integration tests |
 | **P14** | **Security & Production Hardening** | *Pending Authorization* | Biometric privacy audit, penetration testing, rate limiting, encryption |
 | **P15** | **App Store Releases** | *Pending Authorization* | Store listing assets, compliance disclosures, Google Play & Apple review |
@@ -318,14 +319,19 @@ Each phase has strict prerequisites, deliverables, and validation criteria. Agen
 
 ---
 
-### Phase P12: Payments & Monetization
-* **Goal**: Implement monetization mechanics, in-app purchases, and subscription tiers.
-* **Prerequisites**: P11 User System, P10 Reports.
-* **Key Tasks**:
-  * Configure Apple StoreKit 2 and Google Play Billing.
-  * Support freemium tiers (free Mode 1 quick scan, premium deep Mode 2 readings, detailed career/relationship add-ons).
-  * Server-side receipt validation and purchase state restoration.
-* **Exit Gate**: Verified end-to-end sandbox purchase, restore, and subscription management.
+### Phase P12: Payments & Monetization (Complete)
+* **Goal**: Implement provider-agnostic commercial monetization mechanics, entitlement models, and access control.
+* **Prerequisites**: P11 User System, P10 Reports, P11.5 Audit Pass.
+* **Key Achievements**:
+  * Central versioned Product Catalog (`src/monetization/ProductCatalog.js`) supporting Free, Standard, Premium, and Annual subscriptions with multi-currency pricing (INR, USD, EUR, GBP).
+  * Canonical versioned Entitlement and Transaction contracts with strict PCI-DSS and privacy validation.
+  * Deterministic state machines enforcing valid lifecycle transitions.
+  * Authoritative AccessPolicy engine eliminating client-side boolean trust and supporting non-destructive report preview masking.
+  * Master EntitlementService coordinating purchases, sandbox receipt verification, purchase restoration, non-destructive refunds, and guest-to-account entitlement migration.
+  * Version 2 IndexedDB schema with dedicated `entitlements` and `transactions` object stores.
+  * Paywall modal and UI feature gating in Quick and Detailed Report screens.
+  * 15 Golden Commercial Cases (`tests/monetization/golden/goldenCommercialCases.js`) and 37 comprehensive unit/integration tests passing.
+* **Exit Gate**: Verified end-to-end sandbox purchase, restore, and subscription management; 229/229 master regression tests passing; production Vite build passes in 85ms.
 
 ---
 

@@ -18,6 +18,8 @@ export class MemoryStorageProvider extends StorageProvider {
     this.profiles = new Map();
     this.syncQueue = new Map();
     this.settings = new Map();
+    this.entitlements = new Map();
+    this.transactions = new Map();
     this.initialized = false;
   }
 
@@ -132,11 +134,73 @@ export class MemoryStorageProvider extends StorageProvider {
     return this.syncQueue.delete(itemId);
   }
 
+  // Entitlements
+  async saveEntitlement(entitlement) {
+    if (!entitlement?.entitlementId) throw new Error('saveEntitlement requires entitlementId');
+    const cloned = JSON.parse(JSON.stringify(entitlement));
+    this.entitlements.set(entitlement.entitlementId, cloned);
+    return cloned;
+  }
+
+  async getEntitlement(entitlementId) {
+    const raw = this.entitlements.get(entitlementId);
+    return raw ? JSON.parse(JSON.stringify(raw)) : null;
+  }
+
+  async listEntitlements(options = {}) {
+    const { ownerId, readingId, status } = options;
+    let items = Array.from(this.entitlements.values());
+    if (ownerId) {
+      items = items.filter(e => e.ownerId === ownerId);
+    }
+    if (readingId) {
+      items = items.filter(e => e.readingId === readingId || e.readingId === null);
+    }
+    if (status) {
+      items = items.filter(e => e.status === status);
+    }
+    return items.map(e => JSON.parse(JSON.stringify(e)));
+  }
+
+  async deleteEntitlement(entitlementId) {
+    return this.entitlements.delete(entitlementId);
+  }
+
+  // Transactions
+  async saveTransaction(transaction) {
+    if (!transaction?.transactionId) throw new Error('saveTransaction requires transactionId');
+    const cloned = JSON.parse(JSON.stringify(transaction));
+    this.transactions.set(transaction.transactionId, cloned);
+    return cloned;
+  }
+
+  async getTransaction(transactionId) {
+    const raw = this.transactions.get(transactionId);
+    return raw ? JSON.parse(JSON.stringify(raw)) : null;
+  }
+
+  async listTransactions(options = {}) {
+    const { ownerId, status, productId } = options;
+    let items = Array.from(this.transactions.values());
+    if (ownerId) {
+      items = items.filter(t => t.ownerId === ownerId);
+    }
+    if (status) {
+      items = items.filter(t => t.status === status);
+    }
+    if (productId) {
+      items = items.filter(t => t.productId === productId);
+    }
+    return items.map(t => JSON.parse(JSON.stringify(t)));
+  }
+
   async clearAll() {
     this.readings.clear();
     this.profiles.clear();
     this.syncQueue.clear();
     this.settings.clear();
+    this.entitlements.clear();
+    this.transactions.clear();
     return true;
   }
 }

@@ -17,7 +17,7 @@ export class IndexedDBStorageProvider extends StorageProvider {
   constructor(options = {}) {
     super();
     this.dbName = options.dbName || 'KaiRegAI_DB';
-    this.version = options.version || 1;
+    this.version = options.version || 2;
     this.db = null;
     this.fallback = null;
   }
@@ -65,6 +65,22 @@ export class IndexedDBStorageProvider extends StorageProvider {
           // Settings Store
           if (!db.objectStoreNames.contains('settings')) {
             db.createObjectStore('settings', { keyPath: 'key' });
+          }
+
+          // Entitlements Store
+          if (!db.objectStoreNames.contains('entitlements')) {
+            const entStore = db.createObjectStore('entitlements', { keyPath: 'entitlementId' });
+            entStore.createIndex('ownerId', 'ownerId', { unique: false });
+            entStore.createIndex('readingId', 'readingId', { unique: false });
+            entStore.createIndex('status', 'status', { unique: false });
+          }
+
+          // Transactions Store
+          if (!db.objectStoreNames.contains('transactions')) {
+            const txnStore = db.createObjectStore('transactions', { keyPath: 'transactionId' });
+            txnStore.createIndex('ownerId', 'ownerId', { unique: false });
+            txnStore.createIndex('status', 'status', { unique: false });
+            txnStore.createIndex('idempotencyKey', 'idempotencyKey', { unique: false });
           }
         };
 
@@ -277,15 +293,129 @@ export class IndexedDBStorageProvider extends StorageProvider {
     });
   }
 
+  // Entitlements
+  async saveEntitlement(entitlement) {
+    const backend = this._ensureBackend();
+    if (backend) return backend.saveEntitlement(entitlement);
+    return new Promise((resolve, reject) => {
+      const tx = this.db.transaction('entitlements', 'readwrite');
+      const store = tx.objectStore('entitlements');
+      const serialized = entitlement.toJSON ? entitlement.toJSON() : entitlement;
+      const req = store.put(serialized);
+      req.onsuccess = () => resolve(serialized);
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  async getEntitlement(entitlementId) {
+    const backend = this._ensureBackend();
+    if (backend) return backend.getEntitlement(entitlementId);
+    return new Promise((resolve, reject) => {
+      const tx = this.db.transaction('entitlements', 'readonly');
+      const store = tx.objectStore('entitlements');
+      const req = store.get(entitlementId);
+      req.onsuccess = () => resolve(req.result || null);
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  async listEntitlements(options = {}) {
+    const backend = this._ensureBackend();
+    if (backend) return backend.listEntitlements(options);
+    return new Promise((resolve, reject) => {
+      const tx = this.db.transaction('entitlements', 'readonly');
+      const store = tx.objectStore('entitlements');
+      const req = store.getAll();
+      req.onsuccess = () => {
+        let items = req.result || [];
+        if (options.ownerId) {
+          items = items.filter(e => e.ownerId === options.ownerId);
+        }
+        if (options.readingId) {
+          items = items.filter(e => e.readingId === options.readingId || e.readingId === null);
+        }
+        if (options.status) {
+          items = items.filter(e => e.status === options.status);
+        }
+        resolve(items);
+      };
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  async deleteEntitlement(entitlementId) {
+    const backend = this._ensureBackend();
+    if (backend) return backend.deleteEntitlement(entitlementId);
+    return new Promise((resolve, reject) => {
+      const tx = this.db.transaction('entitlements', 'readwrite');
+      const store = tx.objectStore('entitlements');
+      const req = store.delete(entitlementId);
+      req.onsuccess = () => resolve(true);
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  // Transactions
+  async saveTransaction(transaction) {
+    const backend = this._ensureBackend();
+    if (backend) return backend.saveTransaction(transaction);
+    return new Promise((resolve, reject) => {
+      const tx = this.db.transaction('transactions', 'readwrite');
+      const store = tx.objectStore('transactions');
+      const serialized = transaction.toJSON ? transaction.toJSON() : transaction;
+      const req = store.put(serialized);
+      req.onsuccess = () => resolve(serialized);
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  async getTransaction(transactionId) {
+    const backend = this._ensureBackend();
+    if (backend) return backend.getTransaction(transactionId);
+    return new Promise((resolve, reject) => {
+      const tx = this.db.transaction('transactions', 'readonly');
+      const store = tx.objectStore('transactions');
+      const req = store.get(transactionId);
+      req.onsuccess = () => resolve(req.result || null);
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  async listTransactions(options = {}) {
+    const backend = this._ensureBackend();
+    if (backend) return backend.listTransactions(options);
+    return new Promise((resolve, reject) => {
+      const tx = this.db.transaction('transactions', 'readonly');
+      const store = tx.objectStore('transactions');
+      const req = store.getAll();
+      req.onsuccess = () => {
+        let items = req.result || [];
+        if (options.ownerId) {
+          items = items.filter(t => t.ownerId === options.ownerId);
+        }
+        if (options.status) {
+          items = items.filter(t => t.status === options.status);
+        }
+        if (options.productId) {
+          items = items.filter(t => t.productId === options.productId);
+        }
+        resolve(items);
+      };
+      req.onerror = () => reject(req.error);
+    });
+  }
+
   async clearAll() {
     const backend = this._ensureBackend();
     if (backend) return backend.clearAll();
     return new Promise((resolve, reject) => {
-      const tx = this.db.transaction(['readings', 'profiles', 'syncQueue', 'settings'], 'readwrite');
-      tx.objectStore('readings').clear();
-      tx.objectStore('profiles').clear();
-      tx.objectStore('syncQueue').clear();
-      tx.objectStore('settings').clear();
+      const storeNames = ['readings', 'profiles', 'syncQueue', 'settings'];
+      if (this.db.objectStoreNames.contains('entitlements')) storeNames.push('entitlements');
+      if (this.db.objectStoreNames.contains('transactions')) storeNames.push('transactions');
+      const tx = this.db.transaction(storeNames, 'readwrite');
+      for (const name of storeNames) {
+        tx.objectStore(name).clear();
+      }
 
       tx.oncomplete = () => resolve(true);
       tx.onerror = () => reject(tx.error);

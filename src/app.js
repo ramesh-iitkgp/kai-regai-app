@@ -9,6 +9,7 @@ import { renderAppHeader } from './components/AppHeader.js';
 import { renderBottomNav } from './components/BottomNavigation.js';
 import { renderPdfExportModal } from './components/PdfExportModal.js';
 import { renderErrorCalibrationModal } from './components/ErrorCalibrationModal.js';
+import { renderPaywallModal, attachPaywallListeners } from './components/PaywallModal.js';
 import { createReport, ReportExport, ReportShare, reportTelemetry, TELEMETRY_EVENTS } from './report/index.js';
 
 // Screens
@@ -175,6 +176,12 @@ export class App {
         router.closeModal();
         router.navigate(ROUTES.GUIDED_READING);
       });
+    }
+
+    if (activeModal.id === 'paywall') {
+      const payload = activeModal.payload || {};
+      this.modalContainer.innerHTML = renderPaywallModal(payload);
+      attachPaywallListeners(this.modalContainer, payload);
     }
   }
 }

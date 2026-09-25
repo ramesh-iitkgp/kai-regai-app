@@ -1,0 +1,126 @@
+/**
+ * Kai RegAI — Monetization & Entitlement Type Definitions
+ * Phase: P12 — Monetization & Entitlement Architecture
+ */
+
+/**
+ * Product Tiers in hierarchical order
+ */
+export const PRODUCT_TIERS = {
+  FREE: 'FREE',
+  STANDARD: 'STANDARD',
+  PREMIUM: 'PREMIUM'
+};
+
+/**
+ * Tier hierarchy ranks for comparison
+ */
+export const TIER_RANKS = {
+  [PRODUCT_TIERS.FREE]: 0,
+  [PRODUCT_TIERS.STANDARD]: 1,
+  [PRODUCT_TIERS.PREMIUM]: 2
+};
+
+/**
+ * Billing Types supported by the architecture
+ */
+export const BILLING_TYPES = {
+  ONE_TIME_PURCHASE: 'ONE_TIME_PURCHASE',
+  SUBSCRIPTION: 'SUBSCRIPTION',
+  PROMOTIONAL: 'PROMOTIONAL',
+  COMPLIMENTARY: 'COMPLIMENTARY'
+};
+
+/**
+ * Entitlement Status Lifecycle
+ */
+export const ENTITLEMENT_STATUS = {
+  PENDING: 'PENDING',
+  ACTIVE: 'ACTIVE',
+  EXPIRED: 'EXPIRED',
+  REVOKED: 'REVOKED',
+  REFUNDED: 'REFUNDED',
+  CANCELLED: 'CANCELLED',
+  FAILED: 'FAILED'
+};
+
+/**
+ * Entitlement Origin Source
+ */
+export const ENTITLEMENT_SOURCE = {
+  PURCHASE: 'PURCHASE',
+  PROMOTIONAL: 'PROMOTIONAL',
+  ADMIN_GRANT: 'ADMIN_GRANT',
+  COMPLIMENTARY: 'COMPLIMENTARY',
+  RESTORE: 'RESTORE',
+  UPGRADE: 'UPGRADE'
+};
+
+/**
+ * Financial Transaction Status Lifecycle
+ */
+export const TRANSACTION_STATUS = {
+  INITIATED: 'INITIATED',
+  PENDING: 'PENDING',
+  VERIFICATION_REQUIRED: 'VERIFICATION_REQUIRED',
+  VERIFIED: 'VERIFIED',
+  FAILED: 'FAILED',
+  CANCELLED: 'CANCELLED',
+  REFUNDED: 'REFUNDED',
+  DUPLICATE: 'DUPLICATE'
+};
+
+/**
+ * Payment Providers
+ */
+export const PAYMENT_PROVIDERS = {
+  MOCK: 'MOCK',
+  APPLE_STOREKIT: 'APPLE_STOREKIT',
+  GOOGLE_PLAY: 'GOOGLE_PLAY',
+  STRIPE: 'STRIPE',
+  INTERNAL_GRANT: 'INTERNAL_GRANT'
+};
+
+/**
+ * Granular Feature Gating Keys
+ */
+export const FEATURE_KEYS = {
+  QUICK_REPORT: 'QUICK_REPORT',
+  BASIC_LINES: 'BASIC_LINES',
+  ALL_MAJOR_LINES: 'ALL_MAJOR_LINES',
+  DETAILED_REPORT: 'DETAILED_REPORT',
+  PREMIUM_REPORT: 'PREMIUM_REPORT',
+  ALL_CHAPTERS: 'ALL_CHAPTERS',
+  CHAPTER_VOCATION: 'CHAPTER_VOCATION',
+  CHAPTER_RELATIONSHIPS: 'CHAPTER_RELATIONSHIPS',
+  CHAPTER_GUIDANCE: 'CHAPTER_GUIDANCE',
+  PDF_EXPORT: 'PDF_EXPORT',
+  SOCIAL_CARD: 'SOCIAL_CARD',
+  ADVANCED_NARRATION: 'ADVANCED_NARRATION',
+  FULL_HISTORY: 'FULL_HISTORY',
+  CELESTIAL_MOUNTS: 'CELESTIAL_MOUNTS',
+  THUMB_BIOMECHANICS: 'THUMB_BIOMECHANICS',
+  SACRED_MARKINGS: 'SACRED_MARKINGS',
+  HIGH_RES_VISUALIZER: 'HIGH_RES_VISUALIZER'
+};
+
+/**
+ * Authoritative Access Decisions emitted by AccessPolicy
+ */
+export const ACCESS_DECISION = {
+  ALLOW: 'ALLOW',
+  DENY: 'DENY',
+  PENDING: 'PENDING',
+  REQUIRES_PURCHASE: 'REQUIRES_PURCHASE',
+  REQUIRES_VERIFICATION: 'REQUIRES_VERIFICATION'
+};
+
+/**
+ * Supported Currencies
+ */
+export const CURRENCIES = {
+  INR: 'INR',
+  USD: 'USD',
+  EUR: 'EUR',
+  GBP: 'GBP'
+};

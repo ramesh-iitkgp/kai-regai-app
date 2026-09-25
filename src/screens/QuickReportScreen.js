@@ -3,6 +3,7 @@ import { ROUTES } from '../navigation/routes.js';
 import { mockReadings } from '../mock/mockReadings.js';
 import { renderPalmLineOverlay } from '../components/PalmLineOverlay.js';
 import { PalmFeatureModelAdapter } from '../cv/adapters/PalmFeatureModelAdapter.js';
+import { defaultEntitlementService, FEATURE_KEYS } from '../monetization/index.js';
 
 /**
  * Format line status display badge and honest epistemic observation
@@ -259,8 +260,16 @@ export function renderQuickReportScreen(container, params = {}) {
       dossier
     });
   });
-  document.getElementById('quick-share-btn')?.addEventListener('click', () => {
-    router.openModal('pdf_export', { title: reading.title });
+  document.getElementById('quick-share-btn')?.addEventListener('click', async () => {
+    const allowed = await defaultEntitlementService.canAccess(reading.id, FEATURE_KEYS.PDF_EXPORT);
+    if (allowed) {
+      router.openModal('pdf_export', { title: reading.title });
+    } else {
+      router.openModal('paywall', {
+        readingId: reading.id,
+        featureKey: FEATURE_KEYS.PDF_EXPORT
+      });
+    }
   });
 }
 

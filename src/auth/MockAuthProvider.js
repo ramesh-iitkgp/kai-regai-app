@@ -83,6 +83,22 @@ export class MockAuthProvider extends AuthProvider {
         rec.updatedAt = new Date().toISOString();
         await this.storage.saveReading(rec);
       }
+
+      // 1b. Reassign local entitlements & transactions
+      if (typeof this.storage.listEntitlements === 'function') {
+        const ents = await this.storage.listEntitlements({ ownerId: previousGuestId });
+        for (const ent of ents) {
+          ent.ownerId = newAccountId;
+          await this.storage.saveEntitlement(ent);
+        }
+      }
+      if (typeof this.storage.listTransactions === 'function') {
+        const txns = await this.storage.listTransactions({ ownerId: previousGuestId });
+        for (const txn of txns) {
+          txn.ownerId = newAccountId;
+          await this.storage.saveTransaction(txn);
+        }
+      }
     }
 
     // 2. Establish new authenticated profile
