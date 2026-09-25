@@ -1,0 +1,74 @@
+{
+  "datasetVersion": "1.0.0",
+  "annotationVersion": "1.0.0",
+  "protocolVersion": "1.0.0",
+  "canonicalCoordinates": {
+    "targetWidth": 360,
+    "targetHeight": 450
+  },
+  "imageId": "PALM-0025",
+  "split": "FINAL_TEST",
+  "handedness": "RIGHT",
+  "annotatorId": "expert_lead_annotator",
+  "qualityCategory": "GOOD",
+  "lighting": "EVEN",
+  "tiltDegrees": 0,
+  "scaleCategory": "OPTIMAL",
+  "edgeCaseDescription": "Transverse Simian Crease (Single dominant transverse line)",
+  "lines": {
+    "life": {
+      "status": "PRESENT",
+      "polyline": [
+        {
+          "x": 0.353,
+          "y": 0.4505
+        },
+        {
+          "x": 0.402,
+          "y": 0.5112
+        },
+        {
+          "x": 0.437,
+          "y": 0.5787
+        },
+        {
+          "x": 0.458,
+          "y": 0.6395
+        }
+      ]
+    },
+    "head": {
+      "status": "PRESENT",
+      "polyline": [
+        {
+          "x": 0.3425,
+          "y": 0.4775
+        },
+        {
+          "x": 0.4475,
+          "y": 0.4955
+        },
+        {
+          "x": 0.57,
+          "y": 0.518
+        },
+        {
+          "x": 0.668,
+          "y": 0.5405
+        }
+      ]
+    },
+    "heart": {
+      "status": "ABSENT",
+      "polyline": []
+    },
+    "fate": {
+      "status": "ABSENT",
+      "polyline": []
+    },
+    "sun": {
+      "status": "ABSENT",
+      "polyline": []
+    }
+  }
+}

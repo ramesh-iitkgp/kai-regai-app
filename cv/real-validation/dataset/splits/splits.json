@@ -1,0 +1,43 @@
+{
+  "datasetVersion": "1.0.0",
+  "splits": {
+    "development": [
+      "PALM-0001",
+      "PALM-0002",
+      "PALM-0003",
+      "PALM-0004",
+      "PALM-0005"
+    ],
+    "calibration": [
+      "PALM-0006",
+      "PALM-0007",
+      "PALM-0008",
+      "PALM-0009",
+      "PALM-0010",
+      "PALM-0011",
+      "PALM-0012",
+      "PALM-0013",
+      "PALM-0014",
+      "PALM-0015",
+      "PALM-0016"
+    ],
+    "finalTest": [
+      "PALM-0017",
+      "PALM-0018",
+      "PALM-0019",
+      "PALM-0020",
+      "PALM-0021",
+      "PALM-0022",
+      "PALM-0023",
+      "PALM-0024",
+      "PALM-0025",
+      "PALM-0026",
+      "PALM-0027",
+      "PALM-0028",
+      "PALM-0029",
+      "PALM-0030",
+      "PALM-0031",
+      "PALM-0032"
+    ]
+  }
+}

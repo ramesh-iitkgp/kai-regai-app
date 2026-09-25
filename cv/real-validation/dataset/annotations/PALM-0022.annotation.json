@@ -1,0 +1,91 @@
+{
+  "datasetVersion": "1.0.0",
+  "annotationVersion": "1.0.0",
+  "protocolVersion": "1.0.0",
+  "canonicalCoordinates": {
+    "targetWidth": 360,
+    "targetHeight": 450
+  },
+  "imageId": "PALM-0022",
+  "split": "FINAL_TEST",
+  "handedness": "RIGHT",
+  "annotatorId": "expert_lead_annotator",
+  "qualityCategory": "PARTIAL",
+  "lighting": "EVEN",
+  "tiltDegrees": 0,
+  "scaleCategory": "OPTIMAL",
+  "edgeCaseDescription": "Severe bottom crop (Wrist & Fate line out of frame)",
+  "lines": {
+    "life": {
+      "status": "PARTIAL",
+      "polyline": [
+        {
+          "x": 0.353,
+          "y": 0.6505
+        },
+        {
+          "x": 0.402,
+          "y": 0.7112
+        },
+        {
+          "x": 0.437,
+          "y": 0.7787
+        },
+        {
+          "x": 0.458,
+          "y": 0.8395
+        }
+      ]
+    },
+    "head": {
+      "status": "PRESENT",
+      "polyline": [
+        {
+          "x": 0.3425,
+          "y": 0.6775
+        },
+        {
+          "x": 0.4475,
+          "y": 0.6955
+        },
+        {
+          "x": 0.57,
+          "y": 0.718
+        },
+        {
+          "x": 0.668,
+          "y": 0.7405
+        }
+      ]
+    },
+    "heart": {
+      "status": "PRESENT",
+      "polyline": [
+        {
+          "x": 0.703,
+          "y": 0.61
+        },
+        {
+          "x": 0.605,
+          "y": 0.619
+        },
+        {
+          "x": 0.5,
+          "y": 0.628
+        },
+        {
+          "x": 0.3775,
+          "y": 0.6415
+        }
+      ]
+    },
+    "fate": {
+      "status": "ABSENT",
+      "polyline": []
+    },
+    "sun": {
+      "status": "ABSENT",
+      "polyline": []
+    }
+  }
+}

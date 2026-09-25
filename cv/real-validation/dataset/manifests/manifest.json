@@ -1,0 +1,679 @@
+{
+  "datasetVersion": "1.0.0",
+  "generatedAt": "2026-09-25T11:50:54.126Z",
+  "totalPalms": 32,
+  "palms": [
+    {
+      "imageId": "PALM-0001",
+      "split": "DEVELOPMENT",
+      "handedness": "RIGHT",
+      "resolution": {
+        "width": 576,
+        "height": 1280
+      },
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Baseline real mobile phone capture #1 (P5.1 Benchmark)",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "ABSENT",
+        "sun": "ABSENT"
+      }
+    },
+    {
+      "imageId": "PALM-0002",
+      "split": "DEVELOPMENT",
+      "handedness": "RIGHT",
+      "resolution": {
+        "width": 576,
+        "height": 1280
+      },
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Baseline real mobile phone capture #2 (P5.1 Benchmark)",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "ABSENT",
+        "sun": "ABSENT"
+      }
+    },
+    {
+      "imageId": "PALM-0003",
+      "split": "DEVELOPMENT",
+      "handedness": "RIGHT",
+      "resolution": {
+        "width": 576,
+        "height": 1280
+      },
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Baseline real mobile phone capture #3 (P5.1 Benchmark)",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "ABSENT",
+        "heart": "ABSENT",
+        "fate": "ABSENT",
+        "sun": "ABSENT"
+      }
+    },
+    {
+      "imageId": "PALM-0004",
+      "split": "DEVELOPMENT",
+      "handedness": "LEFT",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      },
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Left hand mirror baseline with Fate line",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "PRESENT",
+        "sun": "ABSENT"
+      }
+    },
+    {
+      "imageId": "PALM-0005",
+      "split": "DEVELOPMENT",
+      "handedness": "RIGHT",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      },
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Deep prominent calloused creases (Manual labor profile)",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "PRESENT",
+        "sun": "PRESENT"
+      }
+    },
+    {
+      "imageId": "PALM-0006",
+      "split": "CALIBRATION",
+      "handedness": "RIGHT",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      },
+      "qualityCategory": "DIFFICULT",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Dense micro-wrinkles and secondary palmar texture",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "PRESENT",
+        "sun": "ABSENT"
+      }
+    },
+    {
+      "imageId": "PALM-0007",
+      "split": "CALIBRATION",
+      "handedness": "LEFT",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      },
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Fair pinkish palmar tone (Type I Fitzpatrick)",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "ABSENT",
+        "sun": "ABSENT"
+      }
+    },
+    {
+      "imageId": "PALM-0008",
+      "split": "CALIBRATION",
+      "handedness": "RIGHT",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      },
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Deep melanin palmar skin (Type VI Fitzpatrick)",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "ABSENT",
+        "sun": "ABSENT"
+      }
+    },
+    {
+      "imageId": "PALM-0009",
+      "split": "CALIBRATION",
+      "handedness": "RIGHT",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      },
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Golden South Asian wheatish tone (Type IV Fitzpatrick)",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "PRESENT",
+        "sun": "ABSENT"
+      }
+    },
+    {
+      "imageId": "PALM-0010",
+      "split": "CALIBRATION",
+      "handedness": "RIGHT",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      },
+      "qualityCategory": "DIFFICULT",
+      "lighting": "LOW",
+      "tiltDegrees": 0,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Low ambient illumination (underexposed mean luma ~26)",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "ABSENT",
+        "sun": "ABSENT"
+      }
+    },
+    {
+      "imageId": "PALM-0011",
+      "split": "CALIBRATION",
+      "handedness": "LEFT",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      },
+      "qualityCategory": "DIFFICULT",
+      "lighting": "HARSH",
+      "tiltDegrees": 0,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Harsh direct sunlight with hard shadow boundary",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "ABSENT",
+        "sun": "ABSENT"
+      }
+    },
+    {
+      "imageId": "PALM-0012",
+      "split": "CALIBRATION",
+      "handedness": "RIGHT",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      },
+      "qualityCategory": "DIFFICULT",
+      "lighting": "GLARE",
+      "tiltDegrees": 0,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Central camera flash specular reflection / glare",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "ABSENT",
+        "sun": "ABSENT"
+      }
+    },
+    {
+      "imageId": "PALM-0013",
+      "split": "CALIBRATION",
+      "handedness": "LEFT",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      },
+      "qualityCategory": "ACCEPTABLE",
+      "lighting": "BACKLIT",
+      "tiltDegrees": 0,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Backlit window ambient with bright background",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "ABSENT",
+        "sun": "ABSENT"
+      }
+    },
+    {
+      "imageId": "PALM-0014",
+      "split": "CALIBRATION",
+      "handedness": "RIGHT",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      },
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 8,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Slight tilt 8° clockwise (within upright deadband)",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "ABSENT",
+        "sun": "ABSENT"
+      }
+    },
+    {
+      "imageId": "PALM-0015",
+      "split": "CALIBRATION",
+      "handedness": "LEFT",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      },
+      "qualityCategory": "ACCEPTABLE",
+      "lighting": "EVEN",
+      "tiltDegrees": -22,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Moderate tilt 22° CCW (rectified by segmentation)",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "ABSENT",
+        "sun": "ABSENT"
+      }
+    },
+    {
+      "imageId": "PALM-0016",
+      "split": "CALIBRATION",
+      "handedness": "RIGHT",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      },
+      "qualityCategory": "FAILURE",
+      "lighting": "EVEN",
+      "tiltDegrees": 52,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Extreme tilt 52° CW (triggers user tilt guidance retake)",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "ABSENT",
+        "sun": "ABSENT"
+      }
+    },
+    {
+      "imageId": "PALM-0017",
+      "split": "FINAL_TEST",
+      "handedness": "RIGHT",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      },
+      "qualityCategory": "ACCEPTABLE",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "scaleCategory": "SMALL",
+      "edgeCase": "Small palm scale at far distance (boundary test)",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "ABSENT",
+        "sun": "ABSENT"
+      }
+    },
+    {
+      "imageId": "PALM-0018",
+      "split": "FINAL_TEST",
+      "handedness": "RIGHT",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      },
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Optimal palm framing with complete 5-crease system",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "PRESENT",
+        "sun": "PRESENT"
+      }
+    },
+    {
+      "imageId": "PALM-0019",
+      "split": "FINAL_TEST",
+      "handedness": "LEFT",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      },
+      "qualityCategory": "ACCEPTABLE",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "scaleCategory": "LARGE",
+      "edgeCase": "Large palm scale near frame boundary",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "ABSENT",
+        "sun": "ABSENT"
+      }
+    },
+    {
+      "imageId": "PALM-0020",
+      "split": "FINAL_TEST",
+      "handedness": "RIGHT",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      },
+      "qualityCategory": "ACCEPTABLE",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Slight upper border cropping (Fingertips out of frame)",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "ABSENT",
+        "sun": "ABSENT"
+      }
+    },
+    {
+      "imageId": "PALM-0021",
+      "split": "FINAL_TEST",
+      "handedness": "LEFT",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      },
+      "qualityCategory": "PARTIAL",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Moderate lateral cropping (Heart line origin partial)",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "PARTIAL",
+        "fate": "ABSENT",
+        "sun": "ABSENT"
+      }
+    },
+    {
+      "imageId": "PALM-0022",
+      "split": "FINAL_TEST",
+      "handedness": "RIGHT",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      },
+      "qualityCategory": "PARTIAL",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Severe bottom crop (Wrist & Fate line out of frame)",
+      "lineStatuses": {
+        "life": "PARTIAL",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "ABSENT",
+        "sun": "ABSENT"
+      }
+    },
+    {
+      "imageId": "PALM-0023",
+      "split": "FINAL_TEST",
+      "handedness": "RIGHT",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      },
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Broken / Interrupted Life Line (Anatomical gap)",
+      "lineStatuses": {
+        "life": "PARTIAL",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "ABSENT",
+        "sun": "ABSENT"
+      }
+    },
+    {
+      "imageId": "PALM-0024",
+      "split": "FINAL_TEST",
+      "handedness": "LEFT",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      },
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Branching / Forked Head Line (Writer's fork)",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "ABSENT",
+        "sun": "ABSENT"
+      }
+    },
+    {
+      "imageId": "PALM-0025",
+      "split": "FINAL_TEST",
+      "handedness": "RIGHT",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      },
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Transverse Simian Crease (Single dominant transverse line)",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "ABSENT",
+        "fate": "ABSENT",
+        "sun": "ABSENT"
+      }
+    },
+    {
+      "imageId": "PALM-0026",
+      "split": "FINAL_TEST",
+      "handedness": "RIGHT",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      },
+      "qualityCategory": "ACCEPTABLE",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Oblique palmar scar crossing Heart line",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "ABSENT",
+        "sun": "ABSENT"
+      }
+    },
+    {
+      "imageId": "PALM-0027",
+      "split": "FINAL_TEST",
+      "handedness": "LEFT",
+      "resolution": {
+        "width": 1440,
+        "height": 2560
+      },
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "High-Resolution 1440p (QHD) spatial capture",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "PRESENT",
+        "sun": "PRESENT"
+      }
+    },
+    {
+      "imageId": "PALM-0028",
+      "split": "FINAL_TEST",
+      "handedness": "RIGHT",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      },
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Standard 720p Mobile Video Frame",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "ABSENT",
+        "sun": "ABSENT"
+      }
+    },
+    {
+      "imageId": "PALM-0029",
+      "split": "FINAL_TEST",
+      "handedness": "RIGHT",
+      "resolution": {
+        "width": 480,
+        "height": 640
+      },
+      "qualityCategory": "ACCEPTABLE",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Low-Resolution 480p mobile camera video feed",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "ABSENT",
+        "sun": "ABSENT"
+      }
+    },
+    {
+      "imageId": "PALM-0030",
+      "split": "FINAL_TEST",
+      "handedness": "RIGHT",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      },
+      "qualityCategory": "ACCEPTABLE",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Two hands in frame (Foreground palm discrimination)",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "ABSENT",
+        "sun": "ABSENT"
+      }
+    },
+    {
+      "imageId": "PALM-0031",
+      "split": "FINAL_TEST",
+      "handedness": "RIGHT",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      },
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Solitary prominent vertical Saturn / Fate line",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "PRESENT",
+        "sun": "ABSENT"
+      }
+    },
+    {
+      "imageId": "PALM-0032",
+      "split": "FINAL_TEST",
+      "handedness": "LEFT",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      },
+      "qualityCategory": "GOOD",
+      "lighting": "EVEN",
+      "tiltDegrees": 0,
+      "scaleCategory": "OPTIMAL",
+      "edgeCase": "Classical Apollo / Sun line focus",
+      "lineStatuses": {
+        "life": "PRESENT",
+        "head": "PRESENT",
+        "heart": "PRESENT",
+        "fate": "ABSENT",
+        "sun": "PRESENT"
+      }
+    }
+  ]
+}

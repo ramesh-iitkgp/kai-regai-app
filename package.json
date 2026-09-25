@@ -17,7 +17,8 @@
     "test:report": "node --test tests/report/*.test.js",
     "test:storage": "node --test tests/storage/*.test.js",
     "test:monetization": "node --test tests/monetization/*.test.js",
-    "test:backend": "node --test tests/backend/*.test.js"
+    "test:backend": "node --test tests/backend/*.test.js",
+    "cv:evaluate": "node cv/real-validation/scripts/p14-evaluate.js"
   },
   "keywords": [
     "kai-regai",

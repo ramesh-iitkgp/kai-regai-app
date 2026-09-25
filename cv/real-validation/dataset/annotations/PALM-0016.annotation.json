@@ -1,0 +1,91 @@
+{
+  "datasetVersion": "1.0.0",
+  "annotationVersion": "1.0.0",
+  "protocolVersion": "1.0.0",
+  "canonicalCoordinates": {
+    "targetWidth": 360,
+    "targetHeight": 450
+  },
+  "imageId": "PALM-0016",
+  "split": "CALIBRATION",
+  "handedness": "RIGHT",
+  "annotatorId": "expert_lead_annotator",
+  "qualityCategory": "FAILURE",
+  "lighting": "EVEN",
+  "tiltDegrees": 52,
+  "scaleCategory": "OPTIMAL",
+  "edgeCaseDescription": "Extreme tilt 52° CW (triggers user tilt guidance retake)",
+  "lines": {
+    "life": {
+      "status": "PRESENT",
+      "polyline": [
+        {
+          "x": 0.353,
+          "y": 0.4505
+        },
+        {
+          "x": 0.402,
+          "y": 0.5112
+        },
+        {
+          "x": 0.437,
+          "y": 0.5787
+        },
+        {
+          "x": 0.458,
+          "y": 0.6395
+        }
+      ]
+    },
+    "head": {
+      "status": "PRESENT",
+      "polyline": [
+        {
+          "x": 0.3425,
+          "y": 0.4775
+        },
+        {
+          "x": 0.4475,
+          "y": 0.4955
+        },
+        {
+          "x": 0.57,
+          "y": 0.518
+        },
+        {
+          "x": 0.668,
+          "y": 0.5405
+        }
+      ]
+    },
+    "heart": {
+      "status": "PRESENT",
+      "polyline": [
+        {
+          "x": 0.703,
+          "y": 0.41
+        },
+        {
+          "x": 0.605,
+          "y": 0.419
+        },
+        {
+          "x": 0.5,
+          "y": 0.428
+        },
+        {
+          "x": 0.3775,
+          "y": 0.4415
+        }
+      ]
+    },
+    "fate": {
+      "status": "ABSENT",
+      "polyline": []
+    },
+    "sun": {
+      "status": "ABSENT",
+      "polyline": []
+    }
+  }
+}

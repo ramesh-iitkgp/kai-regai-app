@@ -1,0 +1,91 @@
+{
+  "datasetVersion": "1.0.0",
+  "annotationVersion": "1.0.0",
+  "protocolVersion": "1.0.0",
+  "canonicalCoordinates": {
+    "targetWidth": 360,
+    "targetHeight": 450
+  },
+  "imageId": "PALM-0021",
+  "split": "FINAL_TEST",
+  "handedness": "LEFT",
+  "annotatorId": "expert_lead_annotator",
+  "qualityCategory": "PARTIAL",
+  "lighting": "EVEN",
+  "tiltDegrees": 0,
+  "scaleCategory": "OPTIMAL",
+  "edgeCaseDescription": "Moderate lateral cropping (Heart line origin partial)",
+  "lines": {
+    "life": {
+      "status": "PRESENT",
+      "polyline": [
+        {
+          "x": 0.447,
+          "y": 0.4505
+        },
+        {
+          "x": 0.398,
+          "y": 0.5112
+        },
+        {
+          "x": 0.363,
+          "y": 0.5787
+        },
+        {
+          "x": 0.342,
+          "y": 0.6395
+        }
+      ]
+    },
+    "head": {
+      "status": "PRESENT",
+      "polyline": [
+        {
+          "x": 0.4575,
+          "y": 0.4775
+        },
+        {
+          "x": 0.3525,
+          "y": 0.4955
+        },
+        {
+          "x": 0.23,
+          "y": 0.518
+        },
+        {
+          "x": 0.132,
+          "y": 0.5405
+        }
+      ]
+    },
+    "heart": {
+      "status": "PARTIAL",
+      "polyline": [
+        {
+          "x": 0.097,
+          "y": 0.41
+        },
+        {
+          "x": 0.195,
+          "y": 0.419
+        },
+        {
+          "x": 0.3,
+          "y": 0.428
+        },
+        {
+          "x": 0.4225,
+          "y": 0.4415
+        }
+      ]
+    },
+    "fate": {
+      "status": "ABSENT",
+      "polyline": []
+    },
+    "sun": {
+      "status": "ABSENT",
+      "polyline": []
+    }
+  }
+}

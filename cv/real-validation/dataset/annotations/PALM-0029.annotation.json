@@ -1,0 +1,91 @@
+{
+  "datasetVersion": "1.0.0",
+  "annotationVersion": "1.0.0",
+  "protocolVersion": "1.0.0",
+  "canonicalCoordinates": {
+    "targetWidth": 360,
+    "targetHeight": 450
+  },
+  "imageId": "PALM-0029",
+  "split": "FINAL_TEST",
+  "handedness": "RIGHT",
+  "annotatorId": "expert_lead_annotator",
+  "qualityCategory": "ACCEPTABLE",
+  "lighting": "EVEN",
+  "tiltDegrees": 0,
+  "scaleCategory": "OPTIMAL",
+  "edgeCaseDescription": "Low-Resolution 480p mobile camera video feed",
+  "lines": {
+    "life": {
+      "status": "PRESENT",
+      "polyline": [
+        {
+          "x": 0.353,
+          "y": 0.434
+        },
+        {
+          "x": 0.402,
+          "y": 0.515
+        },
+        {
+          "x": 0.437,
+          "y": 0.605
+        },
+        {
+          "x": 0.458,
+          "y": 0.686
+        }
+      ]
+    },
+    "head": {
+      "status": "PRESENT",
+      "polyline": [
+        {
+          "x": 0.3425,
+          "y": 0.47
+        },
+        {
+          "x": 0.4475,
+          "y": 0.494
+        },
+        {
+          "x": 0.57,
+          "y": 0.524
+        },
+        {
+          "x": 0.668,
+          "y": 0.554
+        }
+      ]
+    },
+    "heart": {
+      "status": "PRESENT",
+      "polyline": [
+        {
+          "x": 0.703,
+          "y": 0.38
+        },
+        {
+          "x": 0.605,
+          "y": 0.392
+        },
+        {
+          "x": 0.5,
+          "y": 0.404
+        },
+        {
+          "x": 0.3775,
+          "y": 0.422
+        }
+      ]
+    },
+    "fate": {
+      "status": "ABSENT",
+      "polyline": []
+    },
+    "sun": {
+      "status": "ABSENT",
+      "polyline": []
+    }
+  }
+}

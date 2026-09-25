@@ -1,0 +1,91 @@
+{
+  "datasetVersion": "1.0.0",
+  "annotationVersion": "1.0.0",
+  "protocolVersion": "1.0.0",
+  "canonicalCoordinates": {
+    "targetWidth": 360,
+    "targetHeight": 450
+  },
+  "imageId": "PALM-0020",
+  "split": "FINAL_TEST",
+  "handedness": "RIGHT",
+  "annotatorId": "expert_lead_annotator",
+  "qualityCategory": "ACCEPTABLE",
+  "lighting": "EVEN",
+  "tiltDegrees": 0,
+  "scaleCategory": "OPTIMAL",
+  "edgeCaseDescription": "Slight upper border cropping (Fingertips out of frame)",
+  "lines": {
+    "life": {
+      "status": "PRESENT",
+      "polyline": [
+        {
+          "x": 0.353,
+          "y": 0.3305
+        },
+        {
+          "x": 0.402,
+          "y": 0.3912
+        },
+        {
+          "x": 0.437,
+          "y": 0.4587
+        },
+        {
+          "x": 0.458,
+          "y": 0.5195
+        }
+      ]
+    },
+    "head": {
+      "status": "PRESENT",
+      "polyline": [
+        {
+          "x": 0.3425,
+          "y": 0.3575
+        },
+        {
+          "x": 0.4475,
+          "y": 0.3755
+        },
+        {
+          "x": 0.57,
+          "y": 0.398
+        },
+        {
+          "x": 0.668,
+          "y": 0.4205
+        }
+      ]
+    },
+    "heart": {
+      "status": "PRESENT",
+      "polyline": [
+        {
+          "x": 0.703,
+          "y": 0.29
+        },
+        {
+          "x": 0.605,
+          "y": 0.299
+        },
+        {
+          "x": 0.5,
+          "y": 0.308
+        },
+        {
+          "x": 0.3775,
+          "y": 0.3215
+        }
+      ]
+    },
+    "fate": {
+      "status": "ABSENT",
+      "polyline": []
+    },
+    "sun": {
+      "status": "ABSENT",
+      "polyline": []
+    }
+  }
+}

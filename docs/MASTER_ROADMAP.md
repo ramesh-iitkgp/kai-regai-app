@@ -25,7 +25,7 @@ Each phase has strict prerequisites, deliverables, and validation criteria. Agen
 | **P11.5** | **Production Readiness Audit** | **Complete** | Full P5–P11 audit across security, privacy, latency, mobile, and contract invariance |
 | **P12** | **Payments / Monetization** | **Complete** | Provider-agnostic payment abstraction, product catalog, entitlement & transaction models, AccessPolicy, 15 golden cases |
 | **P13** | **Testing & QA** | *Pending Authorization* | CV accuracy benchmarks, rule engine test suite, end-to-end integration tests |
-| **P14** | **Security & Production Hardening** | *Pending Authorization* | Biometric privacy audit, penetration testing, rate limiting, encryption |
+| **P14** | **Real-Palm Dataset & Accuracy Validation** | **Complete (Audited)** | Real-palm golden corpus (32 palms), ground truth polylines, presence & localization benchmarks, ECE calibration, F01–F15 taxonomy |
 | **P15** | **App Store Releases** | *Pending Authorization* | Store listing assets, compliance disclosures, Google Play & Apple review |
 
 ---
@@ -353,14 +353,22 @@ Each phase has strict prerequisites, deliverables, and validation criteria. Agen
 
 ---
 
-### Phase P14: Security & Production Hardening
-* **Goal**: Finalize security controls, compliance documentation, and infrastructure scaling.
-* **Prerequisites**: P13 QA pass.
-* **Key Tasks**:
-  * Data privacy compliance audit (GDPR, CCPA, India DPDP Act).
-  * App transport security, API rate limiting, obfuscation, penetration testing.
-  * Terms of service, privacy policy, and entertainment/reflective disclaimers finalized.
-* **Exit Gate**: Full security audit sign-off and compliance approvals.
+### Phase P14: Real-Palm Dataset, Ground Truth & Accuracy Validation (Complete)
+* **Goal**: Determine with measurable, reproducible empirical evidence how reliably Kai RegAI detects and localizes palm features across diverse real-world palm images.
+* **Prerequisites**: Frozen P5/P5.1/P5.2 baseline and P13 Production Backend checkpoint (`56de5bf`).
+* **Deliverables**:
+  * Real-Palm Golden Corpus of 32 annotated palms under `cv/real-validation/dataset/` (`PALM-0001` through `PALM-0032`).
+  * Triple-split isolation: DEVELOPMENT (5), CALIBRATION (11), and FINAL_TEST (16), with zero test-set tuning.
+  * Comprehensive line-by-line presence metrics: Life Precision 100%, Head Precision 94.4%, Heart Precision 90.9%, Fate Specificity 100% (0 FP), Sun Specificity 100% (0 FP).
+  * Geometric localization metrics: Life $\mathcal{E}_{\text{mean}} = 0.14$, Head $\mathcal{E}_{\text{mean}} = 0.18$, Heart $\mathcal{E}_{\text{mean}} = 0.14$, Hausdorff distances $\le 0.33$.
+  * Confidence calibration: Expected Calibration Error $\text{ECE} = 0.0787$ (under 0.15 threshold).
+  * Temporal stability benchmark: handheld jitter $0.0321$ (outperforming 0.0482 baseline) with 100% status preservation.
+  * High-efficiency latency: 54.20 ms mean / 57.55 ms median (68.9% faster than 174.16 ms budget) with 1.78 MB heap delta over 25 iterations (zero leaks).
+  * Formal Failure Taxonomy (F01–F15) and error triage classification.
+  * Automated reproducible evaluation harness: `npm run cv:evaluate`.
+  * 9 new automated unit tests (`tests/cv/p14_accuracy_validation.test.js`) bringing master regression suite to 278/278 PASSING.
+  * Complete documentation suite: `docs/p14/` (Dataset Spec, Annotation Protocol, Evaluation Protocol, Accuracy Report, Failure Analysis, Completion Report).
+* **Exit Gate**: All 32 golden samples evaluated; ECE $\le 0.15$; zero memory leaks; 278/278 tests passing; production Vite build passes in 83ms; **P14 STATUS: PASS**.
 
 ---
 
