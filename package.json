@@ -9,12 +9,13 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "test": "node --test tests/ui_integration.test.js tests/cv/*.test.js tests/questionnaire/*.test.js tests/interpretation/*.test.js tests/narration/*.test.js tests/report/*.test.js",
+    "test": "node --test tests/ui_integration.test.js tests/cv/*.test.js tests/questionnaire/*.test.js tests/interpretation/*.test.js tests/narration/*.test.js tests/report/*.test.js tests/storage/*.test.js",
     "test:cv": "node --test tests/cv/*.test.js",
     "test:questionnaire": "node --test tests/questionnaire/*.test.js",
     "test:interpretation": "node --test tests/interpretation/*.test.js",
     "test:narration": "node --test tests/narration/*.test.js",
-    "test:report": "node --test tests/report/*.test.js"
+    "test:report": "node --test tests/report/*.test.js",
+    "test:storage": "node --test tests/storage/*.test.js"
   },
   "keywords": [
     "kai-regai",

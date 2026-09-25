@@ -7,12 +7,33 @@
 import { router } from '../navigation/router.js';
 import { ROUTES } from '../navigation/routes.js';
 import { mockReadings } from '../mock/mockReadings.js';
+import { readingHistoryService } from '../services/ReadingHistoryService.js';
 
 export function renderReadingsArchiveScreen(container) {
   let activeFilter = router.preservedState.readingsFilter || 'ALL';
+  let persistedItems = [];
+
+  // Async fetch from local storage
+  readingHistoryService.listHistory().then(({ records }) => {
+    if (records && records.length > 0) {
+      persistedItems = records.map(r => ({
+        id: r.readingId,
+        title: r.metadata.displayTitle,
+        hand_side: r.metadata.handSide,
+        mode: r.readingMethod === 'MODE_2_QUESTIONNAIRE' ? 'MODE_2_GUIDED' : 'MODE_1_SCANNER',
+        timestamp: r.createdAt,
+        summary: r.metadata.summary,
+        tags: r.metadata.tags,
+        isPersisted: true,
+        persistedRecord: r
+      }));
+      render();
+    }
+  }).catch(() => {});
 
   function render() {
-    const filtered = mockReadings.filter(r => {
+    const allList = [...persistedItems, ...mockReadings];
+    const filtered = allList.filter(r => {
       if (activeFilter === 'QUICK') return r.mode === 'MODE_1_SCANNER';
       if (activeFilter === 'GUIDED') return r.mode === 'MODE_2_GUIDED';
       return true;
@@ -39,7 +60,7 @@ export function renderReadingsArchiveScreen(container) {
         <!-- Filter Selector Pills -->
         <div style="display: flex; gap: 8px;">
           <button class="kai-badge ${activeFilter === 'ALL' ? 'kai-badge-secondary' : ''}" data-filter="ALL" style="cursor: pointer; padding: 6px 14px; border-radius: var(--radius-full); background: ${activeFilter === 'ALL' ? 'var(--color-secondary)' : 'var(--color-surface-container-high)'}; color: ${activeFilter === 'ALL' ? '#000' : 'var(--color-on-surface)'}; border: none;">
-            All (${mockReadings.length})
+            All (${allList.length})
           </button>
           <button class="kai-badge ${activeFilter === 'QUICK' ? 'kai-badge-secondary' : ''}" data-filter="QUICK" style="cursor: pointer; padding: 6px 14px; border-radius: var(--radius-full); background: ${activeFilter === 'QUICK' ? 'var(--color-secondary)' : 'var(--color-surface-container-high)'}; color: ${activeFilter === 'QUICK' ? '#000' : 'var(--color-on-surface)'}; border: none;">
             Quick Scans
@@ -112,11 +133,21 @@ export function renderReadingsArchiveScreen(container) {
     container.querySelectorAll('[data-reading-id]').forEach(card => {
       card.addEventListener('click', () => {
         const id = card.getAttribute('data-reading-id');
-        const r = mockReadings.find(x => x.id === id);
-        if (r?.mode === 'MODE_2_GUIDED') {
-          router.navigate(ROUTES.DETAILED_REPORT, { id });
+        const found = allList.find(x => x.id === id);
+        if (found?.isPersisted) {
+          const dossier = found.persistedRecord.interpretationSnapshot;
+          if (found.mode === 'MODE_2_GUIDED') {
+            router.navigate(ROUTES.DETAILED_REPORT, { dossier, id });
+          } else {
+            router.navigate(ROUTES.QUICK_REPORT, { dossier, id });
+          }
         } else {
-          router.navigate(ROUTES.QUICK_REPORT, { id });
+          const r = mockReadings.find(x => x.id === id);
+          if (r?.mode === 'MODE_2_GUIDED') {
+            router.navigate(ROUTES.DETAILED_REPORT, { id });
+          } else {
+            router.navigate(ROUTES.QUICK_REPORT, { id });
+          }
         }
       });
     });

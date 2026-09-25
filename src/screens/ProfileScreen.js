@@ -7,6 +7,7 @@
 import { router } from '../navigation/router.js';
 import { ROUTES } from '../navigation/routes.js';
 import { mockUserProfile } from '../mock/mockUserProfile.js';
+import { readingHistoryService } from '../services/ReadingHistoryService.js';
 
 export function renderProfileScreen(container) {
   function render() {
@@ -103,10 +104,13 @@ export function renderProfileScreen(container) {
       render();
     });
 
-    document.getElementById('erase-data-btn')?.addEventListener('click', () => {
+    document.getElementById('erase-data-btn')?.addEventListener('click', async () => {
       if (confirm('Are you sure you want to purge all saved readings and feature models from this device?')) {
         mockUserProfile.reading_stats.total_scans = 0;
         mockUserProfile.reading_stats.guided_dossiers = 0;
+        try {
+          await readingHistoryService.purgeAllData();
+        } catch {}
         if (typeof window !== 'undefined' && window.localStorage) {
           window.localStorage.clear();
         }
