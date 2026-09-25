@@ -119,6 +119,39 @@
  */
 
 /**
+ * @typedef {'PROCEED' | 'RECAPTURE' | 'USER_CORRECTION' | 'INSUFFICIENT_EVIDENCE'} PalmUsabilityAction
+ */
+
+/**
+ * @typedef {Object} PalmUsabilityDetails
+ * @property {number} palmAreaFraction - Palm coverage relative to frame area [0, 1]
+ * @property {number} tiltAngleDeg - Hand tilt angle in degrees relative to vertical
+ * @property {boolean} wristVisible - Whether wrist emergence is within frame
+ * @property {boolean} isMultiHand - Whether multiple hands are present
+ * @property {boolean} isCropped - Whether major palm margins are clipped
+ * @property {Record<MajorLineType, boolean>} visibleRegions - Visibility of anatomical line regions
+ */
+
+/**
+ * @typedef {Object} PalmUsabilityResult
+ * @property {boolean} usable - True if palm region contains sufficient usable area
+ * @property {number} score - Usability confidence score [0, 1]
+ * @property {string[]} reasons - Diagnostic reason codes if unusable
+ * @property {string[]} warnings - Advisory warnings (e.g. PARTIAL_WRIST_VISIBILITY)
+ * @property {PalmUsabilityAction} recommendedAction - Recommended next action
+ * @property {PalmUsabilityDetails} details - Granular usability metrics
+ */
+
+/**
+ * @typedef {Object} RetakeDecision
+ * @property {PalmUsabilityAction} action - Recommended action
+ * @property {boolean} needsRetake - True if user must recapture
+ * @property {string} primaryMessage - User-friendly primary guidance message
+ * @property {string[]} detailedGuidance - Specific instructions to fix the capture
+ * @property {string} diagnosticCode - Internal failure taxonomy / diagnostic code
+ */
+
+/**
  * @typedef {'SUCCESS' | 'RECAPTURE_REQUIRED' | 'NO_HAND' | 'INSUFFICIENT_EVIDENCE' | 'PROCESSING_ERROR'} VisionStatus
  */
 
@@ -128,6 +161,8 @@
  * @property {ImageQualityResult} imageQuality - Optical quality metrics
  * @property {HandDetectionResult} hand - Hand localization and handedness
  * @property {PalmROI} [palm] - Segmented and rectified palmar ROI
+ * @property {PalmUsabilityResult} [usability] - Palm region usability and coverage assessment
+ * @property {RetakeDecision} [retakeDecision] - Actionable recapture guidance
  * @property {Object} lines - Extracted major crease geometry
  * @property {MajorPalmLine} lines.life - Life Line (Ayur Rekha)
  * @property {MajorPalmLine} lines.head - Head Line (Matru Rekha)
@@ -136,8 +171,10 @@
  * @property {MajorPalmLine} lines.sun - Sun Line (Surya Rekha)
  * @property {Object} processing - Telemetry & execution profiling
  * @property {number} processing.durationMs - Total pipeline runtime in milliseconds
- * @property {string} processing.engineVersion - Engine semantic version (e.g., 'p5.0.0')
+ * @property {string} processing.engineVersion - Engine semantic version (e.g., 'p5.2.0')
  * @property {Record<string, number>} [processing.stageTimingsMs] - Granular per-stage execution times
+ * @property {Object} [diagnostics] - Extended developer diagnostics for P5.2
  */
 
-export const PALM_CV_ENGINE_VERSION = 'p5.0.0';
+export const PALM_CV_ENGINE_VERSION = 'p5.2.0';
+

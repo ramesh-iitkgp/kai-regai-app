@@ -13,5 +13,9 @@ export { PalmSegmentation } from './detection/PalmSegmentation.js';
 export { CreaseEnhancementEngine } from './crease/CreaseEnhancementEngine.js';
 export { CreaseCandidateGraph } from './crease/CreaseCandidateGraph.js';
 export { MajorLineClassifier } from './crease/MajorLineClassifier.js';
+export { PalmUsabilityValidator } from './quality/PalmUsabilityValidator.js';
+export { RetakeDecisionEngine } from './quality/RetakeDecisionEngine.js';
+export { CoordinateTransform } from './geometry/CoordinateTransform.js';
 export { PalmVisionEngine } from './adapters/PalmVisionEngine.js';
 export { PalmFeatureModelAdapter } from './adapters/PalmFeatureModelAdapter.js';
+

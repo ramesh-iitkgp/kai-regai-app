@@ -18,5 +18,4 @@ build/
 # Large media archives & video recordings
 *.zip
 *.mp4
-# Keep reference screenshot folders intact if needed for design analysis, but ignore temp frames
-# extracted_frames/
+extracted_frames/

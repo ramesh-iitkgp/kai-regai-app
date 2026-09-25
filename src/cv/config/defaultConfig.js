@@ -8,7 +8,7 @@
  */
 
 export const PalmCVConfig = {
-  version: 'p5.0.0',
+  version: 'p5.2.0',
   debugMode: false,
 
   // Processing resolution constraints
@@ -17,6 +17,16 @@ export const PalmCVConfig = {
     canonicalRoiSize: 512,  // Standard rectified palmar square patch (512x512)
     minAcceptableWidth: 240, // Minimum acceptable hand width in pixels
     minAcceptableHeight: 240
+  },
+
+  // Palm Usability & Positioning Constraints (P5.2 Hardening)
+  usability: {
+    minPalmAreaFraction: 0.10,    // Palm must occupy at least 10% of frame
+    maxPalmAreaFraction: 0.88,    // Palm must not exceed 88% of frame
+    maxAcceptableTiltDeg: 45.0,   // Tilt beyond 45 deg triggers user correction
+    warningTiltDeg: 25.0,         // Tilt between 25-45 deg raises advisory warning
+    multiHandClusterThreshold: 0.25, // Secondary cluster area ratio to trigger multi-hand detection
+    minUsabilityScore: 0.65       // Composite usability threshold
   },
 
   // Optical Quality Assessment Thresholds

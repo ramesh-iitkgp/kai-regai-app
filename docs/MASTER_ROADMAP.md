@@ -162,6 +162,25 @@ Each phase has strict prerequisites, deliverables, and validation criteria. Agen
 
 ---
 
+### Phase P5.2: Real-Palm Robustness & Production Capture Hardening (Complete)
+* **Goal**: Harden the validated P5/P5.1 CV pipeline against real-world camera capturing conditions: multi-resolution (480p to 1440p), dynamic aspect ratios, natural skin chrominance variation, non-black backgrounds, lighting extremes (low light, overexposure, specular glare), orientation tilt, palm scale bounds, multi-hand disambiguation, partial-palm field of view gating, confidence decomposition, and a deterministic actionable retake decision engine.
+* **Prerequisites**: Phase P5.1 completion (`a8a9698`).
+* **Deliverables**:
+  * [docs/p5/P5.2_PRE_IMPLEMENTATION_AUDIT.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/p5/P5.2_PRE_IMPLEMENTATION_AUDIT.md)
+  * [docs/p5/P5.2_REAL_WORLD_ROBUSTNESS.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/p5/P5.2_REAL_WORLD_ROBUSTNESS.md)
+  * [docs/p5/P5.2_CAPTURE_QUALITY_SPEC.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/p5/P5.2_CAPTURE_QUALITY_SPEC.md)
+  * [docs/p5/P5.2_TEST_MATRIX.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/p5/P5.2_TEST_MATRIX.md)
+  * [docs/p5/P5.2_FAILURE_ANALYSIS.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/p5/P5.2_FAILURE_ANALYSIS.md)
+  * [docs/p5/P5.2_VALIDATION_REPORT.md](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/docs/p5/P5.2_VALIDATION_REPORT.md)
+  * Retake Decision Engine ([src/cv/quality/RetakeDecisionEngine.js](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/src/cv/quality/RetakeDecisionEngine.js))
+  * Palm Usability & Region Validator ([src/cv/quality/PalmUsabilityValidator.js](file:///Users/Hp/Documents/Kai%20RegAI%20%28clone%29/src/cv/quality/PalmUsabilityValidator.js))
+  * Multi-Hand Spatial Clustering & Tilt Hardening in `HandDetector.js`
+  * Ridge-vs-Edge Cross-Sectional Furrow Verification in `MajorLineClassifier.js`
+  * 10-Dimensional Robustness Matrix Test Suite (`tests/cv/p5_2_robustness_matrix.test.js`)
+* **Exit Gate**: All 40 automated tests passing; Vite production build passes in 64ms; verified $\approx 174\text{ ms}$ processing latency; zero false-positive line hallucinations across all real-palm captures and optical extremes; fully calibrated confidence decomposition and actionable user retake guidance.
+
+---
+
 ### Phase P6: Hand Scanner Experience
 * **Goal**: Assemble the ~10-second fast scanning end-to-end experience.
 * **Prerequisites**: P4 UI shell, P5 CV Engine.

@@ -50,11 +50,11 @@ export class MajorLineClassifier {
     }));
 
     // Score candidates against each line prior
-    result.life = this.matchBestCandidate('LIFE', normCandidates, priors.LIFE, config);
-    result.head = this.matchBestCandidate('HEAD', normCandidates, priors.HEAD, config);
-    result.heart = this.matchBestCandidate('HEART', normCandidates, priors.HEART, config);
-    result.fate = this.matchBestCandidate('FATE', normCandidates, priors.FATE, config);
-    result.sun = this.matchBestCandidate('SUN', normCandidates, priors.SUN, config);
+    result.life = this.matchBestCandidate('LIFE', normCandidates, priors.LIFE, config, palmROI);
+    result.head = this.matchBestCandidate('HEAD', normCandidates, priors.HEAD, config, palmROI);
+    result.heart = this.matchBestCandidate('HEART', normCandidates, priors.HEART, config, palmROI);
+    result.fate = this.matchBestCandidate('FATE', normCandidates, priors.FATE, config, palmROI);
+    result.sun = this.matchBestCandidate('SUN', normCandidates, priors.SUN, config, palmROI);
 
     return result;
   }
@@ -62,7 +62,7 @@ export class MajorLineClassifier {
   /**
    * Evaluate candidates against anatomical prior boundaries
    */
-  static matchBestCandidate(lineType, candidates, prior, config) {
+  static matchBestCandidate(lineType, candidates, prior, config, palmROI = null) {
     let bestCandidate = null;
     let bestScore = -1;
     let bestEvidence = null;
@@ -96,23 +96,41 @@ export class MajorLineClassifier {
       );
 
       if (totalScore > bestScore && geometricPriorScore > 0.35) {
+        if (!this.isTrueFurrow(cand, palmROI)) {
+          continue;
+        }
         bestScore = totalScore;
         bestCandidate = {
           ...cand,
           orderedPolyline: isReversed ? [...cand.normPolyline].reverse() : cand.normPolyline
         };
+        const detectionConfidence = Math.min(1.0, (contrastScore * 0.4 + structuralScore * 0.3 + cand.continuity * 0.3));
+        const qualityScore = palmROI?.qualityScore ?? 0.90;
+
         bestEvidence = {
           contrast: Number(contrastScore.toFixed(3)),
           structuralScore: Number(structuralScore.toFixed(3)),
           geometricPriorScore: Number(geometricPriorScore.toFixed(3)),
-          landmarkRelationScore: Number(landmarkRelationScore.toFixed(3))
+          landmarkRelationScore: Number(landmarkRelationScore.toFixed(3)),
+          // P5.2 Decomposed confidence facets
+          detection: Number(detectionConfidence.toFixed(3)),
+          geometry: Number(geometricPriorScore.toFixed(3)),
+          continuity: Number(cand.continuity.toFixed(3)),
+          imageQuality: Number(qualityScore.toFixed(3)),
+          localization: Number(landmarkRelationScore.toFixed(3)),
+          overall: Number(totalScore.toFixed(3)),
+          fieldVisibility: 'WITHIN_FRAME'
         };
       }
     }
 
     // Determine honest status based on evidence
     if (!bestCandidate || bestScore < config.weakConfidenceThreshold) {
-      return this.createEmptyLine(lineType);
+      const isVisible = palmROI?.usability?.details?.visibleRegions
+        ? palmROI.usability.details.visibleRegions[lineType] !== false
+        : true;
+      const fieldVisibility = isVisible ? 'WITHIN_FRAME_ABSENT' : 'OUT_OF_FRAME';
+      return this.createEmptyLine(lineType, fieldVisibility);
     }
 
     let status = 'DETECTED';
@@ -140,11 +158,28 @@ export class MajorLineClassifier {
     // Trajectory orientation & minimum span verification
     const dx = Math.abs(end.x - start.x);
     const dy = Math.abs(end.y - start.y);
-    if (prior.trajectoryArc === 'VERTICAL_ASCENDING' || prior.trajectoryArc === 'VERTICAL_APOLLO') {
-      if (dy < 0.18 || dy < dx * 0.85) {
-        // Line is too short vertically or predominantly transverse; cannot be vertical Fate/Sun line!
+    if (prior.trajectoryArc === 'VERTICAL_APOLLO') {
+      if (dy < 0.22 || dy < dx * 0.90) {
+        // Line is too short vertically or predominantly transverse; cannot be vertical Sun line!
         return 0;
       }
+      // Sun line must remain in the Apollo corridor under ring finger (x between 0.50 and 0.76)
+      for (const p of pts) {
+        if (p.x > 0.76 || p.x < 0.50) return 0;
+      }
+      // Must reach upper palm under Apollo mount
+      if (Math.min(start.y, end.y) > 0.48) return 0;
+    } else if (prior.trajectoryArc === 'VERTICAL_ASCENDING') {
+      if (dy < 0.25 || dy < dx * 0.90) {
+        // Line is too short vertically or predominantly transverse; cannot be vertical Fate line!
+        return 0;
+      }
+      // Fate line must remain in the central Saturn corridor (x between 0.25 and 0.75)
+      for (const p of pts) {
+        if (p.x > 0.75 || p.x < 0.25) return 0;
+      }
+      // Must span between lower palm and upper palm
+      if (Math.max(start.y, end.y) < 0.55 || Math.min(start.y, end.y) > 0.48) return 0;
     } else if (prior.trajectoryArc === 'TRANSVERSE_DESCENDING' || prior.trajectoryArc === 'TRANSVERSE_ASCENDING') {
       if (dx < 0.18 || dx < dy * 0.70) {
         // Line is too short horizontally or predominantly vertical; cannot be transverse Head/Heart line!
@@ -157,20 +192,21 @@ export class MajorLineClassifier {
 
     let score = 0;
     if (inStartZone) {
-      score += 0.50;
       if (inEndZone) {
-        score += 0.50;
+        score += 1.0;
       } else {
         const distEnd = this.distanceToZone(end, prior.endZone);
-        score += Math.max(0, 0.40 - distEnd * 0.8);
+        if (distEnd > 0.20) return 0;
+        score += 0.50 + Math.max(0, 0.40 - distEnd * 1.5);
       }
     } else if (inEndZone) {
-      score += 0.50;
       const distStart = this.distanceToZone(start, prior.startZone);
-      score += Math.max(0, 0.40 - distStart * 0.8);
+      if (distStart > 0.20) return 0;
+      score += 0.50 + Math.max(0, 0.40 - distStart * 1.5);
     } else {
       const distStart = this.distanceToZone(start, prior.startZone);
       const distEnd = this.distanceToZone(end, prior.endZone);
+      if (distStart > 0.15 || distEnd > 0.15) return 0;
       score = Math.max(0, 0.35 - (distStart + distEnd) * 0.8);
     }
 
@@ -190,7 +226,61 @@ export class MajorLineClassifier {
     return Math.hypot(dx, dy);
   }
 
-  static createEmptyLine(type) {
+  /**
+   * Cross-sectional furrow verification: true anatomical creases are concave grooves
+   * with tissue rising on both sides. Shadows and silhouette borders are monotonic step edges.
+   */
+  static isTrueFurrow(cand, palm) {
+    if (!palm || !palm.roiPatch) return true;
+    const patch = palm.roiPatch;
+    const size = palm.roiSize || 512;
+    const pts = cand.normPolyline;
+    if (pts.length < 3) return true;
+
+    let valleyCount = 0;
+    let validSampleCount = 0;
+    const offsetDist = Math.max(3, Math.round(size * 0.008)); // ~4px across crease
+
+    for (let i = 1; i < pts.length - 1; i++) {
+      const prev = pts[i - 1];
+      const next = pts[i + 1];
+      const cur = pts[i];
+
+      const tx = next.x - prev.x;
+      const ty = next.y - prev.y;
+      const tLen = Math.hypot(tx, ty);
+      if (tLen === 0) continue;
+
+      const nx = (-ty / tLen) * offsetDist;
+      const ny = (tx / tLen) * offsetDist;
+
+      const cx = Math.round(cur.x * size);
+      const cy = Math.round(cur.y * size);
+      const lx = Math.round(cx + nx);
+      const ly = Math.round(cy + ny);
+      const rx = Math.round(cx - nx);
+      const ry = Math.round(cy - ny);
+
+      if (lx >= 0 && lx < size && ly >= 0 && ly < size &&
+          rx >= 0 && rx < size && ry >= 0 && ry < size &&
+          cx >= 0 && cx < size && cy >= 0 && cy < size) {
+        validSampleCount++;
+        const valC = patch[cy * size + cx];
+        const valL = patch[ly * size + lx];
+        const valR = patch[ry * size + rx];
+
+        // Crease furrow condition: center is darker than both flanking skin pixels
+        if (valL >= valC && valR >= valC && (valL - valC + valR - valC) >= 4) {
+          valleyCount++;
+        }
+      }
+    }
+
+    if (validSampleCount < 3) return true;
+    return (valleyCount / validSampleCount) >= 0.35;
+  }
+
+  static createEmptyLine(type, fieldVisibility = 'WITHIN_FRAME_ABSENT') {
     return {
       type,
       status: 'NOT_DETECTED',
@@ -202,7 +292,14 @@ export class MajorLineClassifier {
         contrast: 0,
         structuralScore: 0,
         geometricPriorScore: 0,
-        landmarkRelationScore: 0
+        landmarkRelationScore: 0,
+        detection: 0,
+        geometry: 0,
+        continuity: 0,
+        imageQuality: 0,
+        localization: 0,
+        overall: 0,
+        fieldVisibility
       }
     };
   }
