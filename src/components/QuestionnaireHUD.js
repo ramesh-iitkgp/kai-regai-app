@@ -7,16 +7,27 @@
  */
 
 import { QUESTION_TYPES } from '../questionnaire/QuestionnaireSchema.js';
+import { i18n } from '../services/i18n.js';
+import { getLocalizedCategoryName, getLocalizedQuestionData } from '../services/QuestionnaireLocalization.js';
 
 export class QuestionnaireHUD {
+  static getLocalizedCategory(catKey) {
+    return getLocalizedCategoryName(catKey, i18n.getLanguage());
+  }
+
+  static getLocalizedQuestion(question) {
+    return getLocalizedQuestionData(question, i18n.getLanguage());
+  }
+
   /**
    * Render single active question step
-   * @param {Object} question - Question schema object
+   * @param {Object} rawQuestion - Question schema object
    * @param {*} currentAnswer - Currently recorded answer(s)
    * @param {Object} context - Engine state context
    * @returns {string} HTML markup
    */
-  static renderQuestion(question, currentAnswer, context) {
+  static renderQuestion(rawQuestion, currentAnswer, context) {
+    const question = QuestionnaireHUD.getLocalizedQuestion(rawQuestion);
     const { activeQuestionIndex, totalActiveQuestions, progressPercentage } = context;
     const isMulti = question.type === QUESTION_TYPES.MULTI_SELECT;
 
@@ -27,10 +38,10 @@ export class QuestionnaireHUD {
         <div>
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
             <span class="kai-badge kai-badge-secondary" style="font-size: 10px;">
-              Step ${String(activeQuestionIndex + 1).padStart(2, '0')} of ${String(totalActiveQuestions).padStart(2, '0')}
+              ${i18n.t('quest_step')} ${String(activeQuestionIndex + 1).padStart(2, '0')} ${i18n.t('quest_of')} ${String(totalActiveQuestions).padStart(2, '0')}
             </span>
             <span style="font-family: monospace; font-size: 11px; color: var(--color-on-surface-variant);">
-              ${progressPercentage}% COMPLETE
+              ${progressPercentage}% ${i18n.t('quest_complete')}
             </span>
           </div>
           <div style="width: 100%; height: 4px; background: var(--color-surface-container-highest); border-radius: 9999px; overflow: hidden;">
@@ -41,7 +52,7 @@ export class QuestionnaireHUD {
         <!-- Question Header -->
         <div>
           <span style="font-size: 11px; font-weight: 700; color: var(--color-secondary); letter-spacing: 0.08em; text-transform: uppercase;">
-            ${question.category.replace('_', ' ')}
+            ${QuestionnaireHUD.getLocalizedCategory(rawQuestion.category)}
           </span>
           <h2 style="font-family: var(--font-display); font-size: 22px; font-weight: 600; color: var(--color-text-high); margin-top: 4px; line-height: 1.3;">
             ${question.title}
@@ -61,7 +72,7 @@ export class QuestionnaireHUD {
             <circle cx="160" cy="50" r="3" fill="#00D2FF"/>
           </svg>
           <span style="position: absolute; bottom: 6px; font-size: 10px; color: var(--color-outline); letter-spacing: 0.05em; text-transform: uppercase;">
-            Neutral Observational Guide
+            ${i18n.t('quest_neutral_guide')}
           </span>
         </div>
 
@@ -104,11 +115,11 @@ export class QuestionnaireHUD {
         <div style="display: flex; gap: 10px; margin-top: 8px;">
           <button id="quest-prev-btn" class="kai-btn kai-btn-secondary" style="flex: 1;">
             <span class="material-symbols-outlined">arrow_back</span>
-            <span>Back</span>
+            <span>${i18n.t('quest_back')}</span>
           </button>
           
           <button id="quest-next-btn" class="kai-btn kai-btn-primary" style="flex: 2;" ${!currentAnswer ? 'disabled style="opacity: 0.5;"' : ''}>
-            <span>${activeQuestionIndex === totalActiveQuestions - 1 ? 'Review Observations' : 'Continue'}</span>
+            <span>${activeQuestionIndex === totalActiveQuestions - 1 ? i18n.t('quest_review_obs') : i18n.t('quest_continue')}</span>
             <span class="material-symbols-outlined">arrow_forward</span>
           </button>
         </div>
@@ -128,13 +139,13 @@ export class QuestionnaireHUD {
         
         <div>
           <span class="kai-badge kai-badge-tertiary" style="font-size: 10px;">
-            Observation Verification
+            ${i18n.t('quest_obs_verification')}
           </span>
           <h2 style="font-family: var(--font-display); font-size: 24px; font-weight: 600; color: var(--color-text-high); margin-top: 6px;">
-            Review Your Observations
+            ${i18n.t('quest_review_title')}
           </h2>
           <p style="font-size: 13px; color: var(--color-on-surface-variant); margin-top: 4px; line-height: 1.5;">
-            Verify your recorded hand traits. Tap any item to revise your observation before synthesis.
+            ${i18n.t('quest_review_sub')}
           </p>
         </div>
 
@@ -165,11 +176,11 @@ export class QuestionnaireHUD {
         <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
           <button id="quest-submit-btn" class="kai-btn kai-btn-gold" type="button">
             <span class="material-symbols-outlined">auto_awesome</span>
-            <span>Synthesize Guided Reading</span>
+            <span>${i18n.t('quest_synthesize_btn')}</span>
           </button>
           
           <button id="quest-review-back-btn" class="kai-btn kai-btn-secondary" type="button">
-            <span>Return to Questions</span>
+            <span>${i18n.t('quest_return_btn')}</span>
           </button>
         </div>
 
@@ -199,16 +210,16 @@ export class QuestionnaireHUD {
         </div>
 
         <h2 style="font-family: var(--font-display); font-size: 24px; font-weight: 600; color: var(--color-text-high); margin-top: 32px;">
-          Synthesizing Guided Dossier
+          ${i18n.t('quest_synthesizing_title')}
         </h2>
         <p style="font-size: 13px; color: var(--color-on-surface-variant); margin-top: 8px; max-width: 320px; line-height: 1.5;">
-          Correlating physical observations with traditional Hasta Samudrika treatises and reflective chiromancy...
+          ${i18n.t('quest_synthesizing_desc')}
         </p>
 
         <div style="margin-top: 24px; display: flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: var(--radius-full); background: var(--color-surface-container); border: 1px solid var(--color-border-subtle);">
           <span style="width: 8px; height: 8px; border-radius: 9999px; background: var(--color-secondary);" class="glow-pulsing"></span>
           <span style="font-size: 11px; font-weight: 700; color: var(--color-secondary); letter-spacing: 0.08em; text-transform: uppercase;">
-            Evaluating Epistemic Layers
+            ${i18n.t('quest_eval_epistemic')}
           </span>
         </div>
 

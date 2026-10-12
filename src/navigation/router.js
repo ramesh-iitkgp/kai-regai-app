@@ -22,19 +22,45 @@ class Router {
       readingsFilter: 'ALL'
     };
 
-    window.addEventListener('hashchange', () => this.handleHashChange());
-  }
-
-  init() {
-    if (!window.location.hash) {
-      window.location.hash = `#${ROUTES.HOME}`;
-    } else {
-      this.handleHashChange();
+    if (typeof window !== 'undefined') {
+      window.addEventListener('hashchange', () => this.handleHashChange());
     }
   }
 
+  init() {
+    const currentHash = (typeof window !== 'undefined' && window.location.hash) 
+      ? window.location.hash.replace(/^#\/?/, '') 
+      : '';
+    
+    // If no hash is provided (e.g. visiting http://localhost:5173/ directly)
+    // or if the user requests #splash or #onboarding, route to SPLASH.
+    if (!currentHash || currentHash === 'onboarding' || currentHash === 'splash') {
+      if (typeof window !== 'undefined') {
+        window.location.hash = `#${ROUTES.SPLASH}`;
+      }
+      this.currentRoute = ROUTES.SPLASH;
+      this.notify();
+      return;
+    }
+    
+    // Always dispatch handleHashChange to guarantee render of requested hash
+    this.handleHashChange();
+  }
+
   handleHashChange() {
-    const rawHash = window.location.hash.replace(/^#\/?/, '') || ROUTES.HOME;
+    let rawHash = (typeof window !== 'undefined' && window.location.hash) 
+      ? window.location.hash.replace(/^#\/?/, '') 
+      : ROUTES.SPLASH;
+      
+    if (!rawHash) {
+      rawHash = ROUTES.SPLASH;
+    }
+
+    // Support #onboarding alias for #splash
+    if (rawHash === 'onboarding' || rawHash.startsWith('onboarding?')) {
+      rawHash = rawHash.replace('onboarding', ROUTES.SPLASH);
+    }
+
     const [path, queryString] = rawHash.split('?');
     
     // Parse query params
@@ -65,7 +91,12 @@ class Router {
     const queryString = Object.keys(queryParams).length 
       ? '?' + new URLSearchParams(queryParams).toString() 
       : '';
-    window.location.hash = `#${route}${queryString}`;
+    const newHash = `#${route}${queryString}`;
+    if (window.location.hash === newHash) {
+      this.handleHashChange();
+    } else {
+      window.location.hash = newHash;
+    }
   }
 
   openModal(modalId, payload = null) {

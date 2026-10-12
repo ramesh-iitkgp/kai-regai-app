@@ -6,7 +6,7 @@
 export const mockUserProfile = {
   user_id: 'USR-MAYA-2026',
   display_name: 'Maya',
-  avatar_url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80',
+  avatar_url: '/assets/brand/default_avatar.svg',
   tier: 'PREMIUM_SEEKER',
   dominant_hand: 'RIGHT',
   reading_preferences: {

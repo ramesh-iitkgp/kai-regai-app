@@ -131,6 +131,76 @@ export const MIGRATIONS = [
         CREATE INDEX IF NOT EXISTS idx_audit_events_actor ON audit_events(actor_id);
       `);
     }
+  },
+  {
+    version: 2,
+    name: '002_astrology_and_consultations',
+    up(db) {
+      db.exec(`
+        -- 9. Astrology Profiles (Birth Data)
+        CREATE TABLE IF NOT EXISTS astrology_profiles (
+          profile_id TEXT PRIMARY KEY,
+          owner_id TEXT NOT NULL REFERENCES users(user_id) ON DELETE CASCADE,
+          name TEXT NOT NULL,
+          birth_date TEXT NOT NULL,
+          birth_time TEXT,
+          is_time_unknown INTEGER NOT NULL DEFAULT 0,
+          birth_place TEXT,
+          latitude REAL NOT NULL,
+          longitude REAL NOT NULL,
+          timezone TEXT NOT NULL,
+          metadata TEXT DEFAULT '{}',
+          created_at TEXT NOT NULL,
+          updated_at TEXT NOT NULL
+        );
+        CREATE INDEX IF NOT EXISTS idx_astrology_profiles_owner ON astrology_profiles(owner_id);
+
+        -- 10. Birth Charts (Canonical snapshot cache)
+        CREATE TABLE IF NOT EXISTS birth_charts (
+          chart_id TEXT PRIMARY KEY,
+          profile_id TEXT REFERENCES astrology_profiles(profile_id) ON DELETE SET NULL,
+          owner_id TEXT NOT NULL REFERENCES users(user_id) ON DELETE CASCADE,
+          astrology_system TEXT NOT NULL CHECK(astrology_system IN ('VEDIC', 'WESTERN')),
+          input_hash TEXT NOT NULL,
+          calculation_version TEXT NOT NULL,
+          chart_data TEXT NOT NULL,
+          created_at TEXT NOT NULL
+        );
+        CREATE INDEX IF NOT EXISTS idx_birth_charts_owner ON birth_charts(owner_id);
+        CREATE INDEX IF NOT EXISTS idx_birth_charts_hash ON birth_charts(input_hash);
+
+        -- 11. Astrologer Consultations
+        CREATE TABLE IF NOT EXISTS consultations (
+          consultation_id TEXT PRIMARY KEY,
+          owner_id TEXT NOT NULL REFERENCES users(user_id) ON DELETE CASCADE,
+          chart_id TEXT NOT NULL REFERENCES birth_charts(chart_id) ON DELETE CASCADE,
+          astrology_system TEXT NOT NULL CHECK(astrology_system IN ('VEDIC', 'WESTERN')),
+          topic TEXT NOT NULL,
+          status TEXT NOT NULL DEFAULT 'ACTIVE',
+          metadata TEXT DEFAULT '{}',
+          created_at TEXT NOT NULL,
+          updated_at TEXT NOT NULL
+        );
+        CREATE INDEX IF NOT EXISTS idx_consultations_owner ON consultations(owner_id);
+        CREATE INDEX IF NOT EXISTS idx_consultations_chart ON consultations(chart_id);
+
+        -- 12. Consultation Messages
+        CREATE TABLE IF NOT EXISTS consultation_messages (
+          message_id TEXT PRIMARY KEY,
+          consultation_id TEXT NOT NULL REFERENCES consultations(consultation_id) ON DELETE CASCADE,
+          sender_role TEXT NOT NULL CHECK(sender_role IN ('USER', 'ASTROLOGER', 'SYSTEM')),
+          content TEXT NOT NULL,
+          structured_payload TEXT,
+          prompt_tokens INTEGER,
+          completion_tokens INTEGER,
+          model_id TEXT,
+          idempotency_key TEXT UNIQUE,
+          created_at TEXT NOT NULL
+        );
+        CREATE INDEX IF NOT EXISTS idx_consultation_messages_consultation ON consultation_messages(consultation_id);
+        CREATE INDEX IF NOT EXISTS idx_consultation_messages_idempotency ON consultation_messages(idempotency_key);
+      `);
+    }
   }
 ];
 

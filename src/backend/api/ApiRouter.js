@@ -28,6 +28,7 @@ export class ApiRouter {
     this.entitlementController = controllers.entitlementController;
     this.webhookController = controllers.webhookController;
     this.healthController = controllers.healthController;
+    this.astrologyController = controllers.astrologyController;
 
     this.authMiddleware = createAuthMiddleware(services.authService);
   }
@@ -199,6 +200,44 @@ export class ApiRouter {
       if (webhookMatch && method === 'POST') {
         const provider = webhookMatch[1];
         return this.webhookController.handleWebhook(req, res, provider, rawBody);
+      }
+
+      // --- ASTROLOGY & CONSULTATION ROUTES ---
+      if (this.astrologyController) {
+        if (pathname === '/api/v1/astrology/chart' && method === 'POST') {
+          if (!await requireAuth()) return;
+          return this.astrologyController.calculateChart(req, res, body);
+        }
+
+        const chartGetMatch = pathname.match(/^\/api\/v1\/astrology\/charts\/([a-zA-Z0-9_-]+)$/);
+        if (chartGetMatch && method === 'GET') {
+          if (!await requireAuth()) return;
+          return this.astrologyController.getChart(req, res, chartGetMatch[1]);
+        }
+
+        if (pathname === '/api/v1/astrology/profiles') {
+          if (!await requireAuth()) return;
+          if (method === 'POST') return this.astrologyController.createProfile(req, res, body);
+          if (method === 'GET') return this.astrologyController.listProfiles(req, res);
+        }
+
+        if (pathname === '/api/v1/astrology/consultations') {
+          if (!await requireAuth()) return;
+          if (method === 'POST') return this.astrologyController.startConsultation(req, res, body);
+          if (method === 'GET') return this.astrologyController.listConsultations(req, res);
+        }
+
+        const consultationMatch = pathname.match(/^\/api\/v1\/astrology\/consultations\/([a-zA-Z0-9_-]+)$/);
+        if (consultationMatch && method === 'GET') {
+          if (!await requireAuth()) return;
+          return this.astrologyController.getConsultation(req, res, consultationMatch[1]);
+        }
+
+        const msgMatch = pathname.match(/^\/api\/v1\/astrology\/consultations\/([a-zA-Z0-9_-]+)\/messages$/);
+        if (msgMatch && method === 'POST') {
+          if (!await requireAuth()) return;
+          return this.astrologyController.sendMessage(req, res, msgMatch[1], body);
+        }
       }
 
       // 404 Route Not Found

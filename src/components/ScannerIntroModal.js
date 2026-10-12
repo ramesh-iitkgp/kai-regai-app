@@ -4,6 +4,8 @@
  * Source of truth: docs/p6/P6_SCANNER_UX_SPEC.md
  */
 
+import { i18n } from '../services/i18n.js';
+
 export function renderScannerIntroModal({ onStart = () => {}, onDismiss = () => {} }) {
   return `
     <div id="scanner-intro-overlay" style="position: fixed; inset: 0; z-index: 100; background: rgba(5, 8, 17, 0.94); backdrop-filter: blur(16px); display: flex; align-items: center; justify-content: center; padding: 20px;">
@@ -18,10 +20,10 @@ export function renderScannerIntroModal({ onStart = () => {}, onDismiss = () => 
 
         <div>
           <span style="font-size: 11px; font-weight: 700; color: var(--color-secondary); letter-spacing: 0.12em; text-transform: uppercase;">
-            Kai RegAI • Optical Guidance
+            ${i18n.t('intro_optical_guidance')}
           </span>
           <h2 style="font-family: var(--font-display); font-size: 24px; font-weight: 600; color: var(--color-text-high); margin-top: 6px;">
-            Scan Your Palm
+            ${i18n.t('intro_title')}
           </h2>
         </div>
 
@@ -30,41 +32,41 @@ export function renderScannerIntroModal({ onStart = () => {}, onDismiss = () => 
           <div style="display: flex; align-items: flex-start; gap: 12px;">
             <span class="material-symbols-outlined" style="font-size: 20px; color: var(--color-tertiary); margin-top: 2px;">center_focus_strong</span>
             <div>
-              <h4 style="font-size: 13px; font-weight: 600; color: var(--color-text-high);">Place palm inside guide</h4>
-              <p style="font-size: 11px; color: var(--color-on-surface-variant); margin-top: 2px;">Align your open hand within the reticle.</p>
+              <h4 style="font-size: 13px; font-weight: 600; color: var(--color-text-high);">${i18n.t('intro_step1_title')}</h4>
+              <p style="font-size: 11px; color: var(--color-on-surface-variant); margin-top: 2px;">${i18n.t('intro_step1_desc')}</p>
             </div>
           </div>
 
           <div style="display: flex; align-items: flex-start; gap: 12px;">
             <span class="material-symbols-outlined" style="font-size: 20px; color: var(--color-secondary); margin-top: 2px;">wb_sunny</span>
             <div>
-              <h4 style="font-size: 13px; font-weight: 600; color: var(--color-text-high);">Use even lighting</h4>
-              <p style="font-size: 11px; color: var(--color-on-surface-variant); margin-top: 2px;">Avoid direct glare and harsh dark shadows.</p>
+              <h4 style="font-size: 13px; font-weight: 600; color: var(--color-text-high);">${i18n.t('intro_step2_title')}</h4>
+              <p style="font-size: 11px; color: var(--color-on-surface-variant); margin-top: 2px;">${i18n.t('intro_step2_desc')}</p>
             </div>
           </div>
 
           <div style="display: flex; align-items: flex-start; gap: 12px;">
             <span class="material-symbols-outlined" style="font-size: 20px; color: #10B981; margin-top: 2px;">pan_tool</span>
             <div>
-              <h4 style="font-size: 13px; font-weight: 600; color: var(--color-text-high);">Hold steady for auto-capture</h4>
-              <p style="font-size: 11px; color: var(--color-on-surface-variant); margin-top: 2px;">The scanner locks and triggers once stable.</p>
+              <h4 style="font-size: 13px; font-weight: 600; color: var(--color-text-high);">${i18n.t('intro_step3_title')}</h4>
+              <p style="font-size: 11px; color: var(--color-on-surface-variant); margin-top: 2px;">${i18n.t('intro_step3_desc')}</p>
             </div>
           </div>
         </div>
 
         <!-- Epistemic & Privacy Statement -->
         <p style="font-size: 11px; color: var(--color-outline); line-height: 1.4;">
-          Your palm image is processed ephemerally on-device in RAM to detect genuine crease patterns. No photos are retained.
+          ${i18n.t('intro_privacy')}
         </p>
 
         <!-- CTA Buttons -->
         <div style="display: flex; flex-direction: column; gap: 10px;">
           <button id="intro-start-btn" class="kai-btn kai-btn-gold" type="button">
             <span class="material-symbols-outlined">camera_alt</span>
-            <span>Start Scan</span>
+            <span>${i18n.t('intro_start_btn')}</span>
           </button>
           <button id="intro-cancel-btn" class="kai-btn kai-btn-ghost" type="button" style="font-size: 12px;">
-            Cancel
+            ${i18n.t('cancel')}
           </button>
         </div>
 

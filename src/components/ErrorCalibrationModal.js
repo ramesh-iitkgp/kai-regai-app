@@ -3,6 +3,8 @@
  * Matches Stitch: design/stitch/kai_regai_scanner_error_calibration_recovery/
  */
 
+import { i18n } from '../services/i18n.js';
+
 export function renderErrorCalibrationModal({
   errorType = 'LOW_LIGHT', // LOW_LIGHT | DISTANCE | MOTION | MULTIPLE_HANDS
   onRetry = () => {},
@@ -12,27 +14,27 @@ export function renderErrorCalibrationModal({
   const configs = {
     LOW_LIGHT: {
       icon: 'lightbulb',
-      title: 'A Little More Light',
-      desc: 'Natural or overhead ambient illumination helps the neural detector trace fine secondary crease lines clearly.',
-      tip: 'Face a window or turn on your device flashlight.'
+      title: i18n.t('err_light_title'),
+      desc: i18n.t('err_light_desc'),
+      tip: i18n.t('err_light_tip')
     },
     DISTANCE: {
       icon: 'pan_tool',
-      title: 'Adjust Palm Distance',
-      desc: 'Align your open palm inside the gold framing alignment brackets until the frame glows cyan.',
-      tip: 'Hold the camera approximately 20–30 cm from your palm.'
+      title: i18n.t('err_distance_title'),
+      desc: i18n.t('err_distance_desc'),
+      tip: i18n.t('err_distance_tip')
     },
     MOTION: {
       icon: 'vibration',
-      title: 'Hold Steady',
-      desc: 'Rapid motion causes micro-blur along the delicate Mount of Mercury and Saturnine spires.',
-      tip: 'Rest your elbow on a stable surface for 10 seconds.'
+      title: i18n.t('err_motion_title'),
+      desc: i18n.t('err_motion_desc'),
+      tip: i18n.t('err_motion_tip')
     },
     MULTIPLE_HANDS: {
       icon: 'front_hand',
-      title: 'One Palm at a Time',
-      desc: 'Multiple hands were detected in the optical sensor frame. Kai RegAI performs focused individual readings.',
-      tip: 'Ensure only the active hand is visible in the reticle.'
+      title: i18n.t('err_multiple_title'),
+      desc: i18n.t('err_multiple_desc'),
+      tip: i18n.t('err_multiple_tip')
     }
   };
 
@@ -58,7 +60,7 @@ export function renderErrorCalibrationModal({
         <div class="kai-card" style="padding: 12px 16px; margin-bottom: 20px; background: var(--color-surface-container-high); border-left: 3px solid var(--color-secondary);">
           <div style="display: flex; gap: 8px; align-items: center;">
             <span class="material-symbols-outlined" style="font-size: 16px; color: var(--color-secondary);">tips_and_updates</span>
-            <span style="font-size: 12px; color: var(--color-secondary); font-weight: 600;">Calibration Hint:</span>
+            <span style="font-size: 12px; color: var(--color-secondary); font-weight: 600;">✦</span>
           </div>
           <p style="font-size: 12px; color: var(--color-text-high); margin-top: 4px;">
             ${activeConfig.tip}
@@ -68,11 +70,11 @@ export function renderErrorCalibrationModal({
         <div style="display: flex; flex-direction: column; gap: 10px;">
           <button id="error-retry-btn" class="kai-btn kai-btn-primary" type="button">
             <span class="material-symbols-outlined">refresh</span>
-            <span>Recalibrate & Retry</span>
+            <span>${i18n.t('err_retry_btn')}</span>
           </button>
           <button id="error-guided-btn" class="kai-btn kai-btn-secondary" type="button">
             <span class="material-symbols-outlined">psychology</span>
-            <span>Switch to Guided Reading Mode</span>
+            <span>${i18n.t('err_switch_guided')}</span>
           </button>
         </div>
 

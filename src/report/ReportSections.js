@@ -19,7 +19,10 @@ export class ReportSections {
         <div style="display: inline-block; padding: 6px 16px; border-radius: 9999px; border: 1px solid ${REPORT_THEME.colors.goldBorder}; background: ${REPORT_THEME.colors.goldGlow}; color: ${REPORT_THEME.colors.gold}; font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 24px;">
           ${report.reportTier} ARCHIVAL DOSSIER
         </div>
-        
+        <div style="display: flex; justify-content: center; margin-bottom: 16px;">
+          <img src="/assets/brand/logo_emblem.png" alt="Kai RegAI" style="width: 68px; height: 68px; border-radius: 9999px; box-shadow: 0 0 20px rgba(251, 191, 36, 0.35); border: 1.5px solid rgba(251, 191, 36, 0.5); object-fit: contain;">
+        </div>
+
         <h1 style="font-family: ${REPORT_THEME.typography.fontDisplay}; font-size: 34px; font-weight: 600; color: ${REPORT_THEME.colors.textHigh}; letter-spacing: 0.05em; line-height: 1.2; margin: 0 0 12px;">
           ${REPORT_THEME.brand.name}
         </h1>

@@ -24,7 +24,7 @@ export class PalmScannerController {
     this.cameraService = options.cameraService || new CameraCaptureService();
     this.visionEngine = options.visionEngine || new PalmVisionEngine(options.cvConfig || {});
 
-    this.frameIntervalMs = options.frameIntervalMs || 180; // ~5.5 Hz lightweight loop
+    this.frameIntervalMs = options.frameIntervalMs || 75; // ~13 Hz responsive preview loop
     this.countdownSeconds = options.countdownSeconds !== undefined ? options.countdownSeconds : 2;
     this.loopTimer = null;
     this.countdownTimer = null;
@@ -35,6 +35,10 @@ export class PalmScannerController {
     this.stabilityCount = 0;
     this.autoCapture = options.autoCapture !== false; // default true
     this.autoStartLoop = options.autoStartLoop !== false;
+    this.enableChoreography = options.enableChoreography !== undefined 
+      ? options.enableChoreography 
+      : (options.countdownSeconds !== 0 && typeof window !== 'undefined');
+    this.choreographyDelayMs = options.choreographyDelayMs !== undefined ? options.choreographyDelayMs : 550;
     this.listeners = new Set();
   }
 
@@ -188,24 +192,34 @@ export class PalmScannerController {
       if (!hand.detected) {
         this.stabilityCount = 0;
         const retake = RetakeDecisionEngine.evaluate(imageQuality, hand, null);
+        const noHandPayload = {
+          feedbackMessage: retake.primaryMessage || 'Align your palm with the guide',
+          stabilityCount: 0,
+          landmarks: null,
+          handDetected: false
+        };
         if (this.stateMachine.getState() !== SCANNER_STATES.SEARCHING_FOR_HAND) {
-          this.stateMachine.transition(SCANNER_STATES.SEARCHING_FOR_HAND, {
-            feedbackMessage: retake.primaryMessage || 'Align your palm with the guide',
-            stabilityCount: 0
-          });
+          this.stateMachine.transition(SCANNER_STATES.SEARCHING_FOR_HAND, noHandPayload);
         } else {
-          this.stateMachine.updateContext({
-            feedbackMessage: retake.primaryMessage || 'Align your palm with the guide',
-            stabilityCount: 0
-          });
+          this.stateMachine.updateContext(noHandPayload);
         }
         return { handDetected: false, usable: false, retake };
       }
 
+      // Live palm tracked! Update context with 21 anatomical landmarks
+      this.stateMachine.updateContext({
+        landmarks: hand.landmarks,
+        hand,
+        handDetected: true
+      });
+
       // Hand detected!
       if (this.stateMachine.getState() === SCANNER_STATES.SEARCHING_FOR_HAND) {
         this.stateMachine.transition(SCANNER_STATES.HAND_DETECTED, {
-          feedbackMessage: 'Hand detected. Aligning palm…'
+          feedbackMessage: 'Hand detected. Aligning palm…',
+          landmarks: hand.landmarks,
+          hand,
+          handDetected: true
         });
       }
 
@@ -215,12 +229,21 @@ export class PalmScannerController {
 
       if (!usability.usable || !imageQuality.passed) {
         this.stabilityCount = 0;
-        this.stateMachine.transition(SCANNER_STATES.PALM_ALIGNING, {
-          feedbackMessage: retake.primaryMessage || 'Adjust your palm position',
-          guidanceDetail: retake.detailedGuidance || [],
-          diagnosticCode: retake.diagnosticCode,
-          stabilityCount: 0
-        });
+        if (this.stateMachine.getState() !== SCANNER_STATES.PALM_ALIGNING) {
+          this.stateMachine.transition(SCANNER_STATES.PALM_ALIGNING, {
+            feedbackMessage: retake.primaryMessage || 'Adjust your palm position',
+            guidanceDetail: retake.detailedGuidance || [],
+            diagnosticCode: retake.diagnosticCode,
+            stabilityCount: 0
+          });
+        } else {
+          this.stateMachine.updateContext({
+            feedbackMessage: retake.primaryMessage || 'Adjust your palm position',
+            guidanceDetail: retake.detailedGuidance || [],
+            diagnosticCode: retake.diagnosticCode,
+            stabilityCount: 0
+          });
+        }
         return { handDetected: true, usable: false, retake };
       }
 
@@ -339,13 +362,49 @@ export class PalmScannerController {
       const visionResult = await this.visionEngine.analyze(frame, { handednessHint: handedness });
       const durationMs = Number((performance.now() - startTime).toFixed(1));
 
-      this.stateMachine.transition(SCANNER_STATES.VALIDATING, {
-        feedbackMessage: 'Validating crease geometry…',
-        visionResult
-      });
-
       if (visionResult.status === 'SUCCESS') {
         const featureModel = PalmFeatureModelAdapter.toPalmFeatureModel(visionResult, `session-${Date.now()}`);
+
+        // Sacred Choreographed Line Scan Progression with Smooth Percentage (0% -> 100%)
+        if (this.enableChoreography && this.choreographyDelayMs > 0) {
+          const stages = [
+            { stage: 'LIFE', line: 'LIFE', color: '#A855F7', msg: 'Tracing Vitality & Life Rhythm…', targetPct: 25 },
+            { stage: 'HEAD', line: 'HEAD', color: '#00D2FF', msg: 'Mapping Thought Architecture…', targetPct: 45 },
+            { stage: 'HEART', line: 'HEART', color: '#EF4444', msg: 'Attuning Emotional Landscape…', targetPct: 65 },
+            { stage: 'FATE', line: 'FATE', color: '#FBBF24', msg: 'Discerning Purpose & Direction…', targetPct: 82 },
+            { stage: 'SUN', line: 'SUN', color: '#F59E0B', msg: 'Illuminating Creative Expression…', targetPct: 94 },
+            { stage: 'CONSOLIDATE', line: 'ALL', color: '#10B981', msg: 'Consolidating Palm Geometry…', targetPct: 100 }
+          ];
+
+          let currentPct = 5;
+          for (const s of stages) {
+            if (!this.isRunning) break;
+            const target = s.targetPct;
+            const steps = 6;
+            const stepIncrement = (target - currentPct) / steps;
+            const stepDelay = Math.max(10, Math.floor(this.choreographyDelayMs / steps));
+
+            for (let step = 0; step < steps; step++) {
+              if (!this.isRunning) break;
+              currentPct = Math.min(100, Math.round(currentPct + stepIncrement));
+              this.stateMachine.updateContext({
+                scanStage: s.stage,
+                highlightedLine: s.line,
+                laserColor: s.color,
+                feedbackMessage: s.msg,
+                scanProgressPercent: currentPct,
+                featureModel
+              });
+              await new Promise(r => setTimeout(r, stepDelay));
+            }
+          }
+        }
+
+        this.stateMachine.transition(SCANNER_STATES.VALIDATING, {
+          feedbackMessage: 'Validating crease geometry…',
+          visionResult,
+          featureModel
+        });
 
         this.stateMachine.transition(SCANNER_STATES.SUCCESS, {
           feedbackMessage: 'Palm scan complete!',

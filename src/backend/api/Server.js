@@ -24,6 +24,9 @@ import { TransactionController } from './controllers/TransactionController.js';
 import { EntitlementController } from './controllers/EntitlementController.js';
 import { WebhookController } from './controllers/WebhookController.js';
 import { HealthController } from './controllers/HealthController.js';
+import { AstrologyController } from '../../astrologer/api/AstrologyController.js';
+import { AstrologyRepository } from '../../astrologer/persistence/AstrologyRepository.js';
+import { ConsultationService } from '../../astrologer/consultationService/ConsultationService.js';
 
 import { ApiRouter } from './ApiRouter.js';
 
@@ -84,6 +87,8 @@ export class Server {
       this.webhookSecret
     );
     this.backupService = new BackupService(this.database);
+    this.astrologyRepository = new AstrologyRepository(this.database);
+    this.consultationService = new ConsultationService({ repository: this.astrologyRepository });
 
     // 3. Initialize Controllers
     const controllers = {
@@ -94,7 +99,11 @@ export class Server {
       transactionController: new TransactionController(this.commerceService),
       entitlementController: new EntitlementController(this.commerceService),
       webhookController: new WebhookController(this.webhookService),
-      healthController: new HealthController(this.database)
+      healthController: new HealthController(this.database),
+      astrologyController: new AstrologyController({
+        consultationService: this.consultationService,
+        repository: this.astrologyRepository
+      })
     };
 
     const services = {

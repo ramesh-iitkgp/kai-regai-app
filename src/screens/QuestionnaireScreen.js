@@ -13,6 +13,7 @@ import { PalmInterpretationEngine } from '../services/PalmInterpretationEngine.j
 import { QuestionnaireHUD } from '../components/QuestionnaireHUD.js';
 import { QUESTION_TYPES } from '../questionnaire/QuestionnaireSchema.js';
 import { reportTelemetry, TELEMETRY_EVENTS } from '../report/ReportTelemetry.js';
+import { i18n } from '../services/i18n.js';
 
 export function renderQuestionnaireScreen(container, params = {}) {
   const initialAnswers = {
@@ -38,13 +39,13 @@ export function renderQuestionnaireScreen(container, params = {}) {
         <div style="padding: 16px 16px calc(var(--bottom-nav-height) + 24px); display: flex; flex-direction: column; gap: 20px;">
           <!-- Top Action Bar -->
           <div style="display: flex; align-items: center; justify-content: space-between;">
-            <button id="quest-review-top-back-btn" class="kai-btn-icon" aria-label="Return to questions">
+            <button id="quest-review-top-back-btn" class="kai-btn-icon" aria-label="${i18n.t('quest_return_btn')}">
               <span class="material-symbols-outlined">arrow_back</span>
             </button>
             <span class="kai-badge kai-badge-secondary" style="font-size: 10px;">
-              Guided Chiromancy • Review
+              ${i18n.t('quest_review_badge')}
             </span>
-            <button id="quest-close-btn" class="kai-btn-icon" aria-label="Cancel">
+            <button id="quest-close-btn" class="kai-btn-icon" aria-label="${i18n.t('cancel')}">
               <span class="material-symbols-outlined">close</span>
             </button>
           </div>
@@ -99,13 +100,13 @@ export function renderQuestionnaireScreen(container, params = {}) {
         
         <!-- Top Action Bar -->
         <div style="display: flex; align-items: center; justify-content: space-between;">
-          <button id="quest-back-btn" class="kai-btn-icon" aria-label="Previous step">
+          <button id="quest-back-btn" class="kai-btn-icon" aria-label="${i18n.t('back')}">
             <span class="material-symbols-outlined">arrow_back</span>
           </button>
           <span class="kai-badge kai-badge-secondary" style="font-size: 10px;">
-            Guided Chiromancy • Mode 2
+            ${i18n.t('quest_mode_badge')}
           </span>
-          <button id="quest-close-btn" class="kai-btn-icon" aria-label="Cancel">
+          <button id="quest-close-btn" class="kai-btn-icon" aria-label="${i18n.t('cancel')}">
             <span class="material-symbols-outlined">close</span>
           </button>
         </div>

@@ -77,8 +77,9 @@
   --gradient-gold-cta: linear-gradient(135deg, #e4c276 0%, #d5b46a 100%);
   --gradient-card-rim: linear-gradient(180deg, rgba(228, 194, 118, 0.25) 0%, rgba(202, 190, 255, 0.05) 50%, transparent 100%);
 
-  /* Typography */
-  --font-display: 'Playfair Display', Georgia, serif;
+  /* Typography matching reference image */
+  --font-display: 'Cinzel', 'Playfair Display', Georgia, serif;
+  --font-tagline: 'Playfair Display', Georgia, serif;
   --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   /* Radii */

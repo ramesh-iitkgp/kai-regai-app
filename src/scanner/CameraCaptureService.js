@@ -59,6 +59,30 @@ export class CameraCaptureService {
   }
 
   /**
+   * Determine whether the active camera stream is front/user-facing (selfie/webcam)
+   * On Mac/PC desktop or when facingMode is 'user', the camera faces the user and requires mirroring.
+   * @returns {boolean}
+   */
+  isUserFacing() {
+    if (this.track && typeof this.track.getSettings === 'function') {
+      const settings = this.track.getSettings();
+      if (settings.facingMode) {
+        return settings.facingMode === 'user';
+      }
+    }
+    // Fallback: On non-mobile desktop/laptop, the built-in webcam is user-facing
+    if (typeof navigator !== 'undefined') {
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent || '');
+      if (!isMobile) return true;
+    }
+    return this.facingMode === 'user';
+  }
+
+  get isMirrored() {
+    return this.isUserFacing();
+  }
+
+  /**
    * Request camera permission and start media stream
    */
   async startStream() {
@@ -206,6 +230,33 @@ export class CameraCaptureService {
       height: vh,
       data: imgData.data
     };
+  }
+
+  /**
+   * Capture a compressed base64 JPEG image from the live video stream
+   * @param {number} [quality=0.85]
+   * @returns {string | null} Data URL
+   */
+  captureDataUrl(quality = 0.85) {
+    if (!this.videoElement || this.videoElement.videoWidth === 0 || this.videoElement.videoHeight === 0) {
+      return null;
+    }
+    const vw = this.videoElement.videoWidth;
+    const vh = this.videoElement.videoHeight;
+    if (!this.canvasElement) {
+      this.canvasElement = document.createElement('canvas');
+    }
+    const canvas = this.canvasElement;
+    canvas.width = vw;
+    canvas.height = vh;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return null;
+    ctx.drawImage(this.videoElement, 0, 0, vw, vh);
+    try {
+      return canvas.toDataURL('image/jpeg', quality);
+    } catch (e) {
+      return null;
+    }
   }
 
   /**

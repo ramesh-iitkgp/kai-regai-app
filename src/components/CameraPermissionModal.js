@@ -5,6 +5,7 @@
  */
 
 import { PERMISSION_STATES } from '../scanner/CameraCaptureService.js';
+import { i18n } from '../services/i18n.js';
 
 export function renderCameraPermissionModal({
   permissionState = PERMISSION_STATES.DENIED,
@@ -16,21 +17,21 @@ export function renderCameraPermissionModal({
   const isPermanentlyDenied = permissionState === PERMISSION_STATES.PERMANENTLY_DENIED;
   const isUnavailable = permissionState === PERMISSION_STATES.UNAVAILABLE;
 
-  let title = 'Camera Access Needed';
-  let message = 'Kai RegAI requires camera access to detect your palm creases in real-time.';
+  let title = i18n.t('perm_title');
+  let message = i18n.t('perm_msg');
   let icon = 'videocam';
-  let primaryBtnText = 'Allow Camera';
+  let primaryBtnText = i18n.t('perm_allow_btn');
 
   if (isPermanentlyDenied) {
-    title = 'Camera Access Disabled';
-    message = 'Camera permissions are disabled for this site. Please enable camera access in your device or browser settings to continue.';
+    title = i18n.t('perm_denied_title');
+    message = i18n.t('perm_denied_msg');
     icon = 'videocam_off';
-    primaryBtnText = 'Open Settings / Retry';
+    primaryBtnText = i18n.t('perm_retry_btn');
   } else if (isUnavailable) {
-    title = 'Camera Hardware Unavailable';
-    message = 'No video capture devices were detected on this device. You can test with a sample palm or upload an image.';
+    title = i18n.t('perm_unavail_title');
+    message = i18n.t('perm_unavail_msg');
     icon = 'no_photography';
-    primaryBtnText = 'Retry Camera';
+    primaryBtnText = i18n.t('perm_retry_btn');
   }
 
   return `
@@ -60,11 +61,11 @@ export function renderCameraPermissionModal({
           
           <button id="perm-sample-btn" class="kai-btn kai-btn-secondary" type="button" style="font-size: 12px;">
             <span class="material-symbols-outlined">image</span>
-            <span>Use Sample Palm Photo</span>
+            <span>${i18n.t('perm_fallback_btn')}</span>
           </button>
 
           <button id="perm-cancel-btn" class="kai-btn kai-btn-ghost" type="button" style="font-size: 12px;">
-            Back to Home
+            ${i18n.t('cancel')}
           </button>
         </div>
 

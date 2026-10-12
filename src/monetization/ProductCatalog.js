@@ -36,6 +36,30 @@ export const PRODUCT_DEFINITIONS = [
     }
   },
   {
+    productId: 'kai_daily_correlate',
+    tier: PRODUCT_TIERS.STANDARD,
+    displayName: 'Personal Palm Correlation',
+    description: 'Connect your unique palm lines with today’s astrological transit for 100% personalized accuracy.',
+    active: true,
+    billingType: BILLING_TYPES.ONE_TIME_PURCHASE,
+    prices: {
+      [CURRENCIES.INR]: { amount: 99, display: '₹99' },
+      [CURRENCIES.USD]: { amount: 0.99, display: '$0.99' },
+      [CURRENCIES.EUR]: { amount: 0.99, display: '€0.99' },
+      [CURRENCIES.GBP]: { amount: 0.89, display: '£0.89' }
+    },
+    entitlements: [
+      FEATURE_KEYS.QUICK_REPORT,
+      FEATURE_KEYS.BASIC_LINES,
+      FEATURE_KEYS.ALL_MAJOR_LINES,
+      FEATURE_KEYS.CELESTIAL_MOUNTS
+    ],
+    metadata: {
+      badge: 'Special Offer',
+      highlight: true
+    }
+  },
+  {
     productId: 'kai_standard',
     tier: PRODUCT_TIERS.STANDARD,
     displayName: 'Standard Hastarekha Dossier',

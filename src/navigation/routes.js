@@ -14,12 +14,21 @@ export const ROUTES = {
   READINGS: 'readings',
   LEARN: 'learn',
   PROFILE: 'profile',
-  OFFLINE: 'offline'
+  FORECAST: 'forecast',
+  CHAT: 'chat',
+  FACE_SCANNER: 'face-scanner',
+  FACE_REPORT: 'face-report',
+  CALIBRATOR: 'calibrator',
+  OFFLINE: 'offline',
+  ORACLE: 'oracle',
+  TAROT: 'tarot'
 };
 
 export const DEEP_LINKS = {
   'kairegai://scanner': ROUTES.SCANNER,
   'kairegai://reading': ROUTES.GUIDED_READING,
   'kairegai://readings': ROUTES.READINGS,
-  'kairegai://learn': ROUTES.LEARN
+  'kairegai://learn': ROUTES.LEARN,
+  'kairegai://oracle': ROUTES.ORACLE,
+  'kairegai://tarot': ROUTES.TAROT
 };

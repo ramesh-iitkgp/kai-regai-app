@@ -2,18 +2,19 @@
  * LearnCodexScreen Component — Hastarekha Codex Knowledge Library
  * Matches Stitch: design/stitch/kai_regai_learn_hastarekha_codex/
  * Source of truth: docs/p2/SCREEN_SPECIFICATIONS.md (SCR-LRN-001)
- */
-
-import { router } from '../navigation/router.js';
+ */import { router } from '../navigation/router.js';
 import { ROUTES } from '../navigation/routes.js';
 import { mockCodex } from '../mock/mockCodex.js';
+import { i18n } from '../services/i18n.js';
+import { getCodexCategoryName, getCodexArticle } from '../services/CodexLocalization.js';
 
 export function renderLearnCodexScreen(container, params = {}) {
   let activeCategory = router.preservedState.learnCategory || 'lines';
   let activeArticleId = params.article || 'art-life-line';
 
   function render() {
-    const activeArticle = mockCodex.articles.find(a => a.id === activeArticleId) || mockCodex.articles[0];
+    const rawArticle = mockCodex.articles.find(a => a.id === activeArticleId) || mockCodex.articles[0];
+    const activeArticle = getCodexArticle(rawArticle, i18n.getLanguage());
 
     container.innerHTML = `
       <div style="padding: 16px 16px calc(var(--bottom-nav-height) + 24px); display: flex; flex-direction: column; gap: 18px;">
@@ -21,13 +22,13 @@ export function renderLearnCodexScreen(container, params = {}) {
         <!-- Header -->
         <div>
           <span class="kai-badge kai-badge-secondary" style="font-size: 10px;">
-            Hastarekha Shastra Codex
+            ${i18n.t('codex_badge')}
           </span>
           <h1 style="font-family: var(--font-display); font-size: 26px; font-weight: 600; color: var(--color-text-high); margin-top: 4px;">
-            Ancient Palmistry Wisdom
+            ${i18n.t('codex_title')}
           </h1>
           <p style="font-size: 13px; color: var(--color-on-surface-variant); margin-top: 2px;">
-            Grounded scholarly & traditional lineages of Indian and Western chiromancy.
+            ${i18n.t('codex_sub')}
           </p>
         </div>
 
@@ -38,7 +39,7 @@ export function renderLearnCodexScreen(container, params = {}) {
                     data-cat-id="${cat.id}"
                     style="cursor: pointer; padding: 6px 12px; border-radius: var(--radius-full); white-space: nowrap;">
               <span class="material-symbols-outlined" style="font-size: 14px; margin-right: 4px;">${cat.icon}</span>
-              <span>${cat.name}</span>
+              <span>${getLocalizedCategoryName(cat)}</span>
             </button>
           `).join('')}
         </div>
@@ -85,21 +86,24 @@ export function renderLearnCodexScreen(container, params = {}) {
         <!-- Article Quick Switcher Grid -->
         <div>
           <span style="font-size: 11px; font-weight: 700; color: var(--color-outline); letter-spacing: 0.08em; text-transform: uppercase;">
-            Major Crease Articles
+            ${i18n.t('codex_major_articles')}
           </span>
           <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
-            ${mockCodex.articles.map(art => `
-              <div class="kai-card" 
-                   data-art-id="${art.id}"
-                   role="button" tabindex="0"
-                   style="padding: 12px 14px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: ${activeArticleId === art.id ? 'var(--color-surface-container-high)' : 'var(--color-surface-container)'};">
-                <div style="display: flex; align-items: center; gap: 10px;">
-                  <span style="width: 8px; height: 8px; border-radius: 9999px; background: ${art.color};"></span>
-                  <h4 style="font-size: 13px; font-weight: 600; color: var(--color-text-high);">${art.title}</h4>
+            ${mockCodex.articles.map(art => {
+              const locArt = getLocalizedArticle(art);
+              return `
+                <div class="kai-card" 
+                     data-art-id="${art.id}"
+                     role="button" tabindex="0"
+                     style="padding: 12px 14px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: ${activeArticleId === art.id ? 'var(--color-surface-container-high)' : 'var(--color-surface-container)'};">
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="width: 8px; height: 8px; border-radius: 9999px; background: ${art.color};"></span>
+                    <h4 style="font-size: 13px; font-weight: 600; color: var(--color-text-high);">${locArt.title}</h4>
+                  </div>
+                  <span class="material-symbols-outlined" style="font-size: 16px; color: var(--color-outline);">arrow_forward_ios</span>
                 </div>
-                <span class="material-symbols-outlined" style="font-size: 16px; color: var(--color-outline);">arrow_forward_ios</span>
-              </div>
-            `).join('')}
+              `;
+            }).join('')}
           </div>
         </div>
 

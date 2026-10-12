@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <radialGradient id="avatarBg" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#1e2246"/>
+      <stop offset="70%" stop-color="#0e122b"/>
+      <stop offset="100%" stop-color="#060919"/>
+    </radialGradient>
+    <linearGradient id="goldGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="50%" stop-color="#e4c276"/>
+      <stop offset="100%" stop-color="#caa055"/>
+    </linearGradient>
+    <linearGradient id="silhouetteGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fdf4dc"/>
+      <stop offset="100%" stop-color="#cbb17b"/>
+    </linearGradient>
+    <filter id="subtleGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background Base Disc -->
+  <circle cx="64" cy="64" r="62" fill="url(#avatarBg)"/>
+  <circle cx="64" cy="64" r="61" fill="none" stroke="url(#goldGlow)" stroke-width="1.8" opacity="0.65"/>
+  <circle cx="64" cy="64" r="56" fill="none" stroke="url(#goldGlow)" stroke-width="0.75" stroke-dasharray="3 3" opacity="0.4"/>
+
+  <!-- Celestial Sparkle Star Accents -->
+  <path d="M64 12 L65.5 17 L70.5 18.5 L65.5 20 L64 25 L62.5 20 L57.5 18.5 L62.5 17 Z" fill="#fef08a" opacity="0.75"/>
+  <circle cx="26" cy="38" r="1.2" fill="#e4c276" opacity="0.6"/>
+  <circle cx="102" cy="38" r="1.2" fill="#e4c276" opacity="0.6"/>
+
+  <!-- Generic Silhouette Head -->
+  <circle cx="64" cy="52" r="19" fill="url(#silhouetteGrad)" filter="url(#subtleGlow)"/>
+
+  <!-- Generic Silhouette Torso / Shoulders -->
+  <path d="M64 76 C46 76 31 89 27 106 C36.5 116.5 49.5 123 64 123 C78.5 123 91.5 116.5 101 106 C97 89 82 76 64 76 Z" fill="url(#silhouetteGrad)"/>
+
+  <!-- Outer Rim Golden Highlight -->
+  <circle cx="64" cy="64" r="63" fill="none" stroke="rgba(254, 240, 138, 0.25)" stroke-width="1"/>
+</svg>

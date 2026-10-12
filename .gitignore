@@ -25,3 +25,4 @@ backups/
 *.db-wal
 *.db-shm
 *.sqlite
+scratch/

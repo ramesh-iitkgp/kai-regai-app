@@ -4,9 +4,10 @@
  */
 
 import { router } from '../navigation/router.js';
+import { i18n } from '../services/i18n.js';
 
 export function renderPdfExportModal({
-  readingTitle = 'Illuminated Hastarekha Dossier',
+  readingTitle = i18n.t('pdf_title'),
   onClose = () => {},
   onDownload = () => {}
 } = {}) {
@@ -17,12 +18,12 @@ export function renderPdfExportModal({
 
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
           <div>
-            <span class="kai-badge kai-badge-secondary" style="font-size: 10px;">Archival Export</span>
+            <span class="kai-badge kai-badge-secondary" style="font-size: 10px;">${i18n.t('pdf_badge')}</span>
             <h3 style="font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--color-text-high); margin-top: 4px;">
-              Illuminated Palm Codex
+              ${i18n.t('pdf_title')}
             </h3>
           </div>
-          <button id="modal-close-x-btn" class="kai-btn-icon" aria-label="Close export modal">
+          <button id="modal-close-x-btn" class="kai-btn-icon" aria-label="${i18n.t('cancel')}">
             <span class="material-symbols-outlined">close</span>
           </button>
         </div>
@@ -38,10 +39,10 @@ export function renderPdfExportModal({
               ${readingTitle}
             </h4>
             <p style="font-size: 12px; color: var(--color-on-surface-variant); margin-top: 4px;">
-              12-page high-resolution illuminated art monograph with gold-gilded diagrams & Sanskrit citations.
+              ${i18n.t('pdf_desc')}
             </p>
             <span style="font-size: 11px; font-family: monospace; color: var(--color-tertiary); display: block; margin-top: 6px;">
-              PDF • VECTOR PRINT QUALITY (300 DPI)
+              ${i18n.t('pdf_quality')}
             </span>
           </div>
         </div>
@@ -50,11 +51,11 @@ export function renderPdfExportModal({
         <div style="display: flex; flex-direction: column; gap: 10px;">
           <button id="modal-download-pdf-btn" class="kai-btn kai-btn-gold" type="button">
             <span class="material-symbols-outlined">download</span>
-            <span>Download High-Res PDF</span>
+            <span>${i18n.t('pdf_download_btn')}</span>
           </button>
           <button id="modal-share-pdf-btn" class="kai-btn kai-btn-secondary" type="button">
             <span class="material-symbols-outlined">share</span>
-            <span>Share Encrypted Link</span>
+            <span>${i18n.t('pdf_share_btn')}</span>
           </button>
         </div>
 
