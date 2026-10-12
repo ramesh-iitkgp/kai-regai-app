@@ -119,7 +119,7 @@ export function renderGuidedReadingScreen(container, params = {}) {
 
             <div class="detailed-stepper-item">
               <div class="detailed-stepper-num">5</div>
-              <span class="detailed-stepper-label">Special &amp; Marriage Lines</span>
+              <span class="detailed-stepper-label">Special Lines</span>
               <span class="detailed-stepper-tag">Marriage Line, Sacred Geometry Marks</span>
             </div>
 

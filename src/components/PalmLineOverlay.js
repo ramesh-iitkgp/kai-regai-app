@@ -108,25 +108,25 @@ export function renderPalmLineOverlay({
         <circle cx="145" cy="118" r="3.5" fill="#F43F5E"/>
       </g>
 
-      <!-- 4. Fate Line (Urdhva/Karma Rekha) — Gold (#FBBF24), Dotted pattern (4 2) -->
+      <!-- 4. Fate Line (Urdhva/Karma Rekha) — Gold (#FBBF24), Dash-dot pattern (10 3 2 3) -->
       <g opacity="${!isFateVisible ? 0 : (isFateActive ? 1 : 0.2)}" style="transition: opacity 0.3s ease; ${!isFateVisible ? 'display: none;' : ''}">
         <path d="${fateD}" 
               stroke="#FBBF24" 
               stroke-width="${highlightedLine === 'FATE' ? 3.5 : 2}" 
               stroke-linecap="round"
-              stroke-dasharray="4 2"
+              stroke-dasharray="10 3 2 3"
               filter="${animateGlow ? 'url(#glow-fate)' : 'none'}"/>
         <!-- Accessible Keypoint Node: Triangle for Fate/Karma -->
         <polygon points="185,127 189,134 181,134" fill="#FBBF24"/>
       </g>
 
-      <!-- 5. Sun Line (Surya Rekha) — Amber (#F59E0B), Long-short dash (6 3) -->
+      <!-- 5. Sun Line (Surya Rekha) — Amber (#F59E0B), Dotted pattern (3 3) -->
       <g opacity="${!isSunVisible ? 0 : (isSunActive ? 1 : 0.2)}" style="transition: opacity 0.3s ease; ${!isSunVisible ? 'display: none;' : ''}">
         <path d="${sunD}" 
               stroke="#F59E0B" 
               stroke-width="${highlightedLine === 'SUN' ? 3.5 : 1.8}" 
               stroke-linecap="round"
-              stroke-dasharray="6 3"
+              stroke-dasharray="3 3"
               filter="${animateGlow ? 'url(#glow-sun)' : 'none'}"/>
         <!-- Accessible Keypoint Node: Sunburst disc -->
         <circle cx="222" cy="135" r="3" fill="#F59E0B"/>

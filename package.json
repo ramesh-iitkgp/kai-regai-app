@@ -10,7 +10,7 @@
     "dev": "vite",
     "server": "node src/backend/server.js",
     "build": "vite build",
-    "test": "node --test tests/ui_integration.test.js tests/daily_forecast.test.js tests/astrologer_chat.test.js tests/oracle.test.js tests/face_scanner_integration.test.js tests/cv/*.test.js tests/questionnaire/*.test.js tests/interpretation/*.test.js tests/narration/*.test.js tests/report/*.test.js tests/storage/*.test.js tests/monetization/*.test.js tests/backend/*.test.js tests/astronomy/*.test.js tests/astrology/*.test.js tests/astrologer/*.test.js",
+    "test": "node --test \"tests/**/*.test.js\" \"tests/*.test.js\"",
     "test:astronomy": "node --test tests/astronomy/*.test.js tests/astrology/*.test.js tests/astrologer/*.test.js",
     "test:cv": "node --test tests/cv/*.test.js",
     "test:questionnaire": "node --test tests/questionnaire/*.test.js",

@@ -4,6 +4,11 @@
  */
 
 import { i18n } from './i18n.js';
+import { gregorianToJulianDate } from '../astronomy/time/JulianDate.js';
+import { calculateAllPlanetaryPositions } from '../astronomy/planetaryPositions/PlanetaryCalculator.js';
+import { calculateAyanamsa, tropicalToSidereal } from '../astrology/vedic/Ayanamsa.js';
+import { calculateNakshatra } from '../astrology/nakshatra/NakshatraCalculator.js';
+import { getSignPlacement } from '../astrology/common/ZodiacSigns.js';
 
 export const VEDIC_RASHIS = [
   {
@@ -56,7 +61,7 @@ export const VEDIC_RASHIS = [
     symbol: '♌',
     names: { en: 'Simha (Leo)', ta: 'சிம்மம்', hi: 'सिंह', te: 'సింహం', kn: 'ಸಿಂಹ', ml: 'ചിങ്ങം' },
     graha: { en: 'Surya (Sun)', ta: 'சூரிய பகவான்', hi: 'सूर्य देव', te: 'సూర్య భగవానుడు', kn: 'ಸೂರ್ಯ ದೇವ', ml: 'സൂര്യൻ' },
-    tattva: { en: 'Agni (Fire)', ta: 'நெருப்பு தத்துவம்', hi: 'अग्नि तत्व', te: 'అగ్ని తత్త్వం', kn: 'ಅಗ್ನಿ ತತ್ತ್ವ', ml: 'ಅಗ್ನಿ ತತ್ತ್ವ' },
+    tattva: { en: 'Agni (Fire)', ta: 'நெருப்பு தத்துவம்', hi: 'अग्नि तत्व', te: 'అగ్ని తత్త్వం', kn: 'ಅಗ್ನಿ ತತ್ತ್ವ', ml: 'അഗ്നി തത്ത്വം' },
     mount: { en: 'Mount of Sun (Apollo)', ta: 'சூரிய மேடு', hi: 'सूर्य पर्वत', te: 'సూర్య పర్వతం', kn: 'ಸೂರ್ಯ ಪರ್ವತ', ml: 'സൂര്യ പർവ്വതം' },
     lineFocus: { en: 'Sun Line (Apollo Line)', ta: 'சூரிய ரேகை (கீர்த்தி ரேகை)', hi: 'सूर्य रेखा', te: 'సూర్య రేఖ', kn: 'ಸೂರ್ಯ ರೇಖೆ', ml: 'സൂര്യ രേഖ' },
     baseMetrics: { love: 89, energy: 97, luck: 93, mind: 90 }
@@ -100,7 +105,7 @@ export const VEDIC_RASHIS = [
     symbol: '♐',
     names: { en: 'Dhanu (Sagittarius)', ta: 'தனுசு', hi: 'धनु', te: 'ధనుస్సు', kn: 'ಧನು', ml: 'ധനു' },
     graha: { en: 'Guru (Jupiter)', ta: 'குரு பகவான்', hi: 'गुरु (बृहस्पति)', te: 'గురు భగవానుడు', kn: 'ಗುರು ದೇವ', ml: 'ഗുരു' },
-    tattva: { en: 'Agni (Fire)', ta: 'நெருப்பு தத்துவம்', hi: 'अग्नि तत्व', te: 'అగ్ని తత్త్వం', kn: 'ಅಗ್ನಿ ತತ್ತ್ವ', ml: 'ಅಗ್ನಿ തത്ത്വം' },
+    tattva: { en: 'Agni (Fire)', ta: 'நெருப்பு தத்துவம்', hi: 'अग्नि तत्व', te: 'అగ్ని తత్త్వం', kn: 'ಅಗ್ನಿ ತತ್ತ್ವ', ml: 'അഗ്നി തത്ത്വം' },
     mount: { en: 'Mount of Jupiter', ta: 'குரு மேடு', hi: 'गुरु पर्वत', te: 'గురు పర్వతం', kn: 'ಗುರು ಪರ್ವತ', ml: 'ഗുരു പർവ്വതം' },
     lineFocus: { en: 'Upward Branches into Jupiter Mount', ta: 'குரு மேட்டை நோக்கிய மேல்நோக்கு கிளைகள்', hi: 'गुरु पर्वत की ओर उर्ध्वगामी शाखाएं', te: 'గురు పర్వతం వైపు శాఖలు', kn: 'ಗುರು ಪರ್ವತದ ಮೇಲ್ಮುಖ ಶಾಖೆಗಳು', ml: 'ഗുരു പർവ്വത ശാഖകൾ' },
     baseMetrics: { love: 88, energy: 93, luck: 96, mind: 91 }
@@ -111,7 +116,7 @@ export const VEDIC_RASHIS = [
     symbol: '♑',
     names: { en: 'Makara (Capricorn)', ta: 'மகரம்', hi: 'मकर', te: 'మకరం', kn: 'ಮಕರ', ml: 'മകരം' },
     graha: { en: 'Shani (Saturn)', ta: 'சனி பகவான்', hi: 'शनि देव', te: 'శని భగవానుడు', kn: 'ಶನಿ ದೇವ', ml: 'ശനി' },
-    tattva: { en: 'Prithvi (Earth)', ta: 'நிலம் தத்துவம்', hi: 'पृथ्वी तत्व', te: 'భూమి తత్త్వం', kn: 'ಭೂಮಿ ತತ್ತ್ವ', ml: 'ಭೂಮಿ തത്ത്വം' },
+    tattva: { en: 'Prithvi (Earth)', ta: 'நிலம் தத்துவம்', hi: 'पृथ्वी तत्व', te: 'భూమి తత్త్వం', kn: 'ಭೂಮಿ ತತ್ತ್ವ', ml: 'ഭൂമി തത്ത്വം' },
     mount: { en: 'Mount of Saturn', ta: 'சனி மேடு', hi: 'शनि पर्वत', te: 'శని పర్వతం', kn: 'ಶನಿ ಪರ್ವತ', ml: 'ശനി പർവ്വതം' },
     lineFocus: { en: 'Fate Line (Saturn Line)', ta: 'விதி ரேகை (சனி ரேகை)', hi: 'भाग्य रेखा (शनि रेखा)', te: 'భాగ్య రేఖ (శని రేఖ)', kn: 'ಭಾಗ್ಯ ರೇಖೆ (ಶನಿ ರೇಖೆ)', ml: 'ഭാഗ്യ രേഖ (ശനി രേഖ)' },
     baseMetrics: { love: 85, energy: 91, luck: 89, mind: 94 }
@@ -173,6 +178,23 @@ export class DailyForecastService {
   }
 
   /**
+   * Computes standard Vedic Rahu Kalam window for any given date
+   */
+  getRahuKalam(date = new Date()) {
+    const day = date.getDay(); // 0 = Sun, 1 = Mon ...
+    const rahuWindows = [
+      '16:30 - 18:00', // Sun
+      '07:30 - 09:00', // Mon
+      '15:00 - 16:30', // Tue
+      '12:00 - 13:30', // Wed
+      '13:30 - 15:00', // Thu
+      '10:30 - 12:00', // Fri
+      '09:00 - 10:30'  // Sat
+    ];
+    return rahuWindows[day] || '12:00 - 13:30';
+  }
+
+  /**
    * Computes the complete daily forecast for a given Rashi and date
    */
   getForecastForToday(rashiKeyOrWestern, date = new Date(), lang = i18n.getLanguage()) {
@@ -201,6 +223,49 @@ export class DailyForecastService {
       year: 'numeric'
     });
 
+    // Real Astronomical Ephemeris Calculation for Today
+    let nakshatraData = null;
+    let planetaryTransit = null;
+    try {
+      const jd = gregorianToJulianDate(date.getFullYear(), date.getMonth() + 1, date.getDate(), 12, 0, 0);
+      const ayanamsa = calculateAyanamsa(jd, 'LAHIRI_CHITRAPAKSHA');
+      const bodies = calculateAllPlanetaryPositions(jd);
+      
+      // Real Moon Nakshatra
+      if (bodies.moon) {
+        const moonSid = tropicalToSidereal(bodies.moon.apparentLongitude, ayanamsa);
+        const nakCalc = calculateNakshatra(moonSid);
+        nakshatraData = {
+          name: nakCalc.nakshatraName,
+          pada: nakCalc.pada,
+          ruler: nakCalc.ruler,
+          deity: nakCalc.deity
+        };
+      }
+
+      // Real Jupiter Transit House relative to user sign
+      if (bodies.jupiter) {
+        const jupSid = tropicalToSidereal(bodies.jupiter.apparentLongitude, ayanamsa);
+        const jupSign = getSignPlacement(jupSid, 'VEDIC');
+        const userSignIndex = VEDIC_RASHIS.findIndex(r => r.key.toLowerCase() === rashi.key.toLowerCase());
+        const houseIndex = ((jupSign.signIndex - userSignIndex + 12) % 12) + 1;
+        const houseDomains = [
+          'Vitality & Self', 'Wealth & Family', 'Courage & Initiative', 'Inner Peace & Foundation',
+          'Creativity & Intellect', 'Resilience & Service', 'Partnerships & Alliances', 'Deep Transformation',
+          'Fortune & Dharma', 'Career & Karma', 'Gains & Networks', 'Higher Reflection'
+        ];
+        planetaryTransit = {
+          planet: 'Guru (Jupiter)',
+          house: houseIndex,
+          domain: houseDomains[houseIndex - 1],
+          sign: jupSign.signName,
+          degree: Number(jupSign.degreeInSign.toFixed(1))
+        };
+      }
+    } catch {
+      // Graceful fallback if astronomy engine is unavailable
+    }
+
     // Auspicious highlights
     const colors = [
       { en: 'Sacred Gold', ta: 'தங்க மஞ்சள்', hi: 'स्वर्ण पीत', te: 'స్వర్ణ పసుపు', kn: 'ಚಿನ್ನದ ಹಳದಿ', ml: 'സ്വർണ്ണ മഞ്ഞ' },
@@ -218,9 +283,10 @@ export class DailyForecastService {
     ];
     const muhurtaIndex = Math.abs(this._seededOffset(daySeed, 606, 0, muhurtas.length - 1));
     const auspiciousMuhurta = muhurtas[muhurtaIndex][lang] || muhurtas[muhurtaIndex].en;
+    const rahuKalam = this.getRahuKalam(date);
 
     // Multilingual Daily Reflection & Palm Mount Interpretation
-    const reflections = this._buildReflection(rashi, metrics, lang);
+    const reflections = this._buildReflection(rashi, metrics, lang, planetaryTransit);
 
     return {
       rashiKey: rashi.key,
@@ -235,6 +301,9 @@ export class DailyForecastService {
       metrics,
       auspiciousColor,
       auspiciousMuhurta,
+      rahuKalam,
+      nakshatra: nakshatraData,
+      planetaryTransit,
       reflection: reflections.cosmic,
       palmCorrelate: reflections.palmCorrelate
     };

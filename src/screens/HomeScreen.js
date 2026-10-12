@@ -236,11 +236,25 @@ export function renderHomeScreen(container) {
         </div>
       </section>
 
-      <!-- Ethics & Legal Disclaimer Card -->
-      <section style="padding: 10px 12px; border-radius: var(--radius-sm); background: rgba(255,255,255,0.03); border: 1px solid var(--color-border-subtle); text-align: center;">
-        <p style="font-size: 10px; color: var(--color-outline); line-height: 1.4; margin: 0;">
-          ${i18n.t('disclaimer')}
-        </p>
+      <!-- Trust, How Kai RegAI Works & Ethical Disclosures -->
+      <section style="margin-top: 12px; padding: 14px; border-radius: 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(251, 191, 36, 0.2);">
+        <div style="text-align: center; margin-bottom: 10px;">
+          <h4 style="font-family: var(--font-display); font-size: 13px; font-weight: 700; color: #fbbf24; margin: 0;">How Kai RegAI Works</h4>
+          <p style="font-size: 11px; color: #e4c276; margin: 2px 0 0 0;">The Story Written in Your Hands</p>
+        </div>
+        <div style="font-size: 11px; color: #d1d5db; line-height: 1.5; display: flex; flex-direction: column; gap: 6px;">
+          <div>Choose your preferred path: instant optical <strong>Hand Scanner</strong> or in-depth <strong>Guided Palm Reading</strong>.</div>
+          <div><strong>1. Observe:</strong> On-device visual crease analysis without uploading raw biometrics.</div>
+          <div><strong>2. Interpret:</strong> Classical Samudrika Shastra rules grounded in traditional knowledge.</div>
+          <div><strong>3. Explain:</strong> Rigorous epistemic tier separation between observations and interpretations.</div>
+          <div><strong>4. Privacy Guaranteed:</strong> Ephemeral RAM-only analysis with zero persistent photo retention.</div>
+        </div>
+        <div style="margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.06); text-align: center;">
+          <span style="font-size: 10px; font-weight: 700; color: #fbbf24; text-transform: uppercase;">Ethical Palmistry Notice</span>
+          <p style="font-size: 10px; color: var(--color-outline); line-height: 1.4; margin: 4px 0 0 0;">
+            ${i18n.t('disclaimer')}
+          </p>
+        </div>
       </section>
 
     </div>

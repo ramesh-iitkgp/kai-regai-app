@@ -17,7 +17,7 @@ import fs from 'fs';
 import path from 'path';
 
 import { defaultProductCatalog } from '../src/monetization/ProductCatalog.js';
-import { defaultEntitlementService, FEATURE_KEYS } from '../monetization/index.js';
+import { defaultEntitlementService, FEATURE_KEYS } from '../src/monetization/index.js';
 import { reportTelemetry, TELEMETRY_EVENTS } from '../src/report/ReportTelemetry.js';
 import { readingHistoryService } from '../src/services/ReadingHistoryService.js';
 import { renderPalmLineOverlay } from '../src/components/PalmLineOverlay.js';

@@ -9,7 +9,7 @@
  */
 
 export class GeminiClient {
-  constructor({ apiKey = null, model = 'gemini-1.5-flash', timeoutMs = 25000 } = {}) {
+  constructor({ apiKey = null, model = 'gemini-2.5-flash', timeoutMs = 25000 } = {}) {
     this.apiKey = apiKey || (typeof process !== 'undefined' ? process.env?.GEMINI_API_KEY : null);
     this.model = model;
     this.timeoutMs = timeoutMs;

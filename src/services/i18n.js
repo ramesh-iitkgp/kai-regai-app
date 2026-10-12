@@ -309,7 +309,7 @@ export const TRANSLATIONS = {
     paywall_standard_title: 'Standard Reading',
     paywall_premium_title: 'Premium Celestial Dossier',
     paywall_unlock_btn: 'Unlock Access Now',
-    paywall_restore_btn: 'Restore Previous Purchases',
+    paywall_restore_btn: 'Restore Purchases',
 
     // Oracle
     oracle_response: '✧ The Oracle speaks: "Your life line reflects powerful constitutional vitality. An auspicious cycle of creative clarity approaches."',

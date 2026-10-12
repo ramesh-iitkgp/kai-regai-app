@@ -18,9 +18,9 @@ build/
 # Large media archives & video recordings
 *.zip
 *.mp4
-extracted_frames/
-screens/
-backups/
+/extracted_frames/
+/screens/
+/backups/
 *.db
 *.db-wal
 *.db-shm
