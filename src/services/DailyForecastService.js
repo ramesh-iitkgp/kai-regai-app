@@ -195,6 +195,25 @@ export class DailyForecastService {
   }
 
   /**
+   * Checks if the given date/time falls within today's Rahu Kalam window
+   */
+  isRahuKalamActive(date = new Date()) {
+    const day = date.getDay();
+    const windowsMinutes = [
+      { start: 16 * 60 + 30, end: 18 * 60 },      // Sun 16:30 - 18:00
+      { start: 7 * 60 + 30, end: 9 * 60 },        // Mon 07:30 - 09:00
+      { start: 15 * 60, end: 16 * 60 + 30 },      // Tue 15:00 - 16:30
+      { start: 12 * 60, end: 13 * 60 + 30 },      // Wed 12:00 - 13:30
+      { start: 13 * 60 + 30, end: 15 * 60 },      // Thu 13:30 - 15:00
+      { start: 10 * 60 + 30, end: 12 * 60 },      // Fri 10:30 - 12:00
+      { start: 9 * 60, end: 10 * 60 + 30 }        // Sat 09:00 - 10:30
+    ];
+    const currentMins = date.getHours() * 60 + date.getMinutes();
+    const w = windowsMinutes[day];
+    return w ? currentMins >= w.start && currentMins < w.end : false;
+  }
+
+  /**
    * Computes the complete daily forecast for a given Rashi and date
    */
   getForecastForToday(rashiKeyOrWestern, date = new Date(), lang = i18n.getLanguage()) {
@@ -302,6 +321,7 @@ export class DailyForecastService {
       auspiciousColor,
       auspiciousMuhurta,
       rahuKalam,
+      rahuKalamActive: this.isRahuKalamActive(date),
       nakshatra: nakshatraData,
       planetaryTransit,
       reflection: reflections.cosmic,

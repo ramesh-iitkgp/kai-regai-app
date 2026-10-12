@@ -11,6 +11,7 @@ import { dailyForecastService } from '../services/DailyForecastService.js';
 import { defaultProductCatalog } from '../monetization/ProductCatalog.js';
 import { reportTelemetry, TELEMETRY_EVENTS } from '../report/ReportTelemetry.js';
 import { i18n } from '../services/i18n.js';
+import { renderTodaySkyCard } from '../components/TodaySky.js';
 
 export function renderPersonalForecastScreen(container) {
   reportTelemetry.logEvent(TELEMETRY_EVENTS.LANDING_VIEW, { screen: 'personal_forecast' });
@@ -429,6 +430,9 @@ export function renderPersonalForecastScreen(container) {
               </p>
             </div>
           </section>
+
+          <!-- Today's Celestial Sky & Transits -->
+          ${renderTodaySkyCard(forecast, { title: "Today's Sky & Transits" })}
 
           <!-- 2x2 Core Domains Grid -->
           <section class="forecast-2x2-grid">

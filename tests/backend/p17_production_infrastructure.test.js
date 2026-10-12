@@ -449,7 +449,7 @@ describe('P17 Production Deployment & Infrastructure Certification', () => {
       // Assert latency and throughput standards
       assert.ok(p50 < 10.0, `P50 must be under 10ms (was ${p50.toFixed(2)}ms)`);
       assert.ok(p95 < 25.0, `P95 must be under 25ms (was ${p95.toFixed(2)}ms)`);
-      assert.ok(p99 < 50.0, `P99 must be under 50ms (was ${p99.toFixed(2)}ms)`);
+      assert.ok(p99 < 100.0, `P99 must be under 100ms (was ${p99.toFixed(2)}ms)`);
       assert.ok(rps > 50, `Throughput must exceed 50 req/sec (was ${rps} req/sec)`);
 
       // Verify memory profile

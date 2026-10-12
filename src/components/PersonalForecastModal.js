@@ -8,6 +8,7 @@ import { i18n } from '../services/i18n.js';
 import { router } from '../navigation/router.js';
 import { ROUTES } from '../navigation/routes.js';
 import { reportTelemetry, TELEMETRY_EVENTS } from '../report/ReportTelemetry.js';
+import { renderTodaySkyCard } from './TodaySky.js';
 
 export function renderPersonalForecastModal({
   rashi = null,
@@ -133,6 +134,9 @@ export function renderPersonalForecastModal({
             </div>
           </div>
         </div>
+
+        <!-- Today's Sky: Real Ephemeris & Rahu Kalam -->
+        ${renderTodaySkyCard(forecast)}
 
         <!-- Celestial Reflection Card -->
         <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(251, 191, 36, 0.22); border-radius: 14px; padding: 14px; margin-bottom: 12px;">

@@ -13,6 +13,7 @@ import { reportTelemetry, TELEMETRY_EVENTS } from '../report/ReportTelemetry.js'
 import { readingHistoryService } from '../services/ReadingHistoryService.js';
 import { dailyForecastService } from '../services/DailyForecastService.js';
 import { i18n } from '../services/i18n.js';
+import { renderTodaySkyHomeLine } from '../components/TodaySky.js';
 
 export function renderHomeScreen(container) {
   // Emit funnel landing event
@@ -150,6 +151,7 @@ export function renderHomeScreen(container) {
           <span><strong style="color: #fbbf24;">✦</strong> ${i18n.t('metric_energy')}: ${todayForecast.metrics.energy}%</span>
           <span><strong style="color: #fbbf24;">✦</strong> ${i18n.t('metric_luck')}: ${todayForecast.metrics.luck}%</span>
         </div>
+        ${renderTodaySkyHomeLine(todayForecast)}
       </section>
 
       <!-- Card 3 & 4: Hand Scanner + Face Scanner (2-Column Grid with Golden Light) -->
