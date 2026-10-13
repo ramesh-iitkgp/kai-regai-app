@@ -1,150 +1,97 @@
 /**
- * TodaySky — Vedic Celestial Positions & Rahu Kalam Display Component
- * Renders authentic daily planetary transits:
- * - Chandra Nakshatra (Moon star, Pada, Ruler, Deity)
- * - Guru Gochara (Jupiter transit house relative to user sign)
- * - Rahu Kalam time window with live "Active Now" indicator
+ * TodaySky — renders the astronomical part of the daily forecast:
+ * Moon nakshatra, Jupiter's transit house counted from the user's Rashi, and Rahu Kalam.
+ *
+ * Pure presentation: every value comes from DailyForecastService.getForecastForToday().
+ * Returns '' when the service could not compute the sky, so callers can embed it safely.
+ * Styles live in src/styles/components.css (.sky-*).
  */
 
 import { i18n } from '../services/i18n.js';
 
+const LABELS = {
+  title:       { en: "Today's Sky", ta: 'இன்றைய வானம்', hi: 'आज का आकाश', te: 'నేటి ఆకాశం', kn: 'ಇಂದಿನ ಆಕಾಶ', ml: 'ഇന്നത്തെ ആകാശം' },
+  moon:        { en: 'Moon Nakshatra', ta: 'சந்திர நட்சத்திரம்', hi: 'चंद्र नक्षत्र', te: 'చంద్ర నక్షత్రం', kn: 'ಚಂದ್ರ ನಕ್ಷತ್ರ', ml: 'ചന്ദ്ര നക്ഷത്രം' },
+  jupiter:     { en: 'Jupiter Transit', ta: 'குரு பெயர்ச்சி', hi: 'गुरु गोचर', te: 'గురు సంచారం', kn: 'ಗುರು ಸಂಚಾರ', ml: 'ഗുരു സഞ്ചാരം' },
+  rahu:        { en: 'Rahu Kalam', ta: 'ராகு காலம்', hi: 'राहु काल', te: 'రాహు కాలం', kn: 'ರಾಹು ಕಾಲ', ml: 'രാഹു കാലം' },
+  pada:        { en: 'Pada', ta: 'பாதம்', hi: 'चरण', te: 'పాదం', kn: 'ಪಾದ', ml: 'പാദം' },
+  house:       { en: 'House', ta: 'பாவம்', hi: 'भाव', te: 'భావం', kn: 'ಭಾವ', ml: 'ഭാവം' },
+  fromRashi:   { en: 'from your Rashi', ta: 'உங்கள் ராசியிலிருந்து', hi: 'आपकी राशि से', te: 'మీ రాశి నుండి', kn: 'ನಿಮ್ಮ ರಾಶಿಯಿಂದ', ml: 'നിങ്ങളുടെ രാശിയിൽ നിന്ന്' },
+  caution:     { en: 'Avoid starting contracts or travel', ta: 'ஒப்பந்தம் அல்லது பயணம் தொடங்க வேண்டாம்', hi: 'अनुबंध या यात्रा आरंभ न करें', te: 'ఒప్పందాలు లేదా ప్రయాణం ప్రారంభించవద్దు', kn: 'ಒಪ್ಪಂದ ಅಥವಾ ಪ್ರಯಾಣ ಆರಂಭಿಸಬೇಡಿ', ml: 'കരാർ ഒപ്പിടുകയോ യാത്ര തുടങ്ങുകയോ ചെയ്യരുത്' },
+  defaultPlace:{ en: 'default location', ta: 'இயல்புநிலை இடம்', hi: 'डिफ़ॉल्ट स्थान', te: 'డిఫాల్ట్ ప్రదేశం', kn: 'ಡೀಫಾಲ್ಟ್ ಸ್ಥಳ', ml: 'ഡിഫോൾട്ട് സ്ഥലം' },
+  activeNow:   { en: 'Active now', ta: 'இப்போது நடப்பில்', hi: 'अभी सक्रिय', te: 'ఇప్పుడు కొనసాగుతోంది', kn: 'ಈಗ ಜಾರಿಯಲ್ಲಿದೆ', ml: 'ഇപ്പോൾ സജീവം' }
+};
+
+const t = (key, lang) => LABELS[key]?.[lang] || LABELS[key]?.en || key;
+const capitalise = (s) => (s ? String(s).charAt(0).toUpperCase() + String(s).slice(1) : '');
+const prettyWindow = (w) => String(w || '').replace(' - ', ' – ');
+
+/** "Chennai" or "Chennai (default location)": which place the sunrise-based times are for. */
+const placeLabel = (forecast, lang) => {
+  const loc = forecast?.timesLocation;
+  if (!loc || !loc.name) return '';
+  return loc.source === 'default' ? `${loc.name} (${t('defaultPlace', lang)})` : loc.name;
+};
+
 /**
- * Renders a full 3-row "Today's Sky" celestial insight card
- * Used in PersonalForecastModal and PersonalForecastScreen
+ * Full "Today's Sky" card (3 rows). Used in the forecast modal and Personal Forecast screen.
  */
-export function renderTodaySkyCard(forecast, { title = "Today's Celestial Sky" } = {}) {
-  if (!forecast) return '';
+export function renderTodaySkyCard(forecast, lang = i18n.getLanguage()) {
+  const nak = forecast?.nakshatra;
+  const jup = forecast?.planetaryTransit;
+  const rahu = forecast?.rahuKalam;
+  if (!nak && !jup && !rahu) return '';
 
-  const nakshatra = forecast.nakshatra;
-  const transit = forecast.planetaryTransit;
-  const rahuKalam = forecast.rahuKalam || '12:00 - 13:30';
-  const isActive = Boolean(forecast.rahuKalamActive);
+  const moonRow = nak ? `
+    <div class="sky-row">
+      <span class="sky-icon" aria-hidden="true"><span class="material-symbols-outlined">nightlight</span></span>
+      <div class="sky-text">
+        <span class="sky-label">${t('moon', lang)}</span>
+        <span class="sky-value">${nak.name}</span>
+        <span class="sky-sub">${t('pada', lang)} ${nak.pada} · ${capitalise(nak.ruler)} · ${nak.deity}</span>
+      </div>
+    </div>` : '';
 
-  // If astronomy data is completely missing, return clean empty string
-  if (!nakshatra && !transit) return '';
+  const jupiterRow = jup ? `
+    <div class="sky-row">
+      <span class="sky-icon" aria-hidden="true"><span class="material-symbols-outlined">auto_awesome</span></span>
+      <div class="sky-text">
+        <span class="sky-label">${t('jupiter', lang)}</span>
+        <span class="sky-value">${jup.sign} ${jup.degree}°</span>
+        <span class="sky-sub">${t('house', lang)} ${jup.house} ${t('fromRashi', lang)} · ${jup.domain}</span>
+      </div>
+    </div>` : '';
+
+  const rahuRow = rahu ? `
+    <div class="sky-row">
+      <span class="sky-icon sky-icon-caution" aria-hidden="true"><span class="material-symbols-outlined">schedule</span></span>
+      <div class="sky-text">
+        <span class="sky-label">${t('rahu', lang)}${forecast.rahuKalamActive ? ` <span class="sky-badge-now">${t('activeNow', lang)}</span>` : ''}</span>
+        <span class="sky-value">${prettyWindow(rahu)}</span>
+        <span class="sky-sub">${[placeLabel(forecast, lang), t('caution', lang)].filter(Boolean).join(' · ')}</span>
+      </div>
+    </div>` : '';
 
   return `
-    <div class="today-sky-card" style="background: rgba(18, 14, 28, 0.7); border: 1px solid rgba(228, 194, 118, 0.3); border-radius: 16px; padding: 14px 16px; margin: 12px 0; backdrop-filter: blur(12px);">
-      <!-- Card Header -->
-      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; border-bottom: 1px solid rgba(228, 194, 118, 0.15); padding-bottom: 8px;">
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <span style="font-size: 15px; color: #fbbf24; filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.6));">✦</span>
-          <h4 style="font-family: var(--font-display, serif); font-size: 13px; font-weight: 700; color: #ffffff; letter-spacing: 0.04em; margin: 0; text-transform: uppercase;">
-            ${title}
-          </h4>
-        </div>
-        <span style="font-size: 10px; color: #d6ad68; font-weight: 600; background: rgba(214, 173, 104, 0.12); padding: 2px 8px; border-radius: 9999px; border: 1px solid rgba(214, 173, 104, 0.25);">
-          Live Sidereal Ephemeris
-        </span>
-      </div>
-
-      <!-- 3 Rows Stack -->
-      <div style="display: flex; flex-direction: column; gap: 10px;">
-        
-        <!-- Row 1: Moon Nakshatra -->
-        ${nakshatra ? `
-          <div class="sky-row" style="display: flex; align-items: flex-start; gap: 10px;">
-            <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #38bdf8; font-size: 16px;">
-              ☽
-            </div>
-            <div style="flex: 1;">
-              <div style="display: flex; align-items: center; justify-content: space-between;">
-                <span style="font-size: 12px; font-weight: 700; color: #ffffff;">
-                  Nakshatra: ${nakshatra.name} <span style="font-weight: 400; color: #38bdf8;">(Pada ${nakshatra.pada})</span>
-                </span>
-                <span style="font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em;">Chandra</span>
-              </div>
-              <p style="font-size: 11px; color: #cbd5e1; margin: 2px 0 0 0; line-height: 1.35;">
-                Ruler: <strong style="color: #e2e8f0;">${nakshatra.ruler ? nakshatra.ruler.toUpperCase() : 'Chandra'}</strong> · Deity: ${nakshatra.deity || 'Cosmic Guardian'}
-              </p>
-            </div>
-          </div>
-        ` : ''}
-
-        <!-- Row 2: Jupiter Planetary Transit House -->
-        ${transit ? `
-          <div class="sky-row" style="display: flex; align-items: flex-start; gap: 10px;">
-            <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(251, 191, 36, 0.12); border: 1px solid rgba(251, 191, 36, 0.35); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #fbbf24; font-size: 15px;">
-              ♃
-            </div>
-            <div style="flex: 1;">
-              <div style="display: flex; align-items: center; justify-content: space-between;">
-                <span style="font-size: 12px; font-weight: 700; color: #ffffff;">
-                  Guru in ${transit.sign} <span style="font-weight: 400; color: #fbbf24;">(${transit.degree}°)</span>
-                </span>
-                <span style="font-size: 10px; color: #d6ad68; text-transform: uppercase; letter-spacing: 0.05em;">Jupiter</span>
-              </div>
-              <p style="font-size: 11px; color: #cbd5e1; margin: 2px 0 0 0; line-height: 1.35;">
-                House <strong style="color: #fbbf24;">${transit.house}</strong> from your Rashi · <em>${transit.domain}</em>
-              </p>
-            </div>
-          </div>
-        ` : ''}
-
-        <!-- Row 3: Rahu Kalam Window -->
-        <div class="sky-row" style="display: flex; align-items: flex-start; gap: 10px;">
-          <div style="width: 32px; height: 32px; border-radius: 8px; background: ${isActive ? 'rgba(239, 68, 68, 0.18)' : 'rgba(148, 163, 184, 0.1)'}; border: 1px solid ${isActive ? 'rgba(239, 68, 68, 0.5)' : 'rgba(148, 163, 184, 0.25)'}; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: ${isActive ? '#f87171' : '#94a3b8'}; font-size: 15px;">
-            ☊
-          </div>
-          <div style="flex: 1;">
-            <div style="display: flex; align-items: center; justify-content: space-between;">
-              <div style="display: flex; align-items: center; gap: 6px;">
-                <span style="font-size: 12px; font-weight: 700; color: ${isActive ? '#fca5a5' : '#ffffff'};">
-                  Rahu Kalam: ${rahuKalam}
-                </span>
-                ${isActive ? `
-                  <span class="sky-live-active-pill" style="font-size: 9px; font-weight: 800; background: #dc2626; color: #ffffff; padding: 1px 6px; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.05em; animation: pulse 1.5s infinite;">
-                    Active Now
-                  </span>
-                ` : `
-                  <span style="font-size: 9px; color: #94a3b8; background: rgba(255,255,255,0.06); padding: 1px 5px; border-radius: 4px;">
-                    Caution Window
-                  </span>
-                `}
-              </div>
-              <span style="font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em;">Inauspicious</span>
-            </div>
-            <p style="font-size: 10.5px; color: #94a3b8; margin: 2px 0 0 0; line-height: 1.35;">
-              Avoid signing contracts, starting new journeys, or financial closings.
-            </p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  `;
+    <section class="sky-card" aria-label="${t('title', lang)}">
+      <div class="sky-head"><span aria-hidden="true">✦</span><span>${t('title', lang)}</span></div>
+      ${moonRow}${jupiterRow}${rahuRow}
+    </section>`;
 }
 
 /**
- * Renders a compact single-line sky summary for the Home screen forecast pill
+ * One-line summary for the home Personal Forecast pill: "Swati · Rahu Kalam 07:28 – 08:57".
  */
-export function renderTodaySkyHomeLine(forecast) {
-  if (!forecast) return '';
-
-  const nakshatraName = forecast.nakshatra?.name;
-  const rahuKalam = forecast.rahuKalam;
-  const isActive = Boolean(forecast.rahuKalamActive);
-
-  if (!nakshatraName && !rahuKalam) return '';
-
-  return `
-    <div class="home-sky-line" style="display: flex; align-items: center; gap: 8px; font-size: 11px; margin-top: 8px; padding-top: 6px; border-top: 1px solid rgba(228, 194, 118, 0.15); color: #cbd5e1; flex-wrap: wrap;">
-      ${nakshatraName ? `
-        <span style="display: inline-flex; align-items: center; gap: 4px;">
-          <span style="color: #38bdf8;">☽</span>
-          <span>${nakshatraName}</span>
-        </span>
-      ` : ''}
-
-      ${nakshatraName && rahuKalam ? `<span style="color: rgba(228, 194, 118, 0.4);">•</span>` : ''}
-
-      ${rahuKalam ? `
-        <span style="display: inline-flex; align-items: center; gap: 4px; ${isActive ? 'color: #f87171; font-weight: 700;' : ''}">
-          <span style="color: ${isActive ? '#ef4444' : '#94a3b8'};">☊</span>
-          <span>Rahu Kalam ≈ ${rahuKalam}</span>
-          ${isActive ? `<span style="font-size: 8.5px; background: #dc2626; color: #fff; padding: 1px 5px; border-radius: 9999px; font-weight: 800;">ACTIVE NOW</span>` : ''}
-        </span>
-      ` : ''}
-    </div>
-  `;
+export function renderTodaySkyLine(forecast, lang = i18n.getLanguage()) {
+  const nak = forecast?.nakshatra;
+  const rahu = forecast?.rahuKalam;
+  if (!nak && !rahu) return '';
+  const parts = [];
+  if (nak) parts.push(`<span><span aria-hidden="true">☽</span> ${nak.name}</span>`);
+  if (rahu) {
+    const cls = forecast.rahuKalamActive ? 'home-sky-rahu active' : 'home-sky-rahu';
+    const now = forecast.rahuKalamActive ? ` · ${t('activeNow', lang)}` : '';
+    parts.push(`<span class="${cls}">${t('rahu', lang)} ${prettyWindow(rahu)}${now}</span>`);
+  }
+  return `<div class="home-sky-line">${parts.join('')}</div>`;
 }

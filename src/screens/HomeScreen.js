@@ -13,14 +13,13 @@ import { reportTelemetry, TELEMETRY_EVENTS } from '../report/ReportTelemetry.js'
 import { readingHistoryService } from '../services/ReadingHistoryService.js';
 import { dailyForecastService } from '../services/DailyForecastService.js';
 import { i18n } from '../services/i18n.js';
-import { renderTodaySkyHomeLine } from '../components/TodaySky.js';
+import { renderTodaySkyLine } from '../components/TodaySky.js';
 
 export function renderHomeScreen(container) {
   // Emit funnel landing event
   reportTelemetry.logEvent(TELEMETRY_EVENTS.LANDING_VIEW, { screen: 'home' });
 
   const storedName = (typeof window !== 'undefined' && window.localStorage?.getItem('kai_user_name')) || i18n.t('default_user_name');
-  const storedRashi = typeof window !== 'undefined' && window.localStorage?.getItem('kai_user_rashi');
   const storedZodiacRaw = typeof window !== 'undefined' && window.localStorage?.getItem('kai_user_zodiac');
 
   const RASHI_LOCALIZATION = {
@@ -39,8 +38,10 @@ export function renderHomeScreen(container) {
   };
 
   const currentLang = i18n.getLanguage();
-  const storedZodiac = (storedRashi && RASHI_LOCALIZATION[storedRashi]?.[currentLang]) || storedZodiacRaw;
-  const activeRashi = storedRashi || 'Makara';
+  // Janma Rashi (Moon sign) from the saved birth details; falls back to the saved selection
+  const resolvedRashi = dailyForecastService.resolveUserRashi();
+  const activeRashi = resolvedRashi.key;
+  const storedZodiac = (resolvedRashi.source !== 'default' && RASHI_LOCALIZATION[activeRashi]?.[currentLang]) || storedZodiacRaw;
   const todayForecast = dailyForecastService.getForecastForToday(activeRashi, new Date(), currentLang);
 
   let latestReading = {
@@ -151,7 +152,7 @@ export function renderHomeScreen(container) {
           <span><strong style="color: #fbbf24;">✦</strong> ${i18n.t('metric_energy')}: ${todayForecast.metrics.energy}%</span>
           <span><strong style="color: #fbbf24;">✦</strong> ${i18n.t('metric_luck')}: ${todayForecast.metrics.luck}%</span>
         </div>
-        ${renderTodaySkyHomeLine(todayForecast)}
+        ${renderTodaySkyLine(todayForecast, currentLang)}
       </section>
 
       <!-- Card 3 & 4: Hand Scanner + Face Scanner (2-Column Grid with Golden Light) -->

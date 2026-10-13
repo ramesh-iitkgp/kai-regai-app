@@ -17,7 +17,7 @@ export function renderPersonalForecastScreen(container) {
   reportTelemetry.logEvent(TELEMETRY_EVENTS.LANDING_VIEW, { screen: 'personal_forecast' });
 
   const storedName = (typeof window !== 'undefined' && window.localStorage?.getItem('kai_user_name')) || 'Seeker';
-  const storedRashi = (typeof window !== 'undefined' && window.localStorage?.getItem('kai_user_rashi')) || 'Makara';
+  const storedRashi = dailyForecastService.resolveUserRashi().key; // Janma Rashi (Moon sign)
   const storedDob = (typeof window !== 'undefined' && window.localStorage?.getItem('kai_user_dob')) || '1998-05-15';
   const storedTob = (typeof window !== 'undefined' && window.localStorage?.getItem('kai_user_tob')) || '12:00';
   const storedTobUnknown = typeof window !== 'undefined' && window.localStorage?.getItem('kai_user_tob_unknown') === 'true';
@@ -431,8 +431,8 @@ export function renderPersonalForecastScreen(container) {
             </div>
           </section>
 
-          <!-- Today's Celestial Sky & Transits -->
-          ${renderTodaySkyCard(forecast, { title: "Today's Sky & Transits" })}
+          <!-- Today's Sky: real Moon nakshatra, Jupiter transit house, Rahu Kalam -->
+          ${renderTodaySkyCard(forecast, currentLang)}
 
           <!-- 2x2 Core Domains Grid -->
           <section class="forecast-2x2-grid">

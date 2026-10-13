@@ -5,10 +5,10 @@
 
 import { dailyForecastService, VEDIC_RASHIS } from '../services/DailyForecastService.js';
 import { i18n } from '../services/i18n.js';
+import { renderTodaySkyCard } from './TodaySky.js';
 import { router } from '../navigation/router.js';
 import { ROUTES } from '../navigation/routes.js';
 import { reportTelemetry, TELEMETRY_EVENTS } from '../report/ReportTelemetry.js';
-import { renderTodaySkyCard } from './TodaySky.js';
 
 export function renderPersonalForecastModal({
   rashi = null,
@@ -19,7 +19,7 @@ export function renderPersonalForecastModal({
   }
 } = {}) {
   const currentLang = i18n.getLanguage();
-  const activeRashiKey = rashi || (typeof window !== 'undefined' && window.localStorage?.getItem('kai_user_rashi')) || 'Makara';
+  const activeRashiKey = rashi || dailyForecastService.resolveUserRashi().key; // Janma Rashi (Moon sign) unless the user is browsing another sign
   const forecast = dailyForecastService.getForecastForToday(activeRashiKey, new Date(), currentLang);
 
   const localizedTitles = {
@@ -31,6 +31,14 @@ export function renderPersonalForecastModal({
     muhurta_label: { en: 'Optimal Window', ta: 'உகந்த நேரம்', hi: 'अनुकूल समय', te: 'అనుకూల సమయం', kn: 'ಅನುಕೂಲ ಸಮಯ', ml: 'അനുകൂല സമയം' },
     scan_cta: { en: 'Scan Palm to Correlate (~10s)', ta: 'கையை ஸ்கேன் செய்க (~10 வி)', hi: 'हथेली स्कैन कर मिलान करें (~10 से)', te: 'అరచేతిని స్కాన్ చేయండి (~10 సె)', kn: 'ಹಸ್ತ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ (~10 ಸೆ)', ml: 'കൈ സ്കാൻ ചെയ്യുക (~10 സെ)' },
     rashi_select_label: { en: 'Zodiac / Rashi', ta: 'ராசி தேர்வு', hi: 'राशि चुनें', te: 'రాశి ఎంచుకోండి', kn: 'ರಾಶಿ ಆಯ್ಕೆ', ml: 'രാശി തിരഞ്ഞെടുക്കുക' },
+    metric_note: {
+      en: 'Scores reflect traditional Gochara: planets moving through the sky today, counted from your Moon sign. A reflective guide, not a prediction.',
+      ta: 'மதிப்பெண்கள் பாரம்பரிய கோசாரத்தை (உங்கள் சந்திர ராசியிலிருந்து கிரகங்களின் சஞ்சாரம்) அடிப்படையாகக் கொண்டவை. இது சிந்தனைக்கான வழிகாட்டி, கணிப்பு அல்ல.',
+      hi: 'स्कोर पारंपरिक गोचर (आपकी चंद्र राशि से ग्रहों का संचार) पर आधारित हैं। यह चिंतन का मार्गदर्शन है, भविष्यवाणी नहीं।',
+      te: 'స్కోర్లు సంప్రదాయ గోచారం (మీ చంద్ర రాశి నుండి గ్రహ సంచారం) ఆధారంగా ఉంటాయి. ఇది ఆలోచనకు మార్గదర్శి, భవిష్యవాణి కాదు.',
+      kn: 'ಸ್ಕೋರ್‌ಗಳು ಸಾಂಪ್ರದಾಯಿಕ ಗೋಚಾರ (ನಿಮ್ಮ ಚಂದ್ರ ರಾಶಿಯಿಂದ ಗ್ರಹ ಸಂಚಾರ) ಆಧಾರಿತ. ಇದು ಚಿಂತನೆಗೆ ಮಾರ್ಗದರ್ಶಿ, ಭವಿಷ್ಯ ಅಲ್ಲ.',
+      ml: 'സ്കോറുകൾ പരമ്പരാഗത ഗോചരത്തെ (നിങ്ങളുടെ ചന്ദ്ര രാശിയിൽ നിന്നുള്ള ഗ്രഹസഞ്ചാരം) അടിസ്ഥാനമാക്കിയുള്ളതാണ്. ഇത് ചിന്തയ്ക്കുള്ള വഴികാട്ടിയാണ്, പ്രവചനമല്ല.'
+    },
     metric_mind_lbl: { en: 'Mind', ta: 'மனம்', hi: 'मन', te: 'మనస్సు', kn: 'ಮನಸ್ಸು', ml: 'മനസ്സ്' }
   };
 
@@ -135,8 +143,10 @@ export function renderPersonalForecastModal({
           </div>
         </div>
 
-        <!-- Today's Sky: Real Ephemeris & Rahu Kalam -->
-        ${renderTodaySkyCard(forecast)}
+        <p class="sky-note">${t('metric_note')}</p>
+
+        <!-- Today's Sky: real Moon nakshatra, Jupiter transit house, Rahu Kalam -->
+        ${renderTodaySkyCard(forecast, currentLang)}
 
         <!-- Celestial Reflection Card -->
         <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(251, 191, 36, 0.22); border-radius: 14px; padding: 14px; margin-bottom: 12px;">

@@ -411,25 +411,9 @@ export function attachPersonalForecastInputListeners(container, { onClose, onSub
         }
       }
 
-      // Derive Rashi from DOB
-      const [year, month, day] = dob.split('-').map(Number);
-      if (month && day) {
-        const m = month - 1; // 0-indexed
-        let rashi = 'Makara';
-        if ((m === 11 && day >= 22) || (m === 0 && day <= 19)) rashi = 'Makara';
-        else if ((m === 0 && day >= 20) || (m === 1 && day <= 18)) rashi = 'Kumbha';
-        else if ((m === 1 && day >= 19) || (m === 2 && day <= 20)) rashi = 'Meena';
-        else if ((m === 2 && day >= 21) || (m === 3 && day <= 19)) rashi = 'Mesha';
-        else if ((m === 3 && day >= 20) || (m === 4 && day <= 20)) rashi = 'Vrishabha';
-        else if ((m === 4 && day >= 21) || (m === 5 && day <= 20)) rashi = 'Mithuna';
-        else if ((m === 5 && day >= 21) || (m === 6 && day <= 22)) rashi = 'Karka';
-        else if ((m === 6 && day >= 23) || (m === 7 && day <= 22)) rashi = 'Simha';
-        else if ((m === 7 && day >= 23) || (m === 8 && day <= 22)) rashi = 'Kanya';
-        else if ((m === 8 && day >= 23) || (m === 9 && day <= 22)) rashi = 'Tula';
-        else if ((m === 9 && day >= 23) || (m === 10 && day <= 21)) rashi = 'Vrishchika';
-        else rashi = 'Dhanu';
-        window.localStorage.setItem('kai_user_rashi', rashi);
-      }
+      // Janma Rashi = Vedic Moon sign, worked out from the birth details just saved
+      // (the old calendar-date lookup gave the Sun sign, which is a different thing)
+      window.localStorage.setItem('kai_user_rashi', dailyForecastService.resolveUserRashi().key);
     }
 
     reportTelemetry.logEvent(TELEMETRY_EVENTS.FEATURE_ACCESSED, { feature: 'personal_forecast_configured', hand });
